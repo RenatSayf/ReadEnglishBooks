@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = ViewBag.title;
+}
+
+<h2>@ViewBag.title</h2>
+
+<div id="myCarousel" class="carousel slide" >
+    @*<ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>*@
+    <div class="carousel-inner" role="listbox">
+        <div id="page0" class="item">     
+           
+        </div>
+        <div id="page1" class="item">
+            
+        </div>
+        <div id="page2" class="item active">
+            
+        </div>
+        <div id="page3" class="item">
+            
+        </div>
+        <div id="page4" class="item">
+
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<script>
+
+    $(document).ready(function ()
+    {
+        myfunction();
+
+        $.ajax({
+                type: 'GET',
+                url: '@Url.Action("getPage", "Book")?page=' + 0,
+                success: function (data)
+                {
+                    //debugger;
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        $("#page" + i).html(data[i]);
+                    }
+                    
+                },
+                error: function (xhr, status, error)
+                {
+                    alert("Îøèáêà ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+                },
+                dataType: 'JSON'
+            });
+
+    });
+
+    $(window).resize(function ()
+    {
+        myfunction();
+    });
+
+    function myfunction()
+    {
+        var w = $(window).width();
+        var h = $(window).height() - 250;
+        $(".carousel-inner").css("height", h);
+    }
+
+</script>
