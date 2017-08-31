@@ -46,13 +46,20 @@
 
         $.ajax({
                 type: 'GET',
-                url: '@Url.Action("getPage", "Book")?page=' + 0,
+                url: '@Url.Action("getPage", "Book")?book_name=1984.txt&page=' + 0,
                 success: function (data)
                 {
                     //debugger;
-                    for (var i = 0; i < data.length; i++)
+                    if (data.length === 1)
                     {
-                        $("#page" + i).html(data[i]);
+                        $("#page2").html(data[0]);
+                    }
+                    else
+                    {
+                        for (var i = 0; i < data.length; i++)
+                        {
+                            $("#page" + i).html(data[i]);
+                        }
                     }
                     
                 },

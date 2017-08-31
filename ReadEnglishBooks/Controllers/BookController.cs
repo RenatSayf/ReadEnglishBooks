@@ -21,18 +21,41 @@ namespace ReadEnglishBooks.Controllers
             return View();
         }
 
-        public JsonResult getPage(int page)
+        public JsonResult getPage(string book_name, int page)
         {
-            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\1984.txt", 4000);
+            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 4000);
             List<string> pages = new List<string>();
-            if (page == 0)
+            try
             {
-                pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 2).ToArray()));
-                pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 1).ToArray()));
-                pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()));
-                pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()));
-                pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()));
-                
+                if (page == 0 && book.PagesList.Count() > 2)
+                {
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 2).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()));
+
+                }
+                if (page > 0 && page < 2 && book.PagesList.Count() > 2)
+                {
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()));
+                }
+                if (page >= 2 && book.PagesList.Count() > 2)
+                {
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 2).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()));
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()));
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                pages.Add(" нига не найдена");
             }
             return Json(pages);
         }
