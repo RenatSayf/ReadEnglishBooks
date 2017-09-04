@@ -5,12 +5,6 @@
 <h2>@ViewBag.title</h2>
 
 <div id="myCarousel" class="carousel slide" data-pause="false">
-    @*<ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>*@
     <div class="carousel-inner" role="listbox">
         <div id="page0" class="item active">     
            
@@ -19,12 +13,6 @@
             
         </div>
         <div id="page2" class="item">
-            
-        </div>
-        @*<div id="page3" class="item">
-            
-        </div>
-        <div id="page4" class="item">*@
             
         </div>
     </div>
@@ -44,12 +32,17 @@
 
     $("#chevron-left").click(function ()
     {
-        
+        var n = $(".page-number:visible").text();
+        //debugger;
+        if (n === "1")
+        {
+            $("#chevron-left").prop("disabled", true);
+        }
     });
 
     $("#chevron-right").click(function ()
     {
-        
+        $("#chevron-left").prop("disabled", false);
     });
 
 </script>

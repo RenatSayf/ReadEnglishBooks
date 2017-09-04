@@ -31,8 +31,6 @@ namespace ReadEnglishBooks.Controllers
             {
                 if (page == 0 && book.PagesList.Count() > 2)
                 {
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 2).ToArray()) + pageNumberTag + (book.PagesList.Count() - 2) + divTag);
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 1).ToArray()) + pageNumberTag + (book.PagesList.Count() - 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + 2 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + 3 + divTag);
@@ -40,16 +38,12 @@ namespace ReadEnglishBooks.Controllers
                 }
                 if (page > 0 && page < 2 && book.PagesList.Count() > 2)
                 {
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(book.PagesList.Count() - 1).ToArray()) + pageNumberTag + (book.PagesList.Count() - 1) + divTag);
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()) + pageNumberTag + (page) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
                 }
                 if (page >= 2 && book.PagesList.Count() > 2)
                 {
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 2).ToArray()) + pageNumberTag + (page - 1) + divTag);
-                    //pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()) + pageNumberTag + (page) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
