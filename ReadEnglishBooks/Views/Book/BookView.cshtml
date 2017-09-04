@@ -2,7 +2,7 @@
     ViewData["Title"] = ViewBag.title;
 }
 
-<h2>@ViewBag.title</h2>
+<h2 id="book-header"></h2>
 
 <div id="myCarousel" class="carousel slide" data-pause="false">
     <div class="carousel-inner" role="listbox">
@@ -57,21 +57,19 @@
 
         $.ajax({
                 type: 'GET',
-                url: '@Url.Action("GetPage", "Book")?book_name=1984.txt&page=' + 0,
+                url: '@Url.Action("GetFirstPages", "Book")?book_name=1984.txt&page=' + 0,
                 success: function (data)
                 {
-                    //debugger;
-                    if (data.length === 1)
+                    for (var i = 0; i < data.length; i++)
                     {
-                        $("#page2").html(data[0]);
-                    }
-                    else
-                    {
-                        for (var i = 0; i < data.length; i++)
+                        $("#page" + i).html(data[i]);
+                        if (i === 0)
                         {
-                            $("#page" + i).html(data[i]);
+                            $("#book-header").text($("#book-name").text());
+                            //debugger;
                         }
                     }
+                    
                     
                 },
                 error: function (xhr, status, error)

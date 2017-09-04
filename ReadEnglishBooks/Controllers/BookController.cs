@@ -21,11 +21,11 @@ namespace ReadEnglishBooks.Controllers
             return View();
         }
 
-        public JsonResult GetPage(string book_name, int page)
+        public JsonResult GetFirstPages(string book_name, int page)
         {
             book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 4000);
             List<string> pages = new List<string>();
-            string pageNumberTag = "<br/><div class = 'page-number'>";
+            string pageNumberTag = "<br/><div class='page-number'>";
             string divTag = "</div>";
             try
             {
