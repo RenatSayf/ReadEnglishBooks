@@ -10,7 +10,9 @@ namespace ReadEnglishBooks.Controllers
 {
     public class BookController : Controller
     {
-        private BookModel book;
+        private static BookModel book;
+        private string pageNumberTag = "<br/><div class='page-number'>";
+        private string divTag = "</div>";
         
         // GET: Book
         public ActionResult BookView(int page)
@@ -25,8 +27,7 @@ namespace ReadEnglishBooks.Controllers
         {
             book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 4000);
             List<string> pages = new List<string>();
-            string pageNumberTag = "<br/><div class='page-number'>";
-            string divTag = "</div>";
+            
             try
             {
                 if (page == 0 && book.PagesList.Count() > 2)
@@ -34,19 +35,22 @@ namespace ReadEnglishBooks.Controllers
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + 2 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + 3 + divTag);
-                    
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + 4 + divTag);
+
                 }
                 if (page > 0 && page < 2 && book.PagesList.Count() > 2)
                 {
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + (page + 4) + divTag);
                 }
                 if (page >= 2 && book.PagesList.Count() > 2)
                 {
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + (page + 4) + divTag);
                 }
             }
             catch (ArgumentNullException)
@@ -54,6 +58,13 @@ namespace ReadEnglishBooks.Controllers
                 pages.Add(" нига не найдена");
             }
             return Json(pages);
+        }
+
+        public JsonResult GetNextPage(int page)
+        {
+            List<string> nextPage = new List<string>();
+            nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
+            return Json(nextPage);
         }
 
         // GET: Book/Details/5

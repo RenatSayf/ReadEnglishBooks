@@ -6,14 +6,20 @@
 
 <div id="myCarousel" class="carousel slide" data-pause="false">
     <div class="carousel-inner" role="listbox">
-        <div id="page0" class="item active">     
+        <div id="page0" class="item">     
            
         </div>
-        <div id="page1" class="item">
+        <div id="page1" class="item active">
             
         </div>
         <div id="page2" class="item">
             
+        </div>
+        <div id="page3" class="item">
+
+        </div>
+        <div id="page4" class="item">
+
         </div>
     </div>
     <a id="chevron-left" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -37,12 +43,31 @@
         if (n === "1")
         {
             $("#chevron-left").prop("disabled", true);
+            return;
         }
+
     });
 
     $("#chevron-right").click(function ()
     {
         $("#chevron-left").prop("disabled", false);
+        var id = $(".item:visible").attr("id");
+        var page_number = $(".page-number:visible").text();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetNextPage", "Book")?page=' + page_number,
+            success: function (data)
+            {
+                $("#page" + (page_number - 1)).html(data[0]);
+            },
+            error: function (xhr, status, eror)
+            {
+                alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+            },
+            dataType: 'JSON'
+
+        })
+        //debugger;
     });
 
 </script>
@@ -62,7 +87,7 @@
                 {
                     for (var i = 0; i < data.length; i++)
                     {
-                        $("#page" + i).html(data[i]);
+                        $("#page" + (i + 1)).html(data[i]);
                         if (i === 0)
                         {
                             $("#book-header").text($("#book-name").text());
