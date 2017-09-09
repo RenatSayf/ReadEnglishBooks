@@ -18,9 +18,9 @@
         <div id="page3" class="item">
 
         </div>
-        <div id="page4" class="item">
+        @*<div id="page4" class="item">
 
-        </div>
+        </div>*@
     </div>
     <a id="chevron-left" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -46,26 +46,84 @@
             return;
         }
 
-    });
-
-    $("#chevron-right").click(function ()
-    {
-        $("#chevron-left").prop("disabled", false);
         var id = $(".item:visible").attr("id");
+        var page_id;
+        switch (id)
+        {
+            case "page0":
+                page_id = "page2";
+                break;
+            case "page1":
+                page_id = "page3";
+                break;
+            case "page2":
+                page_id = "page0";
+                break;
+            case "page3":
+                page_id = "page1";
+                break;
+            default:
+                break;
+        }
+
         var page_number = $(".page-number:visible").text();
+        //debugger;
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("GetNextPage", "Book")?page=' + page_number,
+            url: '@Url.Action("GetPreviousPage", "Book")?page=' + page_number,
             success: function (data)
             {
-                $("#page" + (page_number - 1)).html(data[0]);
+                $("#" + page_id).html(data[0]);
+                //debugger;
             },
             error: function (xhr, status, eror)
             {
                 alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
             },
             dataType: 'JSON'
+        })
+        //debugger;
 
+    });
+
+    $("#chevron-right").click(function ()
+    {
+        $("#chevron-left").prop("disabled", false);
+
+        var id = $(".item:visible").attr("id");
+        var page_id;
+        switch (id)
+        {
+            case "page0":
+                page_id = "page2";
+                break;
+            case "page1":
+                page_id = "page3";
+                break;
+            case "page2":
+                page_id = "page0";
+                break;
+            case "page3":
+                page_id = "page1";
+                break;
+            default:
+                break;
+        }
+        var page_number = $(".page-number:visible").text();
+        //debugger;
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetNextPage", "Book")?page=' + page_number,
+            success: function (data)
+            {
+                $("#" + page_id).html(data[0]);
+                //debugger;
+            },
+            error: function (xhr, status, eror)
+            {
+                alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+            },
+            dataType: 'JSON'
         })
         //debugger;
     });
@@ -85,6 +143,7 @@
                 url: '@Url.Action("GetFirstPages", "Book")?book_name=1984.txt&page=' + 0,
                 success: function (data)
                 {
+                    pageNumber = data.length;
                     for (var i = 0; i < data.length; i++)
                     {
                         $("#page" + (i + 1)).html(data[i]);
@@ -94,8 +153,6 @@
                             //debugger;
                         }
                     }
-                    
-                    
                 },
                 error: function (xhr, status, error)
                 {

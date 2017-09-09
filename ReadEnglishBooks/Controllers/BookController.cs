@@ -25,7 +25,7 @@ namespace ReadEnglishBooks.Controllers
 
         public JsonResult GetFirstPages(string book_name, int page)
         {
-            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 4000);
+            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 3000);
             List<string> pages = new List<string>();
             
             try
@@ -35,22 +35,18 @@ namespace ReadEnglishBooks.Controllers
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + 2 + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + 3 + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + 4 + divTag);
-
                 }
                 if (page > 0 && page < 2 && book.PagesList.Count() > 2)
                 {
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + (page + 4) + divTag);
                 }
                 if (page >= 2 && book.PagesList.Count() > 2)
                 {
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
                     pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 3).ToArray()) + pageNumberTag + (page + 4) + divTag);
                 }
             }
             catch (ArgumentNullException)
@@ -63,7 +59,20 @@ namespace ReadEnglishBooks.Controllers
         public JsonResult GetNextPage(int page)
         {
             List<string> nextPage = new List<string>();
-            nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
+            if (page >=0 || page <= book.PagesList.Count() - 1)
+            {
+                nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page+2).ToArray()) + pageNumberTag + (page+2) + divTag); 
+            }
+            return Json(nextPage);
+        }
+
+        public JsonResult GetPreviousPage(int page)
+        {
+            List<string> nextPage = new List<string>();
+            if (page >= 0 || page <= book.PagesList.Count() - 1)
+            {
+                nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 2).ToArray()) + pageNumberTag + (page - 2) + divTag);
+            }
             return Json(nextPage);
         }
 
