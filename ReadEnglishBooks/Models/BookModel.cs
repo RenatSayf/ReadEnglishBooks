@@ -19,7 +19,7 @@ namespace ReadEnglishBooks.Models
                 string readText = File.ReadAllText(path);
                 var charArr = readText.ToCharArray();
                 var pageAmount = (int)Math.Ceiling(charArr.Length / (double)pageLength);
-                pagesList = Enumerable.Range(0, pageAmount).Select(i => charArr.Skip(i * pageLength).Take(pageLength).ToList());            
+                pagesList = Enumerable.Range(0, pageAmount).Select(i => charArr.Skip(i * pageLength).Take(pageLength).ToList());
                 
 
             }            

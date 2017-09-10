@@ -4,68 +4,25 @@
 
 <h2 id="book-header"></h2>
 
-<div id="myCarousel" class="carousel slide" data-pause="false">
-    <div class="carousel-inner" role="listbox">
-        <div id="page0" class="item">     
-           
-        </div>
-        <div id="page1" class="item active">
-            
-        </div>
-        <div id="page2" class="item">
-            
-        </div>
-        <div id="page3" class="item">
+<div class="container">
 
-        </div>
-        @*<div id="page4" class="item">
+    <div  id="page" class="row">
 
-        </div>*@
     </div>
-    <a id="chevron-left" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
 
-    <a id="chevron-right" class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+    <div class="row">
 
-</div>
+        <ul id="pagination-demo" class="pagination-sm">
+        </ul>
+
+    </div>
+
+</div> 
 
 <script>
 
     $("#chevron-left").click(function ()
     {
-        var n = $(".page-number:visible").text();
-        //debugger;
-        if (n === "1")
-        {
-            $("#chevron-left").prop("disabled", true);
-            return;
-        }
-
-        var id = $(".item:visible").attr("id");
-        var page_id;
-        switch (id)
-        {
-            case "page0":
-                page_id = "page2";
-                break;
-            case "page1":
-                page_id = "page3";
-                break;
-            case "page2":
-                page_id = "page0";
-                break;
-            case "page3":
-                page_id = "page1";
-                break;
-            default:
-                break;
-        }
-
         var page_number = $(".page-number:visible").text();
         //debugger;
         $.ajax({
@@ -73,7 +30,7 @@
             url: '@Url.Action("GetPreviousPage", "Book")?page=' + page_number,
             success: function (data)
             {
-                $("#" + page_id).html(data[0]);
+                $("#page").html(data[0]);
                 //debugger;
             },
             error: function (xhr, status, eror)
@@ -88,27 +45,6 @@
 
     $("#chevron-right").click(function ()
     {
-        $("#chevron-left").prop("disabled", false);
-
-        var id = $(".item:visible").attr("id");
-        var page_id;
-        switch (id)
-        {
-            case "page0":
-                page_id = "page2";
-                break;
-            case "page1":
-                page_id = "page3";
-                break;
-            case "page2":
-                page_id = "page0";
-                break;
-            case "page3":
-                page_id = "page1";
-                break;
-            default:
-                break;
-        }
         var page_number = $(".page-number:visible").text();
         //debugger;
         $.ajax({
@@ -134,25 +70,34 @@
 
 <script>
 
-    $(document).ready(function ()
-    {
-        myfunction();
+    var first_load = true;
 
+    function getPage(book_name, page)
+    {
         $.ajax({
-                type: 'GET',
-                url: '@Url.Action("GetFirstPages", "Book")?book_name=1984.txt&page=' + 0,
+            type: 'GET',
+            url: '@Url.Action("GetFirstPages", "Book")?book_name=' + book_name + '&page=' + page,
                 success: function (data)
-                {
-                    pageNumber = data.length;
-                    for (var i = 0; i < data.length; i++)
-                    {
-                        $("#page" + (i + 1)).html(data[i]);
-                        if (i === 0)
+                { 
+                    $("#page").html(data[0]);
+                    $("#book-header").text($("#book-name").text());
+                    var page_number = parseInt($(".page-number").text());
+                    var page_count = parseInt($(".page-count").text());
+
+                    $('#pagination-demo').twbsPagination({
+                        totalPages: page_count,
+                        visiblePages: 5,                       
+                        onPageClick: function (event, page)
                         {
-                            $("#book-header").text($("#book-name").text());
                             //debugger;
+                            if (!first_load)
+                            {
+                                getPage("", page);
+                            }
+                            first_load = false;
                         }
-                    }
+                    });
+
                 },
                 error: function (xhr, status, error)
                 {
@@ -161,19 +106,11 @@
                 dataType: 'JSON'
             });
 
-    });
-
-    $(window).resize(function ()
-    {
-        //debugger;
-        myfunction();
-    });
-
-    function myfunction()
-    {
-        var w = $(window).width();
-        var h = $(window).height() - 250;
-        $(".carousel-inner").css("height", h);
     }
+
+    $(document).ready(function ()
+    {
+        getPage("1984.txt", 1);
+    });
 
 </script>

@@ -60,6 +60,10 @@ p{
     text-indent: 2em;
 }
 
+#page{
+    text-align: justify;
+}
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

@@ -13,7 +13,8 @@ namespace ReadEnglishBooks.Controllers
         private static BookModel book;
         private string pageNumberTag = "<br/><div class='page-number'>";
         private string divTag = "</div>";
-        
+        private string pageCountTag = "<br/><div class='page-count' hidden>";
+
         // GET: Book
         public ActionResult BookView(int page)
         {
@@ -25,29 +26,24 @@ namespace ReadEnglishBooks.Controllers
 
         public JsonResult GetFirstPages(string book_name, int page)
         {
-            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 3000);
+            if (book_name != null)
+            {
+                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 5000); 
+            }
             List<string> pages = new List<string>();
             
             try
             {
-                if (page == 0 && book.PagesList.Count() > 2)
+                if (book.PagesList.Count() > 0)
                 {
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + 1 + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + 2 + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + 3 + divTag);
-                }
-                if (page > 0 && page < 2 && book.PagesList.Count() > 2)
-                {
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
-                }
-                if (page >= 2 && book.PagesList.Count() > 2)
-                {
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page).ToArray()) + pageNumberTag + (page + 1) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 1).ToArray()) + pageNumberTag + (page + 2) + divTag);
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page + 2).ToArray()) + pageNumberTag + (page + 3) + divTag);
-                }
+                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()) + 
+                        pageNumberTag +
+                        (page) + 
+                        divTag +
+                        pageCountTag +
+                        book.PagesList.Count() +
+                        divTag);
+                }                
             }
             catch (ArgumentNullException)
             {
