@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Folder Include="wwwroot\images\booksimages\" />
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@
         //debugger;
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("GetPreviousPage", "Book")?page=' + page_number,
+            url: '@Url.Action("GetPrevious", "Book")?page=' + page_number,
             success: function (data)
             {
                 $("#page").html(data[0]);
@@ -49,7 +49,7 @@
         //debugger;
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("GetNextPage", "Book")?page=' + page_number,
+            url: '@Url.Action("GetNext", "Book")?page=' + page_number,
             success: function (data)
             {
                 $("#" + page_id).html(data[0]);

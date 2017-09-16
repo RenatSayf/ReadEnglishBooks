@@ -28,20 +28,20 @@ namespace ReadEnglishBooks.Controllers
         {
             if (book_name != null)
             {
-                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name, 5000); 
+                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name); 
             }
             List<string> pages = new List<string>();
             
             try
             {
-                if (book.PagesList.Count() > 0)
+                if (book.PagesArray.Count() > 0)
                 {
-                    pages.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 1).ToArray()) + 
+                    pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
                         pageNumberTag +
                         (page) + 
                         divTag +
                         pageCountTag +
-                        book.PagesList.Count() +
+                        book.PagesArray.Count() +
                         divTag);
                 }                
             }
@@ -50,26 +50,6 @@ namespace ReadEnglishBooks.Controllers
                 pages.Add(" нига не найдена");
             }
             return Json(pages);
-        }
-
-        public JsonResult GetNextPage(int page)
-        {
-            List<string> nextPage = new List<string>();
-            if (page >=0 || page <= book.PagesList.Count() - 1)
-            {
-                nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page+2).ToArray()) + pageNumberTag + (page+2) + divTag); 
-            }
-            return Json(nextPage);
-        }
-
-        public JsonResult GetPreviousPage(int page)
-        {
-            List<string> nextPage = new List<string>();
-            if (page >= 0 || page <= book.PagesList.Count() - 1)
-            {
-                nextPage.Add(String.Join(String.Empty, book.PagesList.ElementAt(page - 2).ToArray()) + pageNumberTag + (page - 2) + divTag);
-            }
-            return Json(nextPage);
         }
 
         // GET: Book/Details/5

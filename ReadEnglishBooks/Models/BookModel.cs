@@ -1,34 +1,35 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadEnglishBooks.Models
 {
     public class BookModel
     {
-        private IEnumerable<List<char>> pagesList;
+        private string[] pagesArray;
 
-        public BookModel(string path, int pageLength)
+        public BookModel(string path)
         {
             if (File.Exists(path))
             {
                 string readText = File.ReadAllText(path);
-                var charArr = readText.ToCharArray();
-                var pageAmount = (int)Math.Ceiling(charArr.Length / (double)pageLength);
-                pagesList = Enumerable.Range(0, pageAmount).Select(i => charArr.Skip(i * pageLength).Take(pageLength).ToList());
-                
+                string result = string.Join(" ", readText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+                char[] spliter = { '|' };
+                string str = readText;
+                pagesArray = result.Split(spliter);            
+            }
 
-            }            
+        }            
+        
+        public string[] PagesArray
+        {
+            get => pagesArray;
         }
 
-        public IEnumerable<List<char>> PagesList
+        public int PagesCount
         {
-            get => pagesList;
-            set => pagesList = value;
+            get => pagesArray.Count();
         }
     }
 }
