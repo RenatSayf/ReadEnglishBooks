@@ -16,11 +16,26 @@ namespace ReadEnglishBooks.Controllers
         private string pageCountTag = "<br/><div class='page-count' hidden>";
 
         // GET: Book
-        public ActionResult BookView(int page)
+        public ActionResult BookView(string book_name, int page)
         {
             ViewBag.title = "1984. George Orwell";
-            //book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\1984.txt", 2000);
-            //ViewBag.page0 = String.Join(String.Empty, book.PagesList.ElementAt(0).ToArray());
+            if (book_name != null)
+            {
+                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name);
+            }
+            List<string> pages = new List<string>();
+
+            try
+            {
+                if (book.PagesArray.Count() > 0)
+                {
+                    ViewBag.page = book.PagesArray.ElementAt(page);
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                ViewBag.page = " нига не найдена";
+            }
             return View();
         }
 

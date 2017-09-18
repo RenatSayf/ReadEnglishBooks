@@ -7,7 +7,7 @@
 <div class="container">
 
     <div  id="page" class="row">
-
+        @Html.Raw(ViewBag.page)
     </div>
 
     <div class="row">
@@ -19,60 +19,16 @@
 
 </div> 
 
-<script>
-
-    $("#chevron-left").click(function ()
-    {
-        var page_number = $(".page-number:visible").text();
-        //debugger;
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("GetPrevious", "Book")?page=' + page_number,
-            success: function (data)
-            {
-                $("#page").html(data[0]);
-                //debugger;
-            },
-            error: function (xhr, status, eror)
-            {
-                alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
-            },
-            dataType: 'JSON'
-        })
-        //debugger;
-
-    });
-
-    $("#chevron-right").click(function ()
-    {
-        var page_number = $(".page-number:visible").text();
-        //debugger;
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("GetNext", "Book")?page=' + page_number,
-            success: function (data)
-            {
-                $("#" + page_id).html(data[0]);
-                //debugger;
-            },
-            error: function (xhr, status, eror)
-            {
-                alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
-            },
-            dataType: 'JSON'
-        })
-        //debugger;
-    });
-
-</script>
-
-
 
 <script>
 
     var first_load = true;
 
-    function getPage(book_name, page)
+
+    
+
+
+    @*function getPage(book_name, page)
     {
         $.ajax({
             type: 'GET',
@@ -83,7 +39,7 @@
                     $("#book-header").text($("#book-name").text());
                     var page_number = parseInt($(".page-number").text());
                     var page_count = parseInt($(".page-count").text());
-
+                    
                     $('#pagination-demo').twbsPagination({
                         totalPages: page_count,
                         visiblePages: 5,                       
@@ -106,11 +62,23 @@
                 dataType: 'JSON'
             });
 
-    }
+    }*@
 
     $(document).ready(function ()
     {
-        getPage("1984.txt", 1);
+        $('#pagination-demo').twbsPagination({
+            totalPages: 8,
+            visiblePages: 5,
+            onPageClick: function (event, page)
+            {
+                debugger;
+                if (!first_load)
+                {
+                    getPage("", 0);
+                }
+                first_load = false;
+            }
+        });
     });
 
 </script>
