@@ -25,6 +25,31 @@ namespace ReadEnglishBooks.Controllers
             }
             List<string> pages = new List<string>();
 
+            ViewBag.page = null;
+            try
+            {
+                if (book.PagesArray.Count() > 0)
+                {
+                    ViewBag.page = book.PagesArray.ElementAt(page);
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                ViewBag.page = " нига не найдена";
+            }
+            //BookPage(book_name, page);
+
+            return View();
+        }
+
+        public ActionResult BookPage(string book_name, int page)
+        {
+            if (book_name != null)
+            {
+                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name);
+            }
+            List<string> pages = new List<string>();
+
             try
             {
                 if (book.PagesArray.Count() > 0)

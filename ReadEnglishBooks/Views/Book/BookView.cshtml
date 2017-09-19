@@ -8,6 +8,7 @@
 
     <div  id="page" class="row">
         @Html.Raw(ViewBag.page)
+        @*@Html.Partial("BookPage")*@
     </div>
 
     <div class="row">
@@ -25,34 +26,34 @@
     var first_load = true;
 
 
-    
 
 
-    @*function getPage(book_name, page)
+
+    function getPage(book_name, page)
     {
-        $.ajax({
+        @*$.ajax({
             type: 'GET',
-            url: '@Url.Action("GetFirstPages", "Book")?book_name=' + book_name + '&page=' + page,
+            url: '@Url.Action("BookPage", "Book")?book_name=' + book_name + '&page=' + page,
                 success: function (data)
-                { 
-                    $("#page").html(data[0]);
-                    $("#book-header").text($("#book-name").text());
-                    var page_number = parseInt($(".page-number").text());
-                    var page_count = parseInt($(".page-count").text());
-                    
-                    $('#pagination-demo').twbsPagination({
-                        totalPages: page_count,
-                        visiblePages: 5,                       
-                        onPageClick: function (event, page)
-                        {
-                            //debugger;
-                            if (!first_load)
-                            {
-                                getPage("", page);
-                            }
-                            first_load = false;
-                        }
-                    });
+                {
+                    //$("#page").html(data[0]);
+                    //$("#book-header").text($("#book-name").text());
+                    //var page_number = parseInt($(".page-number").text());
+                    //var page_count = parseInt($(".page-count").text());
+
+                    //$('#pagination-demo').twbsPagination({
+                    //    totalPages: page_count,
+                    //    visiblePages: 5,
+                    //    onPageClick: function (event, page)
+                    //    {
+                    //        //debugger;
+                    //        if (!first_load)
+                    //        {
+                    //            getPage("", page);
+                    //        }
+                    //        first_load = false;
+                    //    }
+                    //});
 
                 },
                 error: function (xhr, status, error)
@@ -60,9 +61,11 @@
                     alert("Œ¯Ë·Í‡ ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
                 },
                 dataType: 'JSON'
-            });
+        });*@
 
-    }*@
+        $.get('/Book/BookView??book_name=' + book_name + '&page=' + page);
+
+    }
 
     $(document).ready(function ()
     {
@@ -71,12 +74,13 @@
             visiblePages: 5,
             onPageClick: function (event, page)
             {
-                debugger;
+                //debugger;
                 if (!first_load)
                 {
-                    getPage("", 0);
+                    getPage("", page);
                 }
                 first_load = false;
+
             }
         });
     });
