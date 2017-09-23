@@ -98,6 +98,17 @@ namespace ReadEnglishBooks.Controllers
             return View();
         }
 
+        public FileResult GetFile()
+        {
+            // Путь к файлу
+            string file_path = Directory.GetCurrentDirectory() + "\\Assets\\" + "img_page5.jpg";
+            // Тип файла - content-type
+            string file_type = "application/jpg";
+            // Имя файла - необязательно
+            string file_name = "img_page5.jpg";
+            return File(file_path, file_type, file_name);
+        }
+
         // GET: Book/Create
         public ActionResult Create()
         {

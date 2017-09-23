@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using ReadEnglishBooks.Data;
 using ReadEnglishBooks.Models;
 using ReadEnglishBooks.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace ReadEnglishBooks
 {
@@ -49,6 +52,8 @@ namespace ReadEnglishBooks
 
             services.AddMvc();
 
+            services.AddRouting();
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -59,6 +64,14 @@ namespace ReadEnglishBooks
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Assets")),
+                RequestPath = new PathString("/Assets")
+            });
 
             if (env.IsDevelopment())
             {
@@ -71,8 +84,7 @@ namespace ReadEnglishBooks
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-
+            
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
@@ -84,13 +96,7 @@ namespace ReadEnglishBooks
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseMvc(route => 
-            {
-                route.MapRoute(
-                    name: "asdf",
-                    template: "{controller=Book}/{action=BookView}/{page?}"
-                    );
-            });
+            
         }
     }
 }

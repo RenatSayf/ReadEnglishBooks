@@ -7,8 +7,7 @@
 <div class="container">
 
     <div  id="page" class="row">
-        @Html.Raw(ViewBag.page)
-        @*@Html.Partial("BookPage")*@
+        
     </div>
 
     <div class="row">
@@ -31,29 +30,51 @@
 
     function getPage(book_name, page)
     {
-        @*$.ajax({
+        $.ajax({
             type: 'GET',
-            url: '@Url.Action("BookPage", "Book")?book_name=' + book_name + '&page=' + page,
+            url: '@Url.Action("GetFirstPages", "Book")?book_name=' + book_name + '&page=' + page,
                 success: function (data)
                 {
-                    //$("#page").html(data[0]);
-                    //$("#book-header").text($("#book-name").text());
-                    //var page_number = parseInt($(".page-number").text());
-                    //var page_count = parseInt($(".page-count").text());
+                    $("#page").html(data[0]);
+                    $("#book-header").text($("#book-name").text());
+                    var page_number = parseInt($(".page-number").text());
+                    var page_count = parseInt($(".page-count").text());
+                    $(".img-page").show();
 
-                    //$('#pagination-demo').twbsPagination({
-                    //    totalPages: page_count,
-                    //    visiblePages: 5,
-                    //    onPageClick: function (event, page)
-                    //    {
-                    //        //debugger;
-                    //        if (!first_load)
+                    $('#pagination-demo').twbsPagination({
+                        totalPages: page_count,
+                        visiblePages: 5,
+                        onPageClick: function (event, page)
+                        {
+                            //debugger;
+                            if (!first_load)
+                            {
+                                getPage("", page);
+                            }
+                            first_load = false;
+                        }
+                    });
+
+                    //var img_count = $(".img-page").length;
+                    //if (img_count > 0)
+                    //{
+                    //    var id = $(".img-page").attr("id");
+                    //    var src = $(".img-page").attr("src");
+                    //    //debugger;
+                    //    $.ajax({
+                    //        type: 'GET',
+                    //        url: id + '.jpg',
+                    //        success: function (data)
                     //        {
-                    //            getPage("", page);
+                    //            //debugger;            
+                    //        },
+                    //        error: function (xhr, status, error)
+                    //        {
+                    //            //debugger;
                     //        }
-                    //        first_load = false;
-                    //    }
-                    //});
+                    //    })
+                    //}
+                    //debugger;
 
                 },
                 error: function (xhr, status, error)
@@ -61,28 +82,18 @@
                     alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
                 },
                 dataType: 'JSON'
-        });*@
+        });
 
-        $.get('/Book/BookView??book_name=' + book_name + '&page=' + page);
+        //$.get('/Book/BookView??book_name=' + book_name + '&page=' + page);
 
     }
 
     $(document).ready(function ()
     {
-        $('#pagination-demo').twbsPagination({
-            totalPages: 8,
-            visiblePages: 5,
-            onPageClick: function (event, page)
-            {
-                //debugger;
-                if (!first_load)
-                {
-                    getPage("", page);
-                }
-                first_load = false;
-
-            }
-        });
+        getPage("1984GO.txt", 1);
     });
+
+    
+
 
 </script>
