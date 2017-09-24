@@ -16,65 +16,22 @@ namespace ReadEnglishBooks.Controllers
         private string pageCountTag = "<br/><div class='page-count' hidden>";
 
         // GET: Book
-        public ActionResult BookView(string book_name, int page)
+        public ActionResult BookView(string book_folder, string book_name)
         {
-            ViewBag.title = "1984. George Orwell";
-            if (book_name != null)
+            if (book_folder != null && book_name != null)
             {
-                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name);
-            }
-            List<string> pages = new List<string>();
-
-            ViewBag.page = null;
-            try
-            {
-                if (book.PagesArray.Count() > 0)
-                {
-                    ViewBag.page = book.PagesArray.ElementAt(page);
-                }
-            }
-            catch (ArgumentNullException)
-            {
-                ViewBag.page = "Книга не найдена";
-            }
-            //BookPage(book_name, page);
-
-            return View();
-        }
-
-        public ActionResult BookPage(string book_name, int page)
-        {
-            if (book_name != null)
-            {
-                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name);
-            }
-            List<string> pages = new List<string>();
-
-            try
-            {
-                if (book.PagesArray.Count() > 0)
-                {
-                    ViewBag.page = book.PagesArray.ElementAt(page);
-                }
-            }
-            catch (ArgumentNullException)
-            {
-                ViewBag.page = "Книга не найдена";
+                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
             }
             return View();
         }
 
-        public JsonResult GetFirstPages(string book_name, int page)
+        public JsonResult GetPage(int page)
         {
-            if (book_name != null)
-            {
-                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_name); 
-            }
             List<string> pages = new List<string>();
             
             try
             {
-                if (book.PagesArray.Count() > 0)
+                if (book != null && book.PagesArray.Count() > 0)
                 {
                     pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
                         pageNumberTag +
@@ -96,17 +53,6 @@ namespace ReadEnglishBooks.Controllers
         public ActionResult BookDetails(int id)
         {
             return View();
-        }
-
-        public FileResult GetFile()
-        {
-            // Путь к файлу
-            string file_path = Directory.GetCurrentDirectory() + "\\Assets\\" + "img_page5.jpg";
-            // Тип файла - content-type
-            string file_type = "application/jpg";
-            // Имя файла - необязательно
-            string file_name = "img_page5.jpg";
-            return File(file_path, file_type, file_name);
         }
 
         // GET: Book/Create

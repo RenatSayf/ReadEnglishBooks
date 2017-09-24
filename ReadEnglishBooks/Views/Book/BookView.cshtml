@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = ViewBag.title;
+    //ViewData["Title"] = ViewBag.title;
 }
 
 <h2 id="book-header"></h2>
@@ -23,23 +23,23 @@
 <script>
 
     var first_load = true;
-
-
-
-
-
-    function getPage(book_name, page)
+    function getPage(page)
     {
+        //debugger;
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("GetFirstPages", "Book")?book_name=' + book_name + '&page=' + page,
+            url: '@Url.Action("GetPage", "Book")?page=' + page,
                 success: function (data)
                 {
                     $("#page").html(data[0]);
                     $("#book-header").text($("#book-name").text());
-                    var page_number = parseInt($(".page-number").text());
+                    //var page_number = parseInt($(".page-number").text());
                     var page_count = parseInt($(".page-count").text());
-                    $(".img-page").show();
+
+                    if (first_load)
+                    {
+                        $("title").text($("#book-name").text());
+                    }
 
                     $('#pagination-demo').twbsPagination({
                         totalPages: page_count,
@@ -49,33 +49,12 @@
                             //debugger;
                             if (!first_load)
                             {
-                                getPage("", page);
+                                //debugger;
+                                getPage(page);
                             }
                             first_load = false;
                         }
                     });
-
-                    //var img_count = $(".img-page").length;
-                    //if (img_count > 0)
-                    //{
-                    //    var id = $(".img-page").attr("id");
-                    //    var src = $(".img-page").attr("src");
-                    //    //debugger;
-                    //    $.ajax({
-                    //        type: 'GET',
-                    //        url: id + '.jpg',
-                    //        success: function (data)
-                    //        {
-                    //            //debugger;            
-                    //        },
-                    //        error: function (xhr, status, error)
-                    //        {
-                    //            //debugger;
-                    //        }
-                    //    })
-                    //}
-                    //debugger;
-
                 },
                 error: function (xhr, status, error)
                 {
@@ -83,17 +62,14 @@
                 },
                 dataType: 'JSON'
         });
-
-        //$.get('/Book/BookView??book_name=' + book_name + '&page=' + page);
-
     }
 
     $(document).ready(function ()
     {
-        getPage("1984GO.txt", 1);
+        getPage(1);
     });
 
-    
+
 
 
 </script>

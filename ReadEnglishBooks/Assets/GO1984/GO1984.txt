@@ -1,6 +1,6 @@
 ﻿   
 
-    
+		<div id="book-name" hidden>1984. George Orwell</div>
 
         <div style="display: table;">
             <h2 style="display: table-cell;">PART ONE</h2>
