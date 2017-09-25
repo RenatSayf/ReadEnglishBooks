@@ -1,10 +1,18 @@
-@{
+﻿@{
     //ViewData["Title"] = ViewBag.title;
 }
 
-<h2 id="book-header"></h2>
 
 <div class="container">
+
+    <div id="learning-menu" class="row">
+        <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-success">Учить все слова на странице</button>
+            <button type="button" class="btn btn-info">Учить по предложениям</button>
+        </div>
+    </div>
+
+    <h2 id="book-header"></h2>
 
     <div  id="page" class="row">
         
@@ -58,7 +66,7 @@
                 },
                 error: function (xhr, status, error)
                 {
-                    alert("������ ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+                    alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
                 },
                 dataType: 'JSON'
         });

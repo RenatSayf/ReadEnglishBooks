@@ -15,6 +15,7 @@ using ReadEnglishBooks.Services;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using System.Text.Encodings.Web;
 
 namespace ReadEnglishBooks
 {
@@ -57,6 +58,10 @@ namespace ReadEnglishBooks
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[]
+            {
+                System.Text.Unicode.UnicodeRanges.BasicLatin,System.Text.Unicode.UnicodeRanges.Cyrillic
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
