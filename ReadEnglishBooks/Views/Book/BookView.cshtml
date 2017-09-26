@@ -3,12 +3,43 @@
 }
 
 
+<div id="play-panel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 >Тренинг слов</h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <div class="container">
 
     <div id="learning-menu" class="row">
         <div class="col-md-12 text-center">
-            <button type="button" class="btn btn-success">Учить все слова на странице</button>
-            <button type="button" class="btn btn-info">Учить по предложениям</button>
+            <a id="btn-learn-all" class="btn btn-success" data-toggle="modal" href="#play-panel">Учить все слова на странице</a>
+            <a id="btn-learn" class="btn btn-info" data-toggle="modal" href="#play-panel">Учить по предложениям</a>
+            <script>
+                document.getElementById("btn-learn-all").onclick = function ()
+                {
+
+                };
+
+                $("#btn-learn").click(function ()
+                {
+                    
+                });
+            </script>
         </div>
     </div>
 
