@@ -73,6 +73,25 @@ p{
 }
 
 
+.modal { 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%,-50%);
+}
+
+.modal-content {    /*прозрачность модального окна*/
+    background-color: rgba(255, 255, 255, .35);
+}
+
+.learn-word{
+    color: white;
+    text-align: center;
+}
+
+
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
