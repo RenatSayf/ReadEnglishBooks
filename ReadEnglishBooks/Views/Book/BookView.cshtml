@@ -7,19 +7,37 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="learn-word">English</h2>
+                <h2 id="eng-word" class="learn-word">English</h2>
             </div>
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td align="left"><a class="btn btn-success" href="#">Вперед</a></td>
-                        <td align="center"><a class="btn btn-success" href="#">Вперед</a></td>
-                        <td align="right"><a class="btn btn-success" href="#">Вперед</a></td>
+                        <td align="left"><a class="btn btn-info" href="#">Назад</a></td>
+                        <td align="center">
+                            <div id="div-start"><a id="btn-start" class="btn btn-success" href="#">Старт</a></div>
+                            <script>
+                                $("#btn-start").click(function ()
+                                {
+                                    $("#div-start").attr("hidden", "hidden");
+                                    $("#div-stop").removeAttr("hidden");
+                                });
+                            </script>
+                            <div id="div-stop" hidden><a id="btn-stop" class="btn btn-danger" href="#">Стоп</a></div>
+                            <script>
+                                $("#btn-stop").click(function ()
+                                {
+                                    $("#div-stop").attr("hidden", "hidden");
+                                    $("#div-start").removeAttr("hidden");
+
+                                });
+                            </script>
+                        </td>
+                        <td align="right"><a class="btn btn-info" href="#">Вперед</a></td>
                     </tr>
                 </tbody>
             </table>
             <div class="modal-footer">
-                <h2 class="learn-word">Русский</h2>
+                <h2 id="rus-word" class="learn-word">Русский</h2>
             </div>
         </div>
     </div>
@@ -100,6 +118,7 @@
                             first_load = false;
                         }
                     });
+                    getWordsOfPage();
                 },
                 error: function (xhr, status, error)
                 {

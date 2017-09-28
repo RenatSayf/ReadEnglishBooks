@@ -70,6 +70,9 @@ p{
 
 .btn{
     margin: 0.2em;
+    border-color: #ffffff;
+    border: 2px solid;
+    margin: 20px;
 }
 
 
