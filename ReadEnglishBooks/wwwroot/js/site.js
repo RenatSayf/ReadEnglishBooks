@@ -20,12 +20,21 @@
             word = word.replace('?', '');
             word = word.replace(':', '');
             word = word.toLowerCase();
-            if (word != "")
+            var length = word.length;
+            var code = word.charCodeAt(0);
+            if (length > 0 && ((code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)))
             {
-                wordsArray.push(word); 
+                wordsArray.push(word);
             }
          }
     }
+
+    var obj = {};
+    for (var i = 0; i < wordsArray.length; i++)
+    {
+        var str = wordsArray[i];
+        obj[str] = true;
+    }
     //debugger;
-    return wordsArray;
+    return Object.keys(obj);
 }
