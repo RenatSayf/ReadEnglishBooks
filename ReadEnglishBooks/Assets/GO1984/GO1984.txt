@@ -86,9 +86,9 @@
             the Party written in enormous letters on the side of the building:
         </p>
 
-        <h4>WAR IS PEACE</h4>
-        <h4>FREEDOM IS SLAVERY</h4>
-        <h4>IGNORANCE IS STRENGTH</h4>
+        <h3>WAR IS PEACE</h3>
+        <h3>FREEDOM IS SLAVERY</h3>
+        <h3>IGNORANCE IS STRENGTH</h3>
 
         <p>
             The Ministry of Truth was called Minitrue in Newspeak, the
