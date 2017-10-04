@@ -56,14 +56,19 @@
             <script>
                 document.getElementById("btn-learn-all").onclick = function ()
                 {
-                    var arr = getWordsOfPage();
+                    var sentences = "";
+                    $("h2, h3, p").each(function (i)
+                    {
+                        sentences += $(this).text() + " ";
+                    });
+                    var arr = getSelectingWords(sentences);
                     debugger;
                 };
 
                 $("#btn-learn").click(function ()
                 {
                     var arr2 = getWordsBySentences();
-                    var arr3 = getSelectingWords();
+                    var arr3 = getSelectingWords(window.getSelection().toString());
                     debugger;
                     //alert(arr3);
                 });

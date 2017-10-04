@@ -1,46 +1,4 @@
-﻿function getWordsOfPage()
-{
-    var sentencesArray = [];
-    $("h2, h3, p").each(function (i)
-    {
-        sentencesArray.push($(this).text());
-    });
-
-    var wordsArray = [];
-
-    for (var i = 0; i < sentencesArray.length; i++)
-    {
-        var arr = sentencesArray[i].split(' ');
-        for (var j = 0; j < arr.length; j++)
-        {
-            var word = arr[j].trim('↵');
-            word = word.replace('.', '');
-            word = word.replace(',', '');
-            word = word.replace('!', '');
-            word = word.replace('?', '');
-            word = word.replace(':', '');
-            word = word.toLowerCase();
-            var length = word.length;
-            var code = word.charCodeAt(0);
-            if (length > 0 && ((code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)))
-            {
-                wordsArray.push(word);
-            }
-         }
-    }
-
-    var obj = {};
-    for (var t = 0; t < wordsArray.length; t++)
-    {
-        var str = wordsArray[t];
-        obj[str] = true;
-    }
-    //debugger;
-    return Object.keys(obj);
-}
-
-//--------------------------------------------------------------------------------------------------------------------
-function getWordsBySentences()
+﻿function getWordsBySentences()
 {
     var paragrafArray = [];
     var sentencesGroupArray = [];
@@ -70,48 +28,14 @@ function getWordsBySentences()
     var wordsArray = [];
     for (var i = 0; i < sentencesArray.length; i++)
     {
-        wordsArray.push(getSelectingWords2(sentencesArray[i]));
+        wordsArray.push(getSelectingWords(sentencesArray[i]));
     }
-    //debugger;
-
     return wordsArray;
 }
 
 //--------------------------------------------------------------------------------------------------------------------
-function getSelectingWords()
-{
-    var selectText = window.getSelection().toString();
-    selectText = selectText.toLowerCase();
-    selectText = selectText.replace(/\s/g, '|');
-    selectText = selectText.replace(/\./g, '');
-    selectText = selectText.replace(/\!/g, '');
-    selectText = selectText.replace(/\?/g, '');
-    selectText = selectText.replace(/\,/g, '');
-    selectText = selectText.replace(/\:/g, '');
-    selectText = selectText.replace(/\;/g, '');
-    selectText = selectText.replace(/\t/g, '');
-    selectText = selectText.replace(/\v/g, '');
 
-    var wordsArray = selectText.split('|');
-    var obj = {};
-    for (var j = 0; j < wordsArray.length; j++)
-    {
-        var str = wordsArray[j];
-        if (str !== "")
-        {    
-            var length = str.length;
-            var code = str.charCodeAt(0);
-            if (length > 0 && ((code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)))
-            {
-                obj[str] = true;
-            }            
-        }
-    }
-    //debugger;
-    return Object.keys(obj);
-}
-
-function getSelectingWords2(sentence)
+function getSelectingWords(sentence)
 {
     var selectText = sentence;
     selectText = selectText.toLowerCase();
