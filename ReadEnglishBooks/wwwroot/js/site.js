@@ -26,9 +26,9 @@
     }
 
     var wordsArray = [];
-    for (var i = 0; i < sentencesArray.length; i++)
+    for (var y = 0; y < sentencesArray.length; y++)
     {
-        wordsArray.push(getSelectingWords(sentencesArray[i]));
+        wordsArray.push(getSelectingWords(sentencesArray[y]));
     }
     return wordsArray;
 }
