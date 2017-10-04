@@ -55,8 +55,6 @@ function getWordsBySentences()
         sentencesGroupArray.push(paragrafArray[i].split('.'));        
     }
 
-    debugger;
-
     for (var t = 0; t < sentencesGroupArray.length; t++)
     {
         for (var j = 0; j < sentencesGroupArray[t].length; j++)
@@ -70,26 +68,12 @@ function getWordsBySentences()
     }
 
     var wordsArray = [];
-
-    for (var z = 0; z < sentencesArray.length; z++)
+    for (var i = 0; i < sentencesArray.length; i++)
     {
-        var tempArray = sentencesArray[z].split(' ');
-        var obj2 = {};
-        
-        for (var k = 0; k < tempArray.length; k++)
-        {
-            var item = tempArray[k].toLowerCase().replace("↵", "").trim();
-            item = item.replace('.', '');
-            item = item.replace(',', '');
-            item = item.replace('!', '');
-            item = item.replace('?', '');
-            item = item.replace(':', '');
-            item = item.replace(';', '');
-            obj2[k] = item;
-        }
-        wordsArray.push(obj2);        
+        wordsArray.push(getSelectingWords2(sentencesArray[i]));
     }
     //debugger;
+
     return wordsArray;
 }
 
@@ -121,6 +105,39 @@ function getSelectingWords()
             {
                 obj[str] = true;
             }            
+        }
+    }
+    //debugger;
+    return Object.keys(obj);
+}
+
+function getSelectingWords2(sentence)
+{
+    var selectText = sentence;
+    selectText = selectText.toLowerCase();
+    selectText = selectText.replace(/\s/g, '|');
+    selectText = selectText.replace(/\./g, '');
+    selectText = selectText.replace(/\!/g, '');
+    selectText = selectText.replace(/\?/g, '');
+    selectText = selectText.replace(/\,/g, '');
+    selectText = selectText.replace(/\:/g, '');
+    selectText = selectText.replace(/\;/g, '');
+    selectText = selectText.replace(/\t/g, '');
+    selectText = selectText.replace(/\v/g, '');
+
+    var wordsArray = selectText.split('|');
+    var obj = {};
+    for (var j = 0; j < wordsArray.length; j++)
+    {
+        var str = wordsArray[j];
+        if (str !== "")
+        {
+            var length = str.length;
+            var code = str.charCodeAt(0);
+            if (length > 0 && ((code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)))
+            {
+                obj[str] = true;
+            }
         }
     }
     //debugger;
