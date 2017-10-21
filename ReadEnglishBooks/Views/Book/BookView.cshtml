@@ -29,9 +29,8 @@
                                 {
                                     $("#div-start").attr("hidden", "hidden");
                                     $("#div-stop").removeAttr("hidden");
-
-
-
+                                    speech(wordsArray[words_count]);
+                                
                                 });                               
 
                             </script>
@@ -41,7 +40,7 @@
                                 {
                                     $("#div-stop").attr("hidden", "hidden");
                                     $("#div-start").removeAttr("hidden");
-
+                                    $("#audio")[0].pause();
                                 });
                             </script>
                         </td>
@@ -116,13 +115,13 @@
 
 <script>
 
-    var first_load = true;
-    function getPage(page)
-    {
-        //debugger;
-        $.ajax({
-            type: 'GET',
-            url: '@Url.Action("GetPage", "Book")?page=' + page,
+                                var first_load = true;
+                                function getPage(page)
+                                {
+                                    //debugger;
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '@Url.Action("GetPage", "Book")?page=' + page,
                 success: function (data)
                 {
                     $("#page").html(data[0]);
@@ -163,6 +162,29 @@
         getPage(1);
     });
 
+    var words_count = 0;
+    function speech(en_word)
+    {
+        //debugger;        
+        $('#audio').attr('src', '@Url.Action("Speak", "Speech")?enword=' + en_word);
+        $('#audio')[0].play();        
+    }
+
+    $('#audio')[0].onemptied = function ()
+    {
+        //console.log("Event message(onemptied) - Something bad happened and the file is suddenly unavailable (like unexpectedly disconnects)");
+    };
+
+    $('#audio')[0].onerror = function ()
+    {
+        console.log("Event message(onerror) - Error occurs when the file is being loaded");
+    };
+
+    $('#audio')[0].onended = function ()
+    {
+        words_count++;
+        speech(wordsArray[words_count])
+    };
 
 
 

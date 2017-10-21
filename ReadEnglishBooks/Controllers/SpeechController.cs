@@ -18,7 +18,7 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speak(string enword, string ruword)
+        public async Task<ActionResult> Speak(string enword)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -39,14 +39,14 @@ namespace ReadEnglishBooks.Controllers
                         }
                         synth.Speak(enword);
 
-                        foreach (var item in voices)
-                        {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU")
-                            {
-                                synth.SelectVoice(item.VoiceInfo.Name);
-                            }
-                        }
-                        synth.Speak(ruword);
+                        //foreach (var item in voices)
+                        //{
+                        //    if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU")
+                        //    {
+                        //        synth.SelectVoice(item.VoiceInfo.Name);
+                        //    }
+                        //}
+                        //synth.Speak(ruword);
 
                         byte[] bytes = stream.GetBuffer();
                         return File(bytes, "audio/x-wav");

@@ -1,5 +1,5 @@
-﻿function speech(en_word, ru_word)
+﻿function speech(en_word)
 {
-    $('#audio').attr('src', '@Url.Action("Speech", "Speech")?enword=' + en_word + '&ruword=' + ru_word);
+    $('#audio').attr('src', '@Url.Action("Speak", "Speech")?enword=' + en_word);
     $('#audio')[0].play();
 }
