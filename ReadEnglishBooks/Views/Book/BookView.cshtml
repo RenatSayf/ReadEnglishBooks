@@ -1,7 +1,8 @@
 ﻿@{
-    //ViewData["Title"] = ViewBag.title;
+//ViewData["Title"] = ViewBag.title;
 }
 
+<audio id="audio" controls></audio>
 
 <div id="play-panel" class="modal fade">
     <div class="modal-dialog">
@@ -12,7 +13,15 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td align="left"><a class="btn btn-info" href="#">Назад</a></td>
+                        <td align="left">
+                            <a id="btn-back" class="btn btn-info" href="#">Назад</a>
+                            <script>
+                                document.getElementById("btn-back").onclick = function ()
+                                {
+
+                                };
+                            </script>
+                        </td>
                         <td align="center">
                             <div id="div-start"><a id="btn-start" class="btn btn-success" href="#">Старт</a></div>
                             <script>
@@ -20,7 +29,11 @@
                                 {
                                     $("#div-start").attr("hidden", "hidden");
                                     $("#div-stop").removeAttr("hidden");
-                                });
+
+
+
+                                });                               
+
                             </script>
                             <div id="div-stop" hidden><a id="btn-stop" class="btn btn-danger" href="#">Стоп</a></div>
                             <script>
@@ -32,7 +45,15 @@
                                 });
                             </script>
                         </td>
-                        <td align="right"><a class="btn btn-info" href="#">Вперед</a></td>
+                        <td align="right">
+                            <a id="btn-next" class="btn btn-info" href="#">Вперед</a>
+                            <script>
+                                $("#btn-next").on("click", function ()
+                                {
+
+                                });
+                            </script>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -54,42 +75,43 @@
             <a id="btn-learn-all" class="btn btn-success" data-toggle="modal" href="#play-panel">Учить все слова на странице</a>
             <a id="btn-learn" class="btn btn-info" data-toggle="modal" href="#play-panel">Учить по предложениям</a>
             <script>
-                document.getElementById("btn-learn-all").onclick = function ()
-                {
-                    var sentences = "";
-                    $("h2, h3, p").each(function (i)
-                    {
-                        sentences += $(this).text() + " ";
-                    });
-                    var arr = getSelectingWords(sentences);
-                    debugger;
-                };
 
-                $("#btn-learn").click(function ()
-                {
-                    var arr2 = getWordsBySentences();
-                    var arr3 = getSelectingWords(window.getSelection().toString());
-                    debugger;
-                    //alert(arr3);
-                });
+                                var wordsArray;
+                                var index;
+                                document.getElementById("btn-learn-all").onclick = function ()
+                                {
+                                    var sentences = "";
+                                    $("h2, h3, p").each(function (i)
+                                    {
+                                        sentences += $(this).text() + " ";
+                                    });
+                                    wordsArray = getSelectingWords(sentences);
+                                    index = 0;
+                                };
+
+                                $("#btn-learn").click(function ()
+                                {
+                                    //wordsArray = getWordsBySentences();
+                                    //wordsArray = getSelectingWords(getSelectionText());
+                                    //index = 0;
+                                });
             </script>
         </div>
     </div>
 
     <h2 id="book-header"></h2>
 
-    <div  id="page" class="row">
-        
+    <div id="page" class="row">
+
     </div>
 
     <div class="row">
 
-        <ul id="pagination-demo" class="pagination-sm">
-        </ul>
+        <ul id="pagination-demo" class="pagination-sm"></ul>
 
     </div>
 
-</div> 
+</div>
 
 
 <script>
@@ -126,7 +148,7 @@
                             }
                             first_load = false;
                         }
-                    });                    
+                    });
                 },
                 error: function (xhr, status, error)
                 {

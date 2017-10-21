@@ -16,6 +16,8 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ReadEnglishBooks
 {
@@ -90,7 +92,8 @@ namespace ReadEnglishBooks
             }
 
             
-            app.UseIdentity();
+            app.UseAuthentication();
+
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 

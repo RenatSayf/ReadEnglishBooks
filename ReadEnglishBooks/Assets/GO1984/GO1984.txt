@@ -2,7 +2,9 @@
 
 		<div id="book-name" hidden>1984. George Orwell</div>
 
-        <div style="display: table;">
+        <div class="book-page">
+
+		<div style="display: table;">
             <h2 style="display: table-cell;">PART ONE</h2>
             <h2 style="display: table-cell; padding-left: 20px;"><i>Thoughtcrime</i></h2>
         </div>
@@ -51,13 +53,15 @@
             down from every corner. There was one on the house opposite.
             <b>BIG BROTHER IS WATCHING YOU</b>, it said, and the eyes
             looked into Winston's.
-        </p>|
+        </p>
+		</div>|
 
 
 
 
 
-        <p>
+        <div class="book-page">
+		<p>
             Behind him the voice from the telescreen was still talking about
             iron. There was now even more iron in Oceania than the Ninth
             Three-Year Plan had demanded. The telescreen had a microphone,
@@ -101,12 +105,14 @@
             Miniplenty — which was responsible for the economy. And he
             could see the Ministry of Love — Miniluv — which was responsible
             for law and order.
-        </p>|
+        </p>
+		</div>|
 
 
 
 
-        <p>
+        <div class="book-page">
+		<p>
             The Ministry of Love was the really frightening one. There
             were no windows in it. Nobody could get anywhere near it
             unless they had business there. There were guards with guns in
@@ -153,12 +159,14 @@
             unpleasant about it. Goldstein began to speak in his sheep-like
             voice: criticising the Party, making nasty attacks on Big Brother,
             demanding peace with Eurasia.
-        </p>|
+        </p>
+		</div>|
 
 
 
 
-        <p>
+        <div class="book-page">
+		<p>
             In the past (nobody knew exactly when) Goldstein had been
             almost as important in the Party as Big Brother himself, but then
             he had worked against the Party. Before he could be punished
@@ -204,7 +212,8 @@
             He disliked nearly all women, especially young and pretty ones.
             The young women were always most loyal to the Party and were
             happiest to spy on others. But this girl was especially dangerous,
-        </p>|
+        </p>
+		</div>|
 
 
 
@@ -213,19 +222,22 @@
 
 
 
-        <figure class="books-img">
+        <div class="book-page">
+		<figure class="books-img">
             <img id="img_page5" class="img-page" src="/Assets/GO1984/img_page5.jpg" style="width: 100%; height: auto;" />
             <figcaption>
                 A girl behind him, with thick, dark hair was screaming
                 'Pig! Pig!' at Goldstein.
             </figcaption>
-        </figure>|
+        </figure>
+		</div>|
 
 
 
 
 
-        <p style="text-indent: 0px;">
+        <div class="book-page">
+		<p style="text-indent: 0px;">
             he thought. Once, when he had seen her in the canteen, she had
             looked at h im in a way that filled h im w i th black terror. He even
             thought she might be working for the Thought Police. As the
@@ -271,13 +283,15 @@
             Then everybody started shouting 'B-B! B-B!' again and again,
             slowly, with a long pause between the first B and the second. Of
             course Winston shouted too - you had to. But there was a second
-        </p>|
+        </p>
+		</div>|
 
 
 
 
 
-        <p style="text-indent: 0px;">
+        <div class="book-page">
+		<p style="text-indent: 0px;">
             when the look on his face showed what he was thinking. And at
             that exact moment his eyes met O'Brien's.
         </p>
@@ -317,12 +331,14 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
         <h5><i>DOWN WITH BIG BROTHER</i></h5>
         <h5><i>DOWN WITH BIG BROTHER</i></h5>
         <h5><i>DOWN WITH BIG BROTHER</i></h5>
+		</div>
         |
 
 
 
 
 
+		<div class="book-page">
 		<p>
             There was a knock on the door. Already! He sat as quietly as a
             mouse, hoping that they would go away. But no, there was
@@ -367,7 +383,8 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             was the usual smell of old food, but also the smell of old sweat. In
             another room someone was singing with the marching music
             that was still coming from the telescreen.
-        </p>|
+        </p>
+		</div>|
 
 
 
@@ -377,7 +394,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
 
 
 
-
+		<div class="book-page">
         <p>
             'It's the children,' said Mrs Parsons, looking in fear at the door to
             the other room. 'They haven't been out today and of course . . .'
@@ -426,6 +443,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             dangerous wild animals that will soon be man-eaters. Winston
             could see that the boy really wanted to hit or kick him, and was
         </p>
+		</div>
         |
 
 
@@ -433,6 +451,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
 
 
 
+		<div class="book-page">
 		<p style="text-indent: 0px;">
             nearly big enough to do so. He was glad that the gun in the boy's
             hand was only a toy.
@@ -486,6 +505,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             onto his desk. The messages were about changes to the Times
             newspaper. For example, in Big Brother's speech in the Times of
         </p>
+		</div>
         |
 
 

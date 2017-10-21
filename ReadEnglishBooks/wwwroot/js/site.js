@@ -1,4 +1,19 @@
-﻿function getWordsBySentences()
+﻿function getSelectionText()
+{
+    var txt = '';
+    if (txt = window.getSelection)
+    { // Не IE, используем метод getSelection
+        txt = window.getSelection().toString();
+    } else
+    { // IE, используем объект selection
+        txt = document.selection.createRange().text;
+    }
+    return txt;
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+
+function getWordsBySentences()
 {
     var paragrafArray = [];
     var sentencesGroupArray = [];
@@ -10,7 +25,7 @@
 
     for (var i = 0; i < paragrafArray.length; i++)
     {
-        sentencesGroupArray.push(paragrafArray[i].split('.'));        
+        sentencesGroupArray.push(paragrafArray[i].split('.'));
     }
 
     for (var t = 0; t < sentencesGroupArray.length; t++)
@@ -21,7 +36,7 @@
             if (sentences !== "")
             {
                 sentencesArray.push(sentences);
-            }            
+            }
         }
     }
 
@@ -67,3 +82,7 @@ function getSelectingWords(sentence)
     //debugger;
     return Object.keys(obj);
 }
+
+//--------------------------------------------------------------------------------------------------------------------
+
+
