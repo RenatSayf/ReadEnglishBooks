@@ -18,7 +18,7 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speak(string enword)
+        public async Task<ActionResult> Speech(string enword)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -46,7 +46,7 @@ namespace ReadEnglishBooks.Controllers
                         //        synth.SelectVoice(item.VoiceInfo.Name);
                         //    }
                         //}
-                        //synth.Speak(ruword);
+                        //synth.Speech(ruword);
 
                         byte[] bytes = stream.GetBuffer();
                         return File(bytes, "audio/x-wav");

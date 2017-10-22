@@ -24,7 +24,6 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/twbs-pagination/jquery.twbsPagination.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/speaker.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -41,7 +40,6 @@
         </script>
         <script src="~/lib/twbs-pagination/jquery.twbsPagination.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/js/speaker.min.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)
@@ -79,6 +77,19 @@
             <div>&copy; 2017 - Read English Books</div>
         </footer>
     </div>
+
+    <environment names="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/speaker.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/speaker.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+
+    
 
     
 </body>
