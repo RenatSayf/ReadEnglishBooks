@@ -14,52 +14,14 @@
                 <tbody>
                     <tr>
                         <td align="left">
-                            <a id="btn-back" class="btn btn-info" href="#">Назад</a>
-                            <script>
-                                document.getElementById("btn-back").onclick = function ()
-                                {
-
-                                };
-                            </script>
+                            <a id="btn-back" class="btn btn-info" href="#">Назад</a>                            
                         </td>
                         <td align="center">
-                            <div id="div-start"><a id="btn-start" class="btn btn-success" href="#">Старт</a></div>
-                            <script>
-                                $("#btn-start").click(function ()
-                                {
-                                    $("#div-start").attr("hidden", "hidden");
-                                    $("#div-stop").removeAttr("hidden");
-                                    if (wordsArray !== null && words_count <= wordsArray.length - 1)
-                                    {
-                                        speech(wordsArray[words_count]);
-                                    }
-
-                                    //if (sentencesArray !== null && words_count <= sentencesArray[0].length)
-                                    //{
-                                    //    speech(sentencesArray[words_count]);
-                                    //}
-                                
-                                });                               
-
-                            </script>
-                            <div id="div-stop" hidden><a id="btn-stop" class="btn btn-danger" href="#">Стоп</a></div>
-                            <script>
-                                $("#btn-stop").click(function ()
-                                {
-                                    $("#div-stop").attr("hidden", "hidden");
-                                    $("#div-start").removeAttr("hidden");
-                                    $("#audio")[0].pause();
-                                });
-                            </script>
+                            <div id="div-start"><a id="btn-start" class="btn btn-success" href="#">Старт</a></div>                            
+                            <div id="div-stop" hidden><a id="btn-stop" class="btn btn-danger" href="#">Стоп</a></div>                            
                         </td>
                         <td align="right">
-                            <a id="btn-next" class="btn btn-info" href="#">Вперед</a>
-                            <script>
-                                $("#btn-next").on("click", function ()
-                                {
-
-                                });
-                            </script>
+                            <a id="btn-next" class="btn btn-info" href="#">Вперед</a>                            
                         </td>
                     </tr>
                 </tbody>
@@ -80,32 +42,7 @@
     <div id="learning-menu" class="row">
         <div class="col-md-12 text-center">
             <a id="btn-learn-all" class="btn btn-success" data-toggle="modal" href="#play-panel">Учить все слова на странице</a>
-            <a id="btn-learn" class="btn btn-info" data-toggle="modal" href="#play-panel">Учить по предложениям</a>
-            <script>
-
-                                var wordsArray;
-                                var sentencesArray;
-                                var index;
-                                document.getElementById("btn-learn-all").onclick = function ()
-                                {
-                                    var sentences = "";
-                                    words_count = 0;
-                                    $("h2, h3, p").each(function (i)
-                                    {
-                                        sentences += $(this).text() + " ";
-                                    });
-                                    wordsArray = getSelectingWords(sentences);
-                                    index = 0;
-                                };
-
-                                $("#btn-learn").click(function ()
-                                {
-                                    words_count = 0;
-                                    wordsArray = getWordsBySentences()[6];
-                                    //wordsArray = getSelectingWords(getSelectionText());
-                                    index = 0;
-                                });
-            </script>
+            <a id="btn-learn" class="btn btn-info" data-toggle="modal" href="#play-panel">Учить по предложениям</a>            
         </div>
     </div>
 
@@ -124,78 +61,5 @@
 </div>
 
 
-<script>
-
-    var first_load = true;
-    function getPage(page)
-    {
-                //debugger;
-                $.ajax({
-                type: 'GET',
-                url: '@Url.Action("GetPage", "Book")?page=' + page,
-                success: function (data)
-                {
-                    $("#page").html(data[0]);
-                    $("#book-header").text($("#book-name").text());
-                    //var page_number = parseInt($(".page-number").text());
-                    var page_count = parseInt($(".page-count").text());
-
-                    if (first_load)
-                    {
-                        $("title").text($("#book-name").text());
-                    }
-
-                    $('#pagination-demo').twbsPagination({
-                        totalPages: page_count,
-                        visiblePages: 5,
-                        onPageClick: function (event, page)
-                        {
-                            //debugger;
-                            if (!first_load)
-                            {
-                                //debugger;
-                                getPage(page);
-                            }
-                            first_load = false;
-                        }
-                    });
-                },
-                error: function (xhr, status, error)
-                {
-                    alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
-                },
-                dataType: 'JSON'
-        });
-    }
-
-    $(document).ready(function ()
-    {
-        getPage(1);
-    });
-
-    @*var words_count = 0;
-    function speech(en_word)
-    {
-        $('#audio').attr('src', '@Url.Action("Speech", "Speech")?enword=' + en_word);
-        $('#audio')[0].play();
-    }
-
-    $('#audio')[0].onemptied = function ()
-    {
-        //console.log("Event message(onemptied) - Something bad happened and the file is suddenly unavailable (like unexpectedly disconnects)");
-    };
-
-    $('#audio')[0].onerror = function ()
-    {
-        console.log("Event message(onerror) - Error occurs when the file is being loaded");
-    };
-
-    $('#audio')[0].onended = function ()
-    {
-        words_count++;
-        speech(wordsArray[words_count])
-    };*@
 
 
-
-</script>
