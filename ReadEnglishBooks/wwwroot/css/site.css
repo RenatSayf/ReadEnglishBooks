@@ -72,7 +72,7 @@ p{
     margin: 0.2em;
     border-color: #ffffff;
     border: 2px solid;
-    margin: 20px;
+    
 }
 
 
@@ -91,6 +91,11 @@ p{
 .learn-word{
     color: white;
     text-align: center;
+}
+
+.play-panel{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 

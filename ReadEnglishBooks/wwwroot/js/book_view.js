@@ -18,8 +18,7 @@ document.getElementById("btn-learn-all").onclick = function ()
 $("#btn-learn").click(function ()
 {
     words_count = 0;
-    wordsArray = getWordsBySentences()[6];
-    //wordsArray = getSelectingWords(getSelectionText());
+    wordsArray = getWordsBySentences()[6];    
     index = 0;
 });
 
@@ -98,7 +97,25 @@ $("#btn-next").on("click", function ()
     alert("btn-next is click");
 });
 
+
+document.getElementById("page").onclick = function ()
+{
+    wordsArray = getSelectingWords(getSelectionText());
+    if (wordsArray !== null && wordsArray.length > 0)
+    {
+        $('#select-text').text(getSelectionText());
+        $("#translate-panel").modal("show");
+    }
+    
+}
+
+
+
+
+
 $(document).ready(function ()
 {
     getPage(1);
+
+    
 });
