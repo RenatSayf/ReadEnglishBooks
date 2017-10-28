@@ -124,11 +124,12 @@ $('#btn-translate').click(function (e)
         url: '/Book/GetTextFromClient?text=' + text,
         success: function (data)
         {
-            updateWordsTable(data, false);
-            if ($("#output-text").val() != null)
-            {
-                $("#output-text").collapse('show');
-            }
+            debugger;
+            //updateWordsTable(data, false);
+            //if ($("#output-text").val() != null)
+            //{
+            //    $("#output-text").collapse('show');
+            //}
         },
         error: function (xhr, status, error)
         {

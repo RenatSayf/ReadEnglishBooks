@@ -59,23 +59,22 @@ namespace ReadEnglishBooks.Controllers
             Translator translator = new Translator();
             List<Word> words_list = new List<Word>();
             List<string> list = strHelper.splitByWords(text);
-            var str = translator.GetTranslateFromYandex(list);
+            var words = translator.GetTranslateFromYandex(list);
             list.Insert(0, text);
             string message = "";
-            foreach (var item in list)
-            {
-                var trans = translator.GetTranslateFromYandex(item);
-                if (trans != null && trans.Error > 0)
+            foreach (var item in words)
+            {                
+                if (item != null && item.Error > 0)
                 {
-                    if (trans.Error == 200)
+                    if (item.Error == 200)
                     {
-                        words_list.Add(trans);
+                        words_list.Add(item);
                         message = "Ok";
                     }
                     else
                     {
                         words_list.Add(new Word() { Eng = text, Rus = null });
-                        switch (trans.Error)
+                        switch (item.Error)
                         {
                             case 400:
                                 message = "Недопустимый запрос";
@@ -105,9 +104,9 @@ namespace ReadEnglishBooks.Controllers
                         break;
                     }
                 }
-                else if (trans != null && trans.Error < 0)
+                else if (item != null && item.Error < 0)
                 {
-                    message = trans.Eng;
+                    message = item.Eng;
                     words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
                     break;
                 }
