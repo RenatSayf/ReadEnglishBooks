@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using ReadEnglishBooks.Models;
 using System.IO;
 using System.Collections.Generic;
+using ReadEnglishBooks.Helpers;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace ReadEnglishBooks.Controllers
 {
@@ -49,8 +52,83 @@ namespace ReadEnglishBooks.Controllers
             return Json(pages);
         }
 
-        // GET: Book/Details/5
-        public ActionResult BookDetails(int id)
+        [HttpPost]
+        public ActionResult GetTextFromClient(string text)
+        {
+            StringHelper strHelper = new StringHelper();
+            Translator translator = new Translator();
+            List<Word> words_list = new List<Word>();
+            List<string> list = strHelper.splitByWords(text);
+            var str = translator.GetTranslateFromYandex(list);
+            list.Insert(0, text);
+            string message = "";
+            foreach (var item in list)
+            {
+                var trans = translator.GetTranslateFromYandex(item);
+                if (trans != null && trans.Error > 0)
+                {
+                    if (trans.Error == 200)
+                    {
+                        words_list.Add(trans);
+                        message = "Ok";
+                    }
+                    else
+                    {
+                        words_list.Add(new Word() { Eng = text, Rus = null });
+                        switch (trans.Error)
+                        {
+                            case 400:
+                                message = "Недопустимый запрос";
+                                break;
+                            case 401:
+                                message = "Неправильный API-ключ";
+                                break;
+                            case 402:
+                                message = "API-ключ заблокирован";
+                                break;
+                            case 404:
+                                message = "Превышено суточное ограничение на объем переведенного текста";
+                                break;
+                            case 413:
+                                message = "Превышен максимально допустимый размер текста";
+                                break;
+                            case 422:
+                                message = "Текст не может быть переведен";
+                                break;
+                            case 501:
+                                message = "Заданное направление перевода не поддерживается";
+                                break;
+                            default:
+                                message = "Опаньки... Произошла непредвиденная ошибка";
+                                break;
+                        }
+                        break;
+                    }
+                }
+                else if (trans != null && trans.Error < 0)
+                {
+                    message = trans.Eng;
+                    words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
+                    break;
+                }
+                else
+                {
+                    message = "Error: HomeController -> GetTextFromClient -> trans=null";
+                    words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
+                    break;
+                }
+            }
+            var jsondata = words_list.Select(w => new
+            {
+                Message = message,
+                English = w.Eng,
+                Translate = w.Rus
+            });
+            return Json(jsondata);
+        }    
+
+    // GET: Book/Details/5
+    public ActionResult BookDetails(int id)
         {
             return View();
         }
