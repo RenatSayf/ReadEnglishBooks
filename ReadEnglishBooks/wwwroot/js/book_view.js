@@ -124,12 +124,11 @@ $('#btn-translate').click(function (e)
         url: '/Book/GetTextFromClient?text=' + text,
         success: function (data)
         {
-            debugger;
-            //updateWordsTable(data, false);
-            //if ($("#output-text").val() != null)
-            //{
-            //    $("#output-text").collapse('show');
-            //}
+            $("#translate-panel").modal("hide");
+            $("#words-panel").modal("show");
+            //debugger;
+            updateWordsTable(data, true);
+            
         },
         error: function (xhr, status, error)
         {
@@ -142,9 +141,9 @@ $('#btn-translate').click(function (e)
 function updateWordsTable(data, clean)
 {
     //debugger;
-    if (data.length > 0 && data[0].Message !== "Ok")
+    if (data.length > 0 && data[0].message !== "Ok")
     {
-        alert(data[0].Message);
+        alert(data[0].message);
         return;
     }
     if (clean === true)
@@ -152,42 +151,16 @@ function updateWordsTable(data, clean)
         $("#words-table > tbody").empty();
     }
 
-    var tr_index;
-    try
-    {
-        var last_tr = $('.word-tr').last();
-        tr_index = last_tr[0].children[0].innerText;
-    }
-    catch (e)
-    {
-        tr_index = -1;
-    }
-
-    var input_val = decodeURIComponent($('#input-text').val());
-    var is_english = false;
-    for (var i = 0; i < input_val.length; i++)
-    {
-        if (input_val.charCodeAt(i) < 65) continue;
-        if (input_val.charCodeAt(i) < 123) is_english = true;
-    }
-    if (is_english)
-    {
-        document.getElementById('output-textarea').innerText = decodeURIComponent(data[0].Translate);
-    }
-    else
-    {
-        document.getElementById('output-textarea').innerText = decodeURIComponent(data[0].English);
-    }
     //debugger;
-    for (var i = 1; i < data.length; i++)
+    for (var i = 0; i < data.length; i++)
     {
         $("#words-table > tbody").append('<tr class="word-tr">' +
-            '<td><a class="word-td" data-toggle="modal" href="#word-details">' + (+tr_index + 1 + i) + '</a></td>' +
-            '<td><a class="word-td" data-toggle="modal" href="#word-details">' + decodeURIComponent(data[i].English) + '</a></td>' +
-            '<td><a class="word-td" data-toggle="modal" href="#word-details">' + decodeURIComponent(data[i].Translate) + '</a></td>' +
+            '<td><a class="word-td">' + (i + 1) + '</a></td>' +
+            '<td><a class="word-td">' + decodeURIComponent(data[i].english) + '</a></td>' +
+            '<td><a class="word-td">' + '<input type="text" value="' + decodeURIComponent(data[i].translate) + '" />' + '</a></td>' +
             '</tr>');
     }
-    wordsListOnClick();
+    //wordsListOnClick();
 }
 //===========================================================================================================
 var select_tr;

@@ -10,14 +10,14 @@ namespace ReadEnglishBooks.Helpers
     {
         public List<string> splitByWords(string text)
         {
-            string s = text;
-            string pattern = @"[^\d\sa-zA-Zа-яёйА-ЯЁЙ-]";
-            string target = "";
+            string str = text.ToLower();
+            string pattern = @"[^\d\s'a-zA-Zа-яёйА-ЯЁЙ-]/gmi";
+            string target = " ";
             Regex regex = new Regex(pattern);
-            string withoutPunctuation = regex.Replace(s, target);
-            var list = withoutPunctuation.Split(' ').ToList();
+            string withoutPunctuation = regex.Replace(str, target);
+            var list = withoutPunctuation.Split(' ','.',',','!','?',':',';').ToList();
             var listDistinct = list.Distinct().ToList();
-            listDistinct.RemoveAll((element) => element == "");
+            listDistinct.RemoveAll((element) => element == "" || element == "'");
             return listDistinct;
         }
     }

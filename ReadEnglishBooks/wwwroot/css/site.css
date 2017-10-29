@@ -98,6 +98,11 @@ p{
     padding-right: 0px;
 }
 
+.not-transparenr {
+    background-color: rgba(255, 255, 255, 1.0);
+    text-align: center;
+}
+
 
 
 
