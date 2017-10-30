@@ -124,7 +124,19 @@ namespace ReadEnglishBooks.Controllers
                 Translate = w.Rus
             });
             return Json(jsondata);
-        }    
+        }
+
+        [HttpPost]
+        public void GetWordsFromClient(List<string[]> data)
+        {
+            return;
+        }
+
+
+
+
+
+
 
     // GET: Book/Details/5
     public ActionResult BookDetails(int id)

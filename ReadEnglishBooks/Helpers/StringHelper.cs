@@ -17,7 +17,7 @@ namespace ReadEnglishBooks.Helpers
             string withoutPunctuation = regex.Replace(str, target);
             var list = withoutPunctuation.Split(' ','.',',','!','?',':',';').ToList();
             var listDistinct = list.Distinct().ToList();
-            listDistinct.RemoveAll((element) => element == "" || element == "'");
+            listDistinct.RemoveAll((element) => element == "" || element == "'" || element == "," || element == ".");
             return listDistinct;
         }
     }

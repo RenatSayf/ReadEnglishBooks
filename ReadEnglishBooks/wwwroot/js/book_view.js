@@ -155,32 +155,41 @@ function updateWordsTable(data, clean)
     for (var i = 0; i < data.length; i++)
     {
         $("#words-table > tbody").append('<tr class="word-tr">' +
-            '<td><a class="word-td">' + (i + 1) + '</a></td>' +
-            '<td><a class="word-td">' + decodeURIComponent(data[i].english) + '</a></td>' +
-            '<td><a class="word-td">' + '<input type="text" value="' + decodeURIComponent(data[i].translate) + '" />' + '</a></td>' +
+            '<td>' + (i + 1) + '</td>' +
+            '<td>' + decodeURIComponent(data[i].english) + '</td>' +
+            '<td>' + '<input type="text" value="' + decodeURIComponent(data[i].translate) + '" />' + '</td>' +
             '</tr>');
-    }
-    //wordsListOnClick();
+    }    
 }
 //===========================================================================================================
-var select_tr;
-function wordsListOnClick()
+$('#btn-save').click(function ()
 {
-    $('.word-td').click(function (e)
+    var data = $('table tr:gt(0)').map(function ()
     {
-        select_tr = $(this).parent('td').parent('tr');
-        var en_word = select_tr[0].children[1].innerText;
-        var ru_word = select_tr[0].children[2].innerText;
-        $('#english').val(en_word);
-        $('#trans').val(ru_word);
         //debugger;
+        return {
+            eng: $(this.cells[1]).text(),
+            rus: this.cells[2].children[0].value,
+            is_repeat: 1,
+            error: 0
+        };
+    }).get();
+
+    //debugger;
+    $.ajax({
+        type: "POST",
+        url: "/Book/GetWordsFromClient?data=" + JSON.stringify(data),
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"        
     });
-}
+
+});
 
 
 
 
-
+//===========================================================================================================
 $(document).ready(function ()
 {
     getPage(1);
