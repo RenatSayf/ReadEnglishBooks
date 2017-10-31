@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using ReadEnglishBooks.Helpers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Hosting.Server;
+using Newtonsoft.Json;
 
 namespace ReadEnglishBooks.Controllers
 {
@@ -123,13 +124,28 @@ namespace ReadEnglishBooks.Controllers
                 English = w.Eng,
                 Translate = w.Rus
             });
+            
             return Json(jsondata);
         }
 
         [HttpPost]
-        public void GetWordsFromClient(List<string[]> data)
+        public JsonResult GetWordsFromClient(string data)
         {
-            return;
+            List<Word> words = null;
+            Dictionary<string, string> response = null;
+            if (data != null)
+            {
+                words = JsonConvert.DeserializeObject<List<Word>>(data);
+                words.ForEach(i => i.IsRepeat = true);
+                response = new Dictionary<string, string>();
+                response.Add("code", "Ok");
+            }
+            else
+            {
+                response = new Dictionary<string, string>();
+                response.Add("code", "Error");
+            }
+            return Json(response);
         }
 
 

@@ -167,11 +167,10 @@ $('#btn-save').click(function ()
     var data = $('table tr:gt(0)').map(function ()
     {
         //debugger;
-        return {
+        return{
             eng: $(this.cells[1]).text(),
             rus: this.cells[2].children[0].value,
-            is_repeat: 1,
-            error: 0
+            is_repeat: "1"
         };
     }).get();
 
@@ -181,6 +180,14 @@ $('#btn-save').click(function ()
         url: "/Book/GetWordsFromClient?data=" + JSON.stringify(data),
         data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
+        success: function (response)
+        {
+            //debugger;
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+        },
         dataType: "json"        
     });
 
