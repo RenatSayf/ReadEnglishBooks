@@ -13,6 +13,5 @@ namespace ReadEnglishBooks.Models
 
         public bool IsRepeat { get; set; }
 
-        public int Error { get; set; }
     }
 }

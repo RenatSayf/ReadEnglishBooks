@@ -14,17 +14,18 @@ namespace ReadEnglishBooks.Helpers
 {
     public class Translator
     {
-        public List<Word> GetTranslateFromYandex(List<string> list)
+        public WordsListObject GetTranslateFromYandex(List<string> list)
         {
             List<Word> words_list = null;
-            TranslateObject translateObject;
+            TranslateObject translateObject = null;
+            WordsListObject wordsListObject = null;
             string keyApi = "trnsl.1.1.20170126T141135Z.59c382f4c439bbaf.3226485ac0b3691894625bddb3c48c74f5067706";
             string format = "plain";
             string lang = "en-ru";
             string text = "";
             foreach (var item in list)
             {
-                text += "&rus=" + WebUtility.UrlEncode(item);
+                text += "&text=" + WebUtility.UrlEncode(item);
             }
             string url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + keyApi + text + "&lang=" + lang + "&[format=" + format + "]&[options=1]";
             Uri uri = new Uri(url);
@@ -40,27 +41,30 @@ namespace ReadEnglishBooks.Helpers
                 stringData = reader.ReadToEnd();
                 reader.Close();
                 translateObject = JsonConvert.DeserializeObject<TranslateObject>(stringData);
-                if (translateObject != null && list.Count == translateObject.rus.Count)
+                if (translateObject != null && list.Count == translateObject.text.Count)
                 {
                     words_list = new List<Word>();
+                    wordsListObject = new WordsListObject();
                     for (int i = 0; i < list.Count; i++)
                     {
                         words_list.Add(new Word
                         {
-                            Error = translateObject.code,
                             Eng = list.ElementAt(i),
-                            Rus = translateObject.rus.ElementAt(i),
+                            Rus = translateObject.text.ElementAt(i),
                             IsRepeat = true
                         });
                     }
+                    wordsListObject.code = translateObject.code;
+                    wordsListObject.lang = translateObject.lang;
+                    wordsListObject.wordsList = words_list;
                 }
             }
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
 
-            }
-            return words_list;
+            }            
+            return wordsListObject;
         }
 
     }   

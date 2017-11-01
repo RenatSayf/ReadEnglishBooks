@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ReadEnglishBooks.Models
 {
-    public class TranslateObject
+    public class WordsListObject
     {
         public int code { get; set; }
         public string lang { get; set; }
-        public List<string> text { get; set; }
+        public List<Word> wordsList { get; set; }
     }
 }

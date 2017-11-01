@@ -106,8 +106,8 @@ document.getElementById("page").onclick = function ()
         $('#select-text').text(getSelectionText());
         $("#translate-panel").modal("show");
     }
-    
-}
+
+};
 //===========================================================================================================
 $('#btn-translate').click(function (e)
 {

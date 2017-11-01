@@ -61,63 +61,54 @@ namespace ReadEnglishBooks.Controllers
             List<Word> words_list = new List<Word>();
             List<string> list = strHelper.splitByWords(text);
             var words = translator.GetTranslateFromYandex(list);
-            list.Insert(0, text);
             string message = "";
-            foreach (var item in words)
-            {                
-                if (item != null && item.Error > 0)
-                {
-                    if (item.Error == 200)
-                    {
-                        words_list.Add(item);
-                        message = "Ok";
-                    }
-                    else
-                    {
-                        words_list.Add(new Word() { Eng = text, Rus = null });
-                        switch (item.Error)
-                        {
-                            case 400:
-                                message = "Недопустимый запрос";
-                                break;
-                            case 401:
-                                message = "Неправильный API-ключ";
-                                break;
-                            case 402:
-                                message = "API-ключ заблокирован";
-                                break;
-                            case 404:
-                                message = "Превышено суточное ограничение на объем переведенного текста";
-                                break;
-                            case 413:
-                                message = "Превышен максимально допустимый размер текста";
-                                break;
-                            case 422:
-                                message = "Текст не может быть переведен";
-                                break;
-                            case 501:
-                                message = "Заданное направление перевода не поддерживается";
-                                break;
-                            default:
-                                message = "Опаньки... Произошла непредвиденная ошибка";
-                                break;
-                        }
-                        break;
-                    }
-                }
-                else if (item != null && item.Error < 0)
-                {
-                    message = item.Eng;
-                    words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
-                    break;
-                }
-                else
-                {
-                    message = "Error: HomeController -> GetTextFromClient -> trans=null";
-                    words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
-                    break;
-                }
+
+            if (words != null && words.code == 200)
+            {
+                words_list = words.wordsList;
+                message = "Ok";
             }
+            else if(words.code != 200)
+            {
+                switch (words.code)
+                {
+                    case 400:
+                        message = "Недопустимый запрос";
+                        break;
+                    case 401:
+                        message = "Неправильный API-ключ";
+                        break;
+                    case 402:
+                        message = "API-ключ заблокирован";
+                        break;
+                    case 404:
+                        message = "Превышено суточное ограничение на объем переведенного текста";
+                        break;
+                    case 413:
+                        message = "Превышен максимально допустимый размер текста";
+                        break;
+                    case 422:
+                        message = "Текст не может быть переведен";
+                        break;
+                    case 501:
+                        message = "Заданное направление перевода не поддерживается";
+                        break;
+                    default:
+                        message = "Опаньки... Произошла непредвиденная ошибка";
+                        break;
+                }           
+            }
+            else if (words.code < 0)
+            {
+                message = "words.code < 0";
+                words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
+            }
+            else
+            {
+                message = "Error: HomeController -> GetTextFromClient -> trans=null";
+                words_list.Add(new Word() { Eng = text, Rus = null, IsRepeat = false });
+            }
+            
             var jsondata = words_list.Select(w => new
             {
                 Message = message,
