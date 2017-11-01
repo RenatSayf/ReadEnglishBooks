@@ -136,7 +136,7 @@ namespace ReadEnglishBooks.Controllers
             if (data != null)
             {
                 words = JsonConvert.DeserializeObject<List<Word>>(data);
-                words.ForEach(i => i.IsRepeat = true);
+                //words.ForEach(i => i.IsRepeat = true);
                 response = new Dictionary<string, string>();
                 response.Add("code", "Ok");
             }

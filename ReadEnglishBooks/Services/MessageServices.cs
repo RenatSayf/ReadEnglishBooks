@@ -18,7 +18,7 @@ namespace ReadEnglishBooks.Services
 
         public Task SendSmsAsync(string number, string message)
         {
-            // Plug in your SMS service here to send a text message.
+            // Plug in your SMS service here to send a rus message.
             return Task.FromResult(0);
         }
     }

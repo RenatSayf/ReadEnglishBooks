@@ -9,6 +9,7 @@ namespace ReadEnglishBooks.Models
     {
         public int code { get; set; }
         public string lang { get; set; }
-        public List<string> text { get; set; }
+        public List<string> eng { get; set; }
+        public List<string> rus { get; set; }
     }
 }

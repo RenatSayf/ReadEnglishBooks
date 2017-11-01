@@ -170,7 +170,7 @@ $('#btn-save').click(function ()
         return{
             eng: $(this.cells[1]).text(),
             rus: this.cells[2].children[0].value,
-            is_repeat: "1"
+            isrepeat: true
         };
     }).get();
 

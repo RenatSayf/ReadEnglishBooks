@@ -24,7 +24,7 @@ namespace ReadEnglishBooks.Helpers
             string text = "";
             foreach (var item in list)
             {
-                text += "&text=" + WebUtility.UrlEncode(item);
+                text += "&rus=" + WebUtility.UrlEncode(item);
             }
             string url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + keyApi + text + "&lang=" + lang + "&[format=" + format + "]&[options=1]";
             Uri uri = new Uri(url);
@@ -40,7 +40,7 @@ namespace ReadEnglishBooks.Helpers
                 stringData = reader.ReadToEnd();
                 reader.Close();
                 translateObject = JsonConvert.DeserializeObject<TranslateObject>(stringData);
-                if (translateObject != null && list.Count == translateObject.text.Count)
+                if (translateObject != null && list.Count == translateObject.rus.Count)
                 {
                     words_list = new List<Word>();
                     for (int i = 0; i < list.Count; i++)
@@ -49,7 +49,7 @@ namespace ReadEnglishBooks.Helpers
                         {
                             Error = translateObject.code,
                             Eng = list.ElementAt(i),
-                            Rus = translateObject.text.ElementAt(i),
+                            Rus = translateObject.rus.ElementAt(i),
                             IsRepeat = true
                         });
                     }
