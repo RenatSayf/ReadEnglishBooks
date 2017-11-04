@@ -158,8 +158,10 @@ function updateWordsTable(data, clean)
             '<td>' + (i + 1) + '</td>' +
             '<td>' + decodeURIComponent(data[i].english) + '</td>' +
             '<td>' + '<input type="text" value="' + decodeURIComponent(data[i].translate) + '" />' + '</td>' +
+            '<td>' + '<input class="btn-remove" type="button" value="Удалить" />' + '</td>' +
             '</tr>');
-    }    
+    }   
+    $('.btn-remove').click(DeleteRow);
 }
 //===========================================================================================================
 $('#btn-save').click(function ()
@@ -174,7 +176,7 @@ $('#btn-save').click(function ()
         };
     }).get();
 
-    //debugger;
+    debugger;
     $.ajax({
         type: "POST",
         url: "/Book/GetWordsFromClient?data=" + JSON.stringify(data),
@@ -197,13 +199,21 @@ $('#btn-save').click(function ()
         },
         error: function (xhr, status, error)
         {
+            debugger;
             $("#words-panel").modal("hide");
-            alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+            alert("Ошибка ajax\n" + "xhr.responseText - " + xhr.responseText + '|\n' +
+                "status - " + status + '|\n' +
+                "error - " + error);
         },
         dataType: "json"        
     });
 
 });
+//===========================================================================================================
+function DeleteRow()
+{
+    $(this).parents('tr').first().remove();
+}
 
 
 
