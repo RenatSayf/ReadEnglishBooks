@@ -9,6 +9,12 @@ using ReadEnglishBooks.Helpers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Hosting.Server;
 using Newtonsoft.Json;
+using System.Data;
+using System.Data.SQLite;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using ReadEnglishBooks.Data;
+using System.Data.Entity;
 
 namespace ReadEnglishBooks.Controllers
 {
@@ -120,22 +126,30 @@ namespace ReadEnglishBooks.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetWordsFromClient(string data)
+        public async Task<JsonResult> GetWordsFromClient(string data)
         {
             List<Word> words = null;
             Dictionary<string, string> response = null;
+            int res = -1;
             if (data != null)
             {
                 words = JsonConvert.DeserializeObject<List<Word>>(data);
                 //words.ForEach(i => i.IsRepeat = true);
+                SqliteHelper sqliteHelper = new SqliteHelper();
+                res = await sqliteHelper.AddEntiesToTable(words);
+
                 response = new Dictionary<string, string>();
-                response.Add("code", "Ok");
+                response.Add("message", "Ok");
+                response.Add("res", res.ToString());
+
             }
             else
             {
                 response = new Dictionary<string, string>();
-                response.Add("code", "Error");
+                response.Add("code", "BookController.GetWordsFromClient(data):   Error - data is null");
+                response.Add("res", res.ToString());
             }
+            
             return Json(response);
         }
 

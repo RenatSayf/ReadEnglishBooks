@@ -182,10 +182,22 @@ $('#btn-save').click(function ()
         contentType: "application/json; charset=utf-8",
         success: function (response)
         {
+            $("#words-panel").modal("hide");
+            var message = response.message;
+            var res = parseInt(response.res);
+            if (message === "Ok" && res >=0)
+            {
+                alert("Слова успешно записаны в БД");
+            }
+            if (message === "Ok" && res < 0)
+            {
+                alert("Не удалось записать слова в БД");
+            }
             //debugger;
         },
         error: function (xhr, status, error)
         {
+            $("#words-panel").modal("hide");
             alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
         },
         dataType: "json"        

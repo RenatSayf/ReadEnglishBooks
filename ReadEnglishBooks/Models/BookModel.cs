@@ -20,6 +20,8 @@ namespace ReadEnglishBooks.Models
                 pagesArray = result.Split(spliter);            
             }
 
+
+
         }            
         
         public string[] PagesArray
