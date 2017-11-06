@@ -1029,7 +1029,7 @@ if ( $.uiBackCompat !== false ) {
 			} else {
 				$.extend( props, {
 					position: element.css( "position" ),
-					zIndex: element.css( "z-index" )
+					zIndex: element.css( "z-sentencesIndex" )
 				} );
 				$.each( [ "top", "left", "bottom", "right" ], function( i, pos ) {
 					props[ pos ] = element.css( pos );

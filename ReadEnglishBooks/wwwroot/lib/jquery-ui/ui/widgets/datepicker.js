@@ -42,7 +42,7 @@ function datepicker_getZindex( elem ) {
 	var position, value;
 	while ( elem.length && elem[ 0 ] !== document ) {
 
-		// Ignore z-index if position is set to a value where z-index is ignored by the browser
+		// Ignore z-sentencesIndex if position is set to a value where z-sentencesIndex is ignored by the browser
 		// This makes behavior of this function consistent across browsers
 		// WebKit always returns auto if the element is positioned
 		position = elem.css( "position" );
@@ -51,7 +51,7 @@ function datepicker_getZindex( elem ) {
 			// IE returns 0 when zIndex is not specified
 			// other browsers return a string
 			// we ignore the case of nested elements with an explicit value of 0
-			// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
+			// <div style="z-sentencesIndex: -10;"><div style="z-sentencesIndex: 0;"></div></div>
 			value = parseInt( elem.css( "zIndex" ), 10 );
 			if ( !isNaN( value ) && value !== 0 ) {
 				return value;
@@ -804,7 +804,7 @@ $.extend( Datepicker.prototype, {
 		if ( !inst.inline ) {
 			showAnim = $.datepicker._get( inst, "showAnim" );
 			duration = $.datepicker._get( inst, "duration" );
-			inst.dpDiv.css( "z-index", datepicker_getZindex( $( input ) ) + 1 );
+			inst.dpDiv.css( "z-sentencesIndex", datepicker_getZindex( $( input ) ) + 1 );
 			$.datepicker._datepickerShowing = true;
 
 			if ( $.effects && $.effects.effect[ showAnim ] ) {
@@ -1183,7 +1183,7 @@ $.extend( Datepicker.prototype, {
 				return parseInt( num[ 0 ], 10 );
 			},
 
-			// Extract a name from the string value and convert to an index
+			// Extract a name from the string value and convert to an sentencesIndex
 			getName = function( match, shortNames, longNames ) {
 				var index = -1,
 					names = $.map( lookAhead( match ) ? longNames : shortNames, function( v, k ) {

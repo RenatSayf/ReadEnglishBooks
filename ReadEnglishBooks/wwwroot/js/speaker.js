@@ -1,5 +1,4 @@
-﻿var words_count = 0;
-
+﻿
 function speech(en_word)
 {
     $('#audio').attr('src', '/Speech/Speech?enword=' + en_word);
@@ -19,7 +18,23 @@ $('#audio')[0].onerror = function ()
 $('#audio')[0].onended = function ()
 {
     //debugger;
-    if (wordsArray !== null)
+    if (sentencesArray.length > 0)
+    {
+        words_count++;
+        if (words_count <= sentencesArray[sentencesIndex].length - 1)
+        {
+            speech(sentencesArray[sentencesIndex][words_count]);
+        }
+        else
+        {
+            words_count = 0;
+            $("#div-stop").attr("hidden", "hidden");
+            $("#div-start").removeAttr("hidden");
+            $("#audio")[0].pause();
+            alert("Завершено");
+        }
+    }
+    if (wordsArray.length > 0)
     {
         words_count++;
         if (words_count <= wordsArray.length - 1)
@@ -35,5 +50,4 @@ $('#audio')[0].onended = function ()
             alert("Завершено");
         }
     }
-
  };

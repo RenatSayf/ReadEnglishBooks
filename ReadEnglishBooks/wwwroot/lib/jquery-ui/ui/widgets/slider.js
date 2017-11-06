@@ -118,7 +118,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 
 		this.handles.each( function( i ) {
 			$( this )
-				.data( "ui-slider-handle-index", i )
+				.data( "ui-slider-handle-sentencesIndex", i )
 				.attr( "tabIndex", 0 );
 		} );
 	},
@@ -365,7 +365,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 	_change: function( event, index ) {
 		if ( !this._keySliding && !this._mouseSliding ) {
 
-			//store the last changed value index for reference when handles overlap
+			//store the last changed value sentencesIndex for reference when handles overlap
 			this._lastChangedValue = index;
 			this._trigger( "change", event, this._uiHash( index ) );
 		}
@@ -497,7 +497,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 
 	//internal values getter
 	// _values() returns array of values trimmed by min and max, aligned by step
-	// _values( index ) returns single value trimmed by min and max, aligned by step
+	// _values( sentencesIndex ) returns single value trimmed by min and max, aligned by step
 	_values: function( index ) {
 		var val,
 			vals,
@@ -672,7 +672,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 	_handleEvents: {
 		keydown: function( event ) {
 			var allowed, curVal, newVal, step,
-				index = $( event.target ).data( "ui-slider-handle-index" );
+				index = $( event.target ).data( "ui-slider-handle-sentencesIndex" );
 
 			switch ( event.keyCode ) {
 				case $.ui.keyCode.HOME:
@@ -737,7 +737,7 @@ return $.widget( "ui.slider", $.ui.mouse, {
 			this._slide( event, index, newVal );
 		},
 		keyup: function( event ) {
-			var index = $( event.target ).data( "ui-slider-handle-index" );
+			var index = $( event.target ).data( "ui-slider-handle-sentencesIndex" );
 
 			if ( this._keySliding ) {
 				this._keySliding = false;

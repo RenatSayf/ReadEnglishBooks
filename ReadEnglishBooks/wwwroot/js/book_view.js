@@ -1,25 +1,37 @@
-﻿var wordsArray;
-var sentencesArray;
-var index;
+﻿var wordsArray = [];
+var sentencesArray = [];
+var sentencesIndex = 0;
+var words_count = 0;
 var first_load = true;
 //===========================================================================================================
 document.getElementById("btn-learn-all").onclick = function ()
 {
     var sentences = "";
+    sentencesArray = [];
     words_count = 0;
     $("h2, h3, p").each(function (i)
     {
         sentences += $(this).text() + " ";
     });
     wordsArray = getSelectingWords(sentences);
-    index = 0;
+    //sentencesIndex = 0;
 };
 //===========================================================================================================
 $("#btn-learn").click(function ()
 {
     words_count = 0;
-    wordsArray = getWordsBySentences()[6];    
-    index = 0;
+    wordsArray = [];    
+    //sentencesIndex = 0;
+    var tempArray = getWordsBySentences();    
+    for (var i = 0; i < tempArray.length; i++)
+    {
+        if (tempArray[i].length > 0)
+        {
+            sentencesArray.push(tempArray[i]);
+        }
+    }
+    tempArray = [];
+    //debugger;
 });
 
 //===========================================================================================================
@@ -73,15 +85,17 @@ $("#btn-start").click(function ()
 {
     $("#div-start").attr("hidden", "hidden");
     $("#div-stop").removeAttr("hidden");
-    if (wordsArray !== null && words_count <= wordsArray.length - 1)
+    if (wordsArray.length > 0 && words_count <= wordsArray.length - 1)
     {
         speech(wordsArray[words_count]);
     }
 
-    //if (sentencesArray !== null && words_count <= sentencesArray[0].length)
-    //{
-    //    speech(sentencesArray[words_count]);
-    //}
+    if (sentencesArray.length > 0 && words_count <= sentencesArray[sentencesIndex].length)
+    {
+        //var sent = sentencesArray[sentencesIndex][words_count];
+        //debugger;
+        speech(sentencesArray[sentencesIndex][words_count]);
+    }
 
 });  
 //===========================================================================================================
