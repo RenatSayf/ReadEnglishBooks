@@ -133,7 +133,7 @@ namespace ReadEnglishBooks.Controllers
             int res = -1;
             if (data != null)
             {
-                words = JsonConvert.DeserializeObject<List<Word>>(data);
+                words = JsonConvert.DeserializeObject<List<Word>>(data.ToString());
                 //words.ForEach(i => i.IsRepeat = true);
                 SqliteHelper sqliteHelper = new SqliteHelper();
                 res = await sqliteHelper.AddEntiesToTable(words);
@@ -146,7 +146,7 @@ namespace ReadEnglishBooks.Controllers
             else
             {
                 response = new Dictionary<string, string>();
-                response.Add("code", "BookController.GetWordsFromClient(data):   Error - data is null");
+                response.Add("message", "BookController.GetWordsFromClient(data):   Error - data is null");
                 response.Add("res", res.ToString());
             }
             

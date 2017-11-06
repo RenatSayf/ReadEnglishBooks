@@ -58,7 +58,7 @@ function getPage(page)
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
         },
         dataType: 'JSON'
     });
@@ -132,7 +132,7 @@ $('#btn-translate').click(function (e)
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax\n" + xhr.responseText + '|\n' + status + '|\n' + error);
+            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
         },
         dataType: 'JSON'
     });
@@ -164,30 +164,32 @@ function updateWordsTable(data, clean)
     $('.btn-remove').click(DeleteRow);
 }
 //===========================================================================================================
+function DeleteRow()
+{
+    $(this).parents('tr').first().remove();
+}
+//===========================================================================================================
 $('#btn-save').click(function ()
 {
     var data = $('table tr:gt(0)').map(function ()
     {
-        //debugger;
         return{
             eng: $(this.cells[1]).text(),
-            rus: this.cells[2].children[0].value,
+            rus: this.cells[2].children[0].value, 
             isrepeat: true
         };
     }).get();
-
-    debugger;
+    
     $.ajax({
         type: "POST",
-        url: "/Book/GetWordsFromClient?data=" + JSON.stringify(data),
-        data: JSON.stringify(data),
-        contentType: "application/json; charset=utf-8",
+        url: "/Book/GetWordsFromClient",
+        data: "data=" + JSON.stringify(data),
         success: function (response)
         {
-            $("#words-panel").modal("hide");
+            //$("#words-panel").modal("hide");
             var message = response.message;
             var res = parseInt(response.res);
-            if (message === "Ok" && res >=0)
+            if (message === "Ok" && res >= 0)
             {
                 alert("Слова успешно записаны в БД");
             }
@@ -199,21 +201,15 @@ $('#btn-save').click(function ()
         },
         error: function (xhr, status, error)
         {
-            debugger;
-            $("#words-panel").modal("hide");
-            alert("Ошибка ajax\n" + "xhr.responseText - " + xhr.responseText + '|\n' +
-                "status - " + status + '|\n' +
-                "error - " + error);
+            //debugger;
+            //$("#words-panel").modal("hide");
+            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
         },
         dataType: "json"        
     });
-
 });
 //===========================================================================================================
-function DeleteRow()
-{
-    $(this).parents('tr').first().remove();
-}
+
 
 
 
