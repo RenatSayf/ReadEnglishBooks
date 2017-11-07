@@ -1,5 +1,6 @@
 ﻿var wordsArray = [];
 var sentencesArray = [];
+var arrayOfSeletion = [];
 var sentencesIndex = 0;
 var words_count = 0;
 var first_load = true;
@@ -7,7 +8,8 @@ var first_load = true;
 document.getElementById("btn-learn-all").onclick = function ()
 {
     var sentences = "";
-    sentencesArray = [];
+    sentencesArray.length = 0;
+    arrayOfSeletion.length = 0;
     words_count = 0;
     $("h2, h3, p").each(function (i)
     {
@@ -20,7 +22,8 @@ document.getElementById("btn-learn-all").onclick = function ()
 $("#btn-learn").click(function ()
 {
     words_count = 0;
-    wordsArray = [];    
+    wordsArray.length = 0;
+    arrayOfSeletion.length = 0;
     //sentencesIndex = 0;
     var tempArray = getWordsBySentences();    
     for (var i = 0; i < tempArray.length; i++)
@@ -33,7 +36,17 @@ $("#btn-learn").click(function ()
     tempArray = [];
     //debugger;
 });
-
+//===========================================================================================================
+$("#btn-learn-select").click(function ()
+{
+    words_count = 0;
+    if (arrayOfSeletion.length === 0)
+    {
+        alert("Выделите необходимый текст");
+        return;
+    }
+    $("#play-panel").modal("show");
+});
 //===========================================================================================================
 function getPage(page)
 {
@@ -96,7 +109,10 @@ $("#btn-start").click(function ()
         //debugger;
         speech(sentencesArray[sentencesIndex][words_count]);
     }
-
+    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    {
+        speech(arrayOfSeletion[words_count]);
+    }
 });  
 //===========================================================================================================
 $("#btn-stop").click(function ()
@@ -114,11 +130,14 @@ $("#btn-next").on("click", function ()
 //===========================================================================================================
 document.getElementById("page").onclick = function ()
 {
-    wordsArray = getSelectingWords(getSelectionText());
-    if (wordsArray !== null && wordsArray.length > 0)
+    wordsArray.length = 0;
+    sentencesArray.length = 0;
+    arrayOfSeletion = getSelectingWords(getSelectionText());
+    //debugger;
+    if (arrayOfSeletion.length > 0)
     {
         $('#select-text').text(getSelectionText());
-        $("#translate-panel").modal("show");
+        //$("#translate-panel").modal("show");
     }
 
 };

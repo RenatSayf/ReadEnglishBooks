@@ -50,4 +50,21 @@ $('#audio')[0].onended = function ()
             alert("Завершено");
         }
     }
+    if (arrayOfSeletion.length > 0)
+    {
+        words_count++;
+        if (words_count <= arrayOfSeletion.length - 1)
+        {
+            speech(arrayOfSeletion[words_count]);
+        }
+        else
+        {
+            words_count = 0;
+            $("#div-stop").attr("hidden", "hidden");
+            $("#div-start").removeAttr("hidden");
+            $("#audio")[0].pause();
+            alert("Завершено");
+        }
+    }
+
  };
