@@ -40,9 +40,19 @@ $("#btn-learn").click(function ()
 $("#btn-learn-select").click(function ()
 {
     words_count = 0;
+    //debugger;
     if (arrayOfSeletion.length === 0)
     {
-        alert("Выделите необходимый текст");
+        $("#dialog-message").dialog({
+            modal: false,
+            dialogClass: 'custom-ui-widget-header-warning',
+            buttons: {
+                Ok: function ()
+                {
+                    $(this).dialog("close");
+                }
+            }
+        });
         return;
     }
     $("#play-panel").modal("show");
@@ -254,3 +264,11 @@ $(document).ready(function ()
 
     
 });
+
+function CreateAlert(divId, message)
+{
+    //debugger;
+    var res = $(divId).append('<div class="alert alert-warning fade in">' +
+        '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
+    $(divId).slideDown();
+}

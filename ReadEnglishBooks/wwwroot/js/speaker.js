@@ -8,11 +8,15 @@ function speech(en_word)
 $('#audio')[0].onemptied = function ()
 {
     //console.log("Event message(onemptied) - Something bad happened and the file is suddenly unavailable (like unexpectedly disconnects)");
+    $("#div-stop").attr("hidden", "hidden");
+    $("#div-start").removeAttr("hidden");
 };
 
 $('#audio')[0].onerror = function ()
 {
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
+    $("#div-stop").attr("hidden", "hidden");
+    $("#div-start").removeAttr("hidden");
 };
 
 $('#audio')[0].onended = function ()
