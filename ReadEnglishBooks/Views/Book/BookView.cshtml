@@ -2,6 +2,18 @@
 //ViewData["Title"] = ViewBag.title;
 }
 
+<div id="dialog-message" title="Предупреждение" hidden>
+    <div>
+        Сначала выделите необходимый текст.
+    </div>
+    <style>
+        .custom-ui-widget-header-warning {
+            background: #EBCCCC;
+            font-size: 1em;
+        }
+    </style>
+</div>
+
 <audio id="audio" controls></audio>
 
 <div id="play-panel" class="modal fade">
@@ -96,17 +108,7 @@
 </div>
 
 
-<div id="dialog-message" title="Предупреждение" hidden>
-    <p>
-        Сначала выделите необходимый текст.
-    </p>
-    <style>
-        .custom-ui-widget-header-warning {
-            background: #EBCCCC;
-            font-size: 1em;
-        }
-    </style>
-</div>
+
 
 <div class="container">
 

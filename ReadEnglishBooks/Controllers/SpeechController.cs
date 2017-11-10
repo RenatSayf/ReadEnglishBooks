@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Speech.Synthesis;
+using ReadEnglishBooks.Helpers;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,8 +49,10 @@ namespace ReadEnglishBooks.Controllers
                         //    }
                         //}
                         //synth.Speech(ruword);
-
+                        
                         byte[] bytes = stream.GetBuffer();
+                        var f = File(bytes, "audio/x-wav");
+                        f.FileDownloadName = "asdffghhjjj";
                         return File(bytes, "audio/x-wav");
                     }
                 }
@@ -57,5 +61,13 @@ namespace ReadEnglishBooks.Controllers
             return await task;
         }
 
+        public async Task<JsonResult> SendWordsToClient(string enword)
+        {
+            SqliteHelper sqliteHelper = new SqliteHelper();
+            var word = await sqliteHelper.GetWordFromTable(enword);
+            var json_data = JsonConvert.SerializeObject(word);
+            return Json(json_data);
+        }
+        
     }
 }

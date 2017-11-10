@@ -1,6 +1,7 @@
 ﻿using ReadEnglishBooks.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
@@ -50,7 +51,42 @@ namespace ReadEnglishBooks.Helpers
             return res;
         }
 
-
+        public async Task<Word> GetWordFromTable(string enword)
+        {
+            var cmd = "SELECT * FROM Words Where Eng='" + enword + "'";
+            Word word = null;
+            SQLiteConnection connection = SetConnectToDataBase();
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+            List<string> list = new List<string>();
+            try
+            {
+                connection.Open();
+                var reader = await sqlitecommand.ExecuteReaderAsync();
+                
+                foreach (DbDataRecord record in reader)
+                {
+                    for (int i = 0; i < record.FieldCount; i++)
+                    {
+                        list.Add(record[i].ToString());
+                    }
+                }
+                if (list.Count == 3)
+                {
+                    word = new Word { Eng = list.ElementAt(0), Rus = list.ElementAt(1), IsRepeat = true }; 
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                //if (connection != null) connection.Dispose();
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+            return word;
+        }
 
     }
 }

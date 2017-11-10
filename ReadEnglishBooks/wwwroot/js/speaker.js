@@ -1,8 +1,24 @@
 ﻿
 function speech(en_word)
 {
-    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word);
-    $('#audio')[0].play();
+    $.ajax({
+        type: 'GET',
+        url: '/Speech/SendWordsToClient?enword=' + en_word,
+        success: function (data)
+        {
+            //debugger;
+            $('#audio').attr('src', '/Speech/Speech?enword=' + en_word);
+            $('#audio')[0].play();
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+        },
+        dataType: 'JSON'
+    });
+
+
+    
 }
 
 $('#audio')[0].onemptied = function ()
@@ -19,8 +35,9 @@ $('#audio')[0].onerror = function ()
     $("#div-start").removeAttr("hidden");
 };
 
-$('#audio')[0].onended = function ()
+$('#audio')[0].onended = function (data)
 {
+    var t = this;
     //debugger;
     if (sentencesArray.length > 0)
     {
