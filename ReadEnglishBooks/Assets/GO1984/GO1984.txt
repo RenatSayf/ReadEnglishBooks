@@ -5,11 +5,11 @@
         <div class="book-page">
 
 		<div style="display: table;">
-            <h2 style="display: table-cell;">PART ONE</h2>
-            <h2 style="display: table-cell; padding-left: 20px;"><i>Thoughtcrime</i></h2>
+            <h2 style="display: table-cell;">PART ONE.</h2>
+            <h2 style="display: table-cell; padding-left: 20px;"><i>Thoughtcrime.</i></h2>
         </div>
 
-        <h3>Chapter 1. Brother Is Watching You</h3>
+        <h3>Chapter 1. Brother Is Watching You.</h3>
 
         <p>
             It was a bright, cold day in April and the clocks were striking

@@ -53,6 +53,7 @@ namespace ReadEnglishBooks.Helpers
 
         public async Task<Word> GetWordFromTable(string enword)
         {
+            enword = enword.Replace("'", "''");
             var cmd = "SELECT * FROM Words Where Eng='" + enword + "'";
             Word word = null;
             SQLiteConnection connection = SetConnectToDataBase();
@@ -87,6 +88,16 @@ namespace ReadEnglishBooks.Helpers
             }
             return word;
         }
+
+        public async Task<List<Word>> GetWordsListAsync(string page)
+        {
+            StringHelper stringHelper = new StringHelper();
+            var list = stringHelper.splitByWords(page);
+            return null;
+        }
+
+
+
 
     }
 }

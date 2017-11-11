@@ -20,7 +20,7 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speech(string enword)
+        public async Task<ActionResult> Speech(string enword, string ruword)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -37,22 +37,33 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US")
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
+                                break;
                             }
                         }
                         synth.Speak(enword);
 
-                        //foreach (var item in voices)
-                        //{
-                        //    if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU")
-                        //    {
-                        //        synth.SelectVoice(item.VoiceInfo.Name);
-                        //    }
-                        //}
-                        //synth.Speech(ruword);
-                        
+                        foreach (var item in voices)
+                        {
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU")
+                            {
+                                synth.SelectVoice(item.VoiceInfo.Name);
+                                break;
+                            }
+                        }
+                        synth.Speak(ruword);
+
+                        foreach(var item in voices)
+                        {
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US")
+                            {
+                                synth.SelectVoice(item.VoiceInfo.Name);
+                                break;
+                            }
+                        }
+                        synth.Speak(enword);
+
                         byte[] bytes = stream.GetBuffer();
                         var f = File(bytes, "audio/x-wav");
-                        f.FileDownloadName = "asdffghhjjj";
                         return File(bytes, "audio/x-wav");
                     }
                 }

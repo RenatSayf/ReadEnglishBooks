@@ -50,6 +50,8 @@ namespace ReadEnglishBooks.Controllers
                         pageCountTag +
                         book.PagesArray.Count() +
                         divTag);
+                    SqliteHelper sqliteHelper = new SqliteHelper();
+                    sqliteHelper.GetWordsListAsync(book.PagesArray.ElementAt(page - 1));
                 }                
             }
             catch (ArgumentNullException)

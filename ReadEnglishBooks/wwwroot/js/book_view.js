@@ -16,7 +16,7 @@ document.getElementById("btn-learn-all").onclick = function ()
         sentences += $(this).text() + " ";
     });
     wordsArray = getSelectingWords(sentences);
-    //sentencesIndex = 0;
+    debugger;
 };
 //===========================================================================================================
 $("#btn-learn").click(function ()
@@ -146,8 +146,7 @@ document.getElementById("page").onclick = function ()
     //debugger;
     if (arrayOfSeletion.length > 0)
     {
-        $('#select-text').text(getSelectionText());
-        //$("#translate-panel").modal("show");
+        $('#select-text').text(getSelectionText());        
     }
 
 };
@@ -252,7 +251,10 @@ $('#btn-save').click(function ()
     });
 });
 //===========================================================================================================
-
+$("#btn-call-translate").click(function ()
+{
+    $("#translate-panel").modal("show");
+});
 
 
 

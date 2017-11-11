@@ -6,8 +6,11 @@ function speech(en_word)
         url: '/Speech/SendWordsToClient?enword=' + en_word,
         success: function (data)
         {
+            var obj = jQuery.parseJSON(data);
+            $("#eng-word").text(obj.Eng);
+            $("#rus-word").text(obj.Rus);
             //debugger;
-            $('#audio').attr('src', '/Speech/Speech?enword=' + en_word);
+            $('#audio').attr('src', '/Speech/Speech?enword=' + obj.Eng + "&ruword=" + obj.Rus);
             $('#audio')[0].play();
         },
         error: function (xhr, status, error)
