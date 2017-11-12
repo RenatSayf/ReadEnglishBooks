@@ -1,4 +1,5 @@
-﻿var wordsArray = [];
+﻿var pageWordsObj;
+var wordsArray = [];
 var sentencesArray = [];
 var arrayOfSeletion = [];
 var sentencesIndex = 0;
@@ -16,7 +17,7 @@ document.getElementById("btn-learn-all").onclick = function ()
         sentences += $(this).text() + " ";
     });
     wordsArray = getSelectingWords(sentences);
-    debugger;
+    //debugger;
 };
 //===========================================================================================================
 $("#btn-learn").click(function ()
@@ -70,7 +71,10 @@ function getPage(page)
             $("#book-header").text($("#book-name").text());
             //var page_number = parseInt($(".page-number").text());
             var page_count = parseInt($(".page-count").text());
-
+            if (data.length > 1)
+            {
+                pageWordsObj = jQuery.parseJSON(data[1]).Result;
+            }
             if (first_load)
             {
                 $("title").text($("#book-name").text());

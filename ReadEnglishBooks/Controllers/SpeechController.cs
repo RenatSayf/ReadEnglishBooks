@@ -50,7 +50,10 @@ namespace ReadEnglishBooks.Controllers
                                 break;
                             }
                         }
-                        synth.Speak(ruword);
+                        if (ruword != null)
+                        {
+                            synth.Speak(ruword); 
+                        }
 
                         foreach(var item in voices)
                         {

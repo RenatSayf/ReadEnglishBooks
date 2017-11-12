@@ -93,7 +93,52 @@ namespace ReadEnglishBooks.Helpers
         {
             StringHelper stringHelper = new StringHelper();
             var list = stringHelper.splitByWords(page);
-            return null;
+            var cmd = "SELECT * FROM Words Where ";
+            foreach (var item in list)
+            {
+                cmd += "Eng='" + item.Replace("'", "''") + "' OR ";
+            }
+            cmd = cmd.Trim(" OR".ToCharArray());
+            SQLiteConnection connection = SetConnectToDataBase();
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+            List<Word> wordsList = null;
+            List<string> fieldList = new List<string>();
+            try
+            {
+                connection.Open();
+                var reader = await sqlitecommand.ExecuteReaderAsync();
+
+                if (reader.HasRows)
+                {
+                    wordsList = new List<Word>();
+                    foreach (DbDataRecord record in reader)
+                    {
+                        for (int i = 0; i < record.FieldCount; i++)
+                        {
+                            fieldList.Add(record[i].ToString());
+                        }
+                        wordsList.Add(new Word
+                        {
+                            Eng = fieldList.ElementAt(0),
+                            Rus = fieldList.ElementAt(1),
+                            IsRepeat = (fieldList.ElementAt(2) == "True") ? true : false
+                        });
+                        fieldList.Clear();
+                    } 
+                }
+             }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                //if (connection != null) connection.Dispose();
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+
+            return wordsList;
         }
 
 
