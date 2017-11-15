@@ -94,6 +94,7 @@ function getPage(page)
                     first_load = false;
                 }
             });
+            locale_HTML = document.getElementById("page").innerHTML;            
         },
         error: function (xhr, status, error)
         {
