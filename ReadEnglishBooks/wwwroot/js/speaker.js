@@ -3,7 +3,8 @@
 function speech(en_word)
 {
     var ru_word;
-    findOnPage(en_word, "page");
+    findOnPage(en_word, "page");    
+
     for (var i = 0; i < pageWordsObj.length; i++)
     {
         if (pageWordsObj[i].Eng === en_word)
@@ -18,6 +19,15 @@ function speech(en_word)
     }
     $("#eng-word").text(en_word);
     $("#rus-word").text(ru_word);
+
+    $(".ru-word").popover({
+        //title: 'Заголовок панели',
+        content: ru_word,
+        trigger: 'hover',
+        placement: 'bottom'
+    });
+    $(".ru-word").popover('show');
+
     $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word);
     $('#audio')[0].play();
       
@@ -37,6 +47,7 @@ $('#audio')[0].onerror = function ()
     debugger;
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
+    $(".ru-word").popover('hide');
 };
 //============================================================================================================
 $('#audio')[0].onended = function (data)
@@ -44,6 +55,7 @@ $('#audio')[0].onended = function (data)
     //debugger;
     if (sentencesArray.length > 0)
     {
+        $(".ru-word").popover('hide');
         words_count++;
         if (words_count <= sentencesArray[sentencesIndex].length - 1)
         {
@@ -124,7 +136,7 @@ function findOnPage(input, tagId)
         //debugger;
         if (replacement !== null) 
         {
-            var new_child_content = child_content.replace(target, '<span style="background-color:yellow;">' + replacement[0] + '</span>');
+            var new_child_content = child_content.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
             child.innerHTML = new_child_content;
         }
     }
