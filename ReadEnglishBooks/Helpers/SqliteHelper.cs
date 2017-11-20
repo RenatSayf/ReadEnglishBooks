@@ -23,7 +23,7 @@ namespace ReadEnglishBooks.Helpers
         public async Task<int> AddEntiesToTable(List<Word> list)
         {
             int res = -1;
-            string startCmd = string.Format(@"INSERT OR IGNORE INTO Words(Eng, Rus, is_repeat) VALUES ");
+            string startCmd = string.Format(@"INSERT OR REPLACE INTO Words(Eng, Rus, is_repeat) VALUES ");
             string endCmd = "";
             foreach (var item in list)
             {

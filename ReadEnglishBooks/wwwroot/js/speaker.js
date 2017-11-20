@@ -1,9 +1,11 @@
-﻿var locale_HTML;
+﻿var page_HTML;
+var local_HTML;
+var local_text_id = "local-text-id";
 //============================================================================================================
 function speech(en_word)
 {
     var ru_word;
-    findOnPage(en_word, "page");    
+    findIntoSentence(en_word, local_text_id);    
 
     for (var i = 0; i < pageWordsObj.length; i++)
     {
@@ -67,7 +69,7 @@ $('#audio')[0].onended = function (data)
             $("#div-stop").attr("hidden", "hidden");
             $("#div-start").removeAttr("hidden");
             $("#audio")[0].pause();
-            cleanSelectionText();
+            cleanSelectionOnPage();
             alert("Завершено");
         }
         return;
@@ -85,7 +87,7 @@ $('#audio')[0].onended = function (data)
             $("#div-stop").attr("hidden", "hidden");
             $("#div-start").removeAttr("hidden");
             $("#audio")[0].pause();
-            cleanSelectionText();
+            cleanSelectionOnPage();
             alert("Завершено");
         }
         return;
@@ -103,7 +105,7 @@ $('#audio')[0].onended = function (data)
             $("#div-stop").attr("hidden", "hidden");
             $("#div-start").removeAttr("hidden");
             $("#audio")[0].pause();
-            cleanSelectionText();
+            cleanSelectionOnPage();
             alert("Завершено");
         }
         return;
@@ -111,20 +113,21 @@ $('#audio')[0].onended = function (data)
 
 };
 //============================================================================================================
-function cleanSelectionText()
+function cleanSelectionOnPage()
 {
-    document.getElementById("page").innerHTML = locale_HTML;
+    document.getElementById("page").innerHTML = page_HTML;
 }
 //============================================================================================================
 function findOnPage(input, tagId) 
 {
-    cleanSelectionText();
+    cleanSelectionOnPage();
     var search = input.trim();
     var div_tag = document.getElementById(tagId);
     var child_content, naked_text;
-    var reg_exp = '\\b\\.*(' + search + '\\b)';
-    var target = new RegExp(reg_exp, "gmi");
+    //var reg_exp = '\\b\\.*(' + search + '\\b)';
+    var target = new RegExp('\\b\\.*(' + search + '\\b)', "gmi");
 
+    //debugger;
     for (var i = 0; i < div_tag.children.length; i++)
     {
         var child = div_tag.children[i];
@@ -132,12 +135,72 @@ function findOnPage(input, tagId)
 
         naked_text = child_content.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
 
-        var replacement = naked_text.match(eval(target));
+        var replacement = naked_text.match(target);
         //debugger;
         if (replacement !== null) 
         {
-            var new_child_content = child_content.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
+            local_HTML = replacement[0];
+            var new_child_content = child_content.replace(target, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + replacement[0] + '</span>');
             child.innerHTML = new_child_content;
+            
         }
     }
 }
+//============================================================================================================
+function findSentenceOnPage(input, tagId)
+{
+    cleanSelectionOnPage();
+    var search = input.trim();
+    var div_tag = document.getElementsByClassName("book-page");
+    var child_content;
+    //debugger;
+    for (var i = 0; i < div_tag[0].children.length; i++)
+    {
+        child_content = div_tag[0].children[i].innerHTML;
+        var res = child_content.search(search);
+        if (child_content.search(search) > 0)
+        {
+            var str = child_content.replace(search, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + search + '</span>');
+            div_tag[0].children[i].innerHTML = str;
+            local_HTML = search;
+        }
+        
+    }
+}
+//============================================================================================================
+function cleanLocalSelection()
+{
+    if (local_HTML !== undefined)
+    {
+        document.getElementById(local_text_id).innerHTML = local_HTML;
+    }
+}
+//============================================================================================================
+function findIntoSentence(input, tagId) 
+{
+    cleanLocalSelection();
+    input = input.trim();
+    var div_tag = document.getElementById(local_text_id);
+    var child_content, naked_text;
+    var reg_exp = '\\b\\.*(' + input + '\\b)';
+    var target = new RegExp(reg_exp, "gmi");
+
+    naked_text = div_tag.innerHTML;
+
+    var replacement = naked_text.match(eval(target));
+    //debugger;
+    if (replacement !== null) 
+    {
+        var new_child_content = naked_text.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
+        div_tag.innerHTML = new_child_content;
+    }
+}
+//============================================================================================================
+
+
+
+
+
+
+
+

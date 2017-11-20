@@ -12,10 +12,7 @@
         <h3>Chapter 1. Brother Is Watching You.</h3>
 
         <p>
-            It was a bright, cold day in April and the clocks were striking
-            thirteen. Winston Smith hurried home to Victory Mansions with
-            his head down to escape the terrible wind. A cloud of dust blew
-            inside with him, and the hall smelled of dust and yesterday's food.
+            It was a bright, cold day in April and the clocks were striking thirteen. Winston Smith hurried home to Victory Mansions with his head down to escape the terrible wind. A cloud of dust blew inside with him, and the hall smelled of dust and yesterday's food.
         </p>
 
         <p>

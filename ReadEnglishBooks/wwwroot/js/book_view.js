@@ -35,7 +35,7 @@ $("#btn-learn").click(function ()
         }
     }
     tempArray = [];
-    //debugger;
+    debugger;
 });
 //===========================================================================================================
 $("#btn-learn-select").click(function ()
@@ -56,6 +56,8 @@ $("#btn-learn-select").click(function ()
         });
         return;
     }
+    //findOnPage(getSelectionText(), "page");
+    findSentenceOnPage(getSelectionText(), "page");
     $("#play-panel").modal("show");
 });
 //===========================================================================================================
@@ -94,7 +96,7 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            locale_HTML = document.getElementById("page").innerHTML;            
+            page_HTML = document.getElementById("page").innerHTML;            
         },
         error: function (xhr, status, error)
         {
@@ -113,6 +115,7 @@ $("#btn-start").click(function ()
 {
     $("#div-start").attr("hidden", "hidden");
     $("#div-stop").removeAttr("hidden");
+    //debugger;
     if (wordsArray.length > 0 && words_count <= wordsArray.length - 1)
     {
         speech(wordsArray[words_count]);
