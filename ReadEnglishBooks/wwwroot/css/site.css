@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 70px;
+    padding-bottom: 130px;
 }
 
 /* Wrapping element */
@@ -111,6 +111,7 @@ p{
     background: #39b54a; /* Цвет фона */
     color: #fff; /* Цвет текста */
     width: 100%; /* Ширина слоя */
+    height: 50px;
 }
 
 

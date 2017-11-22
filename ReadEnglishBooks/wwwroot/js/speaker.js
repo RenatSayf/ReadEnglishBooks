@@ -152,15 +152,16 @@ function findSentenceOnPage(input, tagId)
     cleanSelectionOnPage();
     var search = input.trim();
     var div_tag = document.getElementsByClassName("book-page");
-    var child_content;
+    var child_content, naked_text;
     //debugger;
     for (var i = 0; i < div_tag[0].children.length; i++)
     {
-        child_content = div_tag[0].children[i].innerHTML;
-        var res = child_content.search(search);
-        if (child_content.search(search) > 0)
+        child_content = div_tag[0].children[i].innerHTML;        
+        naked_text = child_content.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
+        var res = naked_text.search(search);
+        if (naked_text.search(search) >= 0)
         {
-            var str = child_content.replace(search, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + search + '</span>');
+            var str = naked_text.replace(search, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + search + '</span>');
             div_tag[0].children[i].innerHTML = str;
             local_HTML = search;
         }
