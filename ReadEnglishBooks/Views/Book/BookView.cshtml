@@ -142,17 +142,46 @@
         <ul id="pagination-demo" class="pagination-sm"></ul>
 
     </div>
+
+
+    <div id="book-play-panel" class="row">
+        <div id="book-play-panel">
+            <div class="col-xs-0 col-md-4 col-lg-4 text-center">
+                
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 text-center">
+                <i class="fa fa-step-backward fa-lg"></i>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 text-center">
+                <i class="fa fa-play fa-lg"></i>
+            </div>
+            <div class="col-xs-4 col-md-2 col-lg-2 text-center">
+                <i class="fa fa-step-forward fa-lg"></i>
+            </div>
+        </div>
+    </div>
     
     
 
 </div>
 
 
+
 <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
     <a class="navmenu-brand visible-md visible-lg" href="#">Название книги</a>
     <ul class="nav navmenu-nav">
-        ...
+        <li class="active">
+            <a id="btn-learn" class="btn" data-toggle="modal" href="#play-panel">Учить по абзацам</a>
+        </li>
+        <li>
+            <a id="btn-learn-select" class="btn" href="#play-panel">Учить по предложениям</a>
+        </li>        
     </ul>
+    <script>
+
+    </script>
+    
+
 </div>
 <div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
     <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
@@ -163,22 +192,7 @@
     <div class="navbar-brand">Название книги</div>
 </div>
 
-<div id="book-play-panel">
-    <div class="row">
-        <div class="col-xs-3 col-lg-4 text-right">
-            <i class="fa fa-step-backward fa-lg"></i>
-        </div>
-        <div class="col-xs-3 col-lg-2 text-right">
-            <i class="fa fa-stop fa-lg"></i>
-        </div>
-        <div class="col-xs-3 col-lg-2 text-left">
-            <i class="fa fa-play fa-lg"></i>
-        </div>
-        <div class="col-xs-3 col-lg-4 text-left">
-            <i class="fa fa-step-forward fa-lg"></i>
-        </div>
-    </div>
-</div>
+
 
 
 @*<nav class="navbar navbar-default navbar-fixed-bottom"  style="display:table; width:100%">
