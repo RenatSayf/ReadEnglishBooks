@@ -50,7 +50,7 @@
     <div class="modal-dialog">
         <div class="modal-content  not-transparenr">
             <div class="modal-header">
-                <h3 id="eng-word">Преводчик</h3>
+                <h1 id="eng-word">Преводчик</h1>
             </div>
             <div class="container-fluid">
                 <div id="select-text" class="row">
@@ -71,7 +71,7 @@
     <div class="modal-dialog">
         <div class="modal-content not-transparenr">
             <div class="modal-header">
-                <h3 id="eng-word">Результат перевода</h3>
+                <h1 id="eng-word">Результат перевода</h1>
             </div>
             <div class="container-fluid">
                 <table id="words-table" class="table table-striped table-hover">
@@ -169,15 +169,36 @@
 
 <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
     <a class="navmenu-brand visible-md visible-lg" href="#">Название книги</a>
-    <ul class="nav navmenu-nav">
+    
+    <div class="nav navmenu-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <label title="Режим">Режим обучения</label>
+                    <select id="learn-mode" class="selectpicker">
+                        <option>Учить по предложениям</option>
+                        <option>Учить по абзацам</option>
+                        <option>Учить все слова на странице</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<ul id="learn-mode" class="nav navmenu-nav">
+
         <li class="active">
-            <a id="btn-learn" class="btn" data-toggle="modal" href="#play-panel">Учить по абзацам</a>
+            <a id="btn-learn-select" class="btn" href="#play-panel">Учить по предложениям</a>
         </li>
         <li>
-            <a id="btn-learn-select" class="btn" href="#play-panel">Учить по предложениям</a>
-        </li>        
-    </ul>
+            <a id="btn-learn" class="btn" data-toggle="modal" href="#play-panel">Учить по абзацам</a>            
+        </li>
+        <li>
+            
+        </li>
+    </ul>*@
     <script>
+        
 
     </script>
     

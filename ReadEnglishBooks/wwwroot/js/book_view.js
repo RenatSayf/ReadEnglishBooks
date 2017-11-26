@@ -5,6 +5,7 @@ var arrayOfSeletion = [];
 var sentencesIndex = 0;
 var words_count = 0;
 var first_load = true;
+var learn_mode = 1;
 //===========================================================================================================
 document.getElementById("btn-learn-all").onclick = function ()
 {
@@ -96,7 +97,10 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            page_HTML = document.getElementById("page").innerHTML;            
+            page_HTML = document.getElementById("page").innerHTML;
+            addSpanTagToSentence();
+            addSpanTagToParagraf();                     
+            
         },
         error: function (xhr, status, error)
         {
@@ -263,6 +267,13 @@ $("#btn-call-translate").click(function ()
 {
     $("#translate-panel").modal("show");
 });
+//===========================================================================================================
+$('#learn-mode').change(function ()
+{
+    learn_mode = this.selectedIndex;
+    $('.sentence').removeClass("sentence");
+});
+//===========================================================================================================
 
 
 
@@ -282,3 +293,5 @@ function CreateAlert(divId, message)
         '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
     $(divId).slideDown();
 }
+
+

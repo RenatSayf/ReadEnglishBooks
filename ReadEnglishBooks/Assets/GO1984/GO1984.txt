@@ -6,17 +6,17 @@
 
 		<div style="display: table;">
             <h2 style="display: table-cell;">PART ONE.</h2>
-            <h2 style="display: table-cell; padding-left: 20px;"><i>Thoughtcrime.</i></h2>
+            <h2 style="display: table-cell; padding-left: 20px;"><i>Thoughtcrime</i>.</h2>
         </div>
 
         <h3>Chapter 1. Brother Is Watching You.</h3>
 
         <p>
-            It was a bright, cold day in April and the clocks were striking thirteen. Winston Smith hurried home to Victory Mansions with his head down to escape the terrible wind. A cloud of dust blew inside with him, and the hall smelled of dust and yesterday's food.
+            It was a bright, cold day in April and the clocks were striking thirteen! Winston Smith hurried home to Victory Mansions with his head down to escape the terrible wind. A cloud of dust blew inside with him, and the hall smelled of dust and yesterday's food.
         </p>
 
         <p>
-            At the end of the hall, a poster covered one wall. It showed an enormous face, more than a metre wide: the face of a handsome man of about forty-five, with a large, black moustache. The man's eyes seemed to follow Winston as he moved. Below the face were the words <b>BIG BROTHER IS WATCHING YOU.</b>
+            At the end of the hall, a poster covered one wall. It showed an enormous face, more than a metre wide: the face of a handsome man of about forty-five, with a large, black moustache. The man's eyes seemed to follow Winston as he moved. Below the face were the words <b>BIG BROTHER IS WATCHING YOU</b>.
 		</p>
 
         <p>
@@ -24,7 +24,7 @@
         </p>
 
         <p>
-            Inside his flat, a voice was reading out a list of figures for last year's production of iron. The voice came from a metal square, a <i>telescreen</i>, in the right-hand wall. Winston turned it down, but there was no way of turning it off completely.
+            Inside his flat, a voice was reading out a list of figures for last year's production of iron. The voice came from a metal square, a <i>telescreen</i>, in the right-hand wall. Winston turned it down, but there was no way of turning it off completely?
         </p>
 
         <p>

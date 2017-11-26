@@ -114,7 +114,9 @@ p{
     height: 50px;
 }
 
-
+.sentence:hover {
+    background-color: #AD310B;    
+}
 
 
 

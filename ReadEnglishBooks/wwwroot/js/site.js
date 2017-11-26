@@ -84,5 +84,54 @@ function getSelectingWords(sentence)
 }
 
 //--------------------------------------------------------------------------------------------------------------------
+function addSpanTagToSentence()
+{
+    $('p, h2, h3').each(function ()
+    {
+        var content = this.innerHTML;
+        var arr_spliters = content.match(/[.!?]/gmi);
+        var arr_content = [];
+        arr_content = content.split(/[.!?]/gmi);
+        var new_content = "";
+
+        for (var i = 0; i < arr_content.length; i++)
+        {
+            var res = arr_content[i].search(/[a-zA-Z\d]/gmi);
+            if (arr_content[i].length === 0 || arr_content[i].search(/[a-zA-Z\d]/gmi) < 0)
+            {
+                arr_content.splice(i, 1);
+            }
+        }
+
+        try
+        {
+            for (var j = 0; j < arr_content.length; j++)
+            {
+                if (arr_content[j] !== "" && arr_content[j] !== " ")
+                {
+                    arr_content[j] = '<span class="sentence">' + arr_content[j] + arr_spliters[j] + '</span>';
+                }
+            }
+            new_content = arr_content.join(" ");
+
+            this.innerHTML = new_content;
+        } catch (e)
+        {
+            this.innerHTML = content;
+        }
+    });
+    //$('.sentence').css('border', '1px solid red');   
+}
+//--------------------------------------------------------------------------------------------------------------------
+function addSpanTagToParagraf()
+{
+    $('p, h2, h3').each(function ()
+    {
+        var content = this.innerHTML;
+        this.innerHTML = '<span class="paragraf">' + content + '</span>';
+    });
+    $('.paragraf').css('border', '3px solid green');
+}
+//--------------------------------------------------------------------------------------------------------------------
 
 
