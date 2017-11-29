@@ -114,9 +114,18 @@ p{
     height: 50px;
 }
 
-.sentence:hover {
-    background-color: #AD310B;    
+.paragraf-background:hover {
+    background-color: rgb(255, 216, 0);
 }
+
+.sentence-background:hover {
+    background-color: #b6ff00;
+}
+
+
+
+
+
 
 
 

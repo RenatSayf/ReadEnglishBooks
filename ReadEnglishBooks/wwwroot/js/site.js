@@ -130,7 +130,35 @@ function addSpanTagToParagraf()
         var content = this.innerHTML;
         this.innerHTML = '<span class="paragraf">' + content + '</span>';
     });
-    $('.paragraf').css('border', '3px solid green');
+    var element = document.getElementById("#learn-mode");
+    //$('.paragraf').css('border', '3px solid green');
+    
+}
+//--------------------------------------------------------------------------------------------------------------------
+function deselectSentencesAndParagraf()
+{
+    $(".sentence").removeClass("background");
+    $(".paragraf").removeClass("background");
+}
+//--------------------------------------------------------------------------------------------------------------------
+function chooseSelectionMode(learn_mode)
+{
+    if (learn_mode === "sentence")
+    {
+        $(".sentence").addClass("sentence-background");
+        $(".paragraf").removeClass("paragraf-background");        
+    }
+    if (learn_mode === "paragraf")
+    {
+        $(".paragraf").addClass("paragraf-background");
+        $(".sentence").removeClass("sentence-background");
+        
+    }
+    if (learn_mode === "page")
+    {
+        $(".sentence").removeClass("sentence-background");
+        $(".paragraf").removeClass("paragraf-background");
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------
 

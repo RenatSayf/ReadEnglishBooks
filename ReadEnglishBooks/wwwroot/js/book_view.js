@@ -5,7 +5,10 @@ var arrayOfSeletion = [];
 var sentencesIndex = 0;
 var words_count = 0;
 var first_load = true;
-var learn_mode = 1;
+var learn_mode = "sentence";
+var learn_by_sentence = "sentence";
+var learn_by_paragraf = "paragraf";
+var learn_by_page = "page";
 //===========================================================================================================
 document.getElementById("btn-learn-all").onclick = function ()
 {
@@ -97,10 +100,10 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            page_HTML = document.getElementById("page").innerHTML;
+            page_HTML = document.getElementById("page").innerHTML;             
             addSpanTagToSentence();
-            addSpanTagToParagraf();                     
-            
+            addSpanTagToParagraf();
+            chooseSelectionMode(learn_mode);
         },
         error: function (xhr, status, error)
         {
@@ -270,8 +273,9 @@ $("#btn-call-translate").click(function ()
 //===========================================================================================================
 $('#learn-mode').change(function ()
 {
-    learn_mode = this.selectedIndex;
-    $('.sentence').removeClass("sentence");
+    learn_mode = $('#learn-mode').selectpicker('val');
+    //deselectSentencesAndParagraf();
+    chooseSelectionMode(learn_mode);
 });
 //===========================================================================================================
 
@@ -281,11 +285,15 @@ $('#learn-mode').change(function ()
 //===========================================================================================================
 $(document).ready(function ()
 {
-    getPage(1);
-
-    
+    getPage(1);           
 });
-
+//===========================================================================================================
+window.onload = function ()
+{
+    var variant = $("#learn-mode").selectpicker('val', learn_mode);
+    return;
+}
+//===========================================================================================================
 function CreateAlert(divId, message)
 {
     //debugger;
