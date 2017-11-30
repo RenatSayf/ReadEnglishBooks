@@ -275,8 +275,6 @@ $("#btn-call-translate").click(function ()
 $('#learn-mode').change(function ()
 {
     learn_mode = $('#learn-mode').selectpicker('val');
-    //deselectSentencesAndParagraf();
-    //chooseSelectionMode(learn_mode);
 });
 //===========================================================================================================
 function sentenceEvents()
@@ -285,7 +283,7 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_sentence)
         {
-            $(this).css("background-color", "#b6ff00");
+            $(this).css("background-color", "#d6ddd7");
         }
     },
         function ()
@@ -298,7 +296,7 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_paragraf)
         {
-            $(this).css("background-color", "rgb(255, 216, 0)");
+            $(this).css("background-color", "#d6ddd7");
         }
     },
         function ()
@@ -311,7 +309,7 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_page)
         {
-            $(this).css("background-color", "rgb(255, 216, 0)");
+            $(this).css("background-color", "#d6ddd7");
         }
     },
         function ()
@@ -319,6 +317,15 @@ function sentenceEvents()
             $(this).css("background-color", "transparent");
         }
     );
+
+    $(".sentence").click(function ()
+    {
+        if (learn_mode === learn_by_sentence)
+        {
+            $(".sentence").css("background-color", "transparent");
+            $(this).css("background-color", "#b6ff00");
+        }
+    });
 }
 //===========================================================================================================
 
