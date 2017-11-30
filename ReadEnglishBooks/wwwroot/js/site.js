@@ -113,14 +113,12 @@ function addSpanTagToSentence()
                 }
             }
             new_content = arr_content.join(" ");
-
             this.innerHTML = new_content;
         } catch (e)
         {
             this.innerHTML = content;
         }
     });
-    //$('.sentence').css('border', '1px solid red');   
 }
 //--------------------------------------------------------------------------------------------------------------------
 function addSpanTagToParagraf()
@@ -131,35 +129,16 @@ function addSpanTagToParagraf()
         this.innerHTML = '<span class="paragraf">' + content + '</span>';
     });
     var element = document.getElementById("#learn-mode");
-    //$('.paragraf').css('border', '3px solid green');
-    
 }
 //--------------------------------------------------------------------------------------------------------------------
-function deselectSentencesAndParagraf()
-{
-    $(".sentence").removeClass("background");
-    $(".paragraf").removeClass("background");
-}
+
 //--------------------------------------------------------------------------------------------------------------------
-function chooseSelectionMode(learn_mode)
-{
-    if (learn_mode === "sentence")
-    {
-        $(".sentence").addClass("sentence-background");
-        $(".paragraf").removeClass("paragraf-background");        
-    }
-    if (learn_mode === "paragraf")
-    {
-        $(".paragraf").addClass("paragraf-background");
-        $(".sentence").removeClass("sentence-background");
-        
-    }
-    if (learn_mode === "page")
-    {
-        $(".sentence").removeClass("sentence-background");
-        $(".paragraf").removeClass("paragraf-background");
-    }
-}
-//--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 

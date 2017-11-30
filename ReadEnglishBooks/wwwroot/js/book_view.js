@@ -100,10 +100,11 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            page_HTML = document.getElementById("page").innerHTML;             
+            page_HTML = document.getElementById("page").innerHTML;  
             addSpanTagToSentence();
-            addSpanTagToParagraf();
-            chooseSelectionMode(learn_mode);
+            addSpanTagToParagraf();            
+            sentenceEvents();
+            //chooseSelectionMode(learn_mode);
         },
         error: function (xhr, status, error)
         {
@@ -275,11 +276,51 @@ $('#learn-mode').change(function ()
 {
     learn_mode = $('#learn-mode').selectpicker('val');
     //deselectSentencesAndParagraf();
-    chooseSelectionMode(learn_mode);
+    //chooseSelectionMode(learn_mode);
 });
 //===========================================================================================================
+function sentenceEvents()
+{
+    $(".sentence").hover(function ()
+    {
+        if (learn_mode === learn_by_sentence)
+        {
+            $(this).css("background-color", "#b6ff00");
+        }
+    },
+        function ()
+        {
+            $(this).css("background-color", "transparent");
+        }
+    );
 
+    $(".paragraf").hover(function ()
+    {
+        if (learn_mode === learn_by_paragraf)
+        {
+            $(this).css("background-color", "rgb(255, 216, 0)");
+        }
+    },
+        function ()
+        {
+            $(this).css("background-color", "transparent");
+        }
+    );
 
+    $(".book-page").hover(function ()
+    {
+        if (learn_mode === learn_by_page)
+        {
+            $(this).css("background-color", "rgb(255, 216, 0)");
+        }
+    },
+        function ()
+        {
+            $(this).css("background-color", "transparent");
+        }
+    );
+}
+//===========================================================================================================
 
 
 //===========================================================================================================
