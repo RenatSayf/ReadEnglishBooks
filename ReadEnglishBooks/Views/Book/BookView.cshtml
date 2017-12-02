@@ -152,8 +152,36 @@
             <div class="col-xs-4 col-md-2 col-lg-2 text-center">
                 <i class="fa fa-step-backward fa-lg"></i>
             </div>
-            <div class="col-xs-4 col-md-2 col-lg-2 text-center">
-                <i class="fa fa-play fa-lg"></i>
+            <div id="fa_play" class="col-xs-4 col-md-2 col-lg-2 text-center">
+                <i class="fa fa-play fa-lg"></i>                
+                @*<script>
+                    
+                </script>*@
+            </div>
+            <div id="fa_pause" class="col-xs-4 col-md-2 col-lg-2 text-center" hidden>
+                <i class="fa fa-pause fa-lg"></i>
+                <script>
+                    document.getElementById("fa_pause").onmouseenter = function (event)
+                    {
+                        if (isPlay)
+                        {
+                            event.target.style.color = 'pink';
+                        }
+                    }
+                    document.getElementById("fa_pause").onmouseleave = function (event)
+                    {
+                        if (isPlay)
+                        {
+                            event.target.style.color = '';
+                        }
+                    }
+                    document.getElementById("fa_pause").onclick = function (event)
+                    {
+                        isPlay = false;
+                        $("#fa_play").show();
+                        $("#fa_pause").hide();
+                    }
+                </script>
             </div>
             <div class="col-xs-4 col-md-2 col-lg-2 text-center">
                 <i class="fa fa-step-forward fa-lg"></i>

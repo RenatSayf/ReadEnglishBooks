@@ -9,61 +9,63 @@ var learn_mode = "sentence";
 var learn_by_sentence = "sentence";
 var learn_by_paragraf = "paragraf";
 var learn_by_page = "page";
+var background_of_selected = "#b6ff00";
+var background_of_hover = "#d6ddd7";
 //===========================================================================================================
-document.getElementById("btn-learn-all").onclick = function ()
-{
-    var sentences = "";
-    sentencesArray.length = 0;
-    arrayOfSeletion.length = 0;
-    words_count = 0;
-    $("h2, h3, p").each(function (i)
-    {
-        sentences += $(this).text() + " ";
-    });
-    wordsArray = getSelectingWords(sentences);
-    //debugger;
-};
+//document.getElementById("btn-learn-all").onclick = function ()
+//{
+//    var sentences = "";
+//    sentencesArray.length = 0;
+//    arrayOfSeletion.length = 0;
+//    words_count = 0;
+//    $("h2, h3, p").each(function (i)
+//    {
+//        sentences += $(this).text() + " ";
+//    });
+//    wordsArray = getSelectingWords(sentences);
+//    //debugger;
+//};
 //===========================================================================================================
-$("#btn-learn").click(function ()
-{
-    words_count = 0;
-    wordsArray.length = 0;
-    arrayOfSeletion.length = 0;
-    //sentencesIndex = 0;
-    var tempArray = getWordsBySentences();    
-    for (var i = 0; i < tempArray.length; i++)
-    {
-        if (tempArray[i].length > 0)
-        {
-            sentencesArray.push(tempArray[i]);
-        }
-    }
-    tempArray = [];
-    debugger;
-});
+//$("#btn-learn").click(function ()
+//{
+//    words_count = 0;
+//    wordsArray.length = 0;
+//    arrayOfSeletion.length = 0;
+//    //sentencesIndex = 0;
+//    var tempArray = getWordsBySentences();    
+//    for (var i = 0; i < tempArray.length; i++)
+//    {
+//        if (tempArray[i].length > 0)
+//        {
+//            sentencesArray.push(tempArray[i]);
+//        }
+//    }
+//    tempArray = [];
+//    //debugger;
+//});
 //===========================================================================================================
-$("#btn-learn-select").click(function ()
-{
-    words_count = 0;
-    //debugger;
-    if (arrayOfSeletion.length === 0)
-    {
-        $("#dialog-message").dialog({
-            modal: false,
-            dialogClass: 'custom-ui-widget-header-warning',
-            buttons: {
-                Ok: function ()
-                {
-                    $(this).dialog("close");
-                }
-            }
-        });
-        return;
-    }
-    //findOnPage(getSelectionText(), "page");
-    findSentenceOnPage(getSelectionText(), "page");
-    $("#play-panel").modal("show");
-});
+//$("#btn-learn-select").click(function ()
+//{
+//    words_count = 0;
+//    //debugger;
+//    if (arrayOfSeletion.length === 0)
+//    {
+//        $("#dialog-message").dialog({
+//            modal: false,
+//            dialogClass: 'custom-ui-widget-header-warning',
+//            buttons: {
+//                Ok: function ()
+//                {
+//                    $(this).dialog("close");
+//                }
+//            }
+//        });
+//        return;
+//    }
+//    //findOnPage(getSelectionText(), "page");
+//    findSentenceOnPage(getSelectionText(), "page");
+//    $("#play-panel").modal("show");
+//});
 //===========================================================================================================
 function getPage(page)
 {
@@ -154,18 +156,18 @@ $("#btn-next").on("click", function ()
 });
 
 //===========================================================================================================
-document.getElementById("page").onclick = function ()
-{
-    wordsArray.length = 0;
-    sentencesArray.length = 0;
-    arrayOfSeletion = getSelectingWords(getSelectionText());
-    //debugger;
-    if (arrayOfSeletion.length > 0)
-    {
-        $('#select-text').text(getSelectionText());        
-    }
+//document.getElementById("page").onclick = function ()
+//{
+//    wordsArray.length = 0;
+//    sentencesArray.length = 0;
+//    arrayOfSeletion = getSelectingWords(getSelectionText());
+//    //debugger;
+//    if (arrayOfSeletion.length > 0)
+//    {
+//        $('#select-text').text(getSelectionText());        
+//    }
 
-};
+//};
 //===========================================================================================================
 $('#btn-translate').click(function (e)
 {
@@ -275,6 +277,7 @@ $("#btn-call-translate").click(function ()
 $('#learn-mode').change(function ()
 {
     learn_mode = $('#learn-mode').selectpicker('val');
+    $(".clicked").css("background-color", "transparent");
 });
 //===========================================================================================================
 function sentenceEvents()
@@ -283,12 +286,12 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_sentence)
         {
-            $(this).css("background-color", "#d6ddd7");
+            $(this).not(".clicked").css("background-color", background_of_hover);
         }
     },
         function ()
         {
-            $(this).css("background-color", "transparent");
+            $(this).not(".clicked").css("background-color", "transparent");
         }
     );
 
@@ -296,12 +299,12 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_paragraf)
         {
-            $(this).css("background-color", "#d6ddd7");
+            $(this).not(".clicked").css("background-color", background_of_hover);
         }
     },
         function ()
         {
-            $(this).css("background-color", "transparent");
+            $(this).not(".clicked").css("background-color", "transparent");
         }
     );
 
@@ -309,27 +312,77 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_page)
         {
-            $(this).css("background-color", "#d6ddd7");
+            $(this).not(".clicked").css("background-color", background_of_hover);
         }
     },
         function ()
         {
-            $(this).css("background-color", "transparent");
+            $(this).not(".clicked").css("background-color", "transparent");
         }
     );
 
     $(".sentence").click(function ()
     {
+        $(".sentence").removeClass("clicked");
         if (learn_mode === learn_by_sentence)
         {
             $(".sentence").css("background-color", "transparent");
-            $(this).css("background-color", "#b6ff00");
+            $(this).css("background-color", background_of_selected).addClass("clicked");
+            arrayOfSeletion = getSelectingWords(this.innerText);
+            var a = arrayOfSeletion;
+        }        
+    });
+
+    $(".paragraf").click(function ()
+    {
+        $(".paragraf").removeClass("clicked");
+        if (learn_mode === learn_by_paragraf)
+        {
+            $(".paragraf").css("background-color", "transparent");
+            $(this).css("background-color", background_of_selected).addClass("clicked");
+            arrayOfSeletion = getSelectingWords(this.innerText);
+        }
+    });
+
+    $(".book-page").click(function ()
+    {
+        $(".book-page").removeClass("clicked");
+        if (learn_mode === learn_by_page)
+        {
+            $(".book-page").css("background-color", "transparent");
+            $(this).css("background-color", background_of_selected).addClass("clicked");
+            arrayOfSeletion = getSelectingWords(this.innerText);
         }
     });
 }
 //===========================================================================================================
-
-
+var isPlay = false;
+document.getElementById("fa_play").onmouseenter = function (event)
+{
+    if (!isPlay)
+    {
+        event.target.style.color = 'pink';
+    }
+}
+document.getElementById("fa_play").onmouseleave = function (event)
+{
+    if (!isPlay)
+    {
+        event.target.style.color = '';
+    }
+}
+document.getElementById("fa_play").onclick = function (event)
+{
+    isPlay = true;
+    $("#fa_play").hide();
+    $("#fa_pause").show();
+    var w = arrayOfSeletion;
+    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    {
+        speech(arrayOfSeletion[words_count]);
+    }
+    //debugger;
+}
 //===========================================================================================================
 $(document).ready(function ()
 {
