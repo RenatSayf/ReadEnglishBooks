@@ -12,38 +12,6 @@ var learn_by_page = "page";
 var background_of_selected = "#b6ff00";
 var background_of_hover = "#d6ddd7";
 //===========================================================================================================
-//document.getElementById("btn-learn-all").onclick = function ()
-//{
-//    var sentences = "";
-//    sentencesArray.length = 0;
-//    arrayOfSeletion.length = 0;
-//    words_count = 0;
-//    $("h2, h3, p").each(function (i)
-//    {
-//        sentences += $(this).text() + " ";
-//    });
-//    wordsArray = getSelectingWords(sentences);
-//    //debugger;
-//};
-//===========================================================================================================
-//$("#btn-learn").click(function ()
-//{
-//    words_count = 0;
-//    wordsArray.length = 0;
-//    arrayOfSeletion.length = 0;
-//    //sentencesIndex = 0;
-//    var tempArray = getWordsBySentences();    
-//    for (var i = 0; i < tempArray.length; i++)
-//    {
-//        if (tempArray[i].length > 0)
-//        {
-//            sentencesArray.push(tempArray[i]);
-//        }
-//    }
-//    tempArray = [];
-//    //debugger;
-//});
-//===========================================================================================================
 //$("#btn-learn-select").click(function ()
 //{
 //    words_count = 0;
@@ -277,7 +245,11 @@ $("#btn-call-translate").click(function ()
 $('#learn-mode').change(function ()
 {
     learn_mode = $('#learn-mode').selectpicker('val');
+    local_HTML = undefined;
     $(".clicked").css("background-color", "transparent");
+    $(".ru-word").css({ "background-color": "transparent", "font-size": "100%" }).removeAttr("data-toggle");
+    cleanLocalSelection();
+    speechStop();
 });
 //===========================================================================================================
 function sentenceEvents()
@@ -323,35 +295,49 @@ function sentenceEvents()
 
     $(".sentence").click(function ()
     {
-        $(".sentence").removeClass("clicked");
-        if (learn_mode === learn_by_sentence)
+        if (!isPlay)
         {
-            $(".sentence").css("background-color", "transparent");
-            $(this).css("background-color", background_of_selected).addClass("clicked");
-            arrayOfSeletion = getSelectingWords(this.innerText);
-            var a = arrayOfSeletion;
-        }        
+            $(".sentence").removeClass("clicked");
+            if (learn_mode === learn_by_sentence)
+            {
+                words_count = 0;
+                $(".sentence").css("background-color", "transparent");
+                $(this).css("background-color", background_of_selected).addClass("clicked");
+                arrayOfSeletion = getSelectingWords(this.innerText);
+                local_HTML = undefined;
+            }
+        }       
     });
 
     $(".paragraf").click(function ()
     {
-        $(".paragraf").removeClass("clicked");
-        if (learn_mode === learn_by_paragraf)
+        if (!isPlay)
         {
-            $(".paragraf").css("background-color", "transparent");
-            $(this).css("background-color", background_of_selected).addClass("clicked");
-            arrayOfSeletion = getSelectingWords(this.innerText);
+            $(".paragraf").removeClass("clicked");
+            if (learn_mode === learn_by_paragraf)
+            {
+                words_count = 0;
+                $(".paragraf").css("background-color", "transparent");
+                $(this).css("background-color", background_of_selected).addClass("clicked");
+                arrayOfSeletion = getSelectingWords(this.innerText);
+                local_HTML = undefined;
+            }
         }
     });
 
     $(".book-page").click(function ()
     {
-        $(".book-page").removeClass("clicked");
-        if (learn_mode === learn_by_page)
+        if (!isPlay)
         {
-            $(".book-page").css("background-color", "transparent");
-            $(this).css("background-color", background_of_selected).addClass("clicked");
-            arrayOfSeletion = getSelectingWords(this.innerText);
+            $(".book-page").removeClass("clicked");
+            if (learn_mode === learn_by_page)
+            {
+                words_count = 0;
+                $(".book-page").css("background-color", "transparent");
+                $(this).css("background-color", background_of_selected).addClass("clicked");
+                arrayOfSeletion = getSelectingWords(this.innerText);
+                local_HTML = undefined;
+            }
         }
     });
 }
@@ -373,7 +359,7 @@ document.getElementById("fa_play").onmouseleave = function (event)
 }
 document.getElementById("fa_play").onclick = function (event)
 {
-    isPlay = true;
+    //isPlay = true;
     $("#fa_play").hide();
     $("#fa_pause").show();
     var w = arrayOfSeletion;
