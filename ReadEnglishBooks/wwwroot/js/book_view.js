@@ -246,10 +246,11 @@ $('#learn-mode').change(function ()
 {
     learn_mode = $('#learn-mode').selectpicker('val');
     local_HTML = undefined;
+    arrayOfSeletion.length = 0;
     $(".clicked").css("background-color", "transparent");
     $(".ru-word").css({ "background-color": "transparent", "font-size": "100%" }).removeAttr("data-toggle");
     cleanLocalSelection();
-    speechStop();
+    $('#audio')[0].pause();
 });
 //===========================================================================================================
 function sentenceEvents()
@@ -298,6 +299,7 @@ function sentenceEvents()
         if (!isPlay)
         {
             $(".sentence").removeClass("clicked");
+            $("span").removeClass("ru-word");
             if (learn_mode === learn_by_sentence)
             {
                 words_count = 0;
@@ -314,6 +316,7 @@ function sentenceEvents()
         if (!isPlay)
         {
             $(".paragraf").removeClass("clicked");
+            $("span").removeClass("ru-word");
             if (learn_mode === learn_by_paragraf)
             {
                 words_count = 0;
@@ -330,6 +333,7 @@ function sentenceEvents()
         if (!isPlay)
         {
             $(".book-page").removeClass("clicked");
+            $("span").removeClass("ru-word");
             if (learn_mode === learn_by_page)
             {
                 words_count = 0;

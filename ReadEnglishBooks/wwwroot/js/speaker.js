@@ -18,9 +18,7 @@ function speech(en_word)
     if (ru_word === undefined)
     {
         ru_word = "";
-    }
-    $("#eng-word").text(en_word);
-    $("#rus-word").text(ru_word);
+    }    
 
     $(".ru-word").popover({
         //title: 'Заголовок панели',
@@ -35,12 +33,9 @@ function speech(en_word)
     isPlay = true;  
 }
 //============================================================================================================
-$('#audio')[0].onemptied = function ()
+$('#audio')[0].onplaying = function ()
 {
-    //console.log("Event message(onemptied) - Something bad happened and the file is suddenly unavailable (like unexpectedly disconnects)");
-    //debugger;
-    //$("#div-stop").attr("hidden", "hidden");
-    //$("#div-start").removeAttr("hidden");
+    return;
 };
 //============================================================================================================
 $('#audio')[0].onerror = function ()
@@ -55,44 +50,6 @@ $('#audio')[0].onerror = function ()
 //============================================================================================================
 $('#audio')[0].onended = function (data)
 {
-    //debugger;
-    //if (sentencesArray.length > 0)
-    //{
-    //    $(".ru-word").popover('hide');
-    //    words_count++;
-    //    if (words_count <= sentencesArray[sentencesIndex].length - 1)
-    //    {
-    //        speech(sentencesArray[sentencesIndex][words_count]);
-    //    }
-    //    else
-    //    {
-    //        words_count = 0;
-    //        $("#div-stop").attr("hidden", "hidden");
-    //        $("#div-start").removeAttr("hidden");
-    //        $("#audio")[0].pause();
-    //        cleanSelectionOnPage();
-    //        alert("Завершено");
-    //    }
-    //    return;
-    //}
-    //if (wordsArray.length > 0)
-    //{
-    //    words_count++;
-    //    if (words_count <= wordsArray.length - 1)
-    //    {
-    //        speech(wordsArray[words_count]);
-    //    }
-    //    else
-    //    {
-    //        words_count = 0;
-    //        $("#div-stop").attr("hidden", "hidden");
-    //        $("#div-start").removeAttr("hidden");
-    //        $("#audio")[0].pause();
-    //        cleanSelectionOnPage();
-    //        alert("Завершено");
-    //    }
-    //    return;
-    //}
     if (arrayOfSeletion.length > 0)
     {
         words_count++;
@@ -102,19 +59,19 @@ $('#audio')[0].onended = function (data)
         }
         else
         {
-            //words_count = 0;
-            //$("#div-stop").attr("hidden", "hidden");
-            //$("#div-start").removeAttr("hidden");
-            //$("#audio")[0].pause();
-            //isPlay = false;
-            //$("#fa_play").show();
-            //$("#fa_pause").hide();
-            //cleanLocalSelection();
-            //alert("Завершено");
             speechStop();
         }
         return;
     }
+    else
+    {
+        speechStop();
+    }
+};
+//============================================================================================================
+$("#audio")[0].onpause = function ()
+{
+    cleanLocalSelection();
 };
 //============================================================================================================
 function playStart()
@@ -124,26 +81,25 @@ function playStart()
 //============================================================================================================
 function speechPause()
 {
-    $("#audio")[0].pause();
     isPlay = false;
     $("#fa_play").show();
     $("#fa_pause").hide();
     cleanLocalSelection();
     $(".ru-word").popover('destroy');
-    //alert("Завершено");
+    
 }
 //============================================================================================================
 function speechStop()
 {
     words_count = 0;
-    $("#audio")[0].pause();
     isPlay = false;
     $("#fa_play").show();
     $("#fa_pause").hide();
     cleanLocalSelection();
     $(".ru-word").popover('destroy');
-    $(".ru-word").removeClass(".ru-word");
-    //alert("Завершено");
+    //$(".ru-word").removeClass("ru-word");
+    //$(".clicked").removeClass("clicked")
+    
 }
 //============================================================================================================
 function cleanSelectionOnPage()
@@ -205,7 +161,14 @@ function cleanLocalSelection()
 {
     if (local_HTML !== undefined)
     {
-        document.getElementsByClassName("clicked")[0].innerHTML = local_HTML;
+        var clicked_element = document.getElementsByClassName("clicked")[0];
+        try
+        {
+            document.getElementsByClassName("clicked")[0].innerHTML = local_HTML;
+        } catch (e)
+        {
+            return;
+        }
     }
 }
 //============================================================================================================
@@ -218,15 +181,23 @@ function findIntoSentence(input, tagId)
     var reg_exp = '\\b\\.*(' + input + '\\b)';
     var target = new RegExp(reg_exp, "gmi");
 
-    naked_text = span_tag[0].innerHTML;
-
-    var replacement = naked_text.match(eval(target));
-    //debugger;
-    if (replacement !== null) 
+    try
     {
-        var new_child_content = naked_text.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
-        span_tag[0].innerHTML = new_child_content;
-        local_HTML = naked_text;
+        naked_text = span_tag[0].innerHTML;
+
+        var replacement = naked_text.match(eval(target));
+        //debugger;
+        if (replacement !== null) 
+        {
+            var new_child_content = naked_text.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
+            span_tag[0].innerHTML = new_child_content;
+            local_HTML = naked_text;
+        }
+    } catch (e)
+    {
+        console.log("Error into speaker.js -> findIntoSentence(input, tagId) - " + e.message);
+        speechStop();
+        return;
     }
 }
 //============================================================================================================
