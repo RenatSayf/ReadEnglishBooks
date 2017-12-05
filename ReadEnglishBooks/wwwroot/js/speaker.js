@@ -30,7 +30,7 @@ function speech(en_word)
 
     $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word);
     $('#audio')[0].play();
-    isPlay = true;  
+     
 }
 //============================================================================================================
 $('#audio')[0].onplaying = function ()
@@ -41,7 +41,6 @@ $('#audio')[0].onplaying = function ()
 $('#audio')[0].onerror = function ()
 {
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
-    //debugger;
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
     $(".ru-word").popover('hide');
@@ -81,7 +80,6 @@ function playStart()
 //============================================================================================================
 function speechPause()
 {
-    isPlay = false;
     $("#fa_play").show();
     $("#fa_pause").hide();
     cleanLocalSelection();
@@ -97,9 +95,6 @@ function speechStop()
     $("#fa_pause").hide();
     cleanLocalSelection();
     $(".ru-word").popover('destroy');
-    //$(".ru-word").removeClass("ru-word");
-    //$(".clicked").removeClass("clicked")
-    
 }
 //============================================================================================================
 function cleanSelectionOnPage()
@@ -113,10 +108,8 @@ function findOnPage(input, tagId)
     var search = input.trim();
     var div_tag = document.getElementById(tagId);
     var child_content, naked_text;
-    //var reg_exp = '\\b\\.*(' + search + '\\b)';
     var target = new RegExp('\\b\\.*(' + search + '\\b)', "gmi");
 
-    //debugger;
     for (var i = 0; i < div_tag.children.length; i++)
     {
         var child = div_tag.children[i];
@@ -125,7 +118,6 @@ function findOnPage(input, tagId)
         naked_text = child_content.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
 
         var replacement = naked_text.match(target);
-        //debugger;
         if (replacement !== null) 
         {
             local_HTML = replacement[0];
@@ -142,7 +134,6 @@ function findSentenceOnPage(input, tagId)
     var search = input.trim();
     var div_tag = document.getElementsByClassName("book-page");
     var child_content, naked_text;
-    //debugger;
     for (var i = 0; i < div_tag[0].children.length; i++)
     {
         child_content = div_tag[0].children[i].innerHTML;        
@@ -167,6 +158,7 @@ function cleanLocalSelection()
             document.getElementsByClassName("clicked")[0].innerHTML = local_HTML;
         } catch (e)
         {
+            console.log("Error into speaker.js -> cleanLocalSelection() - " + e.message);
             return;
         }
     }
@@ -186,7 +178,6 @@ function findIntoSentence(input, tagId)
         naked_text = span_tag[0].innerHTML;
 
         var replacement = naked_text.match(eval(target));
-        //debugger;
         if (replacement !== null) 
         {
             var new_child_content = naked_text.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');

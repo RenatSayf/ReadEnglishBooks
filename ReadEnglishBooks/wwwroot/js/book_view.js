@@ -4,6 +4,7 @@ var sentencesArray = [];
 var arrayOfSeletion = [];
 var sentencesIndex = 0;
 var words_count = 0;
+var current_page;
 var first_load = true;
 var learn_mode = "sentence";
 var learn_by_sentence = "sentence";
@@ -12,32 +13,8 @@ var learn_by_page = "page";
 var background_of_selected = "#b6ff00";
 var background_of_hover = "#d6ddd7";
 //===========================================================================================================
-//$("#btn-learn-select").click(function ()
-//{
-//    words_count = 0;
-//    //debugger;
-//    if (arrayOfSeletion.length === 0)
-//    {
-//        $("#dialog-message").dialog({
-//            modal: false,
-//            dialogClass: 'custom-ui-widget-header-warning',
-//            buttons: {
-//                Ok: function ()
-//                {
-//                    $(this).dialog("close");
-//                }
-//            }
-//        });
-//        return;
-//    }
-//    //findOnPage(getSelectionText(), "page");
-//    findSentenceOnPage(getSelectionText(), "page");
-//    $("#play-panel").modal("show");
-//});
-//===========================================================================================================
 function getPage(page)
 {
-    //debugger;
     $.ajax({
         type: 'GET',
         url: '/Book/GetPage?page=' + page,
@@ -61,10 +38,8 @@ function getPage(page)
                 visiblePages: 5,
                 onPageClick: function (event, page)
                 {
-                    //debugger;
                     if (!first_load)
                     {
-                        //debugger;
                         getPage(page);
                     }
                     first_load = false;
@@ -74,7 +49,7 @@ function getPage(page)
             addSpanTagToSentence();
             addSpanTagToParagraf();            
             sentenceEvents();
-            //chooseSelectionMode(learn_mode);
+            current_page = page;
         },
         error: function (xhr, status, error)
         {
@@ -93,7 +68,6 @@ $("#btn-start").click(function ()
 {
     $("#div-start").attr("hidden", "hidden");
     $("#div-stop").removeAttr("hidden");
-    //debugger;
     if (wordsArray.length > 0 && words_count <= wordsArray.length - 1)
     {
         speech(wordsArray[words_count]);
@@ -101,8 +75,6 @@ $("#btn-start").click(function ()
 
     if (sentencesArray.length > 0 && words_count <= sentencesArray[sentencesIndex].length)
     {
-        //var sent = sentencesArray[sentencesIndex][words_count];
-        //debugger;
         speech(sentencesArray[sentencesIndex][words_count]);
     }
     if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
@@ -124,24 +96,10 @@ $("#btn-next").on("click", function ()
 });
 
 //===========================================================================================================
-//document.getElementById("page").onclick = function ()
-//{
-//    wordsArray.length = 0;
-//    sentencesArray.length = 0;
-//    arrayOfSeletion = getSelectingWords(getSelectionText());
-//    //debugger;
-//    if (arrayOfSeletion.length > 0)
-//    {
-//        $('#select-text').text(getSelectionText());        
-//    }
-
-//};
-//===========================================================================================================
 $('#btn-translate').click(function (e)
 {
     e.preventDefault();
     var text = getSelectionText();
-    //debugger;
     if (text === '')
     {
         return;
@@ -154,7 +112,6 @@ $('#btn-translate').click(function (e)
         {
             $("#translate-panel").modal("hide");
             $("#words-panel").modal("show");
-            //debugger;
             updateWordsTable(data, true);
             
         },
@@ -168,7 +125,6 @@ $('#btn-translate').click(function (e)
 //===========================================================================================================
 function updateWordsTable(data, clean)
 {
-    //debugger;
     if (data.length > 0 && data[0].message !== "Ok")
     {
         alert(data[0].message);
@@ -179,7 +135,6 @@ function updateWordsTable(data, clean)
         $("#words-table > tbody").empty();
     }
 
-    //debugger;
     for (var i = 0; i < data.length; i++)
     {
         $("#words-table > tbody").append('<tr class="word-tr">' +
@@ -214,7 +169,6 @@ $('#btn-save').click(function ()
         data: "data=" + JSON.stringify(data),
         success: function (response)
         {
-            //$("#words-panel").modal("hide");
             var message = response.message;
             var res = parseInt(response.res);
             if (message === "Ok" && res >= 0)
@@ -225,12 +179,9 @@ $('#btn-save').click(function ()
             {
                 alert("Не удалось записать слова в БД");
             }
-            //debugger;
         },
         error: function (xhr, status, error)
         {
-            //debugger;
-            //$("#words-panel").modal("hide");
             alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
         },
         dataType: "json"        
@@ -247,10 +198,9 @@ $('#learn-mode').change(function ()
     learn_mode = $('#learn-mode').selectpicker('val');
     local_HTML = undefined;
     arrayOfSeletion.length = 0;
-    $(".clicked").css("background-color", "transparent");
-    $(".ru-word").css({ "background-color": "transparent", "font-size": "100%" }).removeAttr("data-toggle");
-    cleanLocalSelection();
     $('#audio')[0].pause();
+    speechStop();
+    getPage(current_page);
 });
 //===========================================================================================================
 function sentenceEvents()
@@ -264,7 +214,7 @@ function sentenceEvents()
     },
         function ()
         {
-            $(this).not(".clicked").css("background-color", "transparent");
+            $(this).not(".clicked").removeAttr("style");
         }
     );
 
@@ -277,7 +227,7 @@ function sentenceEvents()
     },
         function ()
         {
-            $(this).not(".clicked").css("background-color", "transparent");
+            $(this).not(".clicked").removeAttr("style");
         }
     );
 
@@ -290,7 +240,7 @@ function sentenceEvents()
     },
         function ()
         {
-            $(this).not(".clicked").css("background-color", "transparent");
+            $(this).not(".clicked").removeAttr("style");
         }
     );
 
@@ -303,7 +253,7 @@ function sentenceEvents()
             if (learn_mode === learn_by_sentence)
             {
                 words_count = 0;
-                $(".sentence").css("background-color", "transparent");
+                $(".sentence").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
@@ -320,7 +270,7 @@ function sentenceEvents()
             if (learn_mode === learn_by_paragraf)
             {
                 words_count = 0;
-                $(".paragraf").css("background-color", "transparent");
+                $(".paragraf").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
@@ -337,7 +287,7 @@ function sentenceEvents()
             if (learn_mode === learn_by_page)
             {
                 words_count = 0;
-                $(".book-page").css("background-color", "transparent");
+                $(".book-page").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
@@ -363,7 +313,7 @@ document.getElementById("fa_play").onmouseleave = function (event)
 }
 document.getElementById("fa_play").onclick = function (event)
 {
-    //isPlay = true;
+    isPlay = true;
     $("#fa_play").hide();
     $("#fa_pause").show();
     var w = arrayOfSeletion;
