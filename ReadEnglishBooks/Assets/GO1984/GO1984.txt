@@ -1,6 +1,6 @@
 ﻿   
 
-		<div id="book-name" hidden>1984. George Orwell.</div>
+		1984. George Orwell#
 
         <div class="book-page">
 
