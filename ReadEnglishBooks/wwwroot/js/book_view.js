@@ -59,11 +59,6 @@ function getPage(page)
     });
 }
 //===========================================================================================================
-document.getElementById("btn-back").onclick = function ()
-{
-    alert("btn-back is click");
-};
-//===========================================================================================================
 $("#btn-start").click(function ()
 {
     $("#div-start").attr("hidden", "hidden");
@@ -312,16 +307,16 @@ document.getElementById("fa_play").onmouseleave = function (event)
     }
 }
 document.getElementById("fa_play").onclick = function (event)
-{
-    isPlay = true;
-    $("#fa_play").hide();
-    $("#fa_pause").show();
+{    
     var w = arrayOfSeletion;
     if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
     {
+        isPlay = true;
+        $("#fa_play").hide();
+        $("#fa_pause").show();
         speech(arrayOfSeletion[words_count]);
     }
-    //debugger;
+    event.target.style.color = '';
 }
 //===========================================================================================================
 $(document).ready(function ()
