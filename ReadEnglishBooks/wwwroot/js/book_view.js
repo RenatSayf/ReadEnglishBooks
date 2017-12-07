@@ -21,7 +21,6 @@ function getPage(page)
         success: function (data)
         {
             $("#page").html(data[0]);
-            $("#book-header").text($("#book-name").text());
             //var page_number = parseInt($(".page-number").text());
             var page_count = parseInt($(".page-count").text());
             if (data.length > 1)
@@ -87,7 +86,8 @@ $("#btn-stop").click(function ()
 //===========================================================================================================
 $("#btn-next").on("click", function ()
 {
-    alert("btn-next is click");
+    var v = $("#volume").slider("option", "value");
+    alert("volume = " + v);
 });
 
 //===========================================================================================================
@@ -321,7 +321,19 @@ document.getElementById("fa_play").onclick = function (event)
 //===========================================================================================================
 $(document).ready(function ()
 {
-    getPage(1);           
+    getPage(1); 
+    $("#volume").slider(
+        {
+            animate: "fast",
+            min: 0,
+            max: 100,
+            value: 100,
+            change: function (event)
+            {
+                alert("Громкость = " + $("#volume").slider("option", "value"));
+            }
+        });    
+    return;
 });
 //===========================================================================================================
 window.onload = function ()

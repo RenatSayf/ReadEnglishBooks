@@ -31,6 +31,8 @@ namespace ReadEnglishBooks.Controllers
             if (book_folder != null && book_name != null)
             {
                 book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
+                ViewBag.BookName = book.BookName;
+                ViewBag.BookAuthor = book.Author;
             }
             return View();
         }
