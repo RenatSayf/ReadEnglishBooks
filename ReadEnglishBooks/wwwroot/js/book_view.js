@@ -292,20 +292,24 @@ function sentenceEvents()
 }
 //===========================================================================================================
 var isPlay = false;
-document.getElementById("fa_play").onmouseenter = function (event)
+var is_back = false;
+
+$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseover(function ()
 {
     if (!isPlay)
     {
         event.target.style.color = 'pink';
     }
-}
-document.getElementById("fa_play").onmouseleave = function (event)
+});
+//===========================================================================================================
+$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseout(function ()
 {
     if (!isPlay)
     {
         event.target.style.color = '';
     }
-}
+});
+//===========================================================================================================
 document.getElementById("fa_play").onclick = function (event)
 {    
     var w = arrayOfSeletion;
@@ -319,18 +323,49 @@ document.getElementById("fa_play").onclick = function (event)
     event.target.style.color = '';
 }
 //===========================================================================================================
+$("#fa_back").click(function (event)
+{
+    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    {
+        isPlay = false;
+        is_back = true;
+        speech(arrayOfSeletion[words_count]);
+    }
+    if (words_count < 0)
+    {
+        words_count = arrayOfSeletion.length - 1;
+        speech(arrayOfSeletion[words_count]);
+    }
+});
+//===========================================================================================================
+$("#fa-next").click(function (event)
+{
+    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    {
+        isPlay = false;
+        is_back = false;
+        speech(arrayOfSeletion[words_count]);
+    }  
+    if (words_count >= arrayOfSeletion.length)
+    {
+        words_count = 0;
+        speech(arrayOfSeletion[words_count]);
+    }
+});
+//===========================================================================================================
 $(document).ready(function ()
 {
     getPage(1); 
     $("#volume").slider(
         {
             animate: "fast",
-            min: 0,
-            max: 100,
-            value: 100,
+            min: 0.0,
+            max: 1.0,
+            value: 1.0,
+            step: 0.1,
             change: function (event)
             {
-                alert("Громкость = " + $("#volume").slider("option", "value"));
+                document.getElementById("audio").volume = $("#volume").slider("option", "value");
             }
         });    
     return;
@@ -344,7 +379,6 @@ window.onload = function ()
 //===========================================================================================================
 function CreateAlert(divId, message)
 {
-    //debugger;
     var res = $(divId).append('<div class="alert alert-warning fade in">' +
         '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
     $(divId).slideDown();

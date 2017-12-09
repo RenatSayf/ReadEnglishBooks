@@ -49,7 +49,7 @@ $('#audio')[0].onerror = function ()
 //============================================================================================================
 $('#audio')[0].onended = function (data)
 {
-    if (arrayOfSeletion.length > 0)
+    if (isPlay && arrayOfSeletion.length > 0)
     {
         words_count++;
         if (words_count <= arrayOfSeletion.length - 1)
@@ -64,7 +64,15 @@ $('#audio')[0].onended = function (data)
     }
     else
     {
-        speechStop();
+        if (!is_back)
+        {
+            words_count++;
+        }
+        else
+        {
+            words_count--;
+        }
+        //speechStop();
     }
 };
 //============================================================================================================
