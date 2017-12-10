@@ -44,11 +44,12 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            page_HTML = document.getElementById("page").innerHTML;  
+            //page_HTML = document.getElementById("page").innerHTML;  
             addSpanTagToSentence();
             addSpanTagToParagraf();            
             sentenceEvents();
             current_page = page;
+            page_HTML = document.getElementById("page").innerHTML; 
         },
         error: function (xhr, status, error)
         {
@@ -243,12 +244,12 @@ function sentenceEvents()
     {
         if (!isPlay)
         {
-            $(".sentence").removeClass("clicked");
-            $("span").removeClass("ru-word");
+            resetWordSelection();
             if (learn_mode === learn_by_sentence)
             {
                 words_count = -1;
                 $(".sentence").removeAttr("style");
+
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
@@ -289,6 +290,17 @@ function sentenceEvents()
             }
         }
     });
+}
+//===========================================================================================================
+function resetWordSelection()
+{
+    $(".sentence").removeClass("clicked");
+    $(".sentence span").css({
+        fontSize: "100%",
+        background: ''
+    });
+    $(".ru-word").popover('hide');
+    $("span").removeClass("ru-word");
 }
 //===========================================================================================================
 var isPlay = false;
@@ -360,6 +372,14 @@ $("#fa-next").click(function (event)
         }
         speech(arrayOfSeletion[words_count]);        
     }     
+});
+//===========================================================================================================
+$("#fa_sound").click(function ()
+{
+    if (arrayOfSeletion.length > 0 && words_count >= 0 && words_count < arrayOfSeletion.length)
+    {
+        speech(arrayOfSeletion[words_count]);
+    }
 });
 //===========================================================================================================
 $(document).ready(function ()
