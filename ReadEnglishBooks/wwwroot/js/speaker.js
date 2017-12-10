@@ -35,6 +35,17 @@ function speech(en_word)
 //============================================================================================================
 $('#audio')[0].onplaying = function ()
 {
+    if (isPlay)
+    {
+        if (!is_back)
+        {
+            words_count++;
+        }
+        else
+        {
+            words_count--;
+        }
+    }
     return;
 };
 //============================================================================================================
@@ -51,7 +62,6 @@ $('#audio')[0].onended = function (data)
 {
     if (isPlay && arrayOfSeletion.length > 0)
     {
-        words_count++;
         if (words_count <= arrayOfSeletion.length - 1)
         {
             speech(arrayOfSeletion[words_count]);
@@ -61,19 +71,7 @@ $('#audio')[0].onended = function (data)
             speechStop();
         }
         return;
-    }
-    else
-    {
-        if (!is_back)
-        {
-            words_count++;
-        }
-        else
-        {
-            words_count--;
-        }
-        //speechStop();
-    }
+    }    
 };
 //============================================================================================================
 $("#audio")[0].onpause = function ()

@@ -3,7 +3,7 @@ var wordsArray = [];
 var sentencesArray = [];
 var arrayOfSeletion = [];
 var sentencesIndex = 0;
-var words_count = 0;
+var words_count = -1;
 var current_page;
 var first_load = true;
 var learn_mode = "sentence";
@@ -247,7 +247,7 @@ function sentenceEvents()
             $("span").removeClass("ru-word");
             if (learn_mode === learn_by_sentence)
             {
-                words_count = 0;
+                words_count = -1;
                 $(".sentence").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
@@ -264,7 +264,7 @@ function sentenceEvents()
             $("span").removeClass("ru-word");
             if (learn_mode === learn_by_paragraf)
             {
-                words_count = 0;
+                words_count = -1;
                 $(".paragraf").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
@@ -281,7 +281,7 @@ function sentenceEvents()
             $("span").removeClass("ru-word");
             if (learn_mode === learn_by_page)
             {
-                words_count = 0;
+                words_count = -1;
                 $(".book-page").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
@@ -313,11 +313,16 @@ $("#fa_play, #fa_back, #fa-next, #fa_sound").mouseout(function ()
 document.getElementById("fa_play").onclick = function (event)
 {    
     var w = arrayOfSeletion;
-    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    if (arrayOfSeletion.length > 0)
     {
         isPlay = true;
+        is_back = false;
         $("#fa_play").hide();
         $("#fa_pause").show();
+        if (words_count < 0 || words_count >= arrayOfSeletion.length)
+        {
+            words_count = 0;
+        }
         speech(arrayOfSeletion[words_count]);
     }
     event.target.style.color = '';
@@ -325,32 +330,36 @@ document.getElementById("fa_play").onclick = function (event)
 //===========================================================================================================
 $("#fa_back").click(function (event)
 {
-    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    if (arrayOfSeletion.length > 0)
     {
         isPlay = false;
         is_back = true;
-        speech(arrayOfSeletion[words_count]);
-    }
-    if (words_count < 0)
-    {
-        words_count = arrayOfSeletion.length - 1;
-        speech(arrayOfSeletion[words_count]);
-    }
+        $("#fa_play").show();
+        $("#fa_pause").hide();
+        words_count--;
+        if (words_count < 0 || words_count >= arrayOfSeletion.length)
+        {
+            words_count = arrayOfSeletion.length - 1;
+        }
+        speech(arrayOfSeletion[words_count]);        
+    }    
 });
 //===========================================================================================================
 $("#fa-next").click(function (event)
 {
-    if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
+    if (arrayOfSeletion.length > 0)
     {
         isPlay = false;
-        is_back = false;
-        speech(arrayOfSeletion[words_count]);
-    }  
-    if (words_count >= arrayOfSeletion.length)
-    {
-        words_count = 0;
-        speech(arrayOfSeletion[words_count]);
-    }
+        is_back = false;  
+        $("#fa_play").show();
+        $("#fa_pause").hide();
+        words_count++;
+        if (words_count < 0 || words_count >= arrayOfSeletion.length)
+        {
+            words_count = 0;
+        }
+        speech(arrayOfSeletion[words_count]);        
+    }     
 });
 //===========================================================================================================
 $(document).ready(function ()
