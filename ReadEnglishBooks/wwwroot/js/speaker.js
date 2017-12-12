@@ -69,9 +69,14 @@ $('#audio')[0].onended = function (data)
         else
         {
             speechStop();
+            CreateAlert("", "");
         }
         return;
-    }    
+    }
+    if (!isPlay && words_count >= arrayOfSeletion.length - 1)
+    {
+        CreateAlert("", "Проверить знания?");
+    }
 };
 //============================================================================================================
 $("#audio")[0].onpause = function ()

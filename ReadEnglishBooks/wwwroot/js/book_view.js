@@ -385,6 +385,7 @@ $("#fa_sound").click(function ()
 $(document).ready(function ()
 {
     getPage(1); 
+
     $("#volume").slider(
         {
             animate: "fast",
@@ -396,7 +397,11 @@ $(document).ready(function ()
             {
                 document.getElementById("audio").volume = $("#volume").slider("option", "value");
             }
-        });    
+        });
+
+    
+    
+    
     return;
 });
 //===========================================================================================================
@@ -406,11 +411,30 @@ window.onload = function ()
     return;
 }
 //===========================================================================================================
-function CreateAlert(divId, message)
+function CreateAlert(title, message)
 {
-    var res = $(divId).append('<div class="alert alert-warning fade in">' +
-        '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
-    $(divId).slideDown();
+    //var res = $(divId).append('<div class="alert alert-warning fade in">' +
+    //    '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
+    //$(divId).slideDown();
+    $("#dialog_message").text(message);
+
+    $("#dialog-window").dialog({
+        title: title,
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: false,
+        buttons: {
+            "Ok": function ()
+            {
+                $(this).dialog("close");
+            },
+            Cancel: function ()
+            {
+                $(this).dialog("close");
+            }
+        }
+    });
 }
 
 
