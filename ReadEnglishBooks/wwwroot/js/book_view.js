@@ -416,20 +416,29 @@ function CreateAlert(title, message)
     //var res = $(divId).append('<div class="alert alert-warning fade in">' +
     //    '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
     //$(divId).slideDown();
-    $("#dialog_message").text(message);
+    var message = "Проверить знания - нажмите Проверить<br/>Повторить еще раз - нажмите Повторить<br/>Читать дальше - нажмите Продолжить";
+    $("#dialog_message").html(message);
 
     $("#dialog-window").dialog({
-        title: title,
+        title: "Фрагмент изучен",
+        show: true,
+        hide: true,
         resizable: false,
         height: "auto",
-        width: 400,
+        width: "auto",
         modal: false,
         buttons: {
-            "Ok": function ()
+            "Проверить": function ()
             {
                 $(this).dialog("close");
+                
             },
-            Cancel: function ()
+            "Повторить": function ()
+            {
+                $(this).dialog("close");
+                
+            },
+            "Продолжить": function ()
             {
                 $(this).dialog("close");
             }
