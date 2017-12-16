@@ -2,6 +2,7 @@
 var wordsArray = [];
 var sentencesArray = [];
 var arrayOfSeletion = [];
+var studyWordsObj = [];
 var sentencesIndex = 0;
 var words_count = -1;
 var current_page;
@@ -253,8 +254,10 @@ function sentenceEvents()
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
+                //studyWordsObj = getStudyWords(arrayOfSeletion);
             }
-        }       
+        }
+        return;
     });
 
     $(".paragraf").click(function ()
@@ -411,7 +414,7 @@ window.onload = function ()
     return;
 }
 //===========================================================================================================
-function CreateAlert(title, message)
+function showDialogComplete(title, message)
 {
     //var res = $(divId).append('<div class="alert alert-warning fade in">' +
     //    '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
@@ -431,7 +434,8 @@ function CreateAlert(title, message)
             "Проверить": function ()
             {
                 $(this).dialog("close");
-                
+                fillTestTable(arrayOfSeletion, learn_mode);
+                $("#word-test-box").modal("show");
             },
             "Повторить": function ()
             {

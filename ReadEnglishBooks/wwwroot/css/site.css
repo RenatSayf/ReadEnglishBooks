@@ -85,7 +85,7 @@ p{
 }
 
 .modal-content {    /*прозрачность модального окна*/
-    background-color: rgba(255, 255, 255, .35);
+    background-color: rgb(255, 255, 255);
 }
 
 .learn-word{

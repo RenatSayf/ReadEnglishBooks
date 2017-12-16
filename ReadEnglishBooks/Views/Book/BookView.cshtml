@@ -3,16 +3,49 @@
 }
 <link rel="stylesheet" href="~/css/side_menu.css" />
 
-<div id="dialog-window" title="" hidden="hidden">
-    <div id="dialog_message">
-        Сначала выделите необходимый текст.
+<div id="word-test-box" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Заголовок модального окна -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Тест</h4>
+            </div>
+            <!-- Основное содержимое модального окна -->
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <table style="width:100%">
+                            <tbody>
+                                @*<tr>
+                                    <td><button type="button" class="btn btn-primary text-center">English</button></td>
+                                    <td><button type="button" class="btn btn-primary text-center">Русский</button></td>
+                                </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <style>
+                #word-test-box td{
+                    text-align: center;
+                }
+                #word-test-box td button{
+                    width: 100%;
+                }
+            </style>
+            <!-- Футер модального окна -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Повторить</button>
+                <button type="button" class="btn btn-primary">Закрыть</button>
+            </div>
+        </div>
     </div>
-    @*<style>
-        .custom-ui-widget-header-warning {
-            background: #EBCCCC;
-            font-size: 1em;
-        }
-    </style>*@    
+</div>
+
+<div id="dialog-window" title="" hidden="hidden">
+    <div id="dialog_message">        
+    </div>      
 </div>
 
 <audio id="audio" controls></audio>
@@ -209,6 +242,9 @@
     </button>
     <div class="navbar-brand">@ViewBag.BookName</div>
 </div>
+
+
+<script src="~/js/words_test.js" type="text/javascript"></script>
 
 
 

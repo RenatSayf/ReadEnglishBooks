@@ -69,13 +69,13 @@ $('#audio')[0].onended = function (data)
         else
         {
             speechStop();
-            CreateAlert("", "");
+            showDialogComplete("", "");
         }
         return;
     }
     if (!isPlay && words_count >= arrayOfSeletion.length - 1)
     {
-        CreateAlert("", "Проверить знания?");
+        showDialogComplete("", "Проверить знания?");
     }
 };
 //============================================================================================================
