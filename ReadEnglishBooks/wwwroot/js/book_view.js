@@ -434,7 +434,11 @@ function showDialogComplete(title, message)
             "Проверить": function ()
             {
                 $(this).dialog("close");
-                fillTestTable(arrayOfSeletion, learn_mode);
+                studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
+                if (studyWordsArray.length > 0)
+                {
+                    fillTestTable(studyWordsArray, words_index);
+                }
                 $("#word-test-box").modal("show");
             },
             "Повторить": function ()
