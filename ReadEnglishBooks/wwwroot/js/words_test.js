@@ -1,5 +1,6 @@
 ﻿var words_index = 0;
 var studyWordsArray = [];
+var number_of_false = 3;
 //===========================================================================================================
 function getStudyWords(words_array, learn_mode)
 {
@@ -32,7 +33,7 @@ function getStudyWords(words_array, learn_mode)
 
 function fillTestTable(words_array, index)
 {
-    $("#word-test-box tr").remove();
+    //$("#word-test-box tr").remove();
     if (words_array.length > 0)
     {
         $("#word-test-box tbody").append(
@@ -40,6 +41,7 @@ function fillTestTable(words_array, index)
             '<td><button type="button" class="btn btn-primary text-center">' + words_array[index].Eng + '</button ></td > ' +
             '</tr > '
         );
+        
     }
     //for (var i = 0; i < words_array.length; i++)
     //{
@@ -59,5 +61,15 @@ function btnNextTest_Click()
     {
         fillTestTable(studyWordsArray, words_index);
     }
+    if (words_index >= studyWordsArray.length)
+    {
+        words_index = 0;
+        fillTestTable(studyWordsArray, words_index);
+    }
     
+}
+//============================================================================================================
+function getRandomInt(min, max)
+{
+    return Math.floor(Math.random() * (max - min)) + min;
 }
