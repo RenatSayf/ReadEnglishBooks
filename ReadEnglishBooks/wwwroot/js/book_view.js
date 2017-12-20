@@ -435,6 +435,7 @@ function showDialogComplete(title, message)
             {
                 $(this).dialog("close");
                 studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
+                
                 if (studyWordsArray.length > 0)
                 {
                     fillTestTable(studyWordsArray, words_index);

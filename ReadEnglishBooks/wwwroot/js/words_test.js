@@ -1,5 +1,6 @@
 ﻿var words_index = 0;
 var studyWordsArray = [];
+var ruWordsArray = [];
 var number_of_false = 3;
 //===========================================================================================================
 function getStudyWords(words_array, learn_mode)
@@ -27,6 +28,7 @@ function getStudyWords(words_array, learn_mode)
     {
         studyWordsObj = pageWordsObj;
     }
+    randomWord.set(studyWordsObj);
     return studyWordsObj;
 }
 //===========================================================================================================
@@ -66,10 +68,44 @@ function btnNextTest_Click()
         words_index = 0;
         fillTestTable(studyWordsArray, words_index);
     }
-    
+
+    var random_word = randomWord.get();
+    return;
 }
 //============================================================================================================
-function getRandomInt(min, max)
-{
-    return Math.floor(Math.random() * (max - min)) + min;
-}
+var randomWord =
+    {
+        list: [],
+        already: [],
+        random: function ()
+        {
+            return this.list[Math.floor(Math.random() * this.list.length)];
+        },
+        get: function ()
+        {
+            var word;
+            word = this.random();
+            if (this.already.length >= this.list.length)
+            {
+                this.already = [];
+                return word;
+            }
+            if (this.already.indexOf(word) !== -1)
+            {
+                return this.get();
+            } else
+            {
+                this.already.push(word);
+                return word;
+            }
+        },
+        set: function (study_words_arr)
+        {
+            for (var i = 0; i < study_words_arr.length; i++)
+            {
+                this.list.push(study_words_arr[i].Rus);
+            }
+            this.already = [];
+        }
+    };
+//============================================================================================================
