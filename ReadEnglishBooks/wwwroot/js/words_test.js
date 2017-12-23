@@ -57,10 +57,15 @@ function fillTestTable(words_array, index)
     {
         $("#word-test-box tbody").append(
             '<tr>' +
-            '<td><button type="button" class="btn btn-primary text-center">' + random_words[i] + '</button ></td > ' +
+            '<td><button type="button" class="btn btn-primary text-center" onclick="btnRuWord_Click()">' + random_words[i] + '</button ></td > ' +
             '</tr > '
         );
     }
+
+    $("#word-test-box tbody button").click(function ()
+    {
+        btnRuWord_Click(this.innerText);        
+    });
 
     var random_word = randomWord.get();
     
@@ -167,3 +172,8 @@ var randomWords =
         }
     };
 //============================================================================================================
+function btnRuWord_Click(e)
+{
+    var a = e;
+    return;
+}
