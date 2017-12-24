@@ -29,7 +29,6 @@ function getStudyWords(words_array, learn_mode)
         studyWordsObj = pageWordsObj;
     }
     randomWord.set(studyWordsObj);
-    //randomWords.set(studyWordsObj);
     return studyWordsObj;
 }
 //===========================================================================================================
@@ -41,34 +40,29 @@ function fillTestTable(words_array, index)
     {
         $("#word-test-box tbody").append(
             '<tr>' +
-            '<td><button type="button" class="btn text-center">' + words_array[index].Eng + '</button ></td > ' +
+            '<td><button type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
             '</tr > '
-        );        
-    }
+        );  
 
-    var arr = words_array.filter(item => item !== words_array[index]);
-    randomWords.set(arr);
-    var random_words = [];
-    random_words = randomWords.get(number_of_false);
-    random_words.push(words_array[index].Rus);
-    random_words.sort(compareRandom);
+        var arr = words_array.filter(item => item !== words_array[index]);
+        randomWords.set(arr);
+        var random_words = [];
+        random_words = randomWords.get(number_of_false);
+        random_words.push(words_array[index].Rus);
+        random_words.sort(compareRandom);
 
-    for (var i = 0; i < random_words.length; i++)
-    {
-        $("#word-test-box tbody").append(
-            '<tr>' +
-            '<td><button type="button" class="btn btn-primary text-center" onclick="btnRuWord_Click()">' + random_words[i] + '</button ></td > ' +
-            '</tr > '
-        );
-    }
+        for (var i = 0; i < random_words.length; i++)
+        {
+            $("#word-test-box tbody").append(
+                '<tr>' +
+                '<td><button type="button" class="btn btn-primary text-center">' + random_words[i] + '</button ></td > ' +
+                '</tr > '
+            );
+        }
+        btnRuWord_Click();
 
-    $("#word-test-box tbody button").click(function ()
-    {
-        btnRuWord_Click(this.innerText);        
-    });
-
-    var random_word = randomWord.get();
-    
+        var random_word = randomWord.get();
+    } 
     return;
 }
 //============================================================================================================
@@ -80,11 +74,11 @@ function compareRandom()
 function btnNextTest_Click()
 {
     words_index++;
-    if (words_index < studyWordsArray.length)
+    if (words_index <= studyWordsArray.length - 1)
     {
         fillTestTable(studyWordsArray, words_index);
     }
-    if (words_index >= studyWordsArray.length)
+    if (words_index > studyWordsArray.length - 1)
     {
         words_index = 0;
         fillTestTable(studyWordsArray, words_index);
@@ -172,8 +166,11 @@ var randomWords =
         }
     };
 //============================================================================================================
-function btnRuWord_Click(e)
+function btnRuWord_Click()
 {
-    var a = e;
-    return;
+    $("#word-test-box tbody button").click(function ()
+    {
+        var a = this;
+        return;
+    });
 }
