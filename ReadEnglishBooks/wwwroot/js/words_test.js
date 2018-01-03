@@ -170,7 +170,19 @@ function btnRuWord_Click()
 {
     $("#word-test-box tbody button").click(function ()
     {
-        var a = this;
+        var en_word = $("#word-test-box tbody button")[0].innerText;
+        var ru_word = this.innerText;
+        var en_array = [];
+        var ru_array = [];
+        for (var i = 0; i < studyWordsArray.length; i++)
+        {
+            en_array.push(studyWordsArray[i].Eng);
+            ru_array.push(studyWordsArray[i].Rus);
+        }
+        if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
+        {
+            btnNextTest_Click();
+        }
         return;
     });
 }
