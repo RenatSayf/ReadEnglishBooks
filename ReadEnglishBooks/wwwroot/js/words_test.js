@@ -5,6 +5,7 @@ var number_of_false = 2;
 //===========================================================================================================
 function getStudyWords(words_array, learn_mode)
 {
+    words_index = 0;
     studyWordsObj = [];
     if (learn_mode === "sentence" || learn_mode === "paragraf")
     {
@@ -28,7 +29,7 @@ function getStudyWords(words_array, learn_mode)
     {
         studyWordsObj = pageWordsObj;
     }
-    randomWord.set(studyWordsObj);
+    //randomWord.set(studyWordsObj);
     return studyWordsObj;
 }
 //===========================================================================================================
@@ -42,26 +43,36 @@ function fillTestTable(words_array, index)
             '<tr>' +
             '<td><button type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
             '</tr > '
-        );  
-
-        var arr = words_array.filter(item => item !== words_array[index]);
-        randomWords.set(arr);
+        );
+        
         var random_words = [];
-        random_words = randomWords.get(number_of_false);
-        random_words.push(words_array[index].Rus);
-        random_words.sort(compareRandom);
+        if (words_array.length > number_of_false)
+        {
+            var arr = words_array.filter(item => item !== words_array[index]);
+            randomWords.set(arr);            
+            random_words = randomWords.get(number_of_false);
+            random_words.push(words_array[index].Rus);
+            random_words.sort(compareRandom);
+        }
+        else
+        {
+            for (var i = 0; i < words_array.length; i++)
+            {
+                random_words.push(words_array[i].Rus);
+            }
+        }
 
-        for (var i = 0; i < random_words.length; i++)
+        for (var j = 0; j < random_words.length; j++)
         {
             $("#word-test-box tbody").append(
                 '<tr>' +
-                '<td><button type="button" class="btn btn-primary text-center">' + random_words[i] + '</button ></td > ' +
+                '<td><button type="button" class="btn btn-primary text-center" onclick="return btnRuWord_OnClick(this)">' + random_words[j] + '</button ></td > ' +
                 '</tr > '
             );
         }
-        btnRuWord_Click();
+        //btnRuWord_Click();
 
-        var random_word = randomWord.get();
+        //var random_word = randomWord.get();
     } 
     return;
 }
@@ -72,19 +83,17 @@ function compareRandom()
 }
 //============================================================================================================
 function btnNextTest_Click()
-{
-    words_index++;
-    if (words_index <= studyWordsArray.length - 1)
+{    
+    if (words_index < studyWordsArray.length)
     {
+        words_index++;
         fillTestTable(studyWordsArray, words_index);
     }
     if (words_index > studyWordsArray.length - 1)
     {
         words_index = 0;
         fillTestTable(studyWordsArray, words_index);
-    }
-
-    
+    }    
 }
 //============================================================================================================
 var randomWord =
@@ -181,8 +190,62 @@ function btnRuWord_Click()
         }
         if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
         {
-            btnNextTest_Click();
+            $("#word-test-box tbody button")[0].setAttribute("style","background-color:#00ff00");
+            this.setAttribute("style", "background-color:#00ff00");
+            var count_anim = 0;
+            $("#word-test-box tbody button").each(function ()
+            {
+                if (this.getAttribute("style") !== "background-color:#00ff00")
+                {
+                    $(this).animate({ opacity: 0.0}, 1000, function (e)
+                    {
+                        $(this).animate({ opacity: 0.0 }, 700, function (data)
+                        {
+                            if (count_anim === 0)
+                            {
+                                btnNextTest_Click();
+                                count_anim++;
+                            }
+                            return;
+                        });
+                        return;
+                    });
+                }
+            });
         }
         return;
     });
+}
+//============================================================================================================
+function btnRuWord_OnClick(sender)
+{
+    var en_word = $("#word-test-box tbody button")[0].innerText;
+    var ru_word = sender.innerText;
+    var en_array = [];
+    var ru_array = [];
+    for (var i = 0; i < studyWordsArray.length; i++)
+    {
+        en_array.push(studyWordsArray[i].Eng);
+        ru_array.push(studyWordsArray[i].Rus);
+    }
+    if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
+    {
+        $("#word-test-box tbody button")[0].setAttribute("style", "background-color:#00ff00");
+        sender.setAttribute("style", "background-color:#00ff00");
+        var l = $("#word-test-box tbody").children.length;
+        $("#word-test-box tbody button").each(function (index, element)
+        {
+            if (this.getAttribute("style") !== "background-color:#00ff00")
+            {
+                $(this).animate({ opacity: 0.0 }, 1000, function ()
+                {
+                    if (index === number_of_false)
+                    {
+                        btnNextTest_Click();
+                    }
+                });
+            }
+            //return false;
+        });
+    }
 }
