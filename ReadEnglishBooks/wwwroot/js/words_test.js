@@ -2,6 +2,7 @@
 var studyWordsArray = [];
 var ruWordsArray = [];
 var number_of_false = 2;
+var counter_right_answers = 0;
 //===========================================================================================================
 function getStudyWords(words_array, learn_mode)
 {
@@ -76,10 +77,16 @@ function fillTestTable(words_array, index)
     {
         if (index >= words_array.length)
         {
+            if (counter_right_answers < 0)
+            {
+                counter_right_answers = 0;
+            }
             $("#word-test-box tbody tr").remove();
             $("#word-test-box tbody").append(
                 '<tr>' +
-                '<td><button type="button" class="btn btn-default text-center">' + "Завершено !!!" + '</button ></td > ' +
+                '<td>Завершено!!!</td > ' +
+                '<td>Правильно - </td > ' +
+                '<td>' + counter_right_answers + ' из ' + words_array.length + '</td > ' +
                 '</tr > '
             );
         }
@@ -102,6 +109,7 @@ function nextTest()
     if (words_index > studyWordsArray.length - 1)
     {
         words_index = 0;
+        counter_right_answers = 0;
         //fillTestTable(studyWordsArray, words_index);
     }    
 }
@@ -190,6 +198,7 @@ var randomWords =
 function btnRuWord_OnClick(sender)
 {
     var pairs_background_color = "background-color:#00ff00";
+    var wrong_background_color = "background-color:#ff0000";
     var en_word = $("#word-test-box tbody button")[0].innerText;
     var ru_word = sender.innerText;
     var en_array = [];
@@ -202,6 +211,7 @@ function btnRuWord_OnClick(sender)
     var marker = true;
     if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
     {
+        counter_right_answers++;
         $("#word-test-box tbody button")[0].setAttribute("style", pairs_background_color);
         sender.setAttribute("style", pairs_background_color);
 
@@ -216,11 +226,19 @@ function btnRuWord_OnClick(sender)
                         marker = false;
                         nextTest();                        
                     }
-                });
-                
+                });                
             }
         });
-     }
+    }
+    else
+    {
+        counter_right_answers--;
+        sender.setAttribute("style", wrong_background_color);
+        $(sender).animate({ left: "+=50"}, 500, function ()
+        {
+            this.removeAttribute("style");
+        });
+    }
 }
 //============================================================================================================
 function btnRepeatTest_OnClick(sender)
