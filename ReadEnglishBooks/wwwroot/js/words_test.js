@@ -29,51 +29,61 @@ function getStudyWords(words_array, learn_mode)
     {
         studyWordsObj = pageWordsObj;
     }
-    //randomWord.set(studyWordsObj);
     return studyWordsObj;
 }
 //===========================================================================================================
 
 function fillTestTable(words_array, index)
 {
-    $("#word-test-box tr").remove();
-    if (words_array.length > 0)
+    $("#word-test-box tbody tr").remove();
+    try
     {
-        $("#word-test-box tbody").append(
-            '<tr>' +
-            '<td><button type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
-            '</tr > '
-        );
-        
-        var random_words = [];
-        if (words_array.length > number_of_false)
-        {
-            var arr = words_array.filter(item => item !== words_array[index]);
-            randomWords.set(arr);            
-            random_words = randomWords.get(number_of_false);
-            random_words.push(words_array[index].Rus);
-            random_words.sort(compareRandom);
-        }
-        else
-        {
-            for (var i = 0; i < words_array.length; i++)
-            {
-                random_words.push(words_array[i].Rus);
-            }
-        }
-
-        for (var j = 0; j < random_words.length; j++)
+        if (words_array.length > 0)
         {
             $("#word-test-box tbody").append(
                 '<tr>' +
-                '<td><button type="button" class="btn btn-primary text-center" onclick="return btnRuWord_OnClick(this)">' + random_words[j] + '</button ></td > ' +
+                '<td><button type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
+                '</tr > '
+            );
+
+            var random_words = [];
+            if (words_array.length > number_of_false)
+            {
+                var arr = words_array.filter(item => item !== words_array[index]);
+                randomWords.set(arr);
+                random_words = randomWords.get(number_of_false);
+                random_words.push(words_array[index].Rus);
+                random_words.sort(compareRandom);
+            }
+            else
+            {
+                for (var i = 0; i < words_array.length; i++)
+                {
+                    random_words.push(words_array[i].Rus);
+                }
+            }
+
+            for (var j = 0; j < random_words.length; j++)
+            {
+                $("#word-test-box tbody").append(
+                    '<tr>' +
+                    '<td><button type="button" class="btn btn-primary text-center" onclick="return btnRuWord_OnClick(this)">' + random_words[j] + '</button ></td > ' +
+                    '</tr > '
+                );
+            }
+        }
+    } catch (e)
+    {
+        if (index >= words_array.length)
+        {
+            $("#word-test-box tbody tr").remove();
+            $("#word-test-box tbody").append(
+                '<tr>' +
+                '<td><button type="button" class="btn btn-default text-center">' + "Завершено !!!" + '</button ></td > ' +
                 '</tr > '
             );
         }
-        //btnRuWord_Click();
-
-        //var random_word = randomWord.get();
-    } 
+    }
     return;
 }
 //============================================================================================================
@@ -82,7 +92,7 @@ function compareRandom()
     return Math.random() - 0.5;
 }
 //============================================================================================================
-function btnNextTest_Click()
+function nextTest()
 {    
     if (words_index < studyWordsArray.length)
     {
@@ -92,7 +102,7 @@ function btnNextTest_Click()
     if (words_index > studyWordsArray.length - 1)
     {
         words_index = 0;
-        fillTestTable(studyWordsArray, words_index);
+        //fillTestTable(studyWordsArray, words_index);
     }    
 }
 //============================================================================================================
@@ -154,6 +164,8 @@ var randomWords =
                 }
                 if (this.already.indexOf(word) !== -1)
                 {
+                    this.words = [];
+                    this.already = [];
                     return this.get(number_of_false);
                 } else
                 {
@@ -175,50 +187,9 @@ var randomWords =
         }
     };
 //============================================================================================================
-function btnRuWord_Click()
-{
-    $("#word-test-box tbody button").click(function ()
-    {
-        var en_word = $("#word-test-box tbody button")[0].innerText;
-        var ru_word = this.innerText;
-        var en_array = [];
-        var ru_array = [];
-        for (var i = 0; i < studyWordsArray.length; i++)
-        {
-            en_array.push(studyWordsArray[i].Eng);
-            ru_array.push(studyWordsArray[i].Rus);
-        }
-        if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
-        {
-            $("#word-test-box tbody button")[0].setAttribute("style","background-color:#00ff00");
-            this.setAttribute("style", "background-color:#00ff00");
-            var count_anim = 0;
-            $("#word-test-box tbody button").each(function ()
-            {
-                if (this.getAttribute("style") !== "background-color:#00ff00")
-                {
-                    $(this).animate({ opacity: 0.0}, 1000, function (e)
-                    {
-                        $(this).animate({ opacity: 0.0 }, 700, function (data)
-                        {
-                            if (count_anim === 0)
-                            {
-                                btnNextTest_Click();
-                                count_anim++;
-                            }
-                            return;
-                        });
-                        return;
-                    });
-                }
-            });
-        }
-        return;
-    });
-}
-//============================================================================================================
 function btnRuWord_OnClick(sender)
 {
+    var pairs_background_color = "background-color:#00ff00";
     var en_word = $("#word-test-box tbody button")[0].innerText;
     var ru_word = sender.innerText;
     var en_array = [];
@@ -228,24 +199,32 @@ function btnRuWord_OnClick(sender)
         en_array.push(studyWordsArray[i].Eng);
         ru_array.push(studyWordsArray[i].Rus);
     }
+    var marker = true;
     if (en_array.indexOf(en_word) === ru_array.indexOf(ru_word))
     {
-        $("#word-test-box tbody button")[0].setAttribute("style", "background-color:#00ff00");
-        sender.setAttribute("style", "background-color:#00ff00");
-        var l = $("#word-test-box tbody").children.length;
+        $("#word-test-box tbody button")[0].setAttribute("style", pairs_background_color);
+        sender.setAttribute("style", pairs_background_color);
+
         $("#word-test-box tbody button").each(function (index, element)
         {
-            if (this.getAttribute("style") !== "background-color:#00ff00")
+            if (this.getAttribute("style") !== pairs_background_color)
             {
                 $(this).animate({ opacity: 0.0 }, 1000, function ()
                 {
-                    if (index === number_of_false)
+                    if (marker)
                     {
-                        btnNextTest_Click();
+                        marker = false;
+                        nextTest();                        
                     }
                 });
+                
             }
-            //return false;
         });
-    }
+     }
+}
+//============================================================================================================
+function btnRepeatTest_OnClick(sender)
+{
+    words_index = -1;
+    nextTest();
 }
