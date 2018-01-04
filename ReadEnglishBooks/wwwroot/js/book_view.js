@@ -151,15 +151,15 @@ function DeleteRow()
 //===========================================================================================================
 $('#btn-save').click(function ()
 {
-    var data = $('table tr:gt(0)').map(function ()
+    var data = $('table .word-tr').map(function ()
     {
         return{
             eng: $(this.cells[1]).text(),
-            rus: this.cells[2].children[0].value, 
+            rus: this.cells[2].children[0].value,
             isrepeat: true
         };
     }).get();
-    
+    //debugger;
     $.ajax({
         type: "POST",
         url: "/Book/GetWordsFromClient",
