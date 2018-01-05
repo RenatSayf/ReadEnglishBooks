@@ -57,17 +57,24 @@
 
 <audio id="audio" controls></audio>
 
-<div id="play-panel" class="modal fade">
+<div id="trans-select-panel" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                
+               Перевести выделенный фрагмент? 
             </div>
-            <div class="container-fluid">
+            <div id="target-text" class="container-fluid">
                              
             </div>
             <div class="modal-footer">
-                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center play-panel">
+                            <a class="btn-trans-by-text btn btn-info" href="#">Перевести как текст</a>
+                            <a class="btn-translate-by-words btn btn-info" href="#">Перевести по словам</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -87,7 +94,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center play-panel">
-                    <a id="btn-translate" class="btn btn-info" href="#">Перевести по словам</a>
+                    <a id="btn-translate" class="btn-translate-by-words btn btn-info" href="#">Перевести по словам</a>
                 </div>
             </div>
         </div>

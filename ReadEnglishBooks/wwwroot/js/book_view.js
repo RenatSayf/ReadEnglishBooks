@@ -93,9 +93,10 @@ $("#btn-next").on("click", function ()
 });
 
 //===========================================================================================================
-$('#btn-translate').click(function (e)
+$('.btn-translate-by-words').click(function (e)
 {
     e.preventDefault();
+    $("#trans-select-panel").modal("hide");
     var text = getSelectionText();
     if (text === '')
     {
@@ -416,9 +417,6 @@ window.onload = function ()
 //===========================================================================================================
 function showDialogComplete(title, message)
 {
-    //var res = $(divId).append('<div class="alert alert-warning fade in">' +
-    //    '<a data-dismiss="alert" href="#" class="close">×</a >' + message + '</div >');
-    //$(divId).slideDown();
     message = "Проверить знания - нажмите Проверить<br/>Повторить еще раз - нажмите Повторить<br/>Читать дальше - нажмите Продолжить";
     $("#dialog_message").html(message);
 
@@ -454,5 +452,22 @@ function showDialogComplete(title, message)
         }
     });
 }
+//===========================================================================================================
+$("#page").on("mouseup", function ()
+{
+    var text = getSelectionText();
+    if (text != "")
+    {
+        $("#target-text").text(text);
+        $("#trans-select-panel").modal("show");
+    }
+    return;
+});
+//===========================================================================================================
+$(".btn-trans-by-text").click(function ()
+{
+
+});
+
 
 
