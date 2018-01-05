@@ -105,7 +105,7 @@ $('.btn-translate-by-words').click(function (e)
 
     $.ajax({
         type: 'POST',
-        url: '/Book/GetTextFromClient?text=' + text,
+        url: '/Book/GetTextFromClient?text=' + text + '&issentence=' + false,
         success: function (data)
         {
             $("#translate-panel").modal("hide");
@@ -464,9 +464,29 @@ $("#page").on("mouseup", function ()
     return;
 });
 //===========================================================================================================
-$(".btn-trans-by-text").click(function ()
+$(".btn-trans-by-text").click(function (e)
 {
+    e.preventDefault();
+    var text = $("#target-text").text();
+    if (text === '')
+    {
+        return;
+    }
 
+    $.ajax({
+        type: 'POST',
+        url: '/Book/GetTextFromClient?text=' + text + '&issentence=' + true,
+        success: function (data)
+        {
+            debugger;
+            return;
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+        },
+        dataType: 'JSON'
+    });
 });
 
 

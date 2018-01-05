@@ -65,12 +65,20 @@ namespace ReadEnglishBooks.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetTextFromClient(string text)
+        public ActionResult GetTextFromClient(string text, bool issentence)
         {
             StringHelper strHelper = new StringHelper();
             Translator translator = new Translator();
             List<Word> words_list = new List<Word>();
-            List<string> list = strHelper.splitByWords(text);
+            List<string> list = null;
+            if (!issentence)
+            {
+                list = strHelper.splitByWords(text); 
+            }
+            else
+            {
+                list = new List<string> { text };
+            }
             var words = translator.GetTranslateFromYandex(list);
             string message = "";
 
