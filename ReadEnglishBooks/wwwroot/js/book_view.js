@@ -188,7 +188,7 @@ $('#btn-save').click(function ()
 //===========================================================================================================
 $("#btn-call-translate").click(function ()
 {
-    $("#translate-panel").modal("show");
+    $("#trans-select-panel").modal("show");
 });
 //===========================================================================================================
 $('#learn-mode').change(function ()
@@ -255,7 +255,8 @@ function sentenceEvents()
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
-                //studyWordsObj = getStudyWords(arrayOfSeletion);
+                $("#target-text").text(this.innerText);
+                $("#translated-text").text("");
             }
         }
         return;
@@ -274,6 +275,8 @@ function sentenceEvents()
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
+                $("#target-text").text(this.innerText);
+                $("#translated-text").text("");
             }
         }
     });
@@ -291,6 +294,8 @@ function sentenceEvents()
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
+                $("#target-text").text("");
+                $("#translated-text").text("");
             }
         }
     });
@@ -478,12 +483,12 @@ $(".btn-trans-by-text").click(function (e)
         url: '/Book/GetTextFromClient?text=' + text + '&issentence=' + true,
         success: function (data)
         {
-            debugger;
+            $("#translated-text").text(data[0].translate);
             return;
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+            alert("Ошибка ajax:\n" + "status - " + status + "\nerror - " + error);
         },
         dataType: 'JSON'
     });
