@@ -233,12 +233,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <label title="Режим">Режим обучения</label>
+                    <label for="learn-mode" title="Режим">Режим обучения</label>
                     <select id="learn-mode" class="selectpicker">
                         <option value="sentence">Учить по предложениям</option>
                         <option value="paragraf">Учить по абзацам</option>
                         <option value="page">Учить все слова на странице</option>
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="book-contents" title="Содержание">Содержание</label>
+                    <div id="book-contents">@Html.Raw(ViewBag.BookContents)</div>
                 </div>
             </div>
         </div>

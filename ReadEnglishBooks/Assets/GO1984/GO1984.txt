@@ -2,6 +2,8 @@
 
 		1984. George Orwell#
 
+		<div class="book-contents">Содержание...</div>#
+
         <div class="book-page">
 
 		<div style="display: table;">
@@ -285,7 +287,7 @@ stopped. He did not know definitely that this was 1984. He was
 thirty-nine, he believed - he had been born in 1944 or 1945. But
 nobody could be sure of dates, not really.</p>
 
-        <p>Who am I writing this diary for?' he asked himself suddenly.
+        <p>'Who am I writing this diary for?' he asked himself suddenly.
 For the future, for the unborn. But if the future was like the
 present, it would not listen to him. And if it was different, his
 situation would be meaningless.</p>
@@ -326,7 +328,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             He got up and walked heavily towards the door.
         </p>
         <br /><br />
-        <h3>Chapter 2 The Spies</h3>
+        <h3>Chapter 2. The Spies.</h3>
         <p>
             As he opened the door, Winston saw that he had left the diary
             open on the table. DOWN WITH BIG BROTHER was written

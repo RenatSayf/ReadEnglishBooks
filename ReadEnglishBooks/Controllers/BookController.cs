@@ -33,6 +33,7 @@ namespace ReadEnglishBooks.Controllers
                 book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
                 ViewBag.BookName = book.BookName;
                 ViewBag.BookAuthor = book.Author;
+                ViewBag.BookContents = book.BookContents;
             }
             return View();
         }

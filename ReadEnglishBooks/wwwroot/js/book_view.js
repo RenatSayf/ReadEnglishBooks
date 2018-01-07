@@ -21,6 +21,7 @@ function getPage(page)
         url: '/Book/GetPage?page=' + page,
         success: function (data)
         {
+            //debugger;
             $("#page").html(data[0]);
             //var page_number = parseInt($(".page-number").text());
             var page_count = parseInt($(".page-count").text());
