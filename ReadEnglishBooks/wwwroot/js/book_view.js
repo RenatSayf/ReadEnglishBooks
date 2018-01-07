@@ -242,7 +242,7 @@ function sentenceEvents()
         }
     );
 
-    $(".sentence").click(function ()
+    $(".sentence").on("mousedown", function ()
     {
         if (!isPlay)
         {
@@ -255,6 +255,7 @@ function sentenceEvents()
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
+                //debugger;
                 $("#target-text").text(this.innerText);
                 $("#translated-text").text("");
             }
@@ -262,7 +263,7 @@ function sentenceEvents()
         return;
     });
 
-    $(".paragraf").click(function ()
+    $(".paragraf").on("mousedown", function ()
     {
         if (!isPlay)
         {
@@ -461,6 +462,7 @@ function showDialogComplete(title, message)
 $("#page").on("mouseup", function ()
 {
     var text = getSelectionText();
+    //debugger;
     if (text != "")
     {
         $("#target-text").text(text);
