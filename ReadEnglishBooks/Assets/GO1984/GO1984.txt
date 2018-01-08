@@ -5,7 +5,7 @@
 		<div class="book-contents">
 			<ul>
 				<li>
-					<a href="#">PART ONE. Thoughtcrime.</a>
+					<a href="#" onclick="getPage(1)">PART ONE. Thoughtcrime.</a>
 					<ul>
 						<li><a href="#" onclick="getPage(1)">Chapter 1. Big Brother Is Watching You.</a></li>
 						<li><a href="#" onclick="getPage(8)">Chapter 2. The Spies.</a></li>

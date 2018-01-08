@@ -16,8 +16,6 @@ var background_of_hover = "#d6ddd7";
 //===========================================================================================================
 function getPage(page)
 {
-    //debugger;
-    
     $.ajax({
         type: 'GET',
         url: '/Book/GetPage?page=' + page,
@@ -43,7 +41,6 @@ function getPage(page)
                 visiblePages: 5,
                 onPageClick: function (event, page)
                 {
-                    //debugger;
                     if (!first_load)
                     {
                         getPage(page);
@@ -51,12 +48,15 @@ function getPage(page)
                     first_load = false;
                 }
             });
-            //page_HTML = document.getElementById("page").innerHTML;  
             addSpanTagToSentence();
             addSpanTagToParagraf();            
             sentenceEvents();
             current_page = page;
             page_HTML = document.getElementById("page").innerHTML;
+            wordsArray = [];
+            sentencesArray = [];
+            arrayOfSeletion = [];
+            words_count = 0;
         },
         error: function (xhr, status, error)
         {
@@ -92,11 +92,11 @@ $("#btn-stop").click(function ()
     $("#audio")[0].pause();
 });
 //===========================================================================================================
-$("#btn-next").on("click", function ()
-{
-    var v = $("#volume").slider("option", "value");
-    alert("volume = " + v);
-});
+//$("#btn-next").on("click", function ()
+//{
+//    var v = $("#volume").slider("option", "value");
+//    alert("volume = " + v);
+//});
 
 //===========================================================================================================
 $('.btn-translate-by-words').click(function (e)
@@ -264,6 +264,7 @@ function sentenceEvents()
                 //debugger;
                 $("#target-text").text(this.innerText);
                 $("#translated-text").text("");
+                fontSizeAnim($(".fa-play"));
             }
         }
         return;
@@ -339,7 +340,8 @@ $("#fa_play, #fa_back, #fa-next, #fa_sound").mouseout(function ()
 });
 //===========================================================================================================
 document.getElementById("fa_play").onclick = function (event)
-{    
+{
+    //isStart = false;
     var w = arrayOfSeletion;
     if (arrayOfSeletion.length > 0)
     {
