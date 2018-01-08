@@ -16,6 +16,8 @@ var background_of_hover = "#d6ddd7";
 //===========================================================================================================
 function getPage(page)
 {
+    //debugger;
+    
     $.ajax({
         type: 'GET',
         url: '/Book/GetPage?page=' + page,
@@ -33,12 +35,15 @@ function getPage(page)
             {
                 $("title").text($("#book-name").text());
             }
-
+            $('#pagination-demo').twbsPagination('destroy');
+            first_load = true;
             $('#pagination-demo').twbsPagination({
                 totalPages: page_count,
+                startPage: page,
                 visiblePages: 5,
                 onPageClick: function (event, page)
                 {
+                    //debugger;
                     if (!first_load)
                     {
                         getPage(page);
@@ -51,7 +56,7 @@ function getPage(page)
             addSpanTagToParagraf();            
             sentenceEvents();
             current_page = page;
-            page_HTML = document.getElementById("page").innerHTML; 
+            page_HTML = document.getElementById("page").innerHTML;
         },
         error: function (xhr, status, error)
         {

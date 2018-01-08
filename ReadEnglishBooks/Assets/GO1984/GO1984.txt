@@ -1,38 +1,38 @@
 ﻿   
 
-		1984. George Orwell#
+		1984. George Orwell}
 
 		<div class="book-contents">
 			<ul>
 				<li>
-					<a href="">PART ONE. Thoughtcrime.</a>
+					<a href="#">PART ONE. Thoughtcrime.</a>
 					<ul>
-						<li><a href="">Chapter 1. Big Brother Is Watching You.</a></li>
-						<li><a href="">Chapter 2. The Spies.</a></li>
-						<li><a href="">Chapter 3. The Ministry of Truth.</a></li>
-						<li><a href="">Chapter 4. Ownlife.</a></li>
+						<li><a href="#" onclick="getPage(1)">Chapter 1. Big Brother Is Watching You.</a></li>
+						<li><a href="#" onclick="getPage(8)">Chapter 2. The Spies.</a></li>
+						<li><a href="#" onclick="getPage(10)">Chapter 3. The Ministry of Truth.</a></li>
+						<li><a href="#">Chapter 4. Ownlife.</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="">PART TWO. Acts Against the Party.</a>
+					<a href="#">PART TWO. Acts Against the Party.</a>
 					<ul>
-						<li><a href="">Chapter 5. A Political Act.</a></li>
-						<li><a href="">Chapter 6. They Can't Get Inside You.</a></li>
-						<li><a href="">Chapter 7. Our Leader, Emmanuel Goldstein.</a></li>
-						<li><a href="">Chapter 8. Doublethink.</a></li>
+						<li><a href="#">Chapter 5. A Political Act.</a></li>
+						<li><a href="#">Chapter 6. They Can't Get Inside You.</a></li>
+						<li><a href="#">Chapter 7. Our Leader, Emmanuel Goldstein.</a></li>
+						<li><a href="#">Chapter 8. Doublethink.</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href="">PART THREE. Inside Winston Smith's Head.</a>
+					<a href="#">PART THREE. Inside Winston Smith's Head.</a>
 					<ul>
-						<li><a href="">Chapter 9. Miniluv.</a></li>
-						<li><a href="">Chapter 10. Two and Two Make Five.</a></li>
-						<li><a href="">Chapter 11. The Last Man</a></li>
-						<li><a href="">Chapter 12. Room 101.</a></li>
+						<li><a href="#">Chapter 9. Miniluv.</a></li>
+						<li><a href="#">Chapter 10. Two and Two Make Five.</a></li>
+						<li><a href="#">Chapter 11. The Last Man</a></li>
+						<li><a href="#">Chapter 12. Room 101.</a></li>
 					</ul>
 				</li>
 			</ul>
-		</div>#
+		</div>}
 
         <div class="book-page">
 

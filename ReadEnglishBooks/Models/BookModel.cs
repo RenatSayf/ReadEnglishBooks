@@ -18,7 +18,7 @@ namespace ReadEnglishBooks.Models
             {
                 string readText = File.ReadAllText(path);
                 string result = string.Join(" ", readText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                var book_array = result.Split('#');
+                var book_array = result.Split('}');
                 pagesArray = book_array[2].Split('|');
                 var book_header_arr = book_array[0].Split('.');
                 book_name = book_header_arr[0].Trim();
