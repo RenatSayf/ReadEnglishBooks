@@ -54,7 +54,9 @@ function getSelectingWords(sentence)
 {
     var selectText = sentence;
     selectText = selectText.toLowerCase();
-    selectText = selectText.replace(/\s/g, '|');
+    selectText = selectText.replace(/^'/g, '');
+    selectText = selectText.replace(/\s'/g, ' ');
+    selectText = selectText.replace(/'\s/g, ' ');    
     selectText = selectText.replace(/\./g, '');
     selectText = selectText.replace(/\!/g, '');
     selectText = selectText.replace(/\?/g, '');
@@ -63,8 +65,10 @@ function getSelectingWords(sentence)
     selectText = selectText.replace(/\;/g, '');
     selectText = selectText.replace(/\t/g, '');
     selectText = selectText.replace(/\v/g, '');
+    selectText = selectText.replace(/\s/g, '|');
 
     var wordsArray = selectText.split('|');
+    debugger;
     var obj = {};
     for (var j = 0; j < wordsArray.length; j++)
     {
