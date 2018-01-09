@@ -2,9 +2,9 @@
 //=================================================================================================
 function fontSizeAnim(jQbj)
 {
-    $(jQbj).animate({ fontSize: "200%" }, 200, function ()
+    $(jQbj).animate({ fontSize: "200%", color: "#FFFF00" }, 200, function ()
     {
-        $(jQbj).animate({ fontSize: "140%" }, 200, function ()
+        $(jQbj).animate({ fontSize: "140%", color: "#FFFFFF" }, 200, function ()
         {
             if (countRepeat < 4)
             {

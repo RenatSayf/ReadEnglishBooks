@@ -68,7 +68,6 @@ function getSelectingWords(sentence)
     selectText = selectText.replace(/\s/g, '|');
 
     var wordsArray = selectText.split('|');
-    debugger;
     var obj = {};
     for (var j = 0; j < wordsArray.length; j++)
     {

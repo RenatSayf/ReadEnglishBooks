@@ -213,7 +213,7 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_sentence)
         {
-            $(this).not(".clicked").css("background-color", background_of_hover);
+            $(this).not(".clicked").css("background-color", background_of_hover);            
         }
     },
         function ()
@@ -306,7 +306,7 @@ function sentenceEvents()
                 $("#translated-text").text("");
             }
         }
-    });
+    });    
 }
 //===========================================================================================================
 function resetWordSelection()
@@ -417,7 +417,18 @@ $(document).ready(function ()
             }
         });
 
-    
+    $('#book-play-panel').popover
+        ({
+            placement: "top"
+
+        });
+    $("#book-play-panel").popover("show").on('shown.bs.popover', function ()
+    {
+        setTimeout(function ()
+        {
+            $("#book-play-panel").popover("hide");
+        }, 10000);
+    });
     
     
     return;
