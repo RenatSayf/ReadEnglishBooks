@@ -356,7 +356,7 @@ document.getElementById("fa_play").onclick = function (event)
         speech(arrayOfSeletion[words_count]);
     }
     event.target.style.color = '';
-}
+};
 //===========================================================================================================
 $("#fa_back").click(function (event)
 {
@@ -426,7 +426,7 @@ $(document).ready(function ()
     {
         setTimeout(function ()
         {
-            $("#book-play-panel").popover("hide");
+            $("#book-play-panel").popover("destroy");
         }, 10000);
     });
     
@@ -438,7 +438,7 @@ window.onload = function ()
 {
     var variant = $("#learn-mode").selectpicker('val', learn_mode);
     return;
-}
+};
 //===========================================================================================================
 function showDialogComplete(title, message)
 {
@@ -482,7 +482,7 @@ $("#page").on("mouseup", function ()
 {
     var text = getSelectionText();
     //debugger;
-    if (text != "")
+    if (text !== "")
     {
         $("#target-text").text(text);
         $("#trans-select-panel").modal("show");

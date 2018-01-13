@@ -20,7 +20,7 @@ function getStudyWords(words_array, learn_mode)
                         Eng: pageWordsObj[j].Eng,
                         Rus: pageWordsObj[j].Rus,
                         IsRepeat: pageWordsObj[j].IsRepeat
-                    }
+                    };
                     studyWordsObj.push(obj);
                 }
             }
