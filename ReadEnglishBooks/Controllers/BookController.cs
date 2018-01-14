@@ -32,6 +32,19 @@ namespace ReadEnglishBooks.Controllers
             
         }
 
+        public async Task<JsonResult> CreateBookDBFromFile(string book_folder, string book_name)
+        {
+            book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
+            if (book != null)
+            {
+                var sqliteHelper = new SqliteHelper();
+                book_name = book_name.Split('.').ElementAt(0);
+                var res1 = await sqliteHelper.AddpLabelToBookTable(book_folder, book_name, book.Author, book.BookName, book.BookContents);
+                var res2 = await sqliteHelper.AddpPagesToBookTable(book_folder, book_name, book.PagesArray);
+            }
+            return Json(null);
+        }
+
         // GET: Book
         public ActionResult BookView(string book_folder, string book_name)
         {
@@ -59,7 +72,7 @@ namespace ReadEnglishBooks.Controllers
             return View();
         }
 
-        public JsonResult GetPage(int page)
+        public async Task<JsonResult> GetPage(int page)
         {
             List<string> pages = new List<string>();
             
@@ -77,23 +90,35 @@ namespace ReadEnglishBooks.Controllers
                         }
                     }
 
-                    pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
+                    //pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
+                    //    pageNumberTag +
+                    //    (page) + 
+                    //    divTag +
+                    //    pageCountTag +
+                    //    book.PagesArray.Count() +
+                    //    divTag);
+                    SqliteHelper sqliteHelper = new SqliteHelper();
+                    var p = await sqliteHelper.GetBookPage("GO1984", "GO1984", page);
+
+                    pages.Add(String.Join(String.Empty, p.ToArray()) +
                         pageNumberTag +
-                        (page) + 
+                        (page) +
                         divTag +
                         pageCountTag +
                         book.PagesArray.Count() +
                         divTag);
-                    SqliteHelper sqliteHelper = new SqliteHelper();
+
                     var wordsList = sqliteHelper.GetWordsListAsync(book.PagesArray.ElementAt(page - 1));
-                    pages.Add(JsonConvert.SerializeObject(wordsList));
-                    
-                }
-                
+                    pages.Add(JsonConvert.SerializeObject(wordsList));                    
+                }                
             }
             catch (ArgumentNullException)
             {
                 pages.Add(" нига не найдена");
+            }
+            catch(Exception ex)
+            {
+                pages.Add(ex.Message);
             }
             return Json(pages);
         }
@@ -188,7 +213,6 @@ namespace ReadEnglishBooks.Controllers
                 response = new Dictionary<string, string>();
                 response.Add("message", "Ok");
                 response.Add("res", res.ToString());
-
             }
             else
             {

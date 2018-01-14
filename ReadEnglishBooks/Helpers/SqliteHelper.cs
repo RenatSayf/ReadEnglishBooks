@@ -20,6 +20,72 @@ namespace ReadEnglishBooks.Helpers
             return new SQLiteConnection(string.Format("Data Source={0};", dbName));
         }
 
+        public SQLiteConnection SetConnectToBookDataBase(string dataBaseFolder, string dataBaseName)
+        {
+            var dbName = Directory.GetCurrentDirectory() + "\\Assets\\" + dataBaseFolder + "\\" + dataBaseName + ".db";
+            return new SQLiteConnection(string.Format("Data Source={0};", dbName));
+        }
+
+        public async Task<int> AddpLabelToBookTable(string dataBaseFolder, string dataBaseName, string author, string header, string contents)
+        {
+            int res = -1;
+            author = author.Replace("'", "''");
+            header = header.Replace("'", "''");
+            contents = contents.Replace("'", "''");
+            string cmd = string.Format("INSERT OR REPLACE INTO Book(Author, Header, BookContent) VALUES('{0}', '{1}', '{2}')", author, header, contents);
+            SQLiteConnection connection = SetConnectToBookDataBase(dataBaseFolder, dataBaseName);
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+            try
+            {
+                connection.Open();
+                await new SQLiteCommand("DELETE FROM Book", connection).ExecuteNonQueryAsync();
+                res = await sqlitecommand.ExecuteNonQueryAsync();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                //if (connection != null) connection.Dispose();
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+
+            return res;
+        }
+
+        public async Task<int> AddpPagesToBookTable(string dataBaseFolder, string dataBaseName, string[] pages)
+        {
+            int res = -1;
+            string startCmd = string.Format(@"INSERT OR REPLACE INTO Book(BookPage) VALUES ");
+            string endCmd = "";
+            foreach (var item in pages)
+            {
+                endCmd += "('" + item.Replace("'", "''") + "'),";
+            }
+            var cmd = startCmd + endCmd.Trim(',');
+            SQLiteConnection connection = SetConnectToBookDataBase(dataBaseFolder, dataBaseName);
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+            try
+            {
+                connection.Open();
+                res = await sqlitecommand.ExecuteNonQueryAsync();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                //if (connection != null) connection.Dispose();
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+
+            return res;
+        }
+
         public async Task<int> AddEntiesToTable(List<Word> list)
         {
             int res = -1;
@@ -139,6 +205,45 @@ namespace ReadEnglishBooks.Helpers
             }
 
             return wordsList;
+        }
+
+        public async Task<string> GetBookPage(string db_folder, string db_name, int page_number)
+        {
+            string page = null;
+            string cmd = string.Format("SELECT * FROM Book Where RowId = {0}", page_number + 1);
+            SQLiteConnection connection = SetConnectToBookDataBase(db_folder, db_name);
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+
+            try
+            {
+                connection.Open();
+                var reader = await sqlitecommand.ExecuteReaderAsync();
+
+                List<string> fieldList = new List<string>();
+                if (reader.HasRows)
+                {
+                    foreach (DbDataRecord record in reader)
+                    {
+                        for (int i = 0; i < record.FieldCount; i++)
+                        {
+                            fieldList.Add(record[i].ToString());
+                        }                        
+                    }
+                    page = fieldList.ElementAt(3);
+                }
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                //if (connection != null) connection.Dispose();
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+
+            return page;
         }
 
 
