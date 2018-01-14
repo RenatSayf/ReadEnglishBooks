@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using ReadEnglishBooks.Data;
 using System.Data.Entity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ReadEnglishBooks.Controllers
 {
@@ -24,6 +26,11 @@ namespace ReadEnglishBooks.Controllers
         private string pageNumberTag = "<br/><div class='page-number'>";
         private string divTag = "</div>";
         private string pageCountTag = "<br/><div class='page-count' hidden>";
+        
+        public BookController()
+        {
+            
+        }
 
         // GET: Book
         public ActionResult BookView(string book_folder, string book_name)
@@ -34,6 +41,20 @@ namespace ReadEnglishBooks.Controllers
                 ViewBag.BookName = book.BookName;
                 ViewBag.BookAuthor = book.Author;
                 ViewBag.BookContents = book.BookContents;
+                using (ApplicationDbContext db = ApplicationDbContext.Create())
+                {
+                    var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.BookName = book_name;
+                        ViewBag.pageNumber = user.Bookmark;
+                        db.SaveChanges(); 
+                    }
+                    else
+                    {
+                        ViewBag.pageNumber = 1;
+                    }
+                }
             }
             return View();
         }
@@ -46,6 +67,16 @@ namespace ReadEnglishBooks.Controllers
             {
                 if (book != null && book.PagesArray.Count() > 0)
                 {
+                    using (ApplicationDbContext db = ApplicationDbContext.Create())
+                    {
+                        var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
+                        if (user != null)
+                        {
+                            user.Bookmark = page;
+                            db.SaveChanges(); 
+                        }
+                    }
+
                     pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
                         pageNumberTag +
                         (page) + 
@@ -56,7 +87,9 @@ namespace ReadEnglishBooks.Controllers
                     SqliteHelper sqliteHelper = new SqliteHelper();
                     var wordsList = sqliteHelper.GetWordsListAsync(book.PagesArray.ElementAt(page - 1));
                     pages.Add(JsonConvert.SerializeObject(wordsList));
-                }                
+                    
+                }
+                
             }
             catch (ArgumentNullException)
             {

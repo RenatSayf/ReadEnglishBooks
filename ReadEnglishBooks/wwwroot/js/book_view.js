@@ -402,7 +402,8 @@ $("#fa_sound").click(function ()
 //===========================================================================================================
 $(document).ready(function ()
 {
-    getPage(1); 
+    var book_number = $("#book-number").text();
+    getPage(parseInt(book_number)); 
 
     $("#volume").slider(
         {
