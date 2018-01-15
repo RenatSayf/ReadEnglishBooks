@@ -23,6 +23,7 @@ namespace ReadEnglishBooks.Controllers
     public class BookController : Controller
     {
         private static BookModel book;
+        private static BookModelDB bookModelDB;
         private string pageNumberTag = "<br/><div class='page-number'>";
         private string divTag = "</div>";
         private string pageCountTag = "<br/><div class='page-count' hidden>";
@@ -68,6 +69,7 @@ namespace ReadEnglishBooks.Controllers
                         ViewBag.pageNumber = 1;
                     }
                 }
+                bookModelDB = new BookModelDB(book_folder, book_name.Split('.').ElementAt(0));
             }
             return View();
         }
@@ -78,6 +80,8 @@ namespace ReadEnglishBooks.Controllers
             
             try
             {
+                var author = await bookModelDB.getBookAuthor();
+                var bookPage = await bookModelDB.getBookPage(page);
                 if (book != null && book.PagesArray.Count() > 0)
                 {
                     using (ApplicationDbContext db = ApplicationDbContext.Create())
