@@ -47,14 +47,14 @@ namespace ReadEnglishBooks.Controllers
         }
 
         // GET: Book
-        public ActionResult BookView(string book_folder, string book_name)
+        public async Task<ActionResult> BookView(string book_folder, string book_name)
         {
             if (book_folder != null && book_name != null)
             {
-                book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
-                ViewBag.BookName = book.BookName;
-                ViewBag.BookAuthor = book.Author;
-                ViewBag.BookContents = book.BookContents;
+                //book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
+                //ViewBag.BookName = book.BookName;
+                //ViewBag.BookAuthor = book.Author;
+                //ViewBag.BookContents = book.BookContents;
                 using (ApplicationDbContext db = ApplicationDbContext.Create())
                 {
                     var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
@@ -62,14 +62,18 @@ namespace ReadEnglishBooks.Controllers
                     {
                         user.BookName = book_name;
                         ViewBag.pageNumber = user.Bookmark;
-                        db.SaveChanges(); 
+                        db.SaveChanges();
                     }
                     else
                     {
                         ViewBag.pageNumber = 1;
                     }
                 }
+                //ViewBag.pageNumber = 1;
                 bookModelDB = new BookModelDB(book_folder, book_name.Split('.').ElementAt(0));
+                ViewBag.BookName = await bookModelDB.getBookHeader();
+                ViewBag.BookAuthor = await bookModelDB.getBookAuthor();
+                ViewBag.BookContents = await bookModelDB.getBookContents();
             }
             return View();
         }
@@ -82,7 +86,7 @@ namespace ReadEnglishBooks.Controllers
             {
                 var author = await bookModelDB.getBookAuthor();
                 var bookPage = await bookModelDB.getBookPage(page);
-                if (book != null && book.PagesArray.Count() > 0)
+                if (bookPage != null)
                 {
                     using (ApplicationDbContext db = ApplicationDbContext.Create())
                     {
@@ -90,7 +94,7 @@ namespace ReadEnglishBooks.Controllers
                         if (user != null)
                         {
                             user.Bookmark = page;
-                            db.SaveChanges(); 
+                            db.SaveChanges();
                         }
                     }
 
@@ -102,21 +106,21 @@ namespace ReadEnglishBooks.Controllers
                     //    book.PagesArray.Count() +
                     //    divTag);
                     SqliteHelper sqliteHelper = new SqliteHelper();
-                    var p = await sqliteHelper.GetBookPage("GO1984", "GO1984", page);
+                    //var p = await sqliteHelper.GetBookPage("GO1984", "GO1984", page);
 
-                    pages.Add(String.Join(String.Empty, p.ToArray()) +
+                    pages.Add(String.Join(String.Empty, bookPage.ToArray()) +
                         pageNumberTag +
                         (page) +
                         divTag +
                         pageCountTag +
-                        book.PagesArray.Count() +
+                        bookModelDB.getPageCount() +
                         divTag);
 
-                    var wordsList = sqliteHelper.GetWordsListAsync(book.PagesArray.ElementAt(page - 1));
+                    var wordsList = sqliteHelper.GetWordsListAsync(bookPage);
                     pages.Add(JsonConvert.SerializeObject(wordsList));                    
                 }                
             }
-            catch (ArgumentNullException)
+            catch (ArgumentNullException ex)
             {
                 pages.Add(" нига не найдена");
             }

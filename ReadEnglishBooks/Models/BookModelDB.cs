@@ -50,7 +50,7 @@ namespace ReadEnglishBooks.Models
         public async Task<string> getBookHeader()
         {
             object header = null;
-            string cmd = string.Format("SELECT BookHeader FROM Book Where RowId = 1");
+            string cmd = string.Format("SELECT Header FROM Book Where RowId = 1");
             SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
             try
             {
@@ -108,6 +108,30 @@ namespace ReadEnglishBooks.Models
             catch (Exception ex)
             {
                 return page.ToString();
+            }
+            finally
+            {
+                connection.Close(); //закрываем базу
+                if (sqlitecommand != null) sqlitecommand.Dispose();
+            }
+        }
+
+        public int getPageCount()
+        {
+            int count = 0;
+            string cmd = string.Format("SELECT COUNT(BookPage) FROM Book");
+            SQLiteCommand sqlitecommand = new SQLiteCommand(cmd, connection);
+            try
+            {
+
+                connection.Open();
+                var countStr = sqlitecommand.ExecuteScalar();
+                var c = int.Parse(countStr.ToString());
+                return int.Parse(countStr.ToString());
+            }
+            catch (Exception ex)
+            {
+                return count;
             }
             finally
             {
