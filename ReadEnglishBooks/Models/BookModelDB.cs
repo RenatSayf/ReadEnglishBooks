@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace ReadEnglishBooks.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return author.ToString();
             }
             finally
@@ -61,6 +63,7 @@ namespace ReadEnglishBooks.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return header.ToString();
             }
             finally
@@ -84,6 +87,7 @@ namespace ReadEnglishBooks.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return contents.ToString();
             }
             finally
@@ -107,6 +111,7 @@ namespace ReadEnglishBooks.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return page.ToString();
             }
             finally
@@ -131,6 +136,7 @@ namespace ReadEnglishBooks.Models
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return count;
             }
             finally

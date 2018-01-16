@@ -27,10 +27,11 @@ namespace ReadEnglishBooks.Controllers
         private string pageNumberTag = "<br/><div class='page-number'>";
         private string divTag = "</div>";
         private string pageCountTag = "<br/><div class='page-count' hidden>";
+        private static ApplicationDbContext db;
         
         public BookController()
         {
-            
+                        
         }
 
         public async Task<JsonResult> CreateBookDBFromFile(string book_folder, string book_name)
@@ -49,13 +50,14 @@ namespace ReadEnglishBooks.Controllers
         // GET: Book
         public async Task<ActionResult> BookView(string book_folder, string book_name)
         {
+            if (User != null && User.Identity.IsAuthenticated)
+            {
+                db = ApplicationDbContext.Create();
+            }
+
             if (book_folder != null && book_name != null)
             {
-                //book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
-                //ViewBag.BookName = book.BookName;
-                //ViewBag.BookAuthor = book.Author;
-                //ViewBag.BookContents = book.BookContents;
-                using (ApplicationDbContext db = ApplicationDbContext.Create())
+                if (db != null)
                 {
                     var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
                     if (user != null)
@@ -64,12 +66,12 @@ namespace ReadEnglishBooks.Controllers
                         ViewBag.pageNumber = user.Bookmark;
                         db.SaveChanges();
                     }
-                    else
-                    {
-                        ViewBag.pageNumber = 1;
-                    }
                 }
-                //ViewBag.pageNumber = 1;
+                else
+                {
+                    ViewBag.pageNumber = 1;
+                }
+
                 bookModelDB = new BookModelDB(book_folder, book_name.Split('.').ElementAt(0));
                 ViewBag.BookName = await bookModelDB.getBookHeader();
                 ViewBag.BookAuthor = await bookModelDB.getBookAuthor();
@@ -88,26 +90,16 @@ namespace ReadEnglishBooks.Controllers
                 var bookPage = await bookModelDB.getBookPage(page);
                 if (bookPage != null)
                 {
-                    using (ApplicationDbContext db = ApplicationDbContext.Create())
+                    if (db != null)
                     {
                         var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
                         if (user != null)
                         {
                             user.Bookmark = page;
                             db.SaveChanges();
-                        }
+                        } 
                     }
-
-                    //pages.Add(String.Join(String.Empty, book.PagesArray.ElementAt(page - 1).ToArray()) + 
-                    //    pageNumberTag +
-                    //    (page) + 
-                    //    divTag +
-                    //    pageCountTag +
-                    //    book.PagesArray.Count() +
-                    //    divTag);
-                    SqliteHelper sqliteHelper = new SqliteHelper();
-                    //var p = await sqliteHelper.GetBookPage("GO1984", "GO1984", page);
-
+                                        
                     pages.Add(String.Join(String.Empty, bookPage.ToArray()) +
                         pageNumberTag +
                         (page) +
@@ -116,17 +108,20 @@ namespace ReadEnglishBooks.Controllers
                         bookModelDB.getPageCount() +
                         divTag);
 
+                    SqliteHelper sqliteHelper = new SqliteHelper();
                     var wordsList = sqliteHelper.GetWordsListAsync(bookPage);
                     pages.Add(JsonConvert.SerializeObject(wordsList));                    
                 }                
             }
             catch (ArgumentNullException ex)
             {
+                Debug.WriteLine(ex.Message);
                 pages.Add(" нига не найдена");
             }
             catch(Exception ex)
             {
                 pages.Add(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
             return Json(pages);
         }
