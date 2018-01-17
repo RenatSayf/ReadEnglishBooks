@@ -234,6 +234,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
+                    <label for="book-contents" title="Содержание">Содержание</label>
+                    <div id="book-contents">@Html.Raw(ViewBag.BookContents)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
                     <label for="learn-mode" title="Режим">Режим обучения</label>
                     <select id="learn-mode" class="selectpicker">
                         <option value="sentence">Учить по предложениям</option>
@@ -244,8 +250,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <label for="book-contents" title="Содержание">Содержание</label>
-                    <div id="book-contents">@Html.Raw(ViewBag.BookContents)</div>
+                    <a class="btn btn-default" href="/Speech/GetVoiceList">
+                        <i class="fa fa-sliders"></i>   Настройки
+                    </a>
                 </div>
             </div>
         </div>

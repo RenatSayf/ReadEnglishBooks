@@ -82,6 +82,26 @@ namespace ReadEnglishBooks.Controllers
             var json_data = JsonConvert.SerializeObject(word);
             return Json(json_data);
         }
+
+        public async Task<JsonResult> GetVoiceList()
+        {
+            Task<JsonResult> task = Task.Run(() =>
+            {
+                var json_data = "";
+                using (var synth = new SpeechSynthesizer())
+                {
+                    var voicesList = synth.GetInstalledVoices();
+                    
+                    foreach (var voice in voicesList)
+                    {
+                        json_data += JsonConvert.SerializeObject(voice.VoiceInfo.AdditionalInfo);
+                    }
+                }
+                return Json(json_data);
+            });
+
+            return await task;
+        }
         
     }
 }
