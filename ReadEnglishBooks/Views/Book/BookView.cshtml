@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ApplicationUser
+@{
 //ViewData["Title"] = ViewBag.title;
 }
 <link rel="stylesheet" href="~/css/side_menu.css" />
@@ -142,6 +143,36 @@
 </div>
 
 
+<div id="settings-panel" class="modal fade">
+    <div  id="dialogContent" class="modal-dialog">
+        <div class="modal-content not-transparenr">
+            <div class="modal-header">
+                <div>Настройки</div>
+            </div>
+            <div class="container-fluid">
+                <label for="en-voices-list">Английское озвучивание</label>
+                <select id="en-voices-list" class="selectpicker"></select>
+                <br />
+                <br />
+
+                <label for="ru-voices-list">Русское озвучивание</label>
+                <select id="ru-voices-list" class="selectpicker"></select>
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-12 col-sm-6 col-md-6 text-center">
+                    <a id="btn-save-settings" class="btn btn-success" href="#">Сохранить настройки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #settings-panel {
+            height: 300px;
+        }
+    </style>
+</div>
+
 
 
 <div class="container">
@@ -250,7 +281,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <a class="btn btn-default" href="/Speech/GetVoiceList">
+                    <a id="btn-settings" class="btn btn-default" data-toggle="modal" onclick="btnSettings_OnLick()">
                         <i class="fa fa-sliders"></i>   Настройки
                     </a>
                 </div>

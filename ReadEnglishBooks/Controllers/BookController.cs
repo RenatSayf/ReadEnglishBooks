@@ -227,7 +227,38 @@ namespace ReadEnglishBooks.Controllers
             return Json(response);
         }
 
+        public async Task<JsonResult> GetSettings()
+        {
+            Task<JsonResult> task = Task.Run(() =>
+            {
+                var json_data = "";
+                ApplicationUser user;
+                try
+                {
+                    user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    user = null;
+                }
+                if (user != null)
+                {
+                    
+                }
+                else
+                {
+                    var appSettings = new AppSettings();
+                    List<List<string>> list = new List<List<string>>();
+                    list.Add(appSettings.EngVoices);
+                    list.Add(appSettings.RusVoices);
+                    json_data = JsonConvert.SerializeObject(list);                    
+                    
+                }
+                return Json(json_data);
+            });
 
+            return await task;
+        }
 
 
 

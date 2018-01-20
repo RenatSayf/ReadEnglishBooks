@@ -42,6 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Views\Shared\Components\Settings\" />
     <Folder Include="wwwroot\images\booksimages\" />
   </ItemGroup>
 

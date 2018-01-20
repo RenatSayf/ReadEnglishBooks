@@ -515,6 +515,44 @@ $(".btn-trans-by-text").click(function (e)
         dataType: 'JSON'
     });
 });
+//===========================================================================================================
+function btnSettings_OnLick()
+{
+    $.ajax({
+        type: 'POST',
+        url: '/Book/GetSettings',
+        success: function (data)
+        {
+            if (data.length >= 2)
+            {
+                $("#en-voices-list").empty();
+                var settings_obj = JSON.parse(data);
+                for (var i = 0; i < settings_obj[0].length; i++)
+                {
+                    var en_voice = settings_obj[0][i];
+                    $("#en-voices-list").append("<option value='" + en_voice + "'>" + en_voice + "</option>");
+                    $("#en-voices-list").selectpicker('refresh');
+                }
+
+                $("#ru-voices-list").empty();
+                for (var i = 0; i < settings_obj[1].length; i++)
+                {
+                    var ru_voice = settings_obj[1][i];
+                    $("#ru-voices-list").append("<option value='" + ru_voice + "'>" + ru_voice + "</option>");
+                    $("#ru-voices-list").selectpicker('refresh');
+                }
+            }
+
+            $("#settings-panel").modal("show");
+            return;
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax:\n" + "status - " + status + "\nerror - " + error);
+        },
+        dataType: 'JSON'
+    });
+}
 
 
 
