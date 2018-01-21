@@ -27,11 +27,12 @@ namespace ReadEnglishBooks.Controllers
                 using (var synth = new SpeechSynthesizer())
                 {
                     var voices = synth.GetInstalledVoices();
-
+                    
                     using (var stream = new MemoryStream())
                     {
                         synth.SetOutputToWaveStream(stream);
-
+                        var is_auth = HttpContext.User.Identity.IsAuthenticated;
+                        
                         foreach (var item in voices)
                         {
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US")

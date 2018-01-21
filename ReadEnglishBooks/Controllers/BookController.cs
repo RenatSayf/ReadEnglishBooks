@@ -233,20 +233,30 @@ namespace ReadEnglishBooks.Controllers
             {
                 var json_data = "";
                 ApplicationUser user;
+                List<Dictionary<string, List<string>>> list = new List<Dictionary<string, List<string>>>();
+                Dictionary<string, List<string>> userVoices = new Dictionary<string, List<string>>();
+                var is_auth = HttpContext.User.Identity.IsAuthenticated;
+                
                 try
                 {
                     user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
+                    var listVoices = new List<string> { user.EnVoiceName, user.RuVoiceName };
+                    userVoices.Add("userVoices", listVoices);
+                    list.Add(userVoices);
+                    
                 }
                 catch (Exception)
                 {
                     user = null;
                 }
-                if (user != null)
+                if (user == null)
                 {
-                    
+                    var listVoices = new List<string> { null, null };
+                    userVoices.Add("userVoices", listVoices);
+                    list.Add(userVoices);
                 }
                 var appSettings = new AppSettings();
-                List<Dictionary<string, List<string>>> list = new List<Dictionary<string, List<string>>>();
+                
                 list.Add(appSettings.EngVoices);
                 list.Add(appSettings.RusVoices);
                 json_data = JsonConvert.SerializeObject(list);
