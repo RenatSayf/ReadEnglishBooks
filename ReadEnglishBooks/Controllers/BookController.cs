@@ -27,7 +27,8 @@ namespace ReadEnglishBooks.Controllers
         private string pageNumberTag = "<br/><div class='page-number'>";
         private string divTag = "</div>";
         private string pageCountTag = "<br/><div class='page-count' hidden>";
-        private static ApplicationDbContext db;
+        public static ApplicationDbContext db;
+        public static ApplicationUser user;
         
         public BookController()
         {
@@ -53,13 +54,13 @@ namespace ReadEnglishBooks.Controllers
             if (User != null && User.Identity.IsAuthenticated)
             {
                 db = ApplicationDbContext.Create();
+                user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
             }
 
             if (book_folder != null && book_name != null)
             {
                 if (db != null)
                 {
-                    var user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
                     if (user != null)
                     {
                         user.BookName = book_name;

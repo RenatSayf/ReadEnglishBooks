@@ -20,7 +20,7 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speech(string enword, string ruword)
+        public async Task<ActionResult> Speech(string enword, string ruword, string en_voice, string ru_voice)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -31,11 +31,9 @@ namespace ReadEnglishBooks.Controllers
                     using (var stream = new MemoryStream())
                     {
                         synth.SetOutputToWaveStream(stream);
-                        var is_auth = HttpContext.User.Identity.IsAuthenticated;
-                        
                         foreach (var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US")
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 break;
@@ -45,7 +43,7 @@ namespace ReadEnglishBooks.Controllers
 
                         foreach (var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU")
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ru_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 break;
@@ -58,7 +56,7 @@ namespace ReadEnglishBooks.Controllers
 
                         foreach(var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US")
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 break;

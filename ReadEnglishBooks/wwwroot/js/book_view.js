@@ -430,8 +430,9 @@ $(document).ready(function ()
             $("#book-play-panel").popover("destroy");
         }, 10000);
     });
-    
-    
+
+    getUserSettings();
+
     return;
 });
 //===========================================================================================================
@@ -518,6 +519,11 @@ $(".btn-trans-by-text").click(function (e)
 //===========================================================================================================
 function btnSettings_OnLick()
 {
+    $("#settings-panel").modal("show");
+}
+//===========================================================================================================
+function getUserSettings()
+{
     $.ajax({
         type: 'POST',
         url: '/Book/GetSettings',
@@ -552,7 +558,6 @@ function btnSettings_OnLick()
                 }
             }
 
-            $("#settings-panel").modal("show");
             return;
         },
         error: function (xhr, status, error)
@@ -574,6 +579,7 @@ function btnSaveSetings_OnClick()
         success: function (data)
         {
             //debugger;
+            $("#settings-panel").modal("hide");
         },
         error: function (xhr, status, error)
         {
