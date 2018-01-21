@@ -13,7 +13,8 @@ namespace ReadEnglishBooks.Models
     {
         public string BookName { get; set; }
         public int Bookmark { get; set; }
-
+        public string EnVoiceName { get; set; }
+        public string RuVoiceName { get; set; }
         
     }
 }

@@ -143,15 +143,16 @@
 </div>
 
 
+
 <div id="settings-panel" class="modal fade">
-    <div  id="dialogContent" class="modal-dialog">
+    <div id="dialogContent" class="modal-dialog">
         <div class="modal-content not-transparenr">
             <div class="modal-header">
                 <div>Настройки</div>
             </div>
             <div class="container-fluid">
                 <label for="en-voices-list">Английское озвучивание</label>
-                <select id="en-voices-list" class="selectpicker"></select>
+                <select id="en-voices-list" name="en_voice" class="selectpicker"></select>
                 <br />
                 <br />
 
@@ -161,17 +162,18 @@
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12 col-sm-6 col-md-6 text-center">
-                    <a id="btn-save-settings" class="btn btn-success" href="#">Сохранить настройки</a>
+                    <a id="btn-save-settings" class="btn btn-success" href="#" onclick="btnSaveSetings_OnClick()">Сохранить настройки</a>                    
                 </div>
             </div>
         </div>
     </div>
     <style>
         #settings-panel {
-            height: 300px;
+            height: 700px;
         }
     </style>
 </div>
+
 
 
 

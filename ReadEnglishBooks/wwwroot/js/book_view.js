@@ -527,17 +527,18 @@ function btnSettings_OnLick()
             {
                 $("#en-voices-list").empty();
                 var settings_obj = JSON.parse(data);
-                for (var i = 0; i < settings_obj[0].length; i++)
+                debugger;
+                for (var i = 0; i < settings_obj[0].en_voices.length; i++)
                 {
-                    var en_voice = settings_obj[0][i];
+                    var en_voice = settings_obj[0].en_voices[i];
                     $("#en-voices-list").append("<option value='" + en_voice + "'>" + en_voice + "</option>");
                     $("#en-voices-list").selectpicker('refresh');
                 }
 
                 $("#ru-voices-list").empty();
-                for (var i = 0; i < settings_obj[1].length; i++)
+                for (var i = 0; i < settings_obj[1].ru_voices.length; i++)
                 {
-                    var ru_voice = settings_obj[1][i];
+                    var ru_voice = settings_obj[1].ru_voices[i];
                     $("#ru-voices-list").append("<option value='" + ru_voice + "'>" + ru_voice + "</option>");
                     $("#ru-voices-list").selectpicker('refresh');
                 }
@@ -553,6 +554,35 @@ function btnSettings_OnLick()
         dataType: 'JSON'
     });
 }
+//===========================================================================================================
+function btnSaveSetings_OnClick()
+{
+    var en_voice = $("#en-voices-list").selectpicker('val');
+    var ru_voice = $("#ru-voices-list").selectpicker('val');
+
+    $.ajax({
+        type: 'POST',
+        url: '/Book/SetSettings?en_voice=' + en_voice + '&ru_voice=' + ru_voice,
+        success: function (data)
+        {
+            debugger;
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax:\n" + "status - " + status + "\nerror - " + error);
+        },
+        dataType: 'JSON'
+
+    });
+    
+}
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,9 @@
+﻿Nuget Package Manager Console:
+
+enable-migrations	Включение миграций
+
+Add-Migration Имя_миграции		формирует на основе скаффолдинга следующую миграцию, исходя из внесенных в модель изменений.
+
+Update-Database		применяет все отложенные изменения к базе данных. 
+
+Update-Database –Verbose		чтобы можно было просмотреть код SQL, запускаемый из Code First Migrations.

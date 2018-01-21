@@ -9,11 +9,12 @@ namespace ReadEnglishBooks.Models
 {
     public class AppSettings
     {
-        public List<string> EngVoices
+        public Dictionary<string, List<string>> EngVoices
         {
             get
             {
                 var voices = new SpeechSynthesizer().GetInstalledVoices();
+                Dictionary<string, List<string>> voicesList = new Dictionary<string, List<string>>();
                 List<string> list = new List<string>();
                 foreach (var voice in voices)
                 {
@@ -22,24 +23,27 @@ namespace ReadEnglishBooks.Models
                         list.Add(voice.VoiceInfo.Name);
                     }
                 }
-                return list;
+                voicesList.Add("en_voices", list);
+                return voicesList;
             }
         }
 
-        public List<string> RusVoices
+        public Dictionary<string, List<string>> RusVoices
         {
             get
             {
                 var voices = new SpeechSynthesizer().GetInstalledVoices();
+                Dictionary<string, List<string>> voicesList = new Dictionary<string, List<string>>();
                 List<string> list = new List<string>();
                 foreach (var voice in voices)
                 {
                     if (voice.Enabled && voice.VoiceInfo.Culture.Name == "ru-RU")
                     {
-                        list.Add(voice.VoiceInfo.Name);
+                        list.Add(voice.VoiceInfo.Name);                       
                     }
                 }
-                return list;
+                voicesList.Add("ru_voices", list);
+                return voicesList;
             }
         }
     }
