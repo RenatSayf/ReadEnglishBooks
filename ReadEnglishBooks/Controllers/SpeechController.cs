@@ -26,7 +26,7 @@ namespace ReadEnglishBooks.Controllers
             {
                 using (var synth = new SpeechSynthesizer())
                 {
-                    var voices = synth.GetInstalledVoices();
+                    var voices = synth.GetInstalledVoices();                    
                     
                     using (var stream = new MemoryStream())
                     {

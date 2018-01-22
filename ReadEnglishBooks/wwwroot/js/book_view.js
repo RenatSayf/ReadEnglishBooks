@@ -554,7 +554,6 @@ function getUserSettings()
                     $("#ru-voices-list").selectpicker('val', settings_obj.userVoices[1]);
                 }
             }
-
             return;
         },
         error: function (xhr, status, error)
@@ -583,9 +582,7 @@ function btnSaveSetings_OnClick()
             alert("Ошибка ajax:\n" + "status - " + status + "\nerror - " + error);
         },
         dataType: 'JSON'
-
-    });
-    
+    });    
 }
 
 

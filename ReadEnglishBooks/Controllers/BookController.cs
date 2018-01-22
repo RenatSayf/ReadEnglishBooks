@@ -247,9 +247,8 @@ namespace ReadEnglishBooks.Controllers
                     var listVoices = new List<string> { null, null };
                     settingsList.Add("userVoices", null);
                 }
-                var appSettings = new AppSettings();                
-                settingsList.Add("en_voices", appSettings.EngVoices);
-                settingsList.Add("ru_voices", appSettings.RusVoices);
+                settingsList.Add("en_voices", AppSettings.GetInstance().EngVoices);
+                settingsList.Add("ru_voices", AppSettings.GetInstance().RusVoices);
                 json_data = JsonConvert.SerializeObject(settingsList);
                 
                 return Json(json_data);

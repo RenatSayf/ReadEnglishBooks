@@ -9,6 +9,29 @@ namespace ReadEnglishBooks.Models
 {
     public class AppSettings
     {
+        private static AppSettings instance;
+        private static object syncRoot = new Object(); 
+
+        protected AppSettings()
+        {
+
+        }
+
+        public static AppSettings GetInstance()
+        {
+            if (instance == null)
+            {
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                    {
+                        instance = new AppSettings(); 
+                    } 
+                }
+            }
+            return instance;
+        }
+
         public List<string> EngVoices
         {
             get
