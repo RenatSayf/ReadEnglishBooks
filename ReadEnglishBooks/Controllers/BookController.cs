@@ -234,33 +234,23 @@ namespace ReadEnglishBooks.Controllers
             {
                 var json_data = "";
                 ApplicationUser user;
-                List<Dictionary<string, List<string>>> list = new List<Dictionary<string, List<string>>>();
-                Dictionary<string, List<string>> userVoices = new Dictionary<string, List<string>>();
+                Dictionary<string, List<string>> settingsList = new Dictionary<string, List<string>>();
                 var is_auth = HttpContext.User.Identity.IsAuthenticated;
                 
-                try
+                if (is_auth)
                 {
                     user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
-                    var listVoices = new List<string> { user.EnVoiceName, user.RuVoiceName };
-                    userVoices.Add("userVoices", listVoices);
-                    list.Add(userVoices);
-                    
+                    settingsList.Add("userVoices", new List<string> { user.EnVoiceName, user.RuVoiceName });
                 }
-                catch (Exception)
-                {
-                    user = null;
-                }
-                if (user == null)
+                else
                 {
                     var listVoices = new List<string> { null, null };
-                    userVoices.Add("userVoices", listVoices);
-                    list.Add(userVoices);
+                    settingsList.Add("userVoices", null);
                 }
-                var appSettings = new AppSettings();
-                
-                list.Add(appSettings.EngVoices);
-                list.Add(appSettings.RusVoices);
-                json_data = JsonConvert.SerializeObject(list);
+                var appSettings = new AppSettings();                
+                settingsList.Add("en_voices", appSettings.EngVoices);
+                settingsList.Add("ru_voices", appSettings.RusVoices);
+                json_data = JsonConvert.SerializeObject(settingsList);
                 
                 return Json(json_data);
             });

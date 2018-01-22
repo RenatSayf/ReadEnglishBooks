@@ -529,32 +529,29 @@ function getUserSettings()
         url: '/Book/GetSettings',
         success: function (data)
         {
-            if (data.length >= 2)
+            if (data !== null)
             {
                 $("#en-voices-list").empty();
                 var settings_obj = JSON.parse(data);
                 //debugger;
-                for (var i = 0; i < settings_obj[1].en_voices.length; i++)
+                for (var i = 0; i < settings_obj.en_voices.length; i++)
                 {
-                    var en_voice = settings_obj[1].en_voices[i];
+                    var en_voice = settings_obj.en_voices[i];
                     $("#en-voices-list").append("<option value='" + en_voice + "'>" + en_voice + "</option>");
                     $("#en-voices-list").selectpicker('refresh');
                 }
 
                 $("#ru-voices-list").empty();
-                for (var i = 0; i < settings_obj[2].ru_voices.length; i++)
+                for (var i = 0; i < settings_obj.ru_voices.length; i++)
                 {
-                    var ru_voice = settings_obj[2].ru_voices[i];
+                    var ru_voice = settings_obj.ru_voices[i];
                     $("#ru-voices-list").append("<option value='" + ru_voice + "'>" + ru_voice + "</option>");
                     $("#ru-voices-list").selectpicker('refresh');
                 }
-                if (settings_obj[0].userVoices[0] !== null)
+                if (settings_obj.userVoices.length >= 2)
                 {
-                    $("#en-voices-list").selectpicker('val', settings_obj[0].userVoices[0]);
-                }
-                if (settings_obj[0].userVoices[1] !== null)
-                {
-                    $("#ru-voices-list").selectpicker('val', settings_obj[0].userVoices[1]);
+                    $("#en-voices-list").selectpicker('val', settings_obj.userVoices[0]);
+                    $("#ru-voices-list").selectpicker('val', settings_obj.userVoices[1]);
                 }
             }
 
