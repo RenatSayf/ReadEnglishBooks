@@ -20,13 +20,18 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speech(string enword, string ruword, string en_voice, string ru_voice)
+        public async Task<ActionResult> Speech(string enword,
+                                               string ruword, 
+                                               string en_voice, 
+                                               string ru_voice,
+                                               int en_rate,
+                                               int ru_rate)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
                 using (var synth = new SpeechSynthesizer())
                 {
-                    var voices = synth.GetInstalledVoices();                    
+                    var voices = synth.GetInstalledVoices();
                     
                     using (var stream = new MemoryStream())
                     {
@@ -36,6 +41,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
+                                synth.Rate = en_rate;
                                 break;
                             }
                         }
@@ -46,6 +52,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ru_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
+                                synth.Rate = ru_rate;
                                 break;
                             }
                         }
@@ -59,6 +66,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
+                                synth.Rate = en_rate;
                                 break;
                             }
                         }

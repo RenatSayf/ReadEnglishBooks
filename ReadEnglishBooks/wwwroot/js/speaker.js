@@ -31,7 +31,7 @@ function speech(en_word)
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');
 
-    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice);
+    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + (-5) + "&ru_rate=" + (0));
     $('#audio')[0].play();
      
 }
