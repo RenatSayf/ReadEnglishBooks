@@ -584,6 +584,18 @@ function btnSaveSetings_OnClick()
         dataType: 'JSON'
     });    
 }
+//===========================================================================================================
+function enRate_OnChange()
+{
+    var sel = $("#en-rate").selectpicker('val');
+    alert("Выбран " + sel);
+}
+//===========================================================================================================
+function ruRate_OnChange()
+{
+    var sel = $("#ru-rate").selectpicker('val');
+    alert("Выбран " + sel);
+}
 
 
 

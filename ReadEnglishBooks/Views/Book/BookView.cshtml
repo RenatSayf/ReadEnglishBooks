@@ -151,13 +151,37 @@
                 <div>Настройки</div>
             </div>
             <div class="container-fluid">
-                <label for="en-voices-list">Английское озвучивание</label>
-                <select id="en-voices-list" name="en_voice" class="selectpicker"></select>
-                <br />
-                <br />
-
-                <label for="ru-voices-list">Русское озвучивание</label>
-                <select id="ru-voices-list" class="selectpicker"></select>
+                <label>Озвучивание</label>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label for="en-voices-list">Английский</label>
+                        <select id="en-voices-list" name="en_voice" class="selectpicker"></select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label for="ru-voices-list">Русский</label>
+                        <select id="ru-voices-list" class="selectpicker"></select>
+                    </div>
+                </div>
+                <hr />
+                <label>Беглость речи</label>
+                <div class="row">                    
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label for="en-rate">Английский</label>
+                        <select id="en-rate" name="en_rate" class="selectpicker" onchange="enRate_OnChange()">
+                            <option>Нормально</option>
+                            <option>Медленно</option>
+                            <option>Быстро</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label for="ru-rate">Русский</label>
+                        <select id="ru-rate" name="ru_rate" class="selectpicker" onchange="ruRate_OnChange()">
+                            <option>Нормально</option>
+                            <option>Медленно</option>
+                            <option>Быстро</option>
+                        </select>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
