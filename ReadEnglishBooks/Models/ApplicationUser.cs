@@ -15,6 +15,8 @@ namespace ReadEnglishBooks.Models
         public int Bookmark { get; set; }
         public string EnVoiceName { get; set; }
         public string RuVoiceName { get; set; }
+        public string EnVoiceRate { get; set; }
+        public string RuVoiceRate { get; set; }
         
     }
 }

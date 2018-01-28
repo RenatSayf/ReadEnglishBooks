@@ -24,8 +24,8 @@ namespace ReadEnglishBooks.Controllers
                                                string ruword, 
                                                string en_voice, 
                                                string ru_voice,
-                                               int en_rate,
-                                               int ru_rate)
+                                               string en_rate,
+                                               string ru_rate)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -35,13 +35,38 @@ namespace ReadEnglishBooks.Controllers
                     
                     using (var stream = new MemoryStream())
                     {
+                        int enRate, ruRate;
+                        switch (en_rate)
+                        {
+                            case "fast":
+                                enRate = 5;
+                                break;
+                            case "slow":
+                                enRate = -5;
+                                break;
+                            default:
+                                enRate = 0;
+                                break;
+                        }
+                        switch (ru_rate)
+                        {
+                            case "fast":
+                                ruRate = 5;
+                                break;
+                            case "slow":
+                                ruRate = -5;
+                                break;
+                            default:
+                                ruRate = 0;
+                                break;
+                        }
                         synth.SetOutputToWaveStream(stream);
                         foreach (var item in voices)
                         {
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = en_rate;
+                                synth.Rate = enRate;
                                 break;
                             }
                         }
@@ -52,7 +77,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ru_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = ru_rate;
+                                synth.Rate = ruRate;
                                 break;
                             }
                         }
@@ -66,7 +91,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = en_rate;
+                                synth.Rate = enRate;
                                 break;
                             }
                         }

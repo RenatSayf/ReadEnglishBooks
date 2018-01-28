@@ -30,8 +30,10 @@ function speech(en_word)
 
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');
+    var en_rate = $("#en-rate").selectpicker('val');
+    var ru_rate = $("#ru-rate").selectpicker('val');
 
-    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + (-5) + "&ru_rate=" + (0));
+    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
     $('#audio')[0].play();
      
 }

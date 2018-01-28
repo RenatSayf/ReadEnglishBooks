@@ -241,6 +241,7 @@ namespace ReadEnglishBooks.Controllers
                 {
                     user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
                     settingsList.Add("userVoices", new List<string> { user.EnVoiceName, user.RuVoiceName });
+                    settingsList.Add("userVoicesRate", new List<string> { user.EnVoiceRate, user.RuVoiceRate });
                 }
                 else
                 {
@@ -257,19 +258,24 @@ namespace ReadEnglishBooks.Controllers
             return await task;
         }
 
-        public async Task<JsonResult> SetSettings(string en_voice, string ru_voice)
+        public async Task<JsonResult> SetSettings(string en_voice, 
+                                                  string ru_voice,
+                                                  string en_rate,
+                                                  string ru_rate)
         {
             Task<JsonResult> task = Task.Run(() =>
             {
                 var json_data = JsonConvert.SerializeObject(false);
                 ApplicationUser user;
-                if (db != null)
+                if (HttpContext.User.Identity.IsAuthenticated)
                 {
                     user = db.Users.Where(t => t.UserName == User.Identity.Name).FirstOrDefault();
                     if (user != null)
                     {
                         user.EnVoiceName = en_voice;
                         user.RuVoiceName = ru_voice;
+                        user.EnVoiceRate = en_rate;
+                        user.RuVoiceRate = ru_rate;
                         db.SaveChangesAsync();
                         json_data = JsonConvert.SerializeObject(true);
                     }

@@ -553,6 +553,11 @@ function getUserSettings()
                     $("#en-voices-list").selectpicker('val', settings_obj.userVoices[0]);
                     $("#ru-voices-list").selectpicker('val', settings_obj.userVoices[1]);
                 }
+                if (settings_obj.userVoicesRate.length === 2)
+                {
+                    $("#en-rate").selectpicker('val', settings_obj.userVoicesRate[0]);
+                    $("#ru-rate").selectpicker('val', settings_obj.userVoicesRate[1]);
+                }
             }
             return;
         },
@@ -568,10 +573,12 @@ function btnSaveSetings_OnClick()
 {
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');
+    var en_rate = $("#en-rate").selectpicker('val');
+    var ru_rate = $("#ru-rate").selectpicker('val');
 
     $.ajax({
         type: 'POST',
-        url: '/Book/SetSettings?en_voice=' + en_voice + '&ru_voice=' + ru_voice,
+        url: '/Book/SetSettings?en_voice=' + en_voice + '&ru_voice=' + ru_voice + '&en_rate=' + en_rate + '&ru_rate=' + ru_rate,
         success: function (data)
         {
             //debugger;
@@ -588,13 +595,13 @@ function btnSaveSetings_OnClick()
 function enRate_OnChange()
 {
     var sel = $("#en-rate").selectpicker('val');
-    alert("Выбран " + sel);
+    
 }
 //===========================================================================================================
 function ruRate_OnChange()
 {
     var sel = $("#ru-rate").selectpicker('val');
-    alert("Выбран " + sel);
+    
 }
 
 
