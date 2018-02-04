@@ -135,8 +135,8 @@ namespace ReadEnglishBooks.Controllers
 
         //
         // POST: /Account/Logout
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

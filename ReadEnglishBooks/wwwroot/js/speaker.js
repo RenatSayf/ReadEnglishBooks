@@ -21,8 +21,9 @@ function speech(en_word)
     }    
 
     $(".ru-word").popover({
-        //title: 'Заголовок панели',
-        content: ru_word,
+        html: true,
+        title: '<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 100%; text-align: center;"></i>',
+        content: '<div style="text-align: center;">' + ru_word + '</div>',
         trigger: 'hover',
         placement: 'bottom'
     });
@@ -44,6 +45,7 @@ $('#audio')[0].onplaying = function ()
     {
         if (!is_back)
         {
+            //debugger;
             words_count++;
         }
         else

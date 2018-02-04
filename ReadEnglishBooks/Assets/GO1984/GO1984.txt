@@ -70,50 +70,24 @@
 
         <div class="book-page">
 		<p>
-            Behind him the voice from the telescreen was still talking about
-            iron. There was now even more iron in Oceania than the Ninth
-            Three-Year Plan had demanded. The telescreen had a microphone,
-            so the Thought Police could listen to Winston at any time of the
-            day or night. They could also watch him through the telescreen.
-            Nobody knew how often they actually did that but everybody
-            behaved correctly all the time because the Thought Police might
-            be watching and listening.
-        </p>
+            Behind him the voice from the telescreen was still talking about iron. There was now even more iron in Oceania than the Ninth Three-Year Plan had demanded. The telescreen had a microphone, so the Thought Police could listen to Winston at any time of the day or night. They could also watch him through the telescreen. Nobody knew how often they actually did that but everybody behaved correctly all the time because the Thought Police might be watching and listening.
+		</p>
 
         <p>
-            Winston kept his back to the telescreen. It was safer that way -
-            they couldn't see your face. He looked out over London, the
-            biggest city in this part of Oceania. The nineteenth-century
-            houses were all falling down. There were holes in the streets
-            where the bombs had fallen. Had it always been like this? He
-            tried to think back to the time when he was a boy, but he could
-            remember nothing.
-        </p>
+            Winston kept his back to the telescreen. It was safer that way - they couldn't see your face. He looked out over London, the biggest city in this part of Oceania. The nineteenth-century houses were all falling down. There were holes in the streets where the bombs had fallen. Had it always been like this? He tried to think back to the time when he was a boy, but he could remember nothing.
+		</p>
 
         <p>
-            He stared at the Ministry of Truth, where he worked. It was an
-            enormous white building, three hundred metres high. You could
-            see the white roof, high above the houses, even a kilometre away.
-            From Winston's flat it was just possible to see the three slogans of
-            the Party written in enormous letters on the side of the building:
-        </p>
+            He stared at the Ministry of Truth, where he worked. It was an enormous white building, three hundred metres high. You could see the white roof, high above the houses, even a kilometre away. From Winston's flat it was just possible to see the three slogans of the Party written in enormous letters on the side of the building:
+		</p>
 
-        <h3>WAR IS PEACE</h3>
-        <h3>FREEDOM IS SLAVERY</h3>
-        <h3>IGNORANCE IS STRENGTH</h3>
+        <h3>WAR IS PEACE.</h3>
+        <h3>FREEDOM IS SLAVERY.</h3>
+        <h3>IGNORANCE IS STRENGTH.</h3>
 
         <p>
-            The Ministry of Truth was called Minitrue in Newspeak, the
-            new language of Oceania. Minitrue, it was said, had more than
-            three thousand rooms above the ground and a similar number
-            below. The people there worked mainly on news and
-            entertainment. High above the surrounding buildings, Winston
-            could also see the Ministry of Peace, where they worked on war.
-            It was called Minipax in Newspeak. And the Ministry of Plenty —
-            Miniplenty — which was responsible for the economy. And he
-            could see the Ministry of Love — Miniluv — which was responsible
-            for law and order.
-        </p>
+            The Ministry of Truth was called Minitrue in Newspeak, the new language of Oceania. Minitrue, it was said, had more than three thousand rooms above the ground and a similar number below. The people there worked mainly on news and entertainment. High above the surrounding buildings, Winston could also see the Ministry of Peace, where they worked on war. It was called Minipax in Newspeak. And the Ministry of Plenty — Miniplenty — which was responsible for the economy. And he could see the Ministry of Love — Miniluv — which was responsible for law and order.
+		</p>
 		</div>|
 
 

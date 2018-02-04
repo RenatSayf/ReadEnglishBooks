@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadEnglishBooks", "ReadEnglishBooks\ReadEnglishBooks.csproj", "{EC71EEAE-C88E-40BF-A6EC-98E1BA5CC89D}"
 EndProject
