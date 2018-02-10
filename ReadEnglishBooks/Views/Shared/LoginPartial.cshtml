@@ -29,7 +29,8 @@ else
 {
     <ul class="nav navbar-nav">
         <li><a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login">Вход</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString)">Вход</a></li>
     </ul>
+    
 }
 
