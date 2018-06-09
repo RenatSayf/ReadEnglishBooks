@@ -246,20 +246,6 @@
                 <div id="fa_pause" hidden>
                     <i class="fa fa-pause fa-lg fa-play-panel"></i>
                     <script>
-                        document.getElementById("fa_pause").onmouseenter = function (event)
-                        {
-                            if (isPlay)
-                            {
-                                event.target.style.color = 'pink';
-                            }
-                        }
-                        document.getElementById("fa_pause").onmouseleave = function (event)
-                        {
-                            if (isPlay)
-                            {
-                                event.target.style.color = '';
-                            }
-                        }
                         document.getElementById("fa_pause").onclick = function (event)
                         {
                             isPlay = false;

@@ -23,7 +23,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-.fa-step-backward, .fa-play, .fa-step-forward {
+.fa-step-backward, .fa-play, .fa-step-forward, .fa-pause {
     height: 41px;
     padding-top: 13px;
 }
