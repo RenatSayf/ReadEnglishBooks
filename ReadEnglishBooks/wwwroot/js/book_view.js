@@ -323,21 +323,21 @@ function resetWordSelection()
 var isPlay = false;
 var is_back = false;
 
-$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseover(function ()
-{
-    if (!isPlay)
-    {
-        event.target.style.color = 'pink';
-    }
-});
+//$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseover(function ()
+//{
+//    if (!isPlay)
+//    {
+//        event.target.style.color = 'pink';
+//    }
+//});
 //===========================================================================================================
-$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseout(function ()
-{
-    if (!isPlay)
-    {
-        event.target.style.color = '';
-    }
-});
+//$("#fa_play, #fa_back, #fa-next, #fa_sound").mouseout(function ()
+//{
+//    if (!isPlay)
+//    {
+//        event.target.style.color = '';
+//    }
+//});
 //===========================================================================================================
 document.getElementById("fa_play").onclick = function (event)
 {

@@ -3,6 +3,7 @@
 //ViewData["Title"] = ViewBag.title;
 }
 <link rel="stylesheet" href="~/css/side_menu.css" />
+<link rel="stylesheet" href="~/css/book_play_panel.css" />
 
 <div id="word-test-box" class="modal fade">
     <div class="modal-dialog">
@@ -225,25 +226,25 @@
             <div class="col-xs-0 col-md-3 col-lg-4 text-center">                
             </div>
 
-            <div id="vol-control" class="col-xs-4 col-md-3 col-lg-1 text-center" style="max-width: 120px;">
+            <div id="vol-control" class="col-xs-4 col-md-3 col-lg-1 text-center">
                 <div id="volume"></div>
+            </div>            
+
+            <div class="col-xs-2 col-md-2 col-lg-1 text-center">
+                <i id="fa_sound" class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i>
             </div>
 
             <div class="col-xs-2 col-md-2 col-lg-1 text-center">
-                <i id="fa_sound" class="fa fa-volume-up" aria-hidden="true" style="font-size: 150%;"></i>
-            </div>
-
-            <div class="col-xs-2 col-md-2 col-lg-1 text-center">
-                <div id="fa_back"><i class="fa fa-step-backward fa-lg"></i></div>
+                <div id="fa_back"><i class="fa fa-step-backward fa-lg fa-play-panel"></i></div>
             </div>
 
             <div class="col-xs-2 col-md-1 col-lg-1 text-center">
                 <div id="fa_play">
-                    <i class="fa fa-play fa-lg"></i>
+                    <i class="fa fa-play fa-lg fa-play-panel"></i>
                 </div>
 
                 <div id="fa_pause" hidden>
-                    <i class="fa fa-pause fa-lg"></i>
+                    <i class="fa fa-pause fa-lg fa-play-panel"></i>
                     <script>
                         document.getElementById("fa_pause").onmouseenter = function (event)
                         {
@@ -271,8 +272,9 @@
             </div>
 
             <div id="fa-next" class="col-xs-2 col-md-2 col-lg-1 text-center">
-                <i class="fa fa-step-forward fa-lg"></i>
+                <i class="fa fa-step-forward fa-lg fa-play-panel"></i>
             </div>
+           
         </div>
     </div>
     
