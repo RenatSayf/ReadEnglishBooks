@@ -10,11 +10,11 @@
 
     <div class="nav navbar-nav btn-group text-center" style="float:none;">
         <div class="dropdown">
-            <a href="#" data-toggle="dropdown" class="btn dropdown-toggle text-center">
+            <a id="user-name" href="#" data-toggle="dropdown" class="btn dropdown-toggle text-center">
                 Пользователь:  @UserManager.GetUserName(User)
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul id="user-name-menu" class="dropdown-menu">
                 <li>
                     <a asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">Выход</a>
                 </li>

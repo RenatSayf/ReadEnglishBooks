@@ -62,4 +62,40 @@
     background-color: #398cb5;
 }
 
+#user-name {
+    border-color: transparent;
+    color: white;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #398cb5;
+}
+
+#user-name-menu {
+    background-color: #398cb5;
+    border-color: transparent;    
+}
+
+#user-name-menu > li > a {
+    color: white;
+}
+
+    #user-name-menu > li > a:hover{
+        background-color: transparent;
+        font-weight: bold;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
