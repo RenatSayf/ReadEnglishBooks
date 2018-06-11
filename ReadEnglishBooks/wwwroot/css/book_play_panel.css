@@ -33,7 +33,6 @@
 }
 
     .fa-play-panel:hover {
-        /*color: chartreuse;*/
         background-color: #5193cc;
     }
 
@@ -61,7 +60,7 @@
     }
 
         #volume > span:hover {
-            background-color: chartreuse;
+            background-color: #5193cc;
         }
 
         #volume > span:active {

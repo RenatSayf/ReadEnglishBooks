@@ -306,12 +306,24 @@
     </div>
 </div>
 <div id="books-side-menu-2" class="books-side-menu navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
-    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+    <button id="btn-side-menu" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
     <div class="navbar-brand">@ViewBag.BookName. @ViewBag.BookAuthor</div>
+    <script>
+        //document.getElementById("btn-side-menu").onclick = function ()
+        //{
+        //    document.getElementById("btn-call-translate").style.backgroundColor = "red"; 
+        //}
+        //$("#btn-side-menu").click(function ()
+        //{
+        //    debugger;
+        //    var s = $("#btn-side-menu-2").css("background-color", "red");
+        //    return;
+        //});
+    </script>
 </div>
 
 

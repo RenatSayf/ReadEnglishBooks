@@ -40,3 +40,26 @@
 #books-side-menu-2 > div{
     color: yellow;
 }
+
+#btn-side-menu {
+    background-color: #398cb5;
+    border-color: white;
+    border-width: 2px;
+}
+
+    #btn-side-menu:hover {
+        background-color: #5193cc;
+    }
+
+    #btn-side-menu:active {
+        background-color: white;
+    }
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+#btn-side-menu:active .icon-bar {
+    background-color: #398cb5;
+}
+
+
