@@ -33,7 +33,8 @@
 }
 
     .fa-play-panel:hover {
-        color: chartreuse;
+        /*color: chartreuse;*/
+        background-color: #5193cc;
     }
 
     .fa-play-panel:active {

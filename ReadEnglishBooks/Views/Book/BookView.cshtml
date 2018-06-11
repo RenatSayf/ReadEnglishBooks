@@ -4,6 +4,7 @@
 }
 <link rel="stylesheet" href="~/css/side_menu.css" />
 <link rel="stylesheet" href="~/css/book_play_panel.css" />
+<link rel="stylesheet" href="~/css/books-side-menu.css" />
 
 <div id="word-test-box" class="modal fade">
     <div class="modal-dialog">
@@ -270,7 +271,7 @@
 
 
 
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+<div id="books-side-menu" class="books-side-menu navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
     <div class="navmenu-nav text-center">@await Html.PartialAsync("LoginPartial")</div><br />
     <a id="book-header" class="navmenu-brand visible-md visible-lg" href="#">@ViewBag.BookName</a>
     <a id="book-author" class="navmenu-brand visible-md visible-lg" href="#">@ViewBag.BookAuthor</a>
@@ -303,11 +304,8 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
-<div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
+<div id="books-side-menu-2" class="books-side-menu navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
     <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
