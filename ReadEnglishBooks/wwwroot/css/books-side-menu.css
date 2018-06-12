@@ -4,7 +4,12 @@
     color: white;
 }
 
-#mobile-top-side-menu{
+#books-side-menu .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#mobile-top-side-menu {
     margin-left: 0px;
     margin-right: 0px;
 }
@@ -65,6 +70,12 @@
 #user-name {
     border-color: transparent;
     color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+#user-name:hover{
+    color: gainsboro;
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -73,7 +84,9 @@
 
 #user-name-menu {
     background-color: #398cb5;
-    border-color: transparent;    
+    border-color: transparent;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 #user-name-menu > li > a {
@@ -82,9 +95,53 @@
 
     #user-name-menu > li > a:hover{
         background-color: transparent;
-        font-weight: bold;
+        color: gainsboro;
+        
     }
 
+#book-header, #book-author {
+    color: yellow;
+    text-align: center;
+}
+
+.book-contents > ul > li a{
+    color: white;
+    text-decoration: none;
+}
+
+.book-contents a:hover{
+    color: gainsboro;
+}
+
+.book-contents ul{
+    list-style: initial;
+}
+
+#learned-mode{
+    margin-top: 20px;
+}
+
+#learned-mode button{
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom-color: white;
+    color: white;
+    border-radius: 0px;
+}
+
+#btn-settings {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+#btn-settings > i {
+    padding-right: 15px;
+    font-size: 130%;
+}
+#btn-settings:hover {
+    color: gainsboro;
+}
 
 
 
