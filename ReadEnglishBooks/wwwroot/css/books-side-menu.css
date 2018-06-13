@@ -27,22 +27,26 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+
         #top-side-menu > li > a {
             padding-left: 0px;
             padding-right: 0px;
         }
-        #top-side-menu > li > a:hover {
-            background-color: #5193cc;
-        }
+
+            #top-side-menu > li > a:hover {
+                background-color: #5193cc;
+            }
+
             #top-side-menu > li > a:active {
                 background-color: white;
                 color: #398cb5;
             }
-    #top-side-menu > li > a{
-        color: white;
-    }
 
-#books-side-menu-2 > div{
+        #top-side-menu > li > a {
+            color: white;
+        }
+
+#books-side-menu-2 > div {
     color: yellow;
 }
 
@@ -63,6 +67,7 @@
 .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
 }
+
 #btn-side-menu:active .icon-bar {
     background-color: #398cb5;
 }
@@ -74,9 +79,9 @@
     border-top-right-radius: 12px;
 }
 
-#user-name:hover{
-    color: gainsboro;
-}
+    #user-name:hover {
+        color: gainsboro;
+    }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #398cb5;
@@ -89,70 +94,85 @@
     border-bottom-right-radius: 12px;
 }
 
-#user-name-menu > li > a {
-    color: white;
-}
-
-    #user-name-menu > li > a:hover{
-        background-color: transparent;
-        color: gainsboro;
-        
+    #user-name-menu > li > a {
+        color: white;
     }
+
+        #user-name-menu > li > a:hover {
+            background-color: transparent;
+            color: gainsboro;
+        }
 
 #book-header, #book-author {
     color: yellow;
     text-align: center;
 }
 
-.book-contents > ul > li a{
+.book-contents > ul > li a {
     color: white;
     text-decoration: none;
 }
 
-.book-contents a:hover{
+.book-contents a:hover {
     color: gainsboro;
 }
 
-.book-contents ul{
+.book-contents ul {
     list-style: initial;
 }
 
-#learned-mode{
+#learned-mode {
     margin-top: 20px;
 }
 
-#learned-mode button{
-    background-color: transparent;
-    border-color: transparent;
-    border-bottom-color: white;
-    color: white;
-    border-radius: 0px;
-}
+    #learned-mode button {
+        background-color: transparent;
+        border-color: transparent;
+        border-bottom-color: white;
+        color: white;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    #learned-mode > div > div > button > span:hover {
+        color: gainsboro;
+    }
+
+    #learned-mode > div > div > button > span:active {
+        color: #398cb5;
+    }
+
+    #learned-mode button:active {
+            background-color: white;
+            border-color: transparent;
+        }
 
 #btn-settings {
     background-color: transparent;
     border-color: transparent;
     color: white;
+    width: 219px;
+    text-align: left;
+    border-left-width: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-right-width: 0px;
+    padding-right: 0px;
+    padding-left: 10px;
+    box-shadow: none;
 }
 
-#btn-settings > i {
-    padding-right: 15px;
-    font-size: 130%;
-}
-#btn-settings:hover {
-    color: gainsboro;
-}
+    #btn-settings:hover {
+        color: gainsboro;
+    }
 
+    #btn-settings > i {
+        padding-right: 15px;
+        font-size: 130%;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    #btn-settings:active {
+        background-color: white;
+        border-color: transparent;
+        color: #398cb5;
+    }
