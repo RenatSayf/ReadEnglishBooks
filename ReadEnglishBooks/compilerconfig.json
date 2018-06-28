@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/BookPlayPanel.css",
     "inputFile": "wwwroot/css/BookPlayPanel.less"
+  },
+  {
+    "outputFile": "wwwroot/css/books-side-menu.css",
+    "inputFile": "wwwroot/css/books-side-menu.less"
   }
 ]

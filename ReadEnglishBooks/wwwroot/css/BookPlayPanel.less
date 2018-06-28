@@ -1,8 +1,9 @@
 ﻿/// <reference path="IntelliSense.less" />
+@import (less)"_variables.less";
 
-@background-color:#398cb5;
+
 @color-white:#fff;
-@control-hover-color:@background-color + 30;
+@control-hover-color:@main-background-color + 30;
 
 .circle(@radius) {
     border-bottom-left-radius: @radius;
@@ -15,7 +16,7 @@
     position: fixed; /* Фиксированное положение */
     left: 0;
     bottom: 0; /* Левый нижний угол */
-    background: @background-color; /* Цвет фона */
+    background: @main-background-color; /* Цвет фона */
     color: @color-white; /* Цвет текста */
     width: 100%; /* Ширина слоя */
     height: 60px;
@@ -46,7 +47,7 @@
     }
     &:active{
         background-color: white;
-        color: @background-color;
+        color: @main-background-color;
     }
 }
 
@@ -68,7 +69,7 @@
 
     span:active {
         border: 3px solid @color-white;
-        background-color: @background-color;
+        background-color: @main-background-color;
     }
 }
 
