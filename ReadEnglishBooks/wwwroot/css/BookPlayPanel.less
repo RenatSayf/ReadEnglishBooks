@@ -1,0 +1,81 @@
+﻿/// <reference path="IntelliSense.less" />
+
+@background-color:#398cb5;
+@color-white:#fff;
+@control-hover-color:@background-color + 30;
+
+.circle(@radius) {
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+#book-play-panel {
+    position: fixed; /* Фиксированное положение */
+    left: 0;
+    bottom: 0; /* Левый нижний угол */
+    background: @background-color; /* Цвет фона */
+    color: @color-white; /* Цвет текста */
+    width: 100%; /* Ширина слоя */
+    height: 60px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+.popover-title {
+    padding: 10px;
+}
+
+#fa_sound, .fa-play-panel {
+    font-size: 150%;
+    width: 41px;
+    padding: 10px;
+    .circle(20px);
+}
+
+.fa-step-backward, .fa-play, .fa-step-forward, .fa-pause {
+    height: 41px;
+    padding-top: 13px;
+}
+
+.fa-play-panel {
+    vertical-align: 15%;
+    &:hover{
+        background-color: @control-hover-color;
+    }
+    &:active{
+        background-color: white;
+        color: @background-color;
+    }
+}
+
+#volume {
+    max-width: 120px;
+    margin-top: 14px;
+    .circle(10px);
+
+    span {
+        .circle(10px);
+        background-color: white;
+        outline-color: transparent;
+    }
+
+    span:hover {
+        border: 2px solid @color-white;
+        background-color: @control-hover-color;
+    }
+
+    span:active {
+        border: 3px solid @color-white;
+        background-color: @background-color;
+    }
+}
+
+
+
+
+
+
+
+

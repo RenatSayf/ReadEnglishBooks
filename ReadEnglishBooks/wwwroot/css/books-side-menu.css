@@ -1,5 +1,9 @@
-﻿.books-side-menu {
-    background-color: #398cb5;
+﻿:root{
+    --side-menu-color: #398cb5;
+}
+
+.books-side-menu {    
+    background-color: var(--side-menu-color);
     border-color: #398cb5;
     color: white;
 }
@@ -39,7 +43,7 @@
 
             #top-side-menu > li > a:active {
                 background-color: white;
-                color: #398cb5;
+                color: var(--side-menu-color);
             }
 
         #top-side-menu > li > a {
@@ -51,7 +55,7 @@
 }
 
 #btn-side-menu {
-    background-color: #398cb5;
+    background-color: var(--side-menu-color);
     border-color: white;
     border-width: 2px;
 }
@@ -69,7 +73,7 @@
 }
 
 #btn-side-menu:active .icon-bar {
-    background-color: #398cb5;
+    background-color: var(--side-menu-color);
 }
 
 #user-name {
@@ -88,7 +92,7 @@
 }
 
 #user-name-menu {
-    background-color: #398cb5;
+    background-color: var(--side-menu-color);
     border-color: transparent;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -174,5 +178,5 @@
     #btn-settings:active {
         background-color: white;
         border-color: transparent;
-        color: #398cb5;
+        color: var(--side-menu-color);
     }
