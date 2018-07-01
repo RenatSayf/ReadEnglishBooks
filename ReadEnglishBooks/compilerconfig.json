@@ -6,5 +6,9 @@
   {
     "outputFile": "wwwroot/css/books-side-menu.css",
     "inputFile": "wwwroot/css/books-side-menu.less"
+  },
+  {
+    "outputFile": "wwwroot/css/book-page.css",
+    "inputFile": "wwwroot/css/book-page.less"
   }
 ]

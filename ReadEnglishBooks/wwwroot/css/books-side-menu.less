@@ -6,6 +6,11 @@
     background-color: @main-background-color;
     border-color: @main-background-color;
     color: white;
+
+    hr {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
 }
 
 #books-side-menu .row {
@@ -19,53 +24,56 @@
 }
 
 #top-side-menu {
+    
+}
+
+#top-side-menu {
     width: 100%;
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
     margin-bottom: 0px;
+
+    li {
+        width: 50%;
+        padding-left: 0px;
+        padding-right: 0px;
+
+        a {
+            padding-left: 0px;
+            padding-right: 0px;
+            color: white;
+
+            &:hover {
+                background-color: @main-background-color + 20;
+            }
+
+            &:active {
+                background-color: white;
+                color: @main-background-color;
+            }
+        }
+    }
 }
 
-#top-side-menu > li {
-    width: 50%;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-#top-side-menu > li > a {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-#top-side-menu > li > a:hover {
-    background-color: #5193cc;
-}
-
-#top-side-menu > li > a:active {
-    background-color: white;
-    color: var(--side-menu-color);
-}
-
-#top-side-menu > li > a {
-    color: white;
-}
-
-#books-side-menu-2 > div {
-    color: yellow;
+#books-side-menu-2 {
+    div {
+        color: yellow;
+    }
 }
 
 #btn-side-menu {
-    background-color: var(--side-menu-color);
+    background-color: @main-background-color;
     border-color: white;
     border-width: 2px;
-}
 
-#btn-side-menu:hover {
-    background-color: #5193cc;
-}
+    &:hover {
+        background-color: @main-background-color + 20;
+    }
 
-#btn-side-menu:active {
-    background-color: white;
+    &:active {
+        background-color: white;
+    }
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -81,14 +89,28 @@
     color: white;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-}
 
-#user-name:hover {
-    color: gainsboro;
+    &:hover {
+        color: white - 20;
+    }
+
+    &:active {
+        background-color: white;
+        border-color: transparent;
+        color: @main-background-color;
+        box-shadow: none;
+    }
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: @main-background-color;
+}
+
+.nav {
+    hr {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 }
 
 #user-name-menu {
@@ -96,15 +118,26 @@
     border-color: transparent;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-}
 
-#user-name-menu > li > a {
-    color: white;
-}
+    a {
+        color: white;
+        margin-left: 4px;
+        margin-right: 4px;
 
-#user-name-menu > li > a:hover {
-    background-color: transparent;
-    color: gainsboro;
+        &:hover {
+            background-color: @main-background-color;
+            color: gainsboro;
+        }
+
+        &:active {
+            background-color: white;
+            color: @main-background-color;
+        }
+    }
+
+    &:active {
+        background-color: white;
+    }
 }
 
 #book-header, #book-author {
@@ -112,43 +145,47 @@
     text-align: center;
 }
 
-.book-contents > ul > li a {
-    color: white;
-    text-decoration: none;
+.book-contents {
+    ul {
+        list-style: initial;
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover {
+                color: white - 20;
+            }
+        }
+    }
 }
 
-.book-contents a:hover {
-    color: gainsboro;
-}
-
-.book-contents ul {
-    list-style: initial;
-}
-
-#learned-mode {
+#learned-mode, #user-name {
     margin-top: 20px;
-}
 
-#learned-mode button {
-    background-color: transparent;
-    border-color: transparent;
-    border-bottom-color: white;
-    color: white;
-    border-radius: 0px;
-    box-shadow: none;
-}
+    button {
+        background-color: transparent;
+        border-color: transparent;
+        border-bottom-color: white;
+        color: white;
+        border-radius: 0px;
+        box-shadow: none;
 
-#learned-mode > div > div > button > span:hover {
-    color: gainsboro;
-}
+        &:active {
+            background-color: white;
+            border-color: transparent;
+        }
 
-#learned-mode > div > div > button > span:active {
-    color: @main-background-color;
-}
+        span {
+            &:hover {
+                color: white - 20;
+            }
 
-#learned-mode button:active {
-    background-color: white;
-    border-color: transparent;
+            &:active {
+                color: @main-background-color;
+            }
+        }
+    }
 }
 
 #btn-settings {
@@ -164,19 +201,20 @@
     padding-right: 0px;
     padding-left: 10px;
     box-shadow: none;
+
+    i {
+        padding-right: 15px;
+        font-size: 130%;
+    }
+
+    &:hover {
+        color: white - 20;
+    }
+
+    &:active {
+        background-color: white;
+        border-color: transparent;
+        color: @main-background-color;
+    }
 }
 
-#btn-settings:hover {
-    color: gainsboro;
-}
-
-#btn-settings > i {
-    padding-right: 15px;
-    font-size: 130%;
-}
-
-#btn-settings:active {
-    background-color: white;
-    border-color: transparent;
-    color: @main-background-color;
-}
