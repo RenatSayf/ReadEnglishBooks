@@ -89,7 +89,7 @@ function getSelectingWords(sentence)
 //--------------------------------------------------------------------------------------------------------------------
 function addSpanTagToSentence()
 {
-    $('p, h2, h3').each(function ()
+    $('p, h2, h3, h4, h5').each(function ()
     {
         var content = this.innerHTML;
         var arr_spliters = content.match(/[.!?:]/gmi);
