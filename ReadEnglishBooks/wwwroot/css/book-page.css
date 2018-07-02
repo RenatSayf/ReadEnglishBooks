@@ -2,7 +2,20 @@
   display: flex;
   justify-content: center;
 }
+#pagination-demo > li > a,
+#pagination-demo > li > span {
+  font-size: 18px;
+  border-radius: 8px;
+}
 .pagination > li > a,
 .pagination > li > span {
   position: unset;
+  font-size: 18px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  font-size: 18px;
+}
+#page {
+  font-size: 150%;
 }

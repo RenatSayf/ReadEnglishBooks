@@ -1,11 +1,34 @@
 ﻿/// <reference path="IntelliSense.less" />
 @import (less) "_variables.less";
 
-#pagination-demo{
+#pagination-demo {
     display: flex;
     justify-content: center;
+
+    > li {
+        > a, > span{
+            font-size: 18px;
+            border-radius: 8px;
+        }        
+    }
 }
 
 .pagination > li > a, .pagination > li > span {
     position: unset;
+    font-size: 18px;
 }
+
+.pagination-sm {
+    > li {
+        > a, > span {
+            font-size: 18px;
+        }
+    }
+}
+
+#page {
+    font-size: 150%;
+}
+
+
+
