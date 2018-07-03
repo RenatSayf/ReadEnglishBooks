@@ -19,3 +19,8 @@
 #page {
   font-size: 150%;
 }
+.book-contents li > a:active {
+  background-color: white;
+  color: #398cb5;
+  border-radius: 5px;
+}

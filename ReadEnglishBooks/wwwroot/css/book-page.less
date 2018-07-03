@@ -13,9 +13,13 @@
     }
 }
 
-.pagination > li > a, .pagination > li > span {
-    position: unset;
-    font-size: 18px;
+.pagination {
+    > li {
+        > a, > span {
+            position: unset;
+            font-size: 18px;
+        }
+    }
 }
 
 .pagination-sm {
@@ -28,6 +32,18 @@
 
 #page {
     font-size: 150%;
+}
+
+.book-contents {
+    li {
+        > a {
+            &:active {
+                background-color: white;
+                color: @main-background-color;
+                border-radius: 5px;
+            }
+        }
+    }
 }
 
 
