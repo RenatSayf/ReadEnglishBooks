@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="~/lib/jasny-bootstrap/css/jasny-bootstrap.css" media="screen" />
         <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.css" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -24,6 +26,7 @@
         <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="~/lib/jasny-bootstrap/css/jasny-bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 
@@ -55,7 +58,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)*@
-
+    @RenderSection("Header", required: false)
 
 </head>
 

@@ -1,11 +1,15 @@
 ﻿@model ApplicationUser
 @{
-//ViewData["Title"] = ViewBag.title;
+    //ViewData["Title"] = ViewBag.title;
 }
-<link rel="stylesheet" href="~/css/side_menu.css" />
-<link rel="stylesheet" href="~/css/BookPlayPanel.css" />
-<link rel="stylesheet" href="~/css/books-side-menu.css" />
-<link rel="stylesheet" href="~/css/book-page.min.css" />
+@section header
+{
+    <link rel="stylesheet" href="~/css/side_menu.css" />
+    <link rel="stylesheet" href="~/css/BookPlayPanel.css" />
+    <link rel="stylesheet" href="~/css/books-side-menu.css" />
+    <link rel="stylesheet" href="~/css/book-page.min.css" />
+}
+
 
 <div id="word-test-box" class="modal fade">
     <div class="modal-dialog">
@@ -36,13 +40,14 @@
                 </div>
             </div>
             <style>
-                #word-test-box td{
+                #word-test-box td {
                     text-align: center;
                 }
-                #word-test-box td button{
-                    width: 100%;
-                    position:inherit;
-                }
+
+                    #word-test-box td button {
+                        width: 100%;
+                        position: inherit;
+                    }
             </style>
             <!-- Футер модального окна -->
             <div class="modal-footer">
@@ -55,8 +60,8 @@
 </div>
 
 <div id="dialog-window" title="" hidden="hidden">
-    <div id="dialog_message">        
-    </div>      
+    <div id="dialog_message">
+    </div>
 </div>
 
 <audio id="audio" controls></audio>
@@ -65,9 +70,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-               Перевести выделенный фрагмент? 
+                Перевести выделенный фрагмент?
             </div>
-            <div id="target-text" class="container-fluid">                             
+            <div id="target-text" class="container-fluid">
             </div>
             <hr />
             <div id="translated-text" class="container-fluid">
@@ -96,7 +101,7 @@
             </div>
             <div class="container-fluid">
                 <div id="select-text" class="row">
-                    
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -124,10 +129,8 @@
                             <th>Русский</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table> 
+                    <tbody></tbody>
+                </table>
                 <style>
                     .modal {
                         overflow-y: auto;
@@ -167,7 +170,7 @@
                 </div>
                 <hr />
                 <label>Беглость речи</label>
-                <div class="row">                    
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <label for="en-rate">Английский</label>
                         <select id="en-rate" name="en_rate" class="selectpicker" onchange="enRate_OnChange()">
@@ -189,7 +192,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12 col-sm-6 col-md-6 text-center">
-                    <a id="btn-save-settings" class="btn btn-success" href="#" onclick="btnSaveSetings_OnClick()">Сохранить настройки</a>                    
+                    <a id="btn-save-settings" class="btn btn-success" href="#" onclick="btnSaveSetings_OnClick()">Сохранить настройки</a>
                 </div>
             </div>
         </div>
@@ -215,6 +218,10 @@
     <div id="page" class="row">
 
     </div>
+
+    @*<div class="col-lg-12 text-center">
+        <img id="test-id"/>
+    </div>*@
 
     <div class="row">
 

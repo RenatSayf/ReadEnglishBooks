@@ -16,11 +16,31 @@
 .pagination-sm > li > span {
   font-size: 18px;
 }
-#page {
-  font-size: 110%;
+h2,
+h3,
+.h2 {
+  font-size: 130%;
+}
+.book-page {
+  font-size: 150%;
+}
+@media screen and (max-width: 600px) {
+  .book-page {
+    font-size: 100%;
+  }
 }
 .book-contents li > a:active {
   background-color: white;
   color: #398cb5;
   border-radius: 5px;
+}
+#test-id {
+  width: 50px;
+  height: 100px;
+  content: url(../images/microphone-solid.svg);
+}
+#test-id:active {
+  width: 50px;
+  height: 100px;
+  content: url(../images/microphone-slash-solid.svg);
 }
