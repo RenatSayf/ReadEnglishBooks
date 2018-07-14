@@ -22,9 +22,9 @@ function speech(en_word)
 
     $(".ru-word").popover({
         html: true,
-        title: '<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 100%; text-align: center;"></i>',
-        content: '<div style="text-align: center;">' + ru_word + '</div>',
-        trigger: 'hover',
+        //title: '<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 100%; text-align: center;"></i>',
+        content: '<div>' + ru_word + '</div>',
+        //trigger: 'hover',
         placement: 'bottom'
     });
     $(".ru-word").popover('show');

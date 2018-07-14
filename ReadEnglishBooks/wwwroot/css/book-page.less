@@ -67,6 +67,56 @@ h2, h3, .h2{
     }
 }
 
+.clicked {
+    .popover {
+        padding: 5px;
+        text-align: center;
+        background-color: @main-background-color;
+    }
+
+    .popover-content {
+        padding: 5px 2px;
+        color: white;
+        font-size: 24px;
+
+        div {
+            text-indent: 0em;
+            text-align: center;
+            padding: 0px;
+        }
+    }
+
+    .popover.bottom > .arrow:after {
+        border-bottom-color: @main-background-color;
+    }
+}
+
+.fragm-is-studied-dialog {
+    background-color: forestgreen;
+
+    #dialog_message {
+        color: white;
+        text-align: center;
+    }
+
+    .ui-dialog-titlebar {
+        background-color: greenyellow;
+    }
+
+    > .ui-dialog-buttonpane {
+        padding: 4px;
+        background-color: green;
+
+        > div > button:nth-child(3) {
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+
+
 
 
 

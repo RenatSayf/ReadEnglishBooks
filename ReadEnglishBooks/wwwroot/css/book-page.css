@@ -44,3 +44,38 @@ h3,
   height: 100px;
   content: url(../images/microphone-slash-solid.svg);
 }
+.clicked .popover {
+  padding: 5px;
+  text-align: center;
+  background-color: #398cb5;
+}
+.clicked .popover-content {
+  padding: 5px 2px;
+  color: white;
+  font-size: 24px;
+}
+.clicked .popover-content div {
+  text-indent: 0em;
+  text-align: center;
+  padding: 0px;
+}
+.clicked .popover.bottom > .arrow:after {
+  border-bottom-color: #398cb5;
+}
+.fragm-is-studied-dialog {
+  background-color: forestgreen;
+}
+.fragm-is-studied-dialog #dialog_message {
+  color: white;
+  text-align: center;
+}
+.fragm-is-studied-dialog .ui-dialog-titlebar {
+  background-color: greenyellow;
+}
+.fragm-is-studied-dialog > .ui-dialog-buttonpane {
+  padding: 4px;
+  background-color: green;
+}
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:nth-child(3):last-child {
+  margin-right: 0px;
+}
