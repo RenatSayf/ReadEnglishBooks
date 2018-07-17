@@ -48,6 +48,8 @@ h3,
   padding: 5px;
   text-align: center;
   background-color: #398cb5;
+  border-color: white;
+  border-width: 1px;
 }
 .clicked .popover-content {
   padding: 5px 2px;
@@ -62,20 +64,47 @@ h3,
 .clicked .popover.bottom > .arrow:after {
   border-bottom-color: #398cb5;
 }
-.fragm-is-studied-dialog {
+.fragm-is-studied-dialog,
+.ui-dialog-titlebar {
   background-color: forestgreen;
+  border-width: 0px;
+  border-radius: 10px;
+  padding: 0px;
 }
-.fragm-is-studied-dialog #dialog_message {
+.fragm-is-studied-dialog #dialog_message,
+.ui-dialog-titlebar #dialog_message {
   color: white;
   text-align: center;
 }
-.fragm-is-studied-dialog .ui-dialog-titlebar {
+.fragm-is-studied-dialog .ui-dialog-titlebar,
+.ui-dialog-titlebar .ui-dialog-titlebar {
   background-color: greenyellow;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
-.fragm-is-studied-dialog > .ui-dialog-buttonpane {
-  padding: 4px;
+.fragm-is-studied-dialog > .ui-dialog-buttonpane,
+.ui-dialog-titlebar > .ui-dialog-buttonpane {
+  padding: 0px;
+  border-top-width: 0px;
   background-color: green;
+  border-radius: 8px;
 }
-.fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:nth-child(3):last-child {
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div button,
+.ui-dialog-titlebar > .ui-dialog-buttonpane > div button {
+  height: 41px;
+  margin: 0px;
+  border-width: 0px;
+  border-radius: 0px;
+}
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:last-child,
+.ui-dialog-titlebar > .ui-dialog-buttonpane > div > button:last-child {
   margin-right: 0px;
+  border-bottom-right-radius: 8px;
+}
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:first-child,
+.ui-dialog-titlebar > .ui-dialog-buttonpane > div > button:first-child {
+  margin-right: 0px;
+  border-bottom-left-radius: 8px;
 }

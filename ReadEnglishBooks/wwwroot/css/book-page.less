@@ -72,6 +72,8 @@ h2, h3, .h2{
         padding: 5px;
         text-align: center;
         background-color: @main-background-color;
+        border-color: white;
+        border-width: 1px;
     }
 
     .popover-content {
@@ -86,13 +88,21 @@ h2, h3, .h2{
         }
     }
 
-    .popover.bottom > .arrow:after {
-        border-bottom-color: @main-background-color;
+    .popover.bottom {
+        > .arrow {
+            &:after {
+                border-bottom-color: @main-background-color;
+            }
+        }
+        //border-width: 2px;
     }
 }
 
-.fragm-is-studied-dialog {
+.fragm-is-studied-dialog, .ui-dialog-titlebar {
     background-color: forestgreen;
+    border-width: 0px;
+    border-radius: 10px;
+    padding: 0px;
 
     #dialog_message {
         color: white;
@@ -101,15 +111,38 @@ h2, h3, .h2{
 
     .ui-dialog-titlebar {
         background-color: greenyellow;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
     }
 
     > .ui-dialog-buttonpane {
-        padding: 4px;
+        padding: 0px;
+        border-top-width: 0px;
         background-color: green;
+        border-radius: 8px;
 
-        > div > button:nth-child(3) {
-            &:last-child {
-                margin-right: 0px;
+        > div {
+            button {
+                height: 41px;
+                margin: 0px;
+                border-width: 0px;
+                border-radius: 0px;
+            }
+
+            > button {
+                &:last-child {
+                    margin-right: 0px;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+
+            > button {
+                &:first-child {
+                    margin-right: 0px;
+                    border-bottom-left-radius: 8px;
+                }
             }
         }
     }
