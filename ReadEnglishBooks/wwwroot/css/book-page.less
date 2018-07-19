@@ -110,11 +110,12 @@ h2, h3, .h2{
     }
 
     .ui-dialog-titlebar {
-        background-color: greenyellow;
+        background-color: @main-background-color;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
+        color: white;
     }
 
     > .ui-dialog-buttonpane {
@@ -127,8 +128,21 @@ h2, h3, .h2{
             button {
                 height: 41px;
                 margin: 0px;
-                border-width: 0px;
+                background-color: @main-background-color;
+                border-width: 5px;
+                border-color: @main-background-color;
                 border-radius: 0px;
+                color: white;
+                font-weight: bold;
+
+                &:active {
+                    background-color: white;
+                    border-color: white;
+                    color: @main-background-color;
+                    border-width: 2px;
+                    border-color: @main-background-color;
+                    font-weight: bold;
+                }
             }
 
             > button {

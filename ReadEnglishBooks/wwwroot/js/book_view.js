@@ -440,12 +440,16 @@ function showDialogComplete(title, message)
         height: "auto",
         width: "auto",
         modal: false,
+        open: function (event, ui)
+        {
+            $(this).parent().focus();
+        },
         buttons: {
             "Проверить": function ()
             {
                 $(this).dialog("close");
                 studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
-                
+
                 if (studyWordsArray.length > 0)
                 {
                     fillTestTable(studyWordsArray, words_index);
@@ -455,7 +459,7 @@ function showDialogComplete(title, message)
             "Повторить": function ()
             {
                 $(this).dialog("close");
-                
+
             },
             "Продолжить": function ()
             {

@@ -78,11 +78,12 @@ h3,
 }
 .fragm-is-studied-dialog .ui-dialog-titlebar,
 .ui-dialog-titlebar .ui-dialog-titlebar {
-  background-color: greenyellow;
+  background-color: #398cb5;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  color: white;
 }
 .fragm-is-studied-dialog > .ui-dialog-buttonpane,
 .ui-dialog-titlebar > .ui-dialog-buttonpane {
@@ -95,8 +96,21 @@ h3,
 .ui-dialog-titlebar > .ui-dialog-buttonpane > div button {
   height: 41px;
   margin: 0px;
-  border-width: 0px;
+  background-color: #398cb5;
+  border-width: 5px;
+  border-color: #398cb5;
   border-radius: 0px;
+  color: white;
+  font-weight: bold;
+}
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div button:active,
+.ui-dialog-titlebar > .ui-dialog-buttonpane > div button:active {
+  background-color: white;
+  border-color: white;
+  color: #398cb5;
+  border-width: 2px;
+  border-color: #398cb5;
+  font-weight: bold;
 }
 .fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:last-child,
 .ui-dialog-titlebar > .ui-dialog-buttonpane > div > button:last-child {
