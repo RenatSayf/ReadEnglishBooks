@@ -147,6 +147,10 @@ h2, h3, .h2{
                     border-color: @main-background-color;
                     font-weight: bold;
                 }
+
+                &:focus {
+                    outline: none;
+                }
             }
 
             > button {
@@ -170,15 +174,29 @@ h2, h3, .h2{
     > div {
         > div {
             > div.modal-body {
+                background-color: lightblue;
+
                 > div {
                     > div {
                         > table {
                             > tbody {
 
-                                > tr:nth-child(1){
-                                    > td{
-                                        > button{
-                                            border-color: transparent;
+                                > tr:nth-child(1) {
+                                    > td {
+                                        > button {
+                                            border-color: lightblue;
+                                            background-color: lightblue;
+                                            color: yellow;
+                                            font-size: 32px;
+                                            font-weight: bolder;
+
+                                            &:hover {
+                                                background-color: lightblue;
+                                            }
+
+                                            &:active {
+                                                background-color: lightblue;
+                                            }
                                         }
                                     }
                                 }
@@ -187,6 +205,20 @@ h2, h3, .h2{
                                     td {
                                         button {
                                             font-size: 24px;
+                                            border-radius: 10px;
+                                            border-color: lightgreen;
+
+                                            &:hover {
+                                                background-color: aliceblue;
+                                            }
+
+                                            &:focus {
+                                                outline: none;
+                                                background-color: white;
+                                            }
+
+                                            &:active {
+                                            }
                                         }
                                     }
                                 }

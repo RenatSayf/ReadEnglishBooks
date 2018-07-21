@@ -117,6 +117,10 @@ h3,
   border-color: #398cb5;
   font-weight: bold;
 }
+.fragm-is-studied-dialog > .ui-dialog-buttonpane > div button:focus,
+.ui-dialog-titlebar > .ui-dialog-buttonpane > div button:focus {
+  outline: none;
+}
 .fragm-is-studied-dialog > .ui-dialog-buttonpane > div > button:last-child,
 .ui-dialog-titlebar > .ui-dialog-buttonpane > div > button:last-child {
   margin-right: 0px;
@@ -127,9 +131,31 @@ h3,
   margin-right: 0px;
   border-bottom-left-radius: 8px;
 }
+#word-test-box > div > div > div.modal-body {
+  background-color: lightblue;
+}
 #word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button {
-  border-color: transparent;
+  border-color: lightblue;
+  background-color: lightblue;
+  color: yellow;
+  font-size: 32px;
+  font-weight: bolder;
+}
+#word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:hover {
+  background-color: lightblue;
+}
+#word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:active {
+  background-color: lightblue;
 }
 #word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button {
   font-size: 24px;
+  border-radius: 10px;
+  border-color: lightgreen;
+}
+#word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button:hover {
+  background-color: aliceblue;
+}
+#word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button:focus {
+  outline: none;
+  background-color: white;
 }

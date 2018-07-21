@@ -43,10 +43,10 @@ function fillTestTable(words_array, index)
         {
             $("#word-test-box tbody").append(
                 '<tr>' +
-                '<td><button type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
+                '<td><button id="test-box-enword" type="button" class="btn btn-default text-center">' + words_array[index].Eng + '</button ></td > ' +
                 '</tr > '
             );
-
+            
             var random_words = [];
             if (words_array.length > number_of_false)
             {
@@ -197,7 +197,7 @@ var randomWords =
 //============================================================================================================
 function btnRuWord_OnClick(sender)
 {
-    var pairs_background_color = "background-color:#00ff00";
+    var pairs_background_color = "background-color:#00ff00; color:white";
     var wrong_background_color = "background-color:#ff0000";
     var en_word = $("#word-test-box tbody button")[0].innerText;
     var ru_word = sender.innerText;
