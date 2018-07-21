@@ -428,7 +428,7 @@ window.onload = function ()
 //===========================================================================================================
 function showDialogComplete(title, message)
 {
-    message = "Проверить знания - нажмите Проверить<br/>Повторить еще раз - нажмите Повторить<br/>Читать дальше - нажмите Продолжить";
+    message = "Проверить знания - нажмите Проверить<br/><br/>Повторить еще раз - нажмите Повторить<br/><br/>Читать дальше - нажмите Продолжить";
     $("#dialog_message").html(message);
 
     $("#dialog-window").dialog({
@@ -459,7 +459,8 @@ function showDialogComplete(title, message)
             "Повторить": function ()
             {
                 $(this).dialog("close");
-
+                $("#fa_play").click();
+                return false;
             },
             "Продолжить": function ()
             {

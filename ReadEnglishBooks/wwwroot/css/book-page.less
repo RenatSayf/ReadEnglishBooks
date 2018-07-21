@@ -94,18 +94,17 @@ h2, h3, .h2{
                 border-bottom-color: @main-background-color;
             }
         }
-        //border-width: 2px;
     }
 }
 
 .fragm-is-studied-dialog, .ui-dialog-titlebar {
-    background-color: forestgreen;
+    background-color: @dialog-background-color;
     border-width: 0px;
     border-radius: 10px;
     padding: 0px;
 
     #dialog_message {
-        color: white;
+        color: greenyellow;
         text-align: center;
     }
 
@@ -129,11 +128,16 @@ h2, h3, .h2{
                 height: 41px;
                 margin: 0px;
                 background-color: @main-background-color;
-                border-width: 5px;
+                border-width: 2px;
                 border-color: @main-background-color;
                 border-radius: 0px;
                 color: white;
                 font-weight: bold;
+
+                &:hover {
+                    background-color: @main-background-color + 20;
+                    color: white;
+                }
 
                 &:active {
                     background-color: white;
@@ -156,6 +160,39 @@ h2, h3, .h2{
                 &:first-child {
                     margin-right: 0px;
                     border-bottom-left-radius: 8px;
+                }
+            }
+        }
+    }
+}
+
+#word-test-box {
+    > div {
+        > div {
+            > div.modal-body {
+                > div {
+                    > div {
+                        > table {
+                            > tbody {
+
+                                > tr:nth-child(1){
+                                    > td{
+                                        > button{
+                                            border-color: transparent;
+                                        }
+                                    }
+                                }
+
+                                tr {
+                                    td {
+                                        button {
+                                            font-size: 24px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

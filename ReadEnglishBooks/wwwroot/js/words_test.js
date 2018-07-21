@@ -68,7 +68,7 @@ function fillTestTable(words_array, index)
             {
                 $("#word-test-box tbody").append(
                     '<tr>' +
-                    '<td><button type="button" class="btn btn-primary text-center" onclick="return btnRuWord_OnClick(this)">' + random_words[j] + '</button ></td > ' +
+                    '<td><button type="button" class="btn btn-default text-center" onclick="return btnRuWord_OnClick(this)">' + random_words[j] + '</button ></td > ' +
                     '</tr > '
                 );
             }
