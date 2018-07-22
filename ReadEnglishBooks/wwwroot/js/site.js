@@ -134,6 +134,37 @@ function addSpanTagToParagraf()
     var element = document.getElementById("#learn-mode");
 }
 //--------------------------------------------------------------------------------------------------------------------
+$("#btn-save-into_db").click(function ()
+{
+    $.ajax({
+        type: 'POST',
+        url: '/Book/CreateBookDBFromFile/?book_folder=GO1984&book_name=GO1984.txt',
+        success: function (data)
+        {
+            //debugger;
+            
+            if (data !== null)
+            {
+                var res1 = parseInt(data.res1);
+                var res2 = parseInt(data.res2);
+                if (res1 !== -1 && res2 !== -1)
+                {
+                    alert("Страницы успешно добавлены в базу");
+                }
+                else
+                {
+                    alert("Не удалось добавить страницы, res1 = " + res1 + ", res2 = " + res2);
+                }
+            }
+            return;
+        },
+        error: function (xhr, status, error)
+        {
+            alert("Ошибка ajax:\n" + "status - " + status + "\nerror - " + error);
+        },
+        dataType: 'JSON'
+    });
+});
 
 //--------------------------------------------------------------------------------------------------------------------
 

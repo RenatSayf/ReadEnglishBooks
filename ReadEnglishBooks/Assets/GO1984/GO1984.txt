@@ -548,6 +548,133 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
 
 
 
+		<div class="book-page">
+            <p>
+                People disappeared from the newspapers when they were
+                vaporized and they could also appear in the newspapers when
+                they did not exist
+            </p>
+            <p>
+                Winston remembered Mr Ogilvy. He had appeared in the
+                newspapers because he had led the sort of life the Party wanted.
+                Ogilvy had joined the Spies at the age of six. At eleven he told
+                the Thought Police that his uncle was a criminal. At seventeen he
+                had been an organizer in the Young People's League. At nineteen
+                he had invented a new bomb which had killed thirty-one
+                Eurasians when it was first tried. At twenty-three, Ogilvy had
+                died like a hero, fighting the Eurasians. There were photographs
+                of Ogilvy, but there had been no Ogilvy. Not really. The
+                photographs were made at the Ministry of Truth. Ogilvy was
+                part of a past that never happened.
+            </p>
+            <p>
+                Anything could be changed. A dreamy man with hairy ears
+                called Ampleforth re-wrote old poems until they supported
+                everything the Party believed in.
+            </p>
+            <p>
+                But all this work, all these changes, were not the main work of
+                the Ministry of Truth. Most workers in the Ministry were busy
+                writing everything that the people of Oceania read or saw: all the
+                newspapers, films, plays, poems, school books, <i>telescreen</i> programmes
+                and songs, the Newspeak dictionaries and children's spelling books.
+            </p>
+            <p>
+                After his morning's work, Winston went to the canteen. It was
+                full, very noisy and smelled of cheap food and the gin that was
+                sold from a hole in the wall.
+            </p>
+            <p>
+                'Ah, I was looking for you' said a voice behind Winston.
+            </p>
+            <p>
+                It was Syme, his friend from the Dictionary Department.
+                Perhaps 'friend' was not exactly the right word. You did not have
+                friends these days, you had comrades. But some comrades were
+                more interesting than others.
+            </p>
+            <p>
+                Syme was working on the eleventh edition of the Newspeak
+                Dictionary. He was a small man, even smaller than Winston,
+                with dark hair and large eyes. These eyes were sad but they
+            </p>
+        </div>
+		|
+
+
+
+
+
+
+		<div class="book-page">
+            <p style="text-indent: 0px;">
+                seemed to laugh at you and to search your face closely when he
+                talked to you.
+            </p>
+            <p>
+                'Have you got any razor blades?' asked Syme.
+            </p>
+            <p>
+                'None,' said Winston quickly, perhaps too quickly. 'I've looked
+                for them everywhere.' Everyone was asking for razor blades.
+                There had been none in the Party shops for months. There was
+                always something which the Party could not make enough of.
+                Sometimes it was buttons, sometimes it was wool; now it was
+                razor blades. 'I've been using the same blade for six weeks,' he
+                lied. He actually had two new ones at home.
+            </p>
+            <p>
+                The people waiting for food and gin moved forward, slowly.
+                Winston and Syme took dirty plates from the pile.
+            </p>
+            <p>
+                'Did you go to the park yesterday?' asked Syme. 'All the
+                Eurasian prisoners were hanged.'              
+            </p>
+            <p>
+                'I was working,' said Winston. 'I'll see it at the cinema.'
+            </p>
+            <p>
+                'That's not as good,' said Syme. His eyes looked hard at
+                Winston's face. 'I know you,' they seemed to say. 'I know why you
+                didn't go to see the prisoners die.'
+            </p>
+            <p>
+                Syme was an enthusiastic supporter of the Party's decisions
+                about war, prisoners, thoughtcrime, the deaths in the underground
+                rooms below the Ministry of Love. Winston always tried to move
+                conversation with him away from all that. Syme knew a lot about
+                Newspeak and when he talked about language he was interesting.
+            </p>
+            <p>
+                'The prisoners kicked when they were hanged,' said Syme. 'I
+                always like that. It spoils it when their legs are tied together. And
+                one of them had his tongue hanging right out of his mouth. It
+                was quite a bright blue. I like that kind of detail.'
+            </p>
+            <p>
+                'Next, please,' called the prole who was giving out the food,
+                and Winston and Syme gave her their plates. She put some grey
+                meat on each one. There was also some bread, a small piece of
+                cheese and a cup of sugarless black coffee.
+            </p>
+            <p>
+                'There's a table there, under that telescreen,' said Syme. 'Let's get
+                a gin and sit there.'	13
+            </p>
+        </div>
+		|
+
+
+
+
+
+
+
+
+
+
+
 
 
 

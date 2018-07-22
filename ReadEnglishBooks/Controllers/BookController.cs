@@ -38,14 +38,18 @@ namespace ReadEnglishBooks.Controllers
         public async Task<JsonResult> CreateBookDBFromFile(string book_folder, string book_name)
         {
             book = new BookModel(Directory.GetCurrentDirectory() + "\\Assets\\" + book_folder + "\\" + book_name);
+            var json_data = JsonConvert.SerializeObject(false);
+            Dictionary<string, string> response = new Dictionary<string, string>(); 
             if (book != null)
             {
                 var sqliteHelper = new SqliteHelper();
                 book_name = book_name.Split('.').ElementAt(0);
                 var res1 = await sqliteHelper.AddpLabelToBookTable(book_folder, book_name, book.Author, book.BookName, book.BookContents);
                 var res2 = await sqliteHelper.AddpPagesToBookTable(book_folder, book_name, book.PagesArray);
+                response.Add("res1", res1.ToString());
+                response.Add("res2", res2.ToString());
             }
-            return Json(null);
+            return Json(response);
         }
 
         // GET: Book
