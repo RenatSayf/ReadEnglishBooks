@@ -455,6 +455,7 @@ function showDialogComplete(title, message)
                     fillTestTable(studyWordsArray, words_index);
                 }
                 $("#word-test-box").modal("show");
+                $(".modal-title").text("Найди подходящий перевод");
             },
             "Повторить": function ()
             {

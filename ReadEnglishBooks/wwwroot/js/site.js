@@ -61,6 +61,7 @@ function getSelectingWords(sentence)
     selectText = selectText.replace(/\!/g, '');
     selectText = selectText.replace(/\?/g, '');
     selectText = selectText.replace(/\,/g, '');
+    selectText = selectText.replace(/\"/g, '');
     selectText = selectText.replace(/\:/g, '');
     selectText = selectText.replace(/\;/g, '');
     selectText = selectText.replace(/\t/g, '');

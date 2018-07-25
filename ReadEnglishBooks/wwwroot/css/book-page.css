@@ -131,6 +131,9 @@ h3,
   margin-right: 0px;
   border-bottom-left-radius: 8px;
 }
+#word-test-box > div > div {
+  background-color: floralwhite;
+}
 #word-test-box > div > div > div.modal-body {
   background-color: lightblue;
 }

@@ -660,11 +660,73 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             </p>
             <p>
                 'There's a table there, under that telescreen,' said Syme. 'Let's get
-                a gin and sit there.'	13
+                a gin and sit there.'
             </p>
         </div>
 		|
 
+
+
+
+
+
+
+
+		<div class="book-page">
+            <p>
+                The gin was poured for them into big cups and they walked
+                through the crowded canteen to a metal table. There were some
+                pieces of meat on the table from the last person's meal.
+            </p>
+            <p>
+                They ate in silence. Winston drank down his gin, which
+                brought tears to his eyes.
+            </p>
+            <p>
+                'How's the Dictionary?' he said, speaking loudly because of
+                the noise.
+            </p>
+            <p>
+                ' I'm on the adjectives,' said Syme. 'It's wonderful work. 'His
+                eyes shone. He pushed his plate away, took his bread in one pale
+                hand and his cheese in the other, and put his mouth near
+                Winston's ear so he did not have to shout. 'The eleventh edition
+                is the final one,' he said. 'We're building a new language. When
+                we've finished, people like you will have to learn to speak again.
+                You think the main job is inventing new words, don't you?
+                Wrong! We're destroying words — lots of them, hundreds of
+                them, every day. We're only leaving the really necessary ones, and
+                they'll stay in use for a long time.'
+            </p>
+            <p>
+                He ate his bread hungrily. His thin, dark face had come alive
+                and his eyes were shining like the eyes of a man in love. 'It's a
+                beautiful thing to destroy words,' he said. 'For example, a word
+                like "good". If you have "good" in the language, you don't need
+                "bad".You can say "ungood".'
+            </p>
+            <p>
+                Winston smiled. It was safer not to say anything.
+            </p>
+            <p>
+                Syme continued. 'Do you understand? The aim of Newspeak
+                is to narrow thought. In the end we will make <i>thoughtcrime</i>
+                impossible, because people won't have the words to think the
+                crime. By the year 2050 there will be nobody alive who could
+                even understand this conversation.'
+            </p>
+            <p>
+                'Except . . .' Winston began and then stopped. He wanted to
+                say, 'Except the <i>proles'</i> But he was not sure if the Party would
+                accept the thought.
+            </p>
+            <p>
+                Syme had guessed what he was going to say. 'The <i>proles</i> are not
+                really people,' he said. 'By 2050 - earlier, probably - you won't...
+				<b>End of 14 page.</b>
+            </p>            
+        </div>
+		|
 
 
 
