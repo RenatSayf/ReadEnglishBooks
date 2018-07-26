@@ -66,14 +66,14 @@ h3,
 }
 .fragm-is-studied-dialog,
 .ui-dialog-titlebar {
-  background-color: #1f548c;
+  background-color: floralwhite;
   border-width: 0px;
   border-radius: 10px;
   padding: 0px;
 }
 .fragm-is-studied-dialog #dialog_message,
 .ui-dialog-titlebar #dialog_message {
-  color: greenyellow;
+  /*color: greenyellow;*/
   text-align: center;
 }
 .fragm-is-studied-dialog .ui-dialog-titlebar,
@@ -154,6 +154,7 @@ h3,
   font-size: 24px;
   border-radius: 10px;
   border-color: lightgreen;
+  margin-bottom: 0.5em;
 }
 #word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button:hover {
   background-color: aliceblue;
