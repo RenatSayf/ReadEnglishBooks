@@ -36,7 +36,7 @@ function getPage(page)
             $('#pagination-demo').twbsPagination('destroy');
             first_load = true;
             $('#pagination-demo').twbsPagination({
-                totalPages: page_count,
+                totalPages: page_count - 1,
                 startPage: page,
                 visiblePages: 5,
                 onPageClick: function (event, page)

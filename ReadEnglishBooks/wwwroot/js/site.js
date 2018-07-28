@@ -93,9 +93,9 @@ function addSpanTagToSentence()
     $('p, h2, h3, h4, h5').each(function ()
     {
         var content = this.innerHTML;
-        var arr_spliters = content.match(/[.!?:]/gmi);
+        var arr_spliters = content.match(/[\n\t\r.!?:]/gmi);
         var arr_content = [];
-        arr_content = content.split(/[.!?:]/gmi);
+        arr_content = content.split(/[\n\t\r.!?:]/gmi);
         var new_content = "";
 
         for (var i = 0; i < arr_content.length; i++)
