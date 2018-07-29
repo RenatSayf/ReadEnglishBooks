@@ -784,8 +784,66 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             <p>
                 Winston found two dirty dollar notes and gave them to
                 Parsons. Parsons wrote 'Two dollars' very carefully in small clear.
-				<b>End of 15 page.</b>.
+			</p>
+        </div>
+		|
+
+
+
+
+
+
+		<div class="book-page">
+            <p style="text-indent:0px;">
+                letters next to Winston's name in a little notebook. It was clear
+                that he rarely read or wrote.
             </p>
+            <p>
+                'Oh, Smith, old boy,' he said. 'I hear that son of mine threw
+                stones at you yesterday. I talked to him about it. He won't do it
+                again, believe me.'
+            </p>
+            <p>
+                'I think he was angry because he couldn't see the Eurasian
+                prisoners hang,' said Winston.
+            </p>
+            <p>
+                'Yes! Well, that shows what good children they are, doesn't it?
+                Both of them. They only think about the Spies — and the war, of
+                course. Do you know what my girl did last week? She was on a
+                walk in the country with the Spies and she saw a strange man.
+                She and two other girls followed him and then told the police
+                about him.'
+            </p>
+            <p>
+                'What did they do that for?'Winston asked, shocked.
+            </p>
+            <p>
+                'They thought he was a Eurasian spy,' said Parsons. 'They
+                noticed his shoes were different,' he added proudly.
+            </p>
+            <p>
+                Winston looked at the dirty canteen, looked at all the ugly
+                people in their ugly overalls, ate the terrible food and listened to
+                the telescreen. A voice from the Ministry of Plenty was saying that
+                they were all going to get more chocolate — twenty grammes a
+                week. Was he the only one who remembered that last week they
+                got thirty grammes? They were getting less chocolate, not more.
+                But Parsons would not remember. And even a clever man like
+                Syme found a way to believe it.
+            </p>
+            <p>
+                Winston came out of his sad dream. The girl with dark hair, who
+                he remembered from the Two Minutes Hate, was at the next table.
+                She was looking at him, but when he looked back at her she looked
+                away again. Winston was suddenly afraid. Why was she watching
+                him? Was she following him? Perhaps she was not in the Thought
+                Police, but Party members could be even more dangerous as spies.
+                How had he looked when the <i>telescreen</i> voice told them about the
+                chocolate? It was dangerous to look disbelieving. There was even a
+                word for it in Newspeak: <i>facecrime</i>, it was called.
+            </p>
+            
         </div>
 		|
 

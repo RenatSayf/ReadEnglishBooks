@@ -24,7 +24,7 @@ namespace ReadEnglishBooks.Controllers
     {
         private static BookModel book;
         private static BookModelDB bookModelDB;
-        private string pageNumberTag = "<br/><div class='page-number'>";
+        private string pageNumberTag = "<br/><div class='page-number' hidden>";
         private string divTag = "</div>";
         private string pageCountTag = "<br/><div class='page-count' hidden>";
         public static ApplicationDbContext db;
