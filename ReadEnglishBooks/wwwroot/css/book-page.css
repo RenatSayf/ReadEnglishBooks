@@ -29,6 +29,10 @@ h3,
   margin-right: auto;
   display: block;
 }
+.book-page > figure > p {
+  text-align: center;
+  text-indent: 0px;
+}
 @media screen and (max-width: 600px) {
   .book-page {
     font-size: 100%;
