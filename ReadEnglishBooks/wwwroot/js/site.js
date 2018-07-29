@@ -144,6 +144,7 @@ function addSpanTagToParagraf()
 //--------------------------------------------------------------------------------------------------------------------
 $("#btn-save-into_db").click(function (e)
 {
+    e.preventDefault();
     $.ajax({
         type: 'POST',
         url: '/Book/CreateBookDBFromFile/?book_folder=GO1984&book_name=GO1984.txt',
