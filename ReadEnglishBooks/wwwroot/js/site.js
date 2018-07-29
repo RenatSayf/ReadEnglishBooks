@@ -93,9 +93,9 @@ function addSpanTagToSentence()
     $('p, h2, h3, h4, h5').each(function ()
     {
         var content = this.innerHTML;
-        var arr_spliters = content.match(/[\n\t\r.!?:]/gmi);
+        var arr_spliters = content.match(/[.!?:]/gmi);
         var arr_content = [];
-        arr_content = content.split(/[\n\t\r.!?:]/gmi);
+        arr_content = content.split(/[.!?:]/gmi);
         var new_content = "";
 
         for (var i = 0; i < arr_content.length; i++)
@@ -113,7 +113,14 @@ function addSpanTagToSentence()
             {
                 if (arr_content[j] !== "" && arr_content[j] !== " ")
                 {
-                    arr_content[j] = '<span class="sentence">' + arr_content[j] + arr_spliters[j] + '</span>';
+                    if (arr_spliters[j] !== undefined)
+                    {
+                        arr_content[j] = '<span class="sentence">' + arr_content[j] + arr_spliters[j] + '</span>';
+                    }
+                    else
+                    {
+                        arr_content[j] = '<span class="sentence">' + arr_content[j] + '</span>';
+                    }
                 }
             }
             new_content = arr_content.join(" ");
@@ -127,7 +134,7 @@ function addSpanTagToSentence()
 //--------------------------------------------------------------------------------------------------------------------
 function addSpanTagToParagraf()
 {
-    $('p, h2, h3').each(function ()
+    $('p, h2, h3, h4, h5').each(function ()
     {
         var content = this.innerHTML;
         this.innerHTML = '<span class="paragraf">' + content + '</span>';
