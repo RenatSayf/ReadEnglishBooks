@@ -142,7 +142,7 @@ function addSpanTagToParagraf()
     var element = document.getElementById("#learn-mode");
 }
 //--------------------------------------------------------------------------------------------------------------------
-$("#btn-save-into_db").click(function ()
+$("#btn-save-into_db").click(function (e)
 {
     $.ajax({
         type: 'POST',
