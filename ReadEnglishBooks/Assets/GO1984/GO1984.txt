@@ -10,7 +10,7 @@
 						<li><a href="#" onclick="getPage(1)">Chapter 1. Big Brother Is Watching You.</a></li>
 						<li><a href="#" onclick="getPage(8)">Chapter 2. The Spies.</a></li>
 						<li><a href="#" onclick="getPage(10)">Chapter 3. The Ministry of Truth.</a></li>
-						<li><a href="#">Chapter 4. Ownlife.</a></li>
+						<li><a href="#" onclick="getPage(18)">Chapter 4. Ownlife.</a></li>
 					</ul>
 				</li>
 				<li>
@@ -861,7 +861,68 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
                 Winston ate the terrible food and listened to the telescreen.
             </p>
         </figure>
-		</div>|
+		</div>
+		|
+
+
+
+
+
+
+
+
+
+		<div class="book-page">
+            <p>
+                The girl had turned her back to him again. At that moment
+                the telescreen told them all to return to work and the three men
+                jumped to their feet.
+            </p>
+            <br /><br />
+            <h3>
+                Chapter 4. <i>Ownlife</i>
+            </h3>
+            <p>
+                Winston sat at the table and opened his diary. He thought of his
+                parents. He was, he thought, about ten or eleven years old when
+                his mother disappeared. She was a tall, silent woman with lovely
+                fair hair. He could not remember his father so well. He was dark
+                and thin and always wore dark clothes. They had both been
+                vaporized in the 1950s. His thoughts moved to other women and
+                he started writing in the diary:
+            </p>
+            <p>
+                <i>
+                    It was three years ago. It was on a dark evening, in a narrow sidestreet
+                    near one of the big railway stations. She had a young face with
+                    thick make-up. I liked the make-up. The whiteness and the bright red
+                    lips. No woman in the Party wore make-up. There was nobody else in the
+                    street and no telescreens. She said two dollars. I...
+                </i>
+            </p>
+            <p>
+                It was too difficult to continue. Winston wanted to hit his head
+                against the wall, to kick the table over and throw the diary through
+                the window - anything to stop the memory of that night.
+            </p>
+            <p>
+                It was, of course, illegal to pay a woman for sex. But the
+                punishment was about five years in a work camp, not death. The
+                Party knew it happened. Some prole women sold themselves for a
+                bottle of gin and the Party didn't worry much about that. The Party
+                wanted to stop love and pleasure in sex, not sex itself. A request to
+                marry would be refused if a man and a woman found each other
+                attractive. Sex, to the Party, was only necessary to make children.
+            </p>
+            <p>
+                He thought of Katherine, his wife. Winston had been married.
+                He was probably still married; if his wife was dead, nobody had
+                told him. They had lived together for about fifteen months, nine,
+                ten, eleven years ago. Katherine was a tall, fair-haired girl who
+            </p>
+
+        </div>
+		|
 
 
 
