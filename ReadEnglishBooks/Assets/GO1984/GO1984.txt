@@ -206,7 +206,7 @@
 
         <div class="book-page">
 		<figure class="books-img">
-            <img id="img_page5" class="img-page" src="/Assets/GO1984/img_page5.jpg" style="width: 100%; height: auto;" />
+            <img id="img_page5" class="img-page" src="/Assets/GO1984/img_page5.jpg" />
             <figcaption>
                 A girl behind him, with thick, dark hair was screaming
                 'Pig! Pig!' at Goldstein.
