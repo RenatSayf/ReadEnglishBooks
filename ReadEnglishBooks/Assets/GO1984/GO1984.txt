@@ -854,6 +854,22 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
 
 
 
+		<div class="book-page">
+		<figure class="books-img">
+            <img id="img_page5" class="img-page" src="/Assets/GO1984/img_page17.jpg"/>
+            <p>
+                Winston ate the terrible food and listened to the telescreen.
+            </p>
+        </figure>
+		</div>|
+
+
+
+
+
+
+
+
 
 
 
