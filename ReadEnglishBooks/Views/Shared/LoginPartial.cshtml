@@ -8,27 +8,30 @@
 {
     @*<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm"></form>*@
 
-    <div class="nav navbar-nav btn-group text-center" style="float:none;">
-        <div class="dropdown">
-            <a id="user-name" href="#" data-toggle="dropdown" class="btn dropdown-toggle text-center">
-                Пользователь:  @UserManager.GetUserName(User)
-                <span class="caret"></span>
-            </a>
-            <ul id="user-name-menu" class="dropdown-menu">
-                <li>
-                    <a asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">Выход</a>
-                </li>
-                @*<li>
-                    <a href="/Account/Logout">Выход</a>
-                </li>*@
-            </ul>
-        </div>
+<div class="nav navbar-nav btn-group text-center" style="float:none;">
+    <div class="dropdown">
+        <a id="user-name" href="#" data-toggle="dropdown" class="btn dropdown-toggle text-center">
+            Пользователь:  @UserManager.GetUserName(User)
+            <span class="caret"></span>
+        </a>
+        <ul id="user-name-menu" class="dropdown-menu">
+            <li>
+                <a asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">Выход</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            </li>
+        </ul>
     </div>
+</div>
 }
 else
 {
-    <div id="mobile-top-side-menu" class="row">
+    <div id="mobile-top-side-menu" class="row">        
         <ul id="top-side-menu" class="nav navbar-nav">
+            <li class="navmenu-nav text-center col-sm-12 col-xs-12 col-lg-12">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            </li>
             <li class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a>
             </li>

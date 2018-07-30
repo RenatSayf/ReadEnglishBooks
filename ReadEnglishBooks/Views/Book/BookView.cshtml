@@ -270,7 +270,11 @@
 
 
 <div id="books-side-menu" class="books-side-menu navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
-    <div class="navmenu-nav text-center">@await Html.PartialAsync("LoginPartial")</div><br />
+    @*<div class="navmenu-nav text-center col-sm-12 col-xs-12 col-lg-12">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+    </div>*@
+    <div class="navmenu-nav text-center">@await Html.PartialAsync("LoginPartial")</div>
+    <br />
     <hr />
     <a id="book-header" class="navmenu-brand visible-md visible-lg" href="#">@ViewBag.BookName</a>
     <a id="book-author" class="navmenu-brand visible-md visible-lg" href="#">@ViewBag.BookAuthor</a>
