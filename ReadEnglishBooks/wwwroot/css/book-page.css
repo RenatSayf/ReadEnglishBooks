@@ -140,35 +140,43 @@ h3,
   margin-right: 0px;
   border-bottom-left-radius: 8px;
 }
-#word-test-box > div > div {
+#word-test-box > div.modal-dialog > div {
   background-color: floralwhite;
 }
-#word-test-box > div > div > div.modal-body {
+#word-test-box > div.modal-dialog > div > div.modal-body {
   background-color: lightblue;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button {
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button {
   border-color: lightblue;
   background-color: lightblue;
   color: yellow;
-  font-size: 32px;
   font-weight: bolder;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:hover {
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:hover {
   background-color: lightblue;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:active {
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button:active {
   background-color: lightblue;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button {
-  font-size: 24px;
+@media screen and (min-width: 768px) {
+  #word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button {
+    font-size: 32px;
+  }
+}
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody tr td button {
   border-radius: 10px;
   border-color: lightgreen;
   margin-bottom: 0.5em;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button:hover {
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody tr td button:hover {
   background-color: aliceblue;
 }
-#word-test-box > div > div > div.modal-body > div > div > table > tbody tr td button:focus {
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody tr td button:focus {
   outline: none;
   background-color: white;
+}
+@media screen and (min-width: 768px) {
+  #word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody tr td button {
+    font-size: 24px;
+  }
 }
