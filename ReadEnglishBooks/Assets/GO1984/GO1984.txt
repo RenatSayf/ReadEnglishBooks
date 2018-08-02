@@ -256,9 +256,9 @@
             the Party slogans came up instead:
         </p>
 
-        <h4>WAR IS PEACE</h4>
-        <h4>FREEDOM IS SLAVERY</h4>
-        <h4>IGNORANCE IS STRENGTH</h4>
+        <h4>WAR IS PEACE.</h4>
+        <h4>FREEDOM IS SLAVERY.</h4>
+        <h4>IGNORANCE IS STRENGTH.</h4>
 
         <p>
             Then everybody started shouting 'B-B! B-B!' again and again,
@@ -309,9 +309,9 @@ night. And then your name disappeared, your existence was
 denied and then forgotten. You were, in Newspeak, vaporized.</p>
 
         <p>Suddenly he wanted to scream. He started writing, fast:</p>
-        <h5><i>DOWN WITH BIG BROTHER</i></h5>
-        <h5><i>DOWN WITH BIG BROTHER</i></h5>
-        <h5><i>DOWN WITH BIG BROTHER</i></h5>
+        <h4>DOWN WITH BIG BROTHER.</h4>
+        <h4>DOWN WITH BIG BROTHER.</h4>
+        <h4>DOWN WITH BIG BROTHER.</h4>
 		</div>
         |
 
@@ -551,7 +551,7 @@ denied and then forgotten. You were, in Newspeak, vaporized.</p>
             <p>
                 People disappeared from the newspapers when they were
                 vaporized and they could also appear in the newspapers when
-                they did not exist
+                they did not exist.
             </p>
             <p>
                 Winston remembered Mr Ogilvy. He had appeared in the

@@ -18,7 +18,7 @@ function getWordsBySentences()
     var paragrafArray = [];
     var sentencesGroupArray = [];
     var sentencesArray = [];
-    $("h2, h3, p").each(function (i)
+    $("p, h2, h3, h4, h5").each(function (i)
     {
         paragrafArray.push($(this).text().replace(/\t/g, '').replace(/\v/g, '').trim());
     });
