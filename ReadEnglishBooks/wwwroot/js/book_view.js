@@ -454,6 +454,8 @@ function showDialogComplete(title, message)
                 {
                     fillTestTable(studyWordsArray, words_index);
                 }
+                var center = $("body").height();
+                //$("#word-test-box").scrollTop(center /2);
                 $("#word-test-box").modal("show");
                 $(".modal-title").text("Найди подходящий перевод");
             },

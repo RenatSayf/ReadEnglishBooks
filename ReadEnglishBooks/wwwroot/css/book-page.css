@@ -140,6 +140,9 @@ h3,
   margin-right: 0px;
   border-bottom-left-radius: 8px;
 }
+#word-test-box > div.modal-dialog {
+  overflow-y: auto;
+}
 #word-test-box > div.modal-dialog > div {
   background-color: floralwhite;
 }
@@ -179,4 +182,7 @@ h3,
   #word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody tr td button {
     font-size: 24px;
   }
+}
+footer {
+  margin-bottom: 80px;
 }
