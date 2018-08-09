@@ -75,32 +75,6 @@ p{
     
 }
 
-
-.modal { 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-}
-
-.modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-}
-
-.modal-dialog {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.modal-content { /*прозрачность модального окна*/
-    background-color: rgb(255, 255, 255);
-}
-
 .learn-word{
     color: white;
     text-align: center;

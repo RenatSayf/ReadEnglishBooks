@@ -122,7 +122,8 @@
   text-decoration: none;
 }
 .book-contents ul a:hover {
-  color: #ebebeb;
+  background-color: #4da0c9;
+  border-radius: 5px;
 }
 #learned-mode,
 #user-name {
