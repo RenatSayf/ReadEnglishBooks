@@ -6,16 +6,18 @@
     justify-content: center;
 
     > li {
-        > a, > span{
+        > a {
+            padding-left: 15px;
+            padding-right: 15px;
             font-size: 18px;
-            border-radius: 8px;
-        }        
+            border-radius: 8px;           
+        }
     }
 }
 
 .pagination {
     > li {
-        > a, > span {
+        > a {
             position: unset;
             font-size: 18px;
         }
@@ -24,8 +26,9 @@
 
 .pagination-sm {
     > li {
-        > a, > span {
+        > a {
             font-size: 18px;
+
         }
     }
 }
@@ -52,7 +55,7 @@ h2, h3, .h2{
 }
 @media screen and (max-width: 600px){
     .book-page {
-        font-size: 100%;
+        font-size: 130%;
     }
 } 
 
@@ -190,12 +193,23 @@ h2, h3, .h2{
         > div {
             background-color: floralwhite;
 
+            > div {
+                h4 {
+                    font-weight: bold;
+                    color: lightblue;
+                }
+            }
+
             > div.modal-body {
                 background-color: lightblue;
 
                 > div {
                     > div {
                         > table {
+                            color: floralwhite;
+                            font-weight: bold;
+                            font-size: 18px;
+
                             > tbody {
 
                                 > tr:nth-child(1) {
@@ -262,6 +276,7 @@ h2, h3, .h2{
 
 footer{
     margin-bottom: 80px;
+    
 }
 
 

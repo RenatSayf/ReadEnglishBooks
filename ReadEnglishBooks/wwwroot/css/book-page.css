@@ -2,18 +2,17 @@
   display: flex;
   justify-content: center;
 }
-#pagination-demo > li > a,
-#pagination-demo > li > span {
+#pagination-demo > li > a {
+  padding-left: 15px;
+  padding-right: 15px;
   font-size: 18px;
   border-radius: 8px;
 }
-.pagination > li > a,
-.pagination > li > span {
+.pagination > li > a {
   position: unset;
   font-size: 18px;
 }
-.pagination-sm > li > a,
-.pagination-sm > li > span {
+.pagination-sm > li > a {
   font-size: 18px;
 }
 h2,
@@ -35,7 +34,7 @@ h3,
 }
 @media screen and (max-width: 600px) {
   .book-page {
-    font-size: 100%;
+    font-size: 130%;
   }
 }
 .book-contents li > a:active {
@@ -146,8 +145,17 @@ h3,
 #word-test-box > div.modal-dialog > div {
   background-color: floralwhite;
 }
+#word-test-box > div.modal-dialog > div > div h4 {
+  font-weight: bold;
+  color: lightblue;
+}
 #word-test-box > div.modal-dialog > div > div.modal-body {
   background-color: lightblue;
+}
+#word-test-box > div.modal-dialog > div > div.modal-body > div > div > table {
+  color: floralwhite;
+  font-weight: bold;
+  font-size: 18px;
 }
 #word-test-box > div.modal-dialog > div > div.modal-body > div > div > table > tbody > tr:nth-child(1) > td > button {
   border-color: lightblue;

@@ -38,6 +38,8 @@ function getPage(page)
             $('#pagination-demo').twbsPagination({
                 totalPages: page_count - 1,
                 startPage: page,
+                next: '>',
+                prev: '<',
                 visiblePages: 5,
                 onPageClick: function (event, page)
                 {
