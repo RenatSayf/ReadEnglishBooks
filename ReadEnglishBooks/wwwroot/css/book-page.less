@@ -4,13 +4,12 @@
 #pagination-demo {
     display: flex;
     justify-content: center;
+    padding-right: 0px;
 
     > li {
         > a {
-            padding-left: 15px;
-            padding-right: 15px;
-            font-size: 18px;
-            border-radius: 8px;           
+            font-size: 100%;
+            border-radius: 8px;
         }
     }
 }
@@ -35,6 +34,7 @@
 
 h2, h3, .h2{
     font-size: 130%;
+    font-weight: bold;
 }
 
 .book-page {
@@ -90,17 +90,65 @@ h2, h3, .h2{
         background-color: @main-background-color;
         border-color: white;
         border-width: 1px;
+        min-width: 3%;
+        z-index: 2010 !important; /* A value higher than 1010 that solves the problem */
+        #trans_div{
+            font-size: 220%;
+        }
+
+        button {
+            display: block;
+            background-color: @main-background-color;
+            border-color: @main-background-color;
+            outline: none;
+            box-shadow: none;
+            font-size: 120% !important;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &:hover {
+                background-color: @main-background-color + 30;
+                border-color: @main-background-color + 30;
+            }
+
+            &:active {
+                background-color: white;
+                border-color: white;
+                color: @main-background-color;
+                outline: none;
+            }
+        }
+    }
+
+    .popover-title {
+        text-indent: 0;
+        padding: 0;
+
+        button {
+            width: 100%;
+        }
     }
 
     .popover-content {
-        padding: 5px 2px;
+        padding: 0;
         color: white;
-        font-size: 24px;
+        font-size: 120%;
 
         div {
             text-indent: 0em;
             text-align: center;
             padding: 0px;
+        }
+
+        > div.container {
+            div.row {
+                margin-left: 0;
+                margin-right: 0;
+
+                .progress {
+                    height: 6px;
+                }
+            }
         }
     }
 

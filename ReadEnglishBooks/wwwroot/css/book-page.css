@@ -1,11 +1,10 @@
 ﻿#pagination-demo {
   display: flex;
   justify-content: center;
+  padding-right: 0px;
 }
 #pagination-demo > li > a {
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 18px;
+  font-size: 100%;
   border-radius: 8px;
 }
 .pagination > li > a {
@@ -19,6 +18,7 @@ h2,
 h3,
 .h2 {
   font-size: 130%;
+  font-weight: bold;
 }
 .book-page {
   font-size: 150%;
@@ -58,16 +58,56 @@ h3,
   background-color: #398cb5;
   border-color: white;
   border-width: 1px;
+  min-width: 3%;
+  z-index: 2010 !important;
+  /* A value higher than 1010 that solves the problem */
+}
+.clicked .popover #trans_div {
+  font-size: 220%;
+}
+.clicked .popover button {
+  display: block;
+  background-color: #398cb5;
+  border-color: #398cb5;
+  outline: none;
+  box-shadow: none;
+  font-size: 120% !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.clicked .popover button:hover {
+  background-color: #57aad3;
+  border-color: #57aad3;
+}
+.clicked .popover button:active {
+  background-color: white;
+  border-color: white;
+  color: #398cb5;
+  outline: none;
+}
+.clicked .popover-title {
+  text-indent: 0;
+  padding: 0;
+}
+.clicked .popover-title button {
+  width: 100%;
 }
 .clicked .popover-content {
-  padding: 5px 2px;
+  padding: 0;
   color: white;
-  font-size: 24px;
+  font-size: 120%;
 }
 .clicked .popover-content div {
   text-indent: 0em;
   text-align: center;
   padding: 0px;
+}
+.clicked .popover-content > div.container div.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.clicked .popover-content > div.container div.row .progress {
+  height: 6px;
 }
 .clicked .popover.bottom > .arrow:after {
   border-bottom-color: #398cb5;

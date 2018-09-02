@@ -250,11 +250,11 @@ function sentenceEvents()
         }
     );
 
-    $(".sentence").on("mousedown", function ()
+    $(".sentence").click(function (e)
     {
         if (!isPlay)
         {
-            resetWordSelection();
+            resetWordSelection(words_popover_id);            
             if (learn_mode === learn_by_sentence)
             {
                 words_count = -1;
@@ -266,13 +266,13 @@ function sentenceEvents()
                 //debugger;
                 $("#target-text").text(this.innerText);
                 $("#translated-text").text("");
-                fontSizeAnim($(".fa-play"));
+                //fontSizeAnim($(".fa-play"));
             }
         }
         return;
     });
 
-    $(".paragraf").on("mousedown", function ()
+    $(".paragraf").click(function ()
     {
         if (!isPlay)
         {
@@ -308,17 +308,19 @@ function sentenceEvents()
                 $("#translated-text").text("");
             }
         }
-    });    
+    });  
+
+   
 }
 //===========================================================================================================
-function resetWordSelection()
+function resetWordSelection(popover_id)
 {
     $(".sentence").removeClass("clicked");
     $(".sentence span").css({
         fontSize: "100%",
         background: ''
     });
-    $(".ru-word").popover('hide');
+    $(".ru-word").popover('destroy');
     $("span").removeClass("ru-word");
 }
 //===========================================================================================================
@@ -348,6 +350,8 @@ $("#fa_back").click(function (event)
 {
     if (arrayOfSeletion.length > 0)
     {
+        $(".popover").remove();
+        $(".ru-word").popover('destroy');
         isPlay = false;
         is_back = true;
         $("#fa_play").show();
@@ -365,6 +369,8 @@ $("#fa-next").click(function (event)
 {
     if (arrayOfSeletion.length > 0)
     {
+        $(".ru-word").popover('destroy');
+        $(".popover").remove();
         isPlay = false;
         is_back = false;  
         $("#fa_play").show();

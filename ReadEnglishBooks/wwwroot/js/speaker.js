@@ -1,6 +1,8 @@
 ﻿var page_HTML;
 var local_HTML;
 var local_text_id = "local-text-id";
+var words_popover_id;
+var current_text_sentence;
 //============================================================================================================
 function speech(en_word)
 {
@@ -18,17 +20,25 @@ function speech(en_word)
     if (ru_word === undefined)
     {
         ru_word = "";
-    }    
+    }  
+
+    $("#trans_div").text(ru_word);
 
     $(".ru-word").popover({
         html: true,
-        //title: '<i class="fa fa-volume-up" aria-hidden="true" style="font-size: 100%; text-align: center;"></i>',
-        content: '<div>' + ru_word + '</div>',
-        //trigger: 'hover',
+        title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
+        content: $("#popover-content").html(),
+        //content: '<div>' + ru_word + '</div>',
+        //trigger: 'focus',
         placement: 'bottom'
     });
     $(".ru-word").popover('show');
 
+    $("#btn_sound, .popover-content").click(function (e)
+    {
+        e.stopPropagation();
+    })
+    //debugger;
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');
     var en_rate = $("#en-rate").selectpicker('val');
@@ -61,7 +71,7 @@ $('#audio')[0].onerror = function ()
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
-    $(".ru-word").popover('hide');
+    $(".ru-word").popover('destroy');
     isPlay = false;
 };
 //============================================================================================================
@@ -88,7 +98,7 @@ $('#audio')[0].onended = function (data)
 //============================================================================================================
 $("#audio")[0].onpause = function ()
 {
-    cleanLocalSelection();
+    //cleanLocalSelection();
 };
 //============================================================================================================
 function playStart()
