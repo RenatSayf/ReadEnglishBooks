@@ -37,7 +37,7 @@ function speech(en_word)
     $("#btn_sound, .popover-content").click(function (e)
     {
         e.stopPropagation();
-    })
+    });
     //debugger;
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');

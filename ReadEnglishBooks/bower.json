@@ -8,8 +8,7 @@
     "jquery-validation-unobtrusive": "3.2.6",
     "twbs-pagination": "v1.4.2",
     "jquery-ui": "1.12.1",
-    "bootstrap-select": "v2.0.0-beta1",
-    "vue": "v2.5.17"
+    "bootstrap-select": "v2.0.0-beta1"
   },
   "resolutions": {
     "twbs-pagination": "v1.4.2",

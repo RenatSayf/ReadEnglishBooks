@@ -543,9 +543,9 @@ function getUserSettings()
                 }
 
                 $("#ru-voices-list").empty();
-                for (var i = 0; i < settings_obj.ru_voices.length; i++)
+                for (var j = 0; j < settings_obj.ru_voices.length; j++)
                 {
-                    var ru_voice = settings_obj.ru_voices[i];
+                    var ru_voice = settings_obj.ru_voices[j];
                     $("#ru-voices-list").append("<option value='" + ru_voice + "'>" + ru_voice + "</option>");
                     $("#ru-voices-list").selectpicker('refresh');
                 }
