@@ -26,7 +26,8 @@ function speech(en_word)
 
     $(".ru-word").popover({
         html: true,
-        title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
+        //title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
+        title: $("#popover-title").html(),
         content: $("#popover-content").html(),
         //content: '<div>' + ru_word + '</div>',
         //trigger: 'focus',
@@ -53,6 +54,8 @@ $('#audio')[0].onplaying = function ()
 {
     if (isPlay)
     {
+        $("#fa_play").css("display", "none");
+        $("#fa_pause").show();
         if (!is_back)
         {
             //debugger;
@@ -99,6 +102,8 @@ $('#audio')[0].onended = function (data)
 $("#audio")[0].onpause = function ()
 {
     //cleanLocalSelection();
+    $("#fa_pause").css("display", "none");
+    $("#fa_play").show();
 };
 //============================================================================================================
 function playStart()

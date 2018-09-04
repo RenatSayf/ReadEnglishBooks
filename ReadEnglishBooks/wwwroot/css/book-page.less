@@ -92,8 +92,8 @@ h2, h3, .h2{
         border-width: 1px;
         min-width: 3%;
         z-index: 2010 !important; /* A value higher than 1010 that solves the problem */
-        #trans_div{
-            font-size: 220%;
+        #trans_div {
+            font-size: 180%;
         }
 
         button {
@@ -102,9 +102,14 @@ h2, h3, .h2{
             border-color: @main-background-color;
             outline: none;
             box-shadow: none;
-            font-size: 120% !important;
+            font-size: 90% !important;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+
+            .fa-play {
+                position: relative;
+                left: 0.15em;
+            }
 
             &:hover {
                 background-color: @main-background-color + 30;
@@ -144,6 +149,23 @@ h2, h3, .h2{
             div.row {
                 margin-left: 0;
                 margin-right: 0;
+
+                > button:nth-child(1) {
+                    border-radius: 0;
+                    border-top-color: white;
+                    border-right-color: white;
+                }
+
+                > button:nth-child(2) {
+                    border-radius: 0;
+                    border-top-color: white;
+                }
+
+                > button:nth-child(3) {
+                    border-radius: 0;
+                    border-top-color: white;
+                    border-left-color: white;
+                }
 
                 .progress {
                     height: 6px;

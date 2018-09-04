@@ -320,7 +320,7 @@ function resetWordSelection(popover_id)
         fontSize: "100%",
         background: ''
     });
-    $(".ru-word").popover('destroy');
+    $("span, .ru-word, .clicked, .sentence").popover('destroy');
     $("span").removeClass("ru-word");
 }
 //===========================================================================================================
@@ -365,14 +365,13 @@ $("#fa_back").click(function (event)
     }    
 });
 //===========================================================================================================
-$("#fa-next").click(function (event)
+function speakNext()
 {
     if (arrayOfSeletion.length > 0)
     {
         $(".ru-word").popover('destroy');
-        $(".popover").remove();
         isPlay = false;
-        is_back = false;  
+        is_back = false;
         $("#fa_play").show();
         $("#fa_pause").hide();
         words_count++;
@@ -380,8 +379,18 @@ $("#fa-next").click(function (event)
         {
             words_count = 0;
         }
-        speech(arrayOfSeletion[words_count]);        
-    }     
+        speech(arrayOfSeletion[words_count]);
+    }
+}
+//===========================================================================================================
+function nextClick()
+{
+    speakNext();   
+}
+//===========================================================================================================
+$(".fa-next").click(function (event)
+{
+    speakNext(); 
 });
 //===========================================================================================================
 $("#fa_sound").click(function ()
@@ -549,15 +558,21 @@ function getUserSettings()
                     $("#ru-voices-list").append("<option value='" + ru_voice + "'>" + ru_voice + "</option>");
                     $("#ru-voices-list").selectpicker('refresh');
                 }
-                if (settings_obj.userVoices.length >= 2)
+                try
                 {
-                    $("#en-voices-list").selectpicker('val', settings_obj.userVoices[0]);
-                    $("#ru-voices-list").selectpicker('val', settings_obj.userVoices[1]);
-                }
-                if (settings_obj.userVoicesRate.length === 2)
+                    if (settings_obj.userVoices.length >= 2)
+                    {
+                        $("#en-voices-list").selectpicker('val', settings_obj.userVoices[0]);
+                        $("#ru-voices-list").selectpicker('val', settings_obj.userVoices[1]);
+                    }
+                    if (settings_obj.userVoicesRate.length === 2)
+                    {
+                        $("#en-rate").selectpicker('val', settings_obj.userVoicesRate[0]);
+                        $("#ru-rate").selectpicker('val', settings_obj.userVoicesRate[1]);
+                    }
+                } catch (e)
                 {
-                    $("#en-rate").selectpicker('val', settings_obj.userVoicesRate[0]);
-                    $("#ru-rate").selectpicker('val', settings_obj.userVoicesRate[1]);
+                    e.message;
                 }
             }
             return;

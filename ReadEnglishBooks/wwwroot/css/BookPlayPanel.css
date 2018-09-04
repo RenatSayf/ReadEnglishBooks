@@ -44,6 +44,12 @@
   background-color: white;
   color: #398cb5;
 }
+@media screen and (min-width: 600px) {
+  #vol-control {
+    position: relative;
+    left: 4em;
+  }
+}
 #volume {
   max-width: 120px;
   margin-top: 14px;

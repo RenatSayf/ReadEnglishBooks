@@ -1,7 +1,7 @@
 ﻿function getSelectionText()
 {
-    var txt = '';
-    if (txt === window.getSelection)
+    var txt = window.getSelection;
+    if (txt !== undefined)
     { // Не IE, используем метод getSelection
         txt = window.getSelection().toString();
     } else
