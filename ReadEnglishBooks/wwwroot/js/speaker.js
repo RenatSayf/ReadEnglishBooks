@@ -35,7 +35,7 @@ function speech(en_word)
     });
     $(".ru-word").popover('show');
 
-    $("#btn_sound, .popover-content").click(function (e)
+    $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
     {
         e.stopPropagation();
     });

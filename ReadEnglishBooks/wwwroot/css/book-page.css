@@ -64,6 +64,9 @@ h3,
 }
 .clicked .popover #trans_div {
   font-size: 180%;
+  color: yellow;
+  font-weight: bold;
+  padding-bottom: 6px;
 }
 .clicked .popover button {
   display: block;
@@ -92,9 +95,14 @@ h3,
 .clicked .popover-title {
   text-indent: 0;
   padding: 0;
+  background-color: #398cb5;
 }
 .clicked .popover-title button {
-  width: 100%;
+  /*width: 100%;*/
+}
+.clicked .popover-title button i {
+  font-size: 274%;
+  padding: 0;
 }
 .clicked .popover-content {
   padding: 0;
@@ -110,22 +118,14 @@ h3,
   margin-left: 0;
   margin-right: 0;
 }
-.clicked .popover-content > div.container div.row > button:nth-child(1) {
+.clicked .popover-content > div.container div.row > button {
   border-radius: 0;
   border-top-color: white;
-  border-right-color: white;
+  border-top-width: 0.5px;
 }
-.clicked .popover-content > div.container div.row > button:nth-child(2) {
-  border-radius: 0;
-  border-top-color: white;
-}
-.clicked .popover-content > div.container div.row > button:nth-child(3) {
-  border-radius: 0;
-  border-top-color: white;
-  border-left-color: white;
-}
-.clicked .popover-content > div.container div.row .progress {
-  height: 6px;
+.clicked .popover-content > div.container div.row > button i {
+  position: relative;
+  top: 0.25em;
 }
 .clicked .popover.bottom > .arrow:after {
   border-bottom-color: #398cb5;

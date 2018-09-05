@@ -19,3 +19,11 @@ function fontSizeAnim(jQbj)
         });
     });
 }
+//================================================================================================
+function positionChange(jQbj, to_position, duration)
+{
+    $(jQbj).animate({ bottom: to_position }, duration, function ()
+    {
+
+    });
+}

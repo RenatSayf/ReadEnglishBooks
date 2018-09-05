@@ -252,6 +252,8 @@ function sentenceEvents()
 
     $(".sentence").click(function (e)
     {
+        //$("#book-play-panel").css("bottom", "0");
+        positionChange($("#book-play-panel"), 0, 200);
         if (!isPlay)
         {
             resetWordSelection(words_popover_id);            

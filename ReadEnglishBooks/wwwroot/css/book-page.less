@@ -94,6 +94,9 @@ h2, h3, .h2{
         z-index: 2010 !important; /* A value higher than 1010 that solves the problem */
         #trans_div {
             font-size: 180%;
+            color: yellow;
+            font-weight: bold;
+            padding-bottom: 6px;
         }
 
         button {
@@ -128,9 +131,14 @@ h2, h3, .h2{
     .popover-title {
         text-indent: 0;
         padding: 0;
+        background-color: @main-background-color;
 
         button {
-            width: 100%;
+            /*width: 100%;*/
+            i {
+                font-size: 274%;
+                padding: 0;
+            }
         }
     }
 
@@ -150,25 +158,15 @@ h2, h3, .h2{
                 margin-left: 0;
                 margin-right: 0;
 
-                > button:nth-child(1) {
+                > button {
                     border-radius: 0;
                     border-top-color: white;
-                    border-right-color: white;
-                }
+                    border-top-width: 0.5px;
 
-                > button:nth-child(2) {
-                    border-radius: 0;
-                    border-top-color: white;
-                }
-
-                > button:nth-child(3) {
-                    border-radius: 0;
-                    border-top-color: white;
-                    border-left-color: white;
-                }
-
-                .progress {
-                    height: 6px;
+                    i {
+                        position: relative;
+                        top: 0.25em;
+                    }
                 }
             }
         }

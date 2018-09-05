@@ -10,5 +10,13 @@
   {
     "outputFile": "wwwroot/css/book-page.css",
     "inputFile": "wwwroot/css/book-page.less"
+  },
+  {
+    "outputFile": "wwwroot/css/check_box_style.css",
+    "inputFile": "wwwroot/css/check_box_style.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/check_box.css",
+    "inputFile": "wwwroot/css/check_box.less"
   }
 ]
