@@ -1,18 +1,19 @@
 ﻿var countRepeat = 0;
 //=================================================================================================
-function fontSizeAnim(jQbj)
+function backgroundColorAnim(jQbj)
 {
-    $(jQbj).animate({ fontSize: "200%", color: "#FFFF00" }, 200, function ()
+    $(jQbj).animate({ backgroundColor: "#00ff21" }, 200, function ()
     {
-        $(jQbj).animate({ fontSize: "140%", color: "#FFFFFF" }, 200, function ()
+        $(jQbj).animate({ backgroundColor: "#398cb5" }, 200, function ()
         {
-            if (countRepeat < 4)
+            if (countRepeat < 8)
             {
-                fontSizeAnim(jQbj, true);
+                backgroundColorAnim(jQbj);
                 countRepeat++;
             }
             else
             {
+                $(jQbj).removeAttr("style");
                 countRepeat = 0;
                 return;
             }
@@ -27,3 +28,4 @@ function positionChange(jQbj, to_position, duration)
 
     });
 }
+//================================================================================================

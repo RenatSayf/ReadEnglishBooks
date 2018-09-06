@@ -18,5 +18,9 @@
   {
     "outputFile": "wwwroot/css/check_box.css",
     "inputFile": "wwwroot/css/check_box.less"
+  },
+  {
+    "outputFile": "wwwroot/css/side__menu.css",
+    "inputFile": "wwwroot/css/side__menu.less"
   }
 ]

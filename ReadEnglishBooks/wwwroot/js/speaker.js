@@ -4,7 +4,7 @@ var local_text_id = "local-text-id";
 var words_popover_id;
 var current_text_sentence;
 //============================================================================================================
-function speech(en_word)
+function speech(en_word, is_popover_show)
 {
     var ru_word;
     findIntoSentence(en_word, local_text_id);    
@@ -24,21 +24,24 @@ function speech(en_word)
 
     $("#trans_div").text(ru_word);
 
-    $(".ru-word").popover({
-        html: true,
-        //title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
-        title: $("#popover-title").html(),
-        content: $("#popover-content").html(),
-        //content: '<div>' + ru_word + '</div>',
-        //trigger: 'focus',
-        placement: 'bottom'
-    });
-    $(".ru-word").popover('show');
-
-    $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
+    if (is_popover_show)
     {
-        e.stopPropagation();
-    });
+    $(".ru-word").popover({
+            html: true,
+            //title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
+            title: $("#popover-title").html(),
+            content: $("#popover-content").html(),
+            //content: '<div>' + ru_word + '</div>',
+            //trigger: 'focus',
+            placement: 'bottom'
+        });
+        $(".ru-word").popover('show');
+
+        $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
+        {
+            e.stopPropagation();
+        });
+    }
     //debugger;
     var en_voice = $("#en-voices-list").selectpicker('val');
     var ru_voice = $("#ru-voices-list").selectpicker('val');
@@ -84,18 +87,19 @@ $('#audio')[0].onended = function (data)
     {
         if (words_count <= arrayOfSeletion.length - 1)
         {
-            speech(arrayOfSeletion[words_count]);
+            speech(arrayOfSeletion[words_count], true);
         }
         else
         {
             speechStop();
-            showDialogComplete("", "");
+            //showDialogComplete("", "");
         }
         return;
     }
     if (!isPlay && words_count >= arrayOfSeletion.length - 1)
     {
-        showDialogComplete("", "Проверить знания?");
+        //showDialogComplete("", "Проверить знания?");
+        backgroundColorAnim("#btn-test-knowledge");
     }
 };
 //============================================================================================================

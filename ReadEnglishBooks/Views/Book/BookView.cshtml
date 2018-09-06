@@ -4,7 +4,7 @@
 }
 @section header
     {
-    <link rel="stylesheet" href="~/css/side_menu.css" />
+    <link rel="stylesheet" href="~/css/side__menu.min.css" />
     <link rel="stylesheet" href="~/css/BookPlayPanel.css" />
     <link rel="stylesheet" href="~/css/books-side-menu.css" />
     <link rel="stylesheet" href="~/css/book-page.min.css" />
@@ -224,7 +224,7 @@
     </div>
 
     <div class="row">
-        <div class="container" id="book-play-panel" data-toggle="popover" title="Popover Header" data-content="Some content">
+        <div class="container" id="book-play-panel" data-toggle="popover">
             <div class="col-xs-0 col-md-3 col-lg-4 text-center">
             </div>
 
@@ -233,7 +233,7 @@
             </div>
 
             <div class="col-xs-2 col-md-2 col-lg-1 text-center">
-                <i id="fa_sound" class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i>
+                <i id="fa_sound" class="fa-sound fa fa-volume-up fa-play-panel" aria-hidden="true" onclick="speakOnly()"></i>
             </div>
 
             <div class="col-xs-2 col-md-2 col-lg-1 text-center">
@@ -257,7 +257,7 @@
                 </div>
             </div>
 
-            <div id="fa-next" class="fa-next col-xs-2 col-md-2 col-lg-1 text-center">
+            <div id="fa-next" class="col-xs-2 col-md-2 col-lg-1 text-center">
                 <i class="fa fa-step-forward fa-lg fa-play-panel"></i>
             </div>
 
@@ -326,7 +326,7 @@
                     </div>
                 </div>
             </div>
-            <button id="btn_sound" type="button" class="btn btn-warning col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <button id="btn_sound" type="button" class="fa-sound btn btn-warning col-lg-5 col-md-5 col-sm-5 col-xs-5" onclick="speakOnly()">
                 <i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i>
             </button>
         </div>
@@ -338,8 +338,8 @@
     <div class="container">
                 
         <div class="row">
-            <button type="button" class="btn btn-info col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <i class="fa fa-graduation-cap fa-lg fa-play-panel" aria-hidden="true"></i>
+            <button id="btn-test-knowledge" type="button" class="btn btn-info col-lg-12 col-md-12 col-xs-12 col-sm-12" onclick="showKnowledgeTest()">
+                <i class="fa fa-graduation-cap fa-lg" aria-hidden="true"></i>
                 Проверить знания
             </button>
         </div>
