@@ -3,6 +3,7 @@ var local_HTML;
 var local_text_id = "local-text-id";
 var words_popover_id;
 var current_text_sentence;
+var playPromise;
 //============================================================================================================
 function speech(en_word, is_popover_show)
 {
@@ -28,11 +29,8 @@ function speech(en_word, is_popover_show)
     {
     $(".ru-word").popover({
             html: true,
-            //title: '<button id="btn_sound" type="button" class="btn btn-warning"><i class="fa fa-volume-up fa-play-panel" aria-hidden="true"></i></button>',
             title: $("#popover-title").html(),
             content: $("#popover-content").html(),
-            //content: '<div>' + ru_word + '</div>',
-            //trigger: 'focus',
             placement: 'bottom'
         });
         $(".ru-word").popover('show');
@@ -48,9 +46,30 @@ function speech(en_word, is_popover_show)
     var en_rate = $("#en-rate").selectpicker('val');
     var ru_rate = $("#ru-rate").selectpicker('val');
 
-    $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
-    $('#audio')[0].play();
+    try
+    {
+        $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
+        playPromise = $('#audio')[0].play();
+    } catch (e)
+    {
+        return;
+    }
      
+}
+//============================================================================================================
+function audioPause()
+{
+    if (playPromise !== undefined)
+    {
+        playPromise.then(_ =>
+        {
+            $('#audio')[0].pause();
+        })
+            .catch(error =>
+            {
+
+            });
+    }
 }
 //============================================================================================================
 $('#audio')[0].onplaying = function ()
@@ -91,8 +110,9 @@ $('#audio')[0].onended = function (data)
         }
         else
         {
-            speechStop();
+            //speechStop();
             //showDialogComplete("", "");
+            backgroundColorAnim("#btn-test-knowledge");
         }
         return;
     }
@@ -131,7 +151,7 @@ function speechStop()
     $("#fa_play").show();
     $("#fa_pause").hide();
     cleanLocalSelection();
-    $(".ru-word").popover('destroy');
+    //$(".ru-word").popover('destroy');
 }
 //============================================================================================================
 function cleanSelectionOnPage()

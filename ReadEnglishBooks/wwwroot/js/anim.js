@@ -21,9 +21,9 @@ function backgroundColorAnim(jQbj)
     });
 }
 //================================================================================================
-function positionChange(jQbj, to_position, duration)
+function positionChangeAnim(jQ_selector, to_position, duration)
 {
-    $(jQbj).animate({ bottom: to_position }, duration, function ()
+    $(jQ_selector).animate({ bottom: to_position }, duration, function ()
     {
 
     });

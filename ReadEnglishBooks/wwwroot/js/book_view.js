@@ -204,7 +204,8 @@ $('#learn-mode').change(function ()
     learn_mode = $('#learn-mode').selectpicker('val');
     local_HTML = undefined;
     arrayOfSeletion.length = 0;
-    $('#audio')[0].pause();
+    //$('#audio')[0].pause();
+    audioPause();
     speechStop();
     getPage(current_page);
 });
@@ -252,7 +253,7 @@ function sentenceEvents()
 
     $(".sentence").click(function (e)
     {
-        positionChange($("#book-play-panel"), 0, 200);
+        positionChangeAnim("#book-play-panel", 0, 200);
         if (!isPlay)
         {
             resetWordSelection();            
@@ -328,6 +329,7 @@ var is_back = false;
 document.getElementById("fa_play").onclick = function (event)
 {
     //isStart = false;
+    
     var w = arrayOfSeletion;
     if (arrayOfSeletion.length > 0)
     {
@@ -346,6 +348,7 @@ document.getElementById("fa_play").onclick = function (event)
 //===========================================================================================================
 $("#fa_back").click(function (event)
 {
+    
     if (arrayOfSeletion.length > 0)
     {
         $(".popover").remove();
@@ -365,6 +368,7 @@ $("#fa_back").click(function (event)
 //===========================================================================================================
 function nextClick()
 {
+    
     if (arrayOfSeletion.length > 0)
     {
         $(".ru-word").popover('destroy');
@@ -388,6 +392,7 @@ $("#fa-next").click(function (event)
 //===========================================================================================================
 function speakOnly()
 {
+    
     if (arrayOfSeletion.length > 0 && words_count >= 0 && words_count < arrayOfSeletion.length)
     {
         speech(arrayOfSeletion[words_count], true);
@@ -438,6 +443,7 @@ window.onload = function ()
 //===========================================================================================================
 function showKnowledgeTest()
 {
+    isPlay = false;
     $('*').popover('destroy');
     studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
     if (studyWordsArray.length > 0)
