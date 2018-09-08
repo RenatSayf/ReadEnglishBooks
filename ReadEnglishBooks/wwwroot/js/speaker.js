@@ -6,6 +6,7 @@ var current_text_sentence;
 var playPromise;
 var audio = document.getElementById('audio');
 var is_end = true;
+var timerId;
 
 //============================================================================================================
 function speech(en_word, is_popover_show)
@@ -83,13 +84,16 @@ function audioPause()
 $('#audio')[0].onplaying = function ()
 {
     $("#popover-spinner").css("visibility", "hidden");
-    iconSoundAnim('#icon-sound', true);
+    iconSoundAnim('#icon-sound');
+    timerId = setInterval(function ()
+    {
+        iconSoundAnim('#icon-sound');
+    }, 500);
     if (isPlay)
     {
         playIconChange(isPlay);
         if (!is_back)
         {
-            //debugger;
             words_count++;
         }
         else
@@ -106,7 +110,7 @@ $('#audio')[0].onerror = function ()
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
     $("#popover-spinner").css("visibility", "hidden");
-    iconSoundAnim('#icon-sound', false);
+    clearInterval(timerId);
     $(".ru-word").popover('destroy');
     isPlay = false;
 };
@@ -125,7 +129,7 @@ $('#audio')[0].onended = function (data)
             backgroundColorAnim("#btn-test-knowledge");
             isPlay = false;
             playIconChange(isPlay);
-            iconSoundAnim('#icon-sound', false);
+            clearInterval(timerId);
         }
         return;
     }
@@ -133,7 +137,7 @@ $('#audio')[0].onended = function (data)
     {
         backgroundColorAnim("#btn-test-knowledge");
         playIconChange(isPlay);
-        iconSoundAnim('#icon-sound', false);
+        clearInterval(timerId);
     }
 };
 //============================================================================================================
@@ -141,7 +145,7 @@ $("#audio")[0].onpause = function ()
 {
     $("#popover-spinner").css("visibility", "hidden");
     playIconChange(isPlay);
-    iconSoundAnim('#icon-sound', false);
+    clearInterval(timerId);
 };
 //============================================================================================================
 function speechStop()
@@ -149,7 +153,7 @@ function speechStop()
     words_count = 0;
     isPlay = false;
     playIconChange(isPlay);
-    iconSoundAnim('#icon-sound', false);
+    clearInterval(timerId);
     cleanLocalSelection();
 }
 //============================================================================================================
