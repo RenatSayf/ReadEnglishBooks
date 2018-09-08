@@ -4,6 +4,9 @@ var local_text_id = "local-text-id";
 var words_popover_id;
 var current_text_sentence;
 var playPromise;
+var audio = document.getElementById('audio');
+var is_end = true;
+
 //============================================================================================================
 function speech(en_word, is_popover_show)
 {
@@ -27,7 +30,7 @@ function speech(en_word, is_popover_show)
 
     if (is_popover_show)
     {
-    $(".ru-word").popover({
+        $(".ru-word").popover({
             html: true,
             title: $("#popover-title").html(),
             content: $("#popover-content").html(),
@@ -40,21 +43,25 @@ function speech(en_word, is_popover_show)
             e.stopPropagation();
         });
     }
-    //debugger;
-    var en_voice = $("#en-voices-list").selectpicker('val');
-    var ru_voice = $("#ru-voices-list").selectpicker('val');
-    var en_rate = $("#en-rate").selectpicker('val');
-    var ru_rate = $("#ru-rate").selectpicker('val');
+    
+    if (is_end === true)
+    {
+        var en_voice = $("#en-voices-list").selectpicker('val');
+        var ru_voice = $("#ru-voices-list").selectpicker('val');
+        var en_rate = $("#en-rate").selectpicker('val');
+        var ru_rate = $("#ru-rate").selectpicker('val');
 
-    try
-    {
-        $('#audio').attr('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
-        playPromise = $('#audio')[0].play();
-    } catch (e)
-    {
-        return;
-    }
-     
+        $("#popover-spinner").css("visibility", "unset");
+        try
+        {
+            audio.setAttribute('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
+            playPromise = audio.play();
+            is_end = false;
+        } catch (e)
+        {
+            return;
+        }
+    }     
 }
 //============================================================================================================
 function audioPause()
@@ -63,21 +70,23 @@ function audioPause()
     {
         playPromise.then(_ =>
         {
-            $('#audio')[0].pause();
+            audio.pause();
+            is_end = true;
         })
             .catch(error =>
             {
-
+                return;
             });
     }
 }
 //============================================================================================================
 $('#audio')[0].onplaying = function ()
 {
+    $("#popover-spinner").css("visibility", "hidden");
+    iconSoundAnim('#icon-sound', true);
     if (isPlay)
     {
-        $("#fa_play").css("display", "none");
-        $("#fa_pause").show();
+        playIconChange(isPlay);
         if (!is_back)
         {
             //debugger;
@@ -96,12 +105,15 @@ $('#audio')[0].onerror = function ()
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
+    $("#popover-spinner").css("visibility", "hidden");
+    iconSoundAnim('#icon-sound', false);
     $(".ru-word").popover('destroy');
     isPlay = false;
 };
 //============================================================================================================
 $('#audio')[0].onended = function (data)
 {
+    is_end = true;
     if (isPlay && arrayOfSeletion.length > 0)
     {
         if (words_count <= arrayOfSeletion.length - 1)
@@ -110,48 +122,35 @@ $('#audio')[0].onended = function (data)
         }
         else
         {
-            //speechStop();
-            //showDialogComplete("", "");
             backgroundColorAnim("#btn-test-knowledge");
+            isPlay = false;
+            playIconChange(isPlay);
+            iconSoundAnim('#icon-sound', false);
         }
         return;
     }
     if (!isPlay && words_count >= arrayOfSeletion.length - 1)
     {
-        //showDialogComplete("", "Проверить знания?");
         backgroundColorAnim("#btn-test-knowledge");
+        playIconChange(isPlay);
+        iconSoundAnim('#icon-sound', false);
     }
 };
 //============================================================================================================
 $("#audio")[0].onpause = function ()
 {
-    //cleanLocalSelection();
-    $("#fa_pause").css("display", "none");
-    $("#fa_play").show();
+    $("#popover-spinner").css("visibility", "hidden");
+    playIconChange(isPlay);
+    iconSoundAnim('#icon-sound', false);
 };
-//============================================================================================================
-function playStart()
-{
-
-}
-//============================================================================================================
-function speechPause()
-{
-    $("#fa_play").show();
-    $("#fa_pause").hide();
-    cleanLocalSelection();
-    $(".ru-word").popover('destroy');
-    
-}
 //============================================================================================================
 function speechStop()
 {
     words_count = 0;
     isPlay = false;
-    $("#fa_play").show();
-    $("#fa_pause").hide();
+    playIconChange(isPlay);
+    iconSoundAnim('#icon-sound', false);
     cleanLocalSelection();
-    //$(".ru-word").popover('destroy');
 }
 //============================================================================================================
 function cleanSelectionOnPage()

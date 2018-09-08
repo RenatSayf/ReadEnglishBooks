@@ -29,3 +29,25 @@ function positionChangeAnim(jQ_selector, to_position, duration)
     });
 }
 //================================================================================================
+function iconSoundAnim(jQ_selector, run)
+{
+    var font_size = $(jQ_selector).css('font-size');
+    if (run)
+    {
+        $(jQ_selector).removeClass('fa-volume-up').addClass('fa-volume-down');
+        $(jQ_selector).animate({ fontSize: font_size }, 200, function ()
+        {
+            $(jQ_selector).removeClass('fa-volume-down').addClass('fa-volume-up');
+            $(jQ_selector).animate({ fontSize: font_size }, 200, function ()
+            {
+                iconSoundAnim(jQ_selector, true);
+            });
+        });
+    }
+    else
+    {
+        $(jQ_selector).removeClass('fa-volume-down').addClass('fa-volume-up');
+        $(jQ_selector).stop();
+    }
+}
+//================================================================================================

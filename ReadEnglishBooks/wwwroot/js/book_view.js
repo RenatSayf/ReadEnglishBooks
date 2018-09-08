@@ -329,21 +329,32 @@ var is_back = false;
 document.getElementById("fa_play").onclick = function (event)
 {
     //isStart = false;
-    
-    var w = arrayOfSeletion;
-    if (arrayOfSeletion.length > 0)
+    var str = event.currentTarget.firstElementChild.className;
+    var regPlay = new RegExp('fa-play', 'gi');
+    var regPause = new RegExp('fa-pause', 'gi');
+
+    if (str.match(regPlay))
     {
-        isPlay = true;
-        is_back = false;
-        $("#fa_play").hide();
-        $("#fa_pause").show();
-        if (words_count < 0 || words_count >= arrayOfSeletion.length)
+        var w = arrayOfSeletion;
+        if (arrayOfSeletion.length > 0)
         {
-            words_count = 0;
+            isPlay = true;
+            is_back = false;
+            playIconChange(isPlay);
+            if (words_count < 0 || words_count >= arrayOfSeletion.length)
+            {
+                words_count = 0;
+            }
+            speech(arrayOfSeletion[words_count], true);
         }
-        speech(arrayOfSeletion[words_count], true);
+        event.target.style.color = '';
     }
-    event.target.style.color = '';
+    if (str.match(regPause))
+    {
+        isPlay = false;
+        audioPause();
+        playIconChange(isPlay);
+    }
 };
 //===========================================================================================================
 $("#fa_back").click(function (event)

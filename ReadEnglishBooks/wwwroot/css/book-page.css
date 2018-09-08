@@ -96,6 +96,7 @@ h3,
   text-indent: 0;
   padding: 0;
   background-color: #398cb5;
+  color: white;
 }
 .clicked .popover-title button {
   /*width: 100%;*/
@@ -103,6 +104,9 @@ h3,
 .clicked .popover-title button i {
   font-size: 274%;
   padding: 0;
+}
+.clicked .popover-title #popover-spinner {
+  visibility: hidden;
 }
 .clicked .popover-content {
   padding: 0;
