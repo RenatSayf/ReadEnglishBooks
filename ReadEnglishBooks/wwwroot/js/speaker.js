@@ -12,38 +12,45 @@ var timerId;
 function speech(en_word, is_popover_show)
 {
     var ru_word;
-    findIntoSentence(en_word, local_text_id);    
-
-    for (var i = 0; i < pageWordsObj.length; i++)
-    {
-        if (pageWordsObj[i].Eng === en_word)
-        {
-            ru_word = pageWordsObj[i].Rus;
-            break;
-        }
-    }
-    if (ru_word === undefined)
-    {
-        ru_word = "";
-    }  
-
-    $("#trans_div").text(ru_word);
-
     if (is_popover_show)
     {
-        $(".ru-word").popover({
-            html: true,
-            title: $("#popover-title").html(),
-            content: $("#popover-content").html(),
-            placement: 'bottom'
-        });
-        $(".ru-word").popover('show');
-
-        $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
-        {
-            e.stopPropagation();
-        });
+        ru_word = showWordPopover(en_word);
     }
+    //var ru_word;
+    //findIntoSentence(en_word, local_text_id);    
+
+    //for (var i = 0; i < pageWordsObj.length; i++)
+    //{
+    //    if (pageWordsObj[i].Eng === en_word)
+    //    {
+    //        ru_word = pageWordsObj[i].Rus;
+    //        break;
+    //    }
+    //}
+    //if (ru_word === undefined)
+    //{
+    //    ru_word = "";
+    //}  
+
+    //showWordPopover(ru_word);
+
+    //$("#trans_div").text(ru_word);
+
+    //if (is_popover_show)
+    //{
+    //    $(".ru-word").popover({
+    //        html: true,
+    //        title: $("#popover-title").html(),
+    //        content: $("#popover-content").html(),
+    //        placement: 'bottom'
+    //    });
+    //    $(".ru-word").popover('show');
+
+    //    $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
+    //    {
+    //        e.stopPropagation();
+    //    });
+    //}
     
     if (is_end === true)
     {

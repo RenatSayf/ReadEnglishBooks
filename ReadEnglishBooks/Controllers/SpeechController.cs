@@ -81,7 +81,7 @@ namespace ReadEnglishBooks.Controllers
                                 break;
                             }
                         }
-                        if (ruword != null)
+                        if (ruword != null && enword.ToLower() != "the" && enword.ToLower() != "a" && enword.ToLower() != "an")
                         {
                             synth.Speak(ruword); 
                         }

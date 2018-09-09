@@ -37,6 +37,16 @@ h3,
     font-size: 130%;
   }
 }
+.page-container {
+  background-color: oldlace;
+  margin-top: 20px;
+}
+#page {
+  padding: 10px;
+}
+#btn-call-translate {
+  margin: 10px;
+}
 .book-contents li > a:active {
   background-color: white;
   color: #398cb5;

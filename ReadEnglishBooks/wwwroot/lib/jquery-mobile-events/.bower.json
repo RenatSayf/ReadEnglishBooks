@@ -1,0 +1,19 @@
+{
+  "name": "jquery-mobile-events",
+  "version": "1.4.0",
+  "main": "./jquery-mobile-events.js",
+  "depencencies": {
+    "jquery": "x"
+  },
+  "homepage": "https://github.com/caseywebdev/jquery-mobile-events",
+  "_release": "1.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.4.0",
+    "commit": "a84f66bf60c6ebea4ddf8deeb9c8895029190fd3"
+  },
+  "_source": "https://github.com/caseywebdev/jquery-mobile-events.git",
+  "_target": "1.4.0",
+  "_originalSource": "jquery-mobile-events",
+  "_direct": true
+}

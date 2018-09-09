@@ -2,16 +2,17 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.3.7",
     "jquery": "2.2.0",
-    "jquery-validation": "1.17.0",
+    "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
-    "twbs-pagination": "v1.4.2",
+    "twbs-pagination": "v1.4.1",
     "jquery-ui": "1.12.1",
-    "bootstrap-select": "v2.0.0-beta1"
+    "bootstrap-select": "v2.0.0-beta1",
+    "bootstrap": "v3.3.7",
+    "jquery-mobile-events": "1.4.0"
   },
   "resolutions": {
-    "twbs-pagination": "v1.4.2",
-    "jquery-validation": "1.17.0"
+    "jquery": ">=1.7",
+    "jquery-ui": "1.12.1"
   }
 }

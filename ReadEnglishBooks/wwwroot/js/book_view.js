@@ -328,7 +328,6 @@ var is_back = false;
 //===========================================================================================================
 document.getElementById("fa_play").onclick = function (event)
 {
-    //isStart = false;
     var str = event.currentTarget.firstElementChild.className;
     var regPlay = new RegExp('fa-play', 'gi');
     var regPause = new RegExp('fa-pause', 'gi');
@@ -358,8 +357,7 @@ document.getElementById("fa_play").onclick = function (event)
 };
 //===========================================================================================================
 $("#fa_back").click(function (event)
-{
-    
+{    
     if (arrayOfSeletion.length > 0)
     {
         $(".popover").remove();
@@ -378,8 +376,7 @@ $("#fa_back").click(function (event)
 });
 //===========================================================================================================
 function nextClick()
-{
-    
+{    
     if (arrayOfSeletion.length > 0)
     {
         $(".ru-word").popover('destroy');
@@ -512,15 +509,34 @@ function showDialogComplete(title, message)
     });
 }
 //===========================================================================================================
-$("#page").on("mouseup", function ()
+$("#page").on("taphold", function ()
 {
     var text = getSelectionText();
-    //debugger;
-    if (text !== "")
+    alert(text);
+});
+//===========================================================================================================
+$("#page").mousedown(function ()
+{
+    $("#page").mouseup(function ()
     {
-        $("#target-text").text(text);
-        $("#trans-select-panel").modal("show");
-    }
+        var text = getSelectionText();
+        //debugger;
+        if (text !== "")
+        {
+            showWordPopover(text);
+            //is_end = true;
+            //isPlay = true;
+            //speech(text, true);
+            //$("#target-text").text(text);
+            //$("#trans-select-panel").modal("show");
+        }
+    });
+
+    
+    //else
+    //{
+    //    isPlay = false;
+    //}
     return;
 });
 //===========================================================================================================
