@@ -17,7 +17,7 @@ function speech(en_word, is_popover_show)
         ru_word = showWordPopover(en_word);
     }
     //var ru_word;
-    //findIntoSentence(en_word, local_text_id);    
+    //SetRuWordClassIntoSentence(en_word, local_text_id);    
 
     //for (var i = 0; i < pageWordsObj.length; i++)
     //{
@@ -222,7 +222,10 @@ function cleanLocalSelection()
         var clicked_element = document.getElementsByClassName("clicked")[0];
         try
         {
-            document.getElementsByClassName("clicked")[0].innerHTML = local_HTML;
+            for (var i = 0; i < document.getElementsByClassName("clicked").length; i++)
+            {
+                document.getElementsByClassName("clicked")[i].innerHTML = local_HTML;
+            }
         } catch (e)
         {
             console.log("Error into speaker.js -> cleanLocalSelection() - " + e.message);
@@ -231,7 +234,7 @@ function cleanLocalSelection()
     }
 }
 //============================================================================================================
-function findIntoSentence(input, tagId) 
+function SetRuWordClassIntoSentence(input, tagId) 
 {
     cleanLocalSelection();
     input = input.trim();
@@ -253,7 +256,41 @@ function findIntoSentence(input, tagId)
         }
     } catch (e)
     {
-        console.log("Error into speaker.js -> findIntoSentence(input, tagId) - " + e.message);
+        console.log("Error into speaker.js -> SetRuWordClassIntoSentence(input, tagId) - " + e.message);
+        speechStop();
+        return;
+    }
+}
+//============================================================================================================
+function SetTranslateClassIntoSentence(input) 
+{
+    cleanLocalSelection();
+    input = input.trim();
+    var spanTag = document.getElementsByClassName("for-select");
+    var a = $('.for-select span.translate').text();
+    var b = $('.for-select span').not('.translate').text();
+    $('.for-select span').not('.translate').remove();
+    $('.for-select span.translate').text(b + a);
+    debugger;
+    $('.for-select span').not('.translate').replaceAll(selectedWord);
+    var nakedText;
+    var regExp = '\\b\\.*(' + input + '\\b)';
+    var target = new RegExp(regExp, "gmi");
+
+    try
+    {
+        nakedText = spanTag[0].innerHTML;
+
+        var replacement = nakedText.match(eval(target));
+        if (replacement !== null) 
+        {
+            var newChildContent = nakedText.replace(target, '<span class="translate" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
+            spanTag[0].innerHTML = newChildContent;
+            local_HTML = nakedText;
+        }
+    } catch (e)
+    {
+        console.log("Error into speaker.js -> SetTranslateClassIntoSentence(input) - " + e.message);
         speechStop();
         return;
     }

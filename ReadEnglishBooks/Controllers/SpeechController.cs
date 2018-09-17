@@ -20,10 +20,10 @@ namespace ReadEnglishBooks.Controllers
         //    return View();
         //}
 
-        public async Task<ActionResult> Speech(string enword,
-                                               string ruword, 
-                                               string en_voice, 
-                                               string ru_voice,
+        public async Task<ActionResult> Speech(string enWord,
+                                               string ruWord, 
+                                               string enVoice, 
+                                               string ruVoice,
                                                string en_rate,
                                                string ru_rate)
         {
@@ -63,39 +63,39 @@ namespace ReadEnglishBooks.Controllers
                         synth.SetOutputToWaveStream(stream);
                         foreach (var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == enVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 synth.Rate = enRate;
                                 break;
                             }
                         }
-                        synth.Speak(enword);
+                        synth.Speak(enWord);
 
                         foreach (var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ru_voice)
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ruVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 synth.Rate = ruRate;
                                 break;
                             }
                         }
-                        if (ruword != null && enword.ToLower() != "the" && enword.ToLower() != "a" && enword.ToLower() != "an")
+                        if (ruWord != null && enWord.ToLower() != "the" && enWord.ToLower() != "a" && enWord.ToLower() != "an")
                         {
-                            synth.Speak(ruword); 
+                            synth.Speak(ruWord); 
                         }
 
                         foreach(var item in voices)
                         {
-                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == en_voice)
+                            if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == enVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
                                 synth.Rate = enRate;
                                 break;
                             }
                         }
-                        synth.Speak(enword);
+                        synth.Speak(enWord);
 
                         byte[] bytes = stream.GetBuffer();
                         var f = File(bytes, "audio/x-wav");

@@ -13,6 +13,7 @@ var learn_by_paragraf = "paragraf";
 var learn_by_page = "page";
 var background_of_selected = "#b6ff00";
 var background_of_hover = "#d6ddd7";
+var selectedWord;
 //===========================================================================================================
 function getPage(page)
 {
@@ -216,14 +217,19 @@ function sentenceEvents()
     {
         if (learn_mode === learn_by_sentence)
         {
-            $(this).not(".clicked").css("background-color", background_of_hover);            
+            $(this).not(".clicked").css("background-color", background_of_hover);
+            
         }
     },
         function ()
         {
             $(this).not(".clicked").removeAttr("style");
+            
         }
-    );
+    ).mousedown(function () {
+        $('span, p').removeClass('for-select').removeClass('translate');
+        $(this).addClass('for-select');
+    });
 
     $(".paragraf").hover(function ()
     {
@@ -321,6 +327,7 @@ function resetWordSelection()
     });
     $("span, .ru-word, .clicked, .sentence").popover('destroy');
     $("span").removeClass("ru-word");
+    //$("span").removeClass("translate");
 }
 //===========================================================================================================
 var isPlay = false;
@@ -453,10 +460,10 @@ function showKnowledgeTest()
 {
     isPlay = false;
     $('*').popover('destroy');
-    studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
-    if (studyWordsArray.length > 0)
+    window.studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
+    if (window.studyWordsArray.length > 0)
     {
-        fillTestTable(studyWordsArray, words_index);
+        fillTestTable(window.studyWordsArray, words_index);
     }
     $("#word-test-box").modal("show");
     $(".modal-title").text("Найди подходящий перевод");
@@ -509,35 +516,38 @@ function showDialogComplete(title, message)
     });
 }
 //===========================================================================================================
-$("#page").on("taphold", function ()
+$("#page").on('taphold', function ()
 {
     var text = getSelectionText();
-    alert(text);
+    //debugger;
+    if (text !== "") 
+    {
+        //showSelectedWordPopover(text);
+        //is_end = true;
+        //isPlay = true;
+        //speech(text, true);
+        //$("#target-text").text(text);
+        //$("#trans-select-panel").modal("show");
+    }
 });
 //===========================================================================================================
-$("#page").mousedown(function ()
-{
-    $("#page").mouseup(function ()
-    {
-        var text = getSelectionText();
-        //debugger;
-        if (text !== "")
-        {
-            showWordPopover(text);
-            //is_end = true;
-            //isPlay = true;
-            //speech(text, true);
-            //$("#target-text").text(text);
-            //$("#trans-select-panel").modal("show");
-        }
-    });
 
-    
-    //else
-    //{
-    //    isPlay = false;
-    //}
-    return;
+//===========================================================================================================
+$("#page").mouseup(function (e)
+{
+    var text = getSelectionText();
+    //debugger;
+    if (text !== "") {
+        selectedWord = text;
+        showSelectedWordPopover(text);
+        e.stopPropagation();
+        //showWordPopover(text);
+        //is_end = true;
+        //isPlay = true;
+        //speech(text, true);
+        //$("#target-text").text(text);
+        //$("#trans-select-panel").modal("show");
+    }
 });
 //===========================================================================================================
 $(".btn-trans-by-text").click(function (e)

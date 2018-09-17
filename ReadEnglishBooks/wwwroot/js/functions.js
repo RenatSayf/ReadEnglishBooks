@@ -14,7 +14,7 @@
 function showWordPopover(en_word)
 {
     var ru_word;
-    findIntoSentence(en_word, local_text_id);
+    SetRuWordClassIntoSentence(en_word, local_text_id);
 
     for (var i = 0; i < pageWordsObj.length; i++)
     {
@@ -44,6 +44,38 @@ function showWordPopover(en_word)
         e.stopPropagation();
     });
     return ru_word;
+}
+//===========================================================================================================
+function showSelectedWordPopover(enWord) 
+{
+    var ruWord;
+    SetTranslateClassIntoSentence(enWord);
+
+    for (var i = 0; i < pageWordsObj.length; i++)
+    {
+        if (pageWordsObj[i].Eng === enWord)
+        {
+            ruWord = pageWordsObj[i].Rus;
+            break;
+        }
+    }
+    if (ruWord === undefined)
+    {
+        ruWord = "";
+    }
+
+    $("#selected-words-popover > div.container.content > div > div").text(ruWord);
+
+    $(".translate").popover({
+        html: true,
+        title: $("#selected-words-popover > div.container.title").html(),
+        content: $("#selected-words-popover > div.container.content").html(),
+        placement: 'bottom'
+    });
+    $(".translate").popover('show');
+    //debugger;
+    
+    return ruWord;
 }
 //===========================================================================================================
 function setSrcToAudioElement(do_play)
