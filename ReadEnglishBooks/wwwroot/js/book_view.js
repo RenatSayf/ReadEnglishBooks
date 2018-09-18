@@ -260,6 +260,7 @@ function sentenceEvents()
     $(".sentence").click(function (e)
     {
         positionChangeAnim("#book-play-panel", 0, 200);
+
         if (!isPlay)
         {
             resetWordSelection();            
@@ -327,7 +328,7 @@ function resetWordSelection()
     });
     $("span, .ru-word, .clicked, .sentence").popover('destroy');
     $("span").removeClass("ru-word");
-    //$("span").removeClass("translate");
+    
 }
 //===========================================================================================================
 var isPlay = false;
@@ -522,16 +523,21 @@ $("#page").on('taphold', function ()
     //debugger;
     if (text !== "") 
     {
-        //showSelectedWordPopover(text);
-        //is_end = true;
-        //isPlay = true;
-        //speech(text, true);
-        //$("#target-text").text(text);
-        //$("#trans-select-panel").modal("show");
+        selectedWord = text;
     }
 });
 //===========================================================================================================
-
+jQuery('span').bind('classChanged', function() {
+     console.log('class changed');
+});
+//===========================================================================================================
+//var origFn = $.fn.addClass;
+//$.fn.addClass = function(className) {
+//    //  Выполняем здесь необходимый нам код
+//    //  и вызываем оригинальную функцию
+//    console.log('class changed - ' + className);
+//    origFn.apply(this, arguments);
+//};
 //===========================================================================================================
 $("#page").mouseup(function (e)
 {
@@ -539,14 +545,7 @@ $("#page").mouseup(function (e)
     //debugger;
     if (text !== "") {
         selectedWord = text;
-        showSelectedWordPopover(text);
-        e.stopPropagation();
-        //showWordPopover(text);
-        //is_end = true;
-        //isPlay = true;
-        //speech(text, true);
-        //$("#target-text").text(text);
-        //$("#trans-select-panel").modal("show");
+        
     }
 });
 //===========================================================================================================

@@ -46,37 +46,21 @@ function showWordPopover(en_word)
     return ru_word;
 }
 //===========================================================================================================
-function showSelectedWordPopover(enWord) 
-{
-    var ruWord;
-    SetTranslateClassIntoSentence(enWord);
-
-    for (var i = 0; i < pageWordsObj.length; i++)
-    {
-        if (pageWordsObj[i].Eng === enWord)
-        {
-            ruWord = pageWordsObj[i].Rus;
-            break;
-        }
-    }
-    if (ruWord === undefined)
-    {
-        ruWord = "";
-    }
-
-    $("#selected-words-popover > div.container.content > div > div").text(ruWord);
-
-    $(".translate").popover({
-        html: true,
-        title: $("#selected-words-popover > div.container.title").html(),
-        content: $("#selected-words-popover > div.container.content").html(),
-        placement: 'bottom'
-    });
-    $(".translate").popover('show');
+(function () {
     //debugger;
-    
-    return ruWord;
-}
+    var originalAddClassMethod = jQuery.fn.addClass;
+    var originalRemoveClassMethod = jQuery.fn.removeClass;
+    jQuery.fn.addClass = function() {
+        var result = originalAddClassMethod.apply(this, arguments);
+        jQuery(this).trigger('classChanged');
+        return result;
+    };
+    jQuery.fn.removeClass = function() {
+        var result = originalRemoveClassMethod.apply(this, arguments);
+        jQuery(this).trigger('classChanged');
+        return result;
+    };
+})();
 //===========================================================================================================
 function setSrcToAudioElement(do_play)
 {
@@ -95,6 +79,13 @@ function setSrcToAudioElement(do_play)
     {
         return;
     }
+}
+//===========================================================================================================
+function removeTagsFromText(input) {
+    var r = /<(\w+)[^>]*>.*<\/\1>/gi;
+    var replace = input.replace(r, "");
+    debugger;
+    return replace;
 }
 
 

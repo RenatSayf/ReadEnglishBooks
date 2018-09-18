@@ -262,39 +262,7 @@ function SetRuWordClassIntoSentence(input, tagId)
     }
 }
 //============================================================================================================
-function SetTranslateClassIntoSentence(input) 
-{
-    cleanLocalSelection();
-    input = input.trim();
-    var spanTag = document.getElementsByClassName("for-select");
-    var a = $('.for-select span.translate').text();
-    var b = $('.for-select span').not('.translate').text();
-    $('.for-select span').not('.translate').remove();
-    $('.for-select span.translate').text(b + a);
-    debugger;
-    $('.for-select span').not('.translate').replaceAll(selectedWord);
-    var nakedText;
-    var regExp = '\\b\\.*(' + input + '\\b)';
-    var target = new RegExp(regExp, "gmi");
 
-    try
-    {
-        nakedText = spanTag[0].innerHTML;
-
-        var replacement = nakedText.match(eval(target));
-        if (replacement !== null) 
-        {
-            var newChildContent = nakedText.replace(target, '<span class="translate" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
-            spanTag[0].innerHTML = newChildContent;
-            local_HTML = nakedText;
-        }
-    } catch (e)
-    {
-        console.log("Error into speaker.js -> SetTranslateClassIntoSentence(input) - " + e.message);
-        speechStop();
-        return;
-    }
-}
 //============================================================================================================
 
 
