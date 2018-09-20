@@ -1,6 +1,7 @@
 ﻿function getSelectionText()
 {
     var txt = window.getSelection;
+    //debugger;
     if (txt !== undefined)
     { // Не IE, используем метод getSelection
         txt = window.getSelection().toString();
@@ -18,7 +19,7 @@ function getWordsBySentences()
     var paragrafArray = [];
     var sentencesGroupArray = [];
     var sentencesArray = [];
-    $("p, h2, h3, h4, h5").each(function (i)
+    $("p, h2, h3, h4, h5").each(function ()
     {
         paragrafArray.push($(this).text().replace(/\t/g, '').replace(/\v/g, '').trim());
     });

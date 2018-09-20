@@ -226,10 +226,7 @@ function sentenceEvents()
             $(this).not(".clicked").removeAttr("style");
             
         }
-    ).mousedown(function () {
-        $('span, p').removeClass('for-select').removeClass('translate');
-        $(this).addClass('for-select');
-    });
+    );
 
     $(".paragraf").hover(function ()
     {
@@ -257,19 +254,21 @@ function sentenceEvents()
         }
     );
 
-    $(".sentence").click(function (e)
+    $(".sentence").mousedown(function (e)
     {
         positionChangeAnim("#book-play-panel", 0, 200);
-
         if (!isPlay)
         {
-            resetWordSelection();            
+            resetWordSelection();
             if (learn_mode === learn_by_sentence)
             {
                 words_count = -1;
                 $(".sentence").removeAttr("style");
 
-                $(this).css("background-color", background_of_selected).addClass("clicked");
+                $(this).css("background-color", background_of_selected).addClass("clicked", function ()
+                {
+                    
+                });
                 arrayOfSeletion = getSelectingWords(this.innerText);
                 local_HTML = undefined;
                 //debugger;
@@ -321,14 +320,14 @@ function sentenceEvents()
 //===========================================================================================================
 function resetWordSelection()
 {
-    $(".sentence").removeClass("clicked");
-    $(".sentence span").css({
-        fontSize: "100%",
-        background: ''
-    });
     $("span, .ru-word, .clicked, .sentence").popover('destroy');
     $("span").removeClass("ru-word");
-    
+    $(".sentence").removeClass("clicked");
+    $(".sentence span").removeAttr("style");
+    //$(".sentence span").css({
+    //    fontSize: "100%",
+    //    background: ''
+    //});
 }
 //===========================================================================================================
 var isPlay = false;
@@ -517,35 +516,24 @@ function showDialogComplete(title, message)
     });
 }
 //===========================================================================================================
-$("#page").on('taphold', function ()
+$("#page").on("taphold", function ()
 {
+    selectedWord = "";
     var text = getSelectionText();
-    //debugger;
     if (text !== "") 
     {
         selectedWord = text;
     }
 });
 //===========================================================================================================
-jQuery('span').bind('classChanged', function() {
-     console.log('class changed');
-});
-//===========================================================================================================
-//var origFn = $.fn.addClass;
-//$.fn.addClass = function(className) {
-//    //  Выполняем здесь необходимый нам код
-//    //  и вызываем оригинальную функцию
-//    console.log('class changed - ' + className);
-//    origFn.apply(this, arguments);
-//};
-//===========================================================================================================
-$("#page").mouseup(function (e)
-{
+$("#page").mouseup(function (e) {
+    selectedWord = "";
     var text = getSelectionText();
-    //debugger;
     if (text !== "") {
         selectedWord = text;
-        
+        $(".ru-word").popover('destroy');
+        speech(selectedWord, true);
+        //debugger;
     }
 });
 //===========================================================================================================
@@ -553,7 +541,7 @@ $(".btn-trans-by-text").click(function (e)
 {
     e.preventDefault();
     var text = $("#target-text").text();
-    if (text === '')
+    if (text === "")
     {
         return;
     }
@@ -574,7 +562,7 @@ $(".btn-trans-by-text").click(function (e)
     });
 });
 //===========================================================================================================
-function btnSettings_OnLick()
+function btnSettings_OnClick()
 {
     $("#settings-panel").modal("show");
 }
