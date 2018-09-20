@@ -67,9 +67,8 @@ function setSrcToAudioElement(do_play)
 //===========================================================================================================
 function removeTagsFromText(input) {
     var r = /<(\w+)[^>]*>.*<\/\1>/gi;
-    var replace = input.replace(r, "");
-    debugger;
-    return replace;
+    var replaceText = input.replace(r, "");
+    return replaceText;
 }
 
 

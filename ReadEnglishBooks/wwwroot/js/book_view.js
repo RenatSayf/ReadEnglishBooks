@@ -528,10 +528,16 @@ $("#page").on("taphold", function ()
 //===========================================================================================================
 $("#page").mouseup(function (e) {
     selectedWord = "";
+
+    $(".ru-word").popover('destroy');
+    $(".sentence").not(".clicked").each(function() {
+        var text = removeTagsFromText(this.innerText);
+        this.innerText = text;
+    });
+
     var text = getSelectionText();
     if (text !== "") {
         selectedWord = text;
-        $(".ru-word").popover('destroy');
         speech(selectedWord, true);
         //debugger;
     }
