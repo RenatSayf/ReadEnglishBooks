@@ -9,50 +9,14 @@ var is_end = true;
 var timerId;
 
 //============================================================================================================
-function speech(en_word, is_popover_show)
+function speech(en_word, is_popover_show, isSpeak)
 {
     var ru_word;
     if (is_popover_show)
     {
         ru_word = showWordPopover(en_word);
     }
-    //var ru_word;
-    //SetRuWordClassIntoSentence(en_word, local_text_id);    
-
-    //for (var i = 0; i < pageWordsObj.length; i++)
-    //{
-    //    if (pageWordsObj[i].Eng === en_word)
-    //    {
-    //        ru_word = pageWordsObj[i].Rus;
-    //        break;
-    //    }
-    //}
-    //if (ru_word === undefined)
-    //{
-    //    ru_word = "";
-    //}  
-
-    //showWordPopover(ru_word);
-
-    //$("#trans_div").text(ru_word);
-
-    //if (is_popover_show)
-    //{
-    //    $(".ru-word").popover({
-    //        html: true,
-    //        title: $("#popover-title").html(),
-    //        content: $("#popover-content").html(),
-    //        placement: 'bottom'
-    //    });
-    //    $(".ru-word").popover('show');
-
-    //    $("#btn_sound, #popover-title, .popover-content, .exp").click(function (e)
-    //    {
-    //        e.stopPropagation();
-    //    });
-    //}
-    
-    if (is_end === true)
+    if (isSpeak === true)
     {
         var en_voice = $("#en-voices-list").selectpicker('val');
         var ru_voice = $("#ru-voices-list").selectpicker('val');
@@ -129,7 +93,7 @@ $('#audio')[0].onended = function (data)
     {
         if (words_count <= arrayOfSeletion.length - 1)
         {
-            speech(arrayOfSeletion[words_count], true);
+            speech(arrayOfSeletion[words_count], true, true);
         }
         else
         {

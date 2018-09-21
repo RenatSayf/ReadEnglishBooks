@@ -75,16 +75,16 @@ $("#btn-start").click(function ()
     $("#div-stop").removeAttr("hidden");
     if (wordsArray.length > 0 && words_count <= wordsArray.length - 1)
     {
-        speech(wordsArray[words_count], true);
+        speech(wordsArray[words_count], true, true);
     }
 
     if (sentencesArray.length > 0 && words_count <= sentencesArray[sentencesIndex].length)
     {
-        speech(sentencesArray[sentencesIndex][words_count], true);
+        speech(sentencesArray[sentencesIndex][words_count], true, true);
     }
     if (arrayOfSeletion.length > 0 && words_count <= arrayOfSeletion.length - 1)
     {
-        speech(arrayOfSeletion[words_count], true);
+        speech(arrayOfSeletion[words_count], true, true);
     }
 });  
 //===========================================================================================================
@@ -351,7 +351,7 @@ document.getElementById("fa_play").onclick = function (event)
             {
                 words_count = 0;
             }
-            speech(arrayOfSeletion[words_count], true);
+            speech(arrayOfSeletion[words_count], true, true);
         }
         event.target.style.color = '';
     }
@@ -378,7 +378,7 @@ $("#fa_back").click(function (event)
         {
             words_count = arrayOfSeletion.length - 1;
         }
-        speech(arrayOfSeletion[words_count], true);        
+        speech(arrayOfSeletion[words_count], true, true);        
     }    
 });
 //===========================================================================================================
@@ -396,7 +396,7 @@ function nextClick()
         {
             words_count = 0;
         }
-        speech(arrayOfSeletion[words_count], true);
+        speech(arrayOfSeletion[words_count], true, true);
     }  
 }
 //===========================================================================================================
@@ -410,7 +410,7 @@ function speakOnly()
     
     if (arrayOfSeletion.length > 0 && words_count >= 0 && words_count < arrayOfSeletion.length)
     {
-        speech(arrayOfSeletion[words_count], true);
+        speech(arrayOfSeletion[words_count], true, true);
     }
 }
 //===========================================================================================================
@@ -528,18 +528,14 @@ $("#page").on("taphold", function ()
 //===========================================================================================================
 $("#page").mouseup(function (e) {
     selectedWord = "";
-
-    $(".ru-word").popover('destroy');
-    $(".sentence").not(".clicked").each(function() {
-        var text = removeTagsFromText(this.innerText);
-        this.innerText = text;
-    });
-
     var text = getSelectionText();
+    text = text.replace(/\W/g, '');
     if (text !== "") {
+        cleanLocalSelection();
+        $(".ru-word").popover('destroy');
         selectedWord = text;
-        speech(selectedWord, true);
-        //debugger;
+        is_end = false;
+        speech(selectedWord, true, false);
     }
 });
 //===========================================================================================================
