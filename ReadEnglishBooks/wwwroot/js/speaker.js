@@ -4,29 +4,29 @@ var local_text_id = "local-text-id";
 var words_popover_id;
 var current_text_sentence;
 var playPromise;
-var audio = document.getElementById('audio');
+var audio = document.getElementById("audio");
 var is_end = true;
 var timerId;
 
 //============================================================================================================
-function speech(en_word, is_popover_show, isSpeak)
+function speech(enWord, isPopoverShow, isSpeak)
 {
-    var ru_word;
-    if (is_popover_show)
+    var ruWord = "";
+    if (isPopoverShow)
     {
-        ru_word = showWordPopover(en_word);
+        ruWord = showWordPopover(enWord);
     }
     if (isSpeak === true)
     {
-        var en_voice = $("#en-voices-list").selectpicker('val');
-        var ru_voice = $("#ru-voices-list").selectpicker('val');
-        var en_rate = $("#en-rate").selectpicker('val');
-        var ru_rate = $("#ru-rate").selectpicker('val');
+        var enVoice = $("#en-voices-list").selectpicker("val");
+        var ruVoice = $("#ru-voices-list").selectpicker("val");
+        var enRate = $("#en-rate").selectpicker("val");
+        var ruRate = $("#ru-rate").selectpicker("val");
 
         $("#popover-spinner").css("visibility", "unset");
         try
         {
-            audio.setAttribute('src', '/Speech/Speech?enword=' + en_word + "&ruword=" + ru_word + "&en_voice=" + en_voice + "&ru_voice=" + ru_voice + "&en_rate=" + en_rate + "&ru_rate=" + ru_rate);
+            audio.setAttribute("src", "/Speech/Speech?enWord=" + enWord + "&ruWord=" + ruWord + "&enVoice=" + enVoice + "&ruVoice=" + ruVoice + "&enRate=" + enRate + "&ruRate=" + ruRate);
             playPromise = audio.play();
             is_end = false;
         } catch (e)
@@ -45,8 +45,8 @@ function audioPause()
             audio.pause();
             is_end = true;
         })
-            .catch(error =>
-            {
+            .catch(error => {
+                console.log(error.message);
                 return;
             });
     }

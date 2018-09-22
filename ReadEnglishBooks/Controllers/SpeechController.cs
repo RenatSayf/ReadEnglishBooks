@@ -24,8 +24,8 @@ namespace ReadEnglishBooks.Controllers
                                                string ruWord, 
                                                string enVoice, 
                                                string ruVoice,
-                                               string en_rate,
-                                               string ru_rate)
+                                               string enRate,
+                                               string ruRate)
         {
             Task<FileContentResult> task = Task.Run(() =>
             {
@@ -35,29 +35,29 @@ namespace ReadEnglishBooks.Controllers
                     
                     using (var stream = new MemoryStream())
                     {
-                        int enRate, ruRate;
-                        switch (en_rate)
+                        int enRateOut, ruRateOut;
+                        switch (enRate)
                         {
                             case "fast":
-                                enRate = 5;
+                                enRateOut = 5;
                                 break;
                             case "slow":
-                                enRate = -5;
+                                enRateOut = -5;
                                 break;
                             default:
-                                enRate = 0;
+                                enRateOut = 0;
                                 break;
                         }
-                        switch (ru_rate)
+                        switch (ruRate)
                         {
                             case "fast":
-                                ruRate = 5;
+                                ruRateOut = 5;
                                 break;
                             case "slow":
-                                ruRate = -5;
+                                ruRateOut = -5;
                                 break;
                             default:
-                                ruRate = 0;
+                                ruRateOut = 0;
                                 break;
                         }
                         synth.SetOutputToWaveStream(stream);
@@ -66,7 +66,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == enVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = enRate;
+                                synth.Rate = enRateOut;
                                 break;
                             }
                         }
@@ -77,7 +77,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "ru-RU" && item.VoiceInfo.Name == ruVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = ruRate;
+                                synth.Rate = ruRateOut;
                                 break;
                             }
                         }
@@ -91,7 +91,7 @@ namespace ReadEnglishBooks.Controllers
                             if (item.Enabled && item.VoiceInfo.Culture.Name == "en-US" && item.VoiceInfo.Name == enVoice)
                             {
                                 synth.SelectVoice(item.VoiceInfo.Name);
-                                synth.Rate = enRate;
+                                synth.Rate = enRateOut;
                                 break;
                             }
                         }
