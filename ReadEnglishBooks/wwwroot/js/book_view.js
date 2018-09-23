@@ -384,9 +384,8 @@ $("#fa_back").click(function (event)
 //===========================================================================================================
 function nextClick()
 {    
-    if (arrayOfSeletion.length > 0)
-    {
-        $(".ru-word").popover('destroy');
+    if (arrayOfSeletion.length > 0) {
+        $(".ru-word").popover("destroy");
         isPlay = false;
         is_back = false;
         $("#fa_play").show();

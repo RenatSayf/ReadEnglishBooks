@@ -11,22 +11,22 @@ var timerId;
 //============================================================================================================
 function speech(enWord, isPopoverShow, isSpeak)
 {
-    var ruWord = "";
+    let ruWord = "";
     if (isPopoverShow)
     {
         ruWord = showWordPopover(enWord);
     }
     if (isSpeak === true)
     {
-        var enVoice = $("#en-voices-list").selectpicker("val");
-        var ruVoice = $("#ru-voices-list").selectpicker("val");
-        var enRate = $("#en-rate").selectpicker("val");
-        var ruRate = $("#ru-rate").selectpicker("val");
+        const enVoice = $("#en-voices-list").selectpicker("val");
+        const ruVoice = $("#ru-voices-list").selectpicker("val");
+        const enRate = $("#en-rate").selectpicker("val");
+        const ruRate = $("#ru-rate").selectpicker("val");
 
         $("#popover-spinner").css("visibility", "unset");
         try
         {
-            audio.setAttribute("src", "/Speech/Speech?enWord=" + enWord + "&ruWord=" + ruWord + "&enVoice=" + enVoice + "&ruVoice=" + ruVoice + "&enRate=" + enRate + "&ruRate=" + ruRate);
+            audio.setAttribute("src", `/Speech/Speech?enWord=${enWord}&ruWord=${ruWord}&enVoice=${enVoice}&ruVoice=${ruVoice}&enRate=${enRate}&ruRate=${ruRate}`);
             playPromise = audio.play();
             is_end = false;
         } catch (e)
@@ -40,6 +40,7 @@ function audioPause()
 {
     if (playPromise !== undefined)
     {
+// ReSharper disable once UnusedParameter
         playPromise.then(_ =>
         {
             audio.pause();
@@ -52,44 +53,44 @@ function audioPause()
     }
 }
 //============================================================================================================
-$('#audio')[0].onplaying = function ()
+$("#audio")[0].onplaying = function ()
 {
     $("#popover-spinner").css("visibility", "hidden");
-    iconSoundAnim('#icon-sound');
+    iconSoundAnim("#icon-sound");
     timerId = setInterval(function ()
     {
-        iconSoundAnim('#icon-sound');
+        iconSoundAnim("#icon-sound");
     }, 500);
     if (isPlay)
     {
         playIconChange(isPlay);
         if (!is_back)
         {
-            words_count++;
+            window.words_count++;
         }
         else
         {
-            words_count--;
+            window.words_count--;
         }
     }
     return;
 };
 //============================================================================================================
-$('#audio')[0].onerror = function ()
+$("#audio")[0].onerror = function ()
 {
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
     $("#popover-spinner").css("visibility", "hidden");
     clearInterval(timerId);
-    $(".ru-word").popover('destroy');
-    isPlay = false;
+    $(".ru-word").popover("destroy");
+    window.isPlay = false;
 };
 //============================================================================================================
-$('#audio')[0].onended = function (data)
+$("#audio")[0].onended = function ()
 {
     is_end = true;
-    if (isPlay && arrayOfSeletion.length > 0)
+    if (window.isPlay && arrayOfSeletion.length > 0)
     {
         if (words_count <= arrayOfSeletion.length - 1)
         {
@@ -98,16 +99,16 @@ $('#audio')[0].onended = function (data)
         else
         {
             backgroundColorAnim("#btn-test-knowledge");
-            isPlay = false;
-            playIconChange(isPlay);
+            window.isPlay = false;
+            playIconChange(window.isPlay);
             clearInterval(timerId);
         }
         return;
     }
-    if (!isPlay && words_count >= arrayOfSeletion.length - 1)
+    if (!window.isPlay && words_count >= arrayOfSeletion.length - 1)
     {
         backgroundColorAnim("#btn-test-knowledge");
-        playIconChange(isPlay);
+        playIconChange(window.isPlay);
         clearInterval(timerId);
     }
 };
@@ -121,9 +122,9 @@ $("#audio")[0].onpause = function ()
 //============================================================================================================
 function speechStop()
 {
-    words_count = 0;
-    isPlay = false;
-    playIconChange(isPlay);
+    window.words_count = 0;
+    window.isPlay = false;
+    playIconChange(window.isPlay);
     clearInterval(timerId);
     cleanLocalSelection();
 }
@@ -136,44 +137,43 @@ function cleanSelectionOnPage()
 function findOnPage(input, tagId) 
 {
     cleanSelectionOnPage();
-    var search = input.trim();
-    var div_tag = document.getElementById(tagId);
-    var child_content, naked_text;
-    var target = new RegExp('\\b\\.*(' + search + '\\b)', "gmi");
+    const search = input.trim();
+    const divTag = document.getElementById(tagId);
+    let childContent, nakedText;
+    const target = new RegExp(`\\b\\.*(${search}\\b)`, "gmi");
 
-    for (var i = 0; i < div_tag.children.length; i++)
+    for (let i = 0; i < divTag.children.length; i++)
     {
-        var child = div_tag.children[i];
-        child_content = child.innerHTML;
+        const child = divTag.children[i];
+        childContent = child.innerHTML;
 
-        naked_text = child_content.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
+        nakedText = childContent.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
 
-        var replacement = naked_text.match(target);
+        const replacement = nakedText.match(target);
         if (replacement !== null) 
         {
             local_HTML = replacement[0];
-            var new_child_content = child_content.replace(target, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + replacement[0] + '</span>');
-            child.innerHTML = new_child_content;
-            
+            const newChildContent = childContent.replace(target, `<span id="${local_text_id}" style="background-color:#b6ff00;">${replacement[0]}</span>`);
+            child.innerHTML = newChildContent;
         }
     }
 }
 //============================================================================================================
-function findSentenceOnPage(input, tagId)
+function findSentenceOnPage(input)
 {
     cleanSelectionOnPage();
-    var search = input.trim();
-    var div_tag = document.getElementsByClassName("book-page");
-    var child_content, naked_text;
-    for (var i = 0; i < div_tag[0].children.length; i++)
+    const search = input.trim();
+    const divTag = document.getElementsByClassName("book-page");
+    let childContent, nakedText;
+    for (let i = 0; i < divTag[0].children.length; i++)
     {
-        child_content = div_tag[0].children[i].innerHTML;        
-        naked_text = child_content.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
-        var res = naked_text.search(search);
-        if (naked_text.search(search) >= 0)
+        childContent = divTag[0].children[i].innerHTML;        
+        nakedText = childContent.replace(/<[^>]*>/g, "").trim();  //отсекаем все теги и получаем только текст
+        const res = nakedText.search(search);
+        if (res >= 0)
         {
-            var str = naked_text.replace(search, '<span id="' + local_text_id + '" style="background-color:#b6ff00;">' + search + '</span>');
-            div_tag[0].children[i].innerHTML = str;
+            const str = nakedText.replace(search, `<span id="${local_text_id}" style="background-color:#b6ff00;">${search}</span>`);
+            divTag[0].children[i].innerHTML = str;
             local_HTML = search;
         }        
     }
@@ -181,42 +181,37 @@ function findSentenceOnPage(input, tagId)
 //============================================================================================================
 function cleanLocalSelection()
 {
-    if (local_HTML !== undefined)
-    {
-        var clicked_element = document.getElementsByClassName("clicked")[0];
+    if (local_HTML !== undefined) {
+        const clickedElement = document.getElementsByClassName("clicked")[0];
         try
         {
-            for (var i = 0; i < document.getElementsByClassName("clicked").length; i++)
-            {
-                document.getElementsByClassName("clicked")[i].innerHTML = local_HTML;
-            }
+            clickedElement.innerHTML = local_HTML;
+            
         } catch (e)
         {
-            console.log("Error into speaker.js -> cleanLocalSelection() - " + e.message);
+            console.log(`Error into speaker.js -> cleanLocalSelection() - ${e.message}`);
             return;
         }
     }
 }
 //============================================================================================================
-function SetRuWordClassIntoSentence(input, tagId) 
+function SetRuWordClassIntoSentence(input) 
 {
     cleanLocalSelection();
     input = input.trim();
-    var span_tag = document.getElementsByClassName("clicked");
-    var child_content, naked_text;
-    var reg_exp = '\\b\\.*(' + input + '\\b)';
-    var target = new RegExp(reg_exp, "gmi");
+    const spanTag = document.getElementsByClassName("clicked");
+    const regExp = `\\b\\.*(${input}\\b)`;
+    const target = new RegExp(regExp, "gmi");
 
     try
     {
-        naked_text = span_tag[0].innerHTML;
-
-        var replacement = naked_text.match(eval(target));
+        const nakedText = spanTag[0].innerHTML;
+        const replacement = nakedText.match(eval(target));
         if (replacement !== null) 
         {
-            var new_child_content = naked_text.replace(target, '<span class="ru-word" style="background-color:yellow; font-size:150%" data-toggle="popover">' + replacement[0] + '</span>');
-            span_tag[0].innerHTML = new_child_content;
-            local_HTML = naked_text;
+            const newChildContent = nakedText.replace(target, `<span class="ru-word" style="background-color:yellow; data-toggle="popover">${replacement[0]}</span>`);
+            spanTag[0].innerHTML = newChildContent;
+            local_HTML = nakedText;
         }
     } catch (e)
     {
