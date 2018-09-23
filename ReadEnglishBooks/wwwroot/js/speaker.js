@@ -79,6 +79,7 @@ $("#audio")[0].onplaying = function ()
 $("#audio")[0].onerror = function ()
 {
     console.log("Event message(onerror) - Error occurs when the file is being loaded");
+    $("#icon-sound").stop();
     $("#div-stop").attr("hidden", "hidden");
     $("#div-start").removeAttr("hidden");
     $("#popover-spinner").css("visibility", "hidden");
@@ -90,6 +91,8 @@ $("#audio")[0].onerror = function ()
 $("#audio")[0].onended = function ()
 {
     is_end = true;
+    $("#icon-sound").stop();
+    clearInterval(timerId);
     if (window.isPlay && arrayOfSeletion.length > 0)
     {
         if (words_count <= arrayOfSeletion.length - 1)
@@ -109,6 +112,7 @@ $("#audio")[0].onended = function ()
     {
         backgroundColorAnim("#btn-test-knowledge");
         playIconChange(window.isPlay);
+        $("#icon-sound").stop();
         clearInterval(timerId);
     }
 };
@@ -117,6 +121,7 @@ $("#audio")[0].onpause = function ()
 {
     $("#popover-spinner").css("visibility", "hidden");
     playIconChange(isPlay);
+    $("#icon-sound").stop();
     clearInterval(timerId);
 };
 //============================================================================================================
@@ -209,13 +214,13 @@ function SetRuWordClassIntoSentence(input)
         const replacement = nakedText.match(eval(target));
         if (replacement !== null) 
         {
-            const newChildContent = nakedText.replace(target, `<span class="ru-word" style="background-color:yellow; data-toggle="popover">${replacement[0]}</span>`);
+            const newChildContent = nakedText.replace(target, `<span class="ru-word" style="background-color:yellow; font-weight: bold;" data-toggle="popover">${replacement[0]}</span>`);
             spanTag[0].innerHTML = newChildContent;
             local_HTML = nakedText;
         }
     } catch (e)
     {
-        console.log("Error into speaker.js -> SetRuWordClassIntoSentence(input, tagId) - " + e.message);
+        console.log(`Error into speaker.js -> SetRuWordClassIntoSentence(input) - ${e.message}`);
         speechStop();
         return;
     }

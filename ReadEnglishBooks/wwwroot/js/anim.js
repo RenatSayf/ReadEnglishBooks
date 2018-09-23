@@ -21,22 +21,22 @@ function backgroundColorAnim(jQbj)
     });
 }
 //================================================================================================
-function positionChangeAnim(jQ_selector, to_position, duration)
+function positionChangeAnim(jQSelector, toPosition, duration)
 {
-    $(jQ_selector).animate({ bottom: to_position }, duration, function ()
+    $(jQSelector).animate({ bottom: toPosition }, duration, function ()
     {
 
     });
 }
 //================================================================================================
-function iconSoundAnim(jQ_selector)
+function iconSoundAnim(jQSelector)
 {
-    var font_size = $(jQ_selector).css('font-size');
-    $(jQ_selector).removeClass('fa-volume-up').addClass('fa-volume-down');
-    $(jQ_selector).animate({ fontSize: font_size }, 200, function ()
+    const fontSize = $(jQSelector).css("font-size");
+    $(jQSelector).removeClass("fa-volume-up").addClass("fa-volume-down");
+    $(jQSelector).animate({ fontSize: fontSize }, 200, function ()
     {
-        $(jQ_selector).removeClass('fa-volume-down').addClass('fa-volume-up');
-        $(jQ_selector).animate({ fontSize: font_size }, 200, function ()
+        $(jQSelector).removeClass("fa-volume-down").addClass("fa-volume-up");
+        $(jQSelector).animate({ fontSize: fontSize }, 200, function ()
         {
             
         });

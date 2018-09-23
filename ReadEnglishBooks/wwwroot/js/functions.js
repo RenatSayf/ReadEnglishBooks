@@ -14,7 +14,7 @@
 function showWordPopover(enWord)
 {
     let ruWord;
-    SetRuWordClassIntoSentence(enWord, local_text_id);
+    SetRuWordClassIntoSentence(enWord);
 
     for (let i = 0; i < pageWordsObj.length; i++)
     {
@@ -42,13 +42,15 @@ function showWordPopover(enWord)
     $("#btn_sound, #popover-title, .popover-content, .exp").mousedown(function (e)
     {
         e.stopPropagation();
-    });
+    }).click(function(e) {
+        e.stopPropagation();
+        });
     return ruWord;
 }
 //===========================================================================================================
 function removeTagsFromText(input) {
-    var r = /<(\w+)[^>]*>.*<\/\1>/gi;
-    var replaceText = input.replace(r, "");
+    const r = /<(\w+)[^>]*>.*<\/\1>/gi;
+    const replaceText = input.replace(r, "");
     return replaceText;
 }
 

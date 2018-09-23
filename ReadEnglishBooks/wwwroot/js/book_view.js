@@ -18,14 +18,13 @@ var selectedWord;
 function getPage(page)
 {
     $.ajax({
-        type: 'GET',
-        url: '/Book/GetPage?page=' + page,
+        type: "GET",
+        url: `/Book/GetPage?page=${page}`,
         success: function (data)
         {
             //debugger;
             $("#page").html(data[0]);
-            //var page_number = parseInt($(".page-number").text());
-            var page_count = parseInt($(".page-count").text());
+            const pageCount = parseInt($(".page-count").text());
             if (data.length > 1)
             {
                 pageWordsObj = jQuery.parseJSON(data[1]).Result;
@@ -34,19 +33,19 @@ function getPage(page)
             {
                 $("title").text($("#book-name").text());
             }
-            $('#pagination-demo').twbsPagination('destroy');
+            $("#pagination-demo").twbsPagination("destroy");
             first_load = true;
-            $('#pagination-demo').twbsPagination({
-                totalPages: page_count - 1,
+            $("#pagination-demo").twbsPagination({
+                totalPages: pageCount - 1,
                 startPage: page,
                 next: '>',
                 prev: '<',
                 visiblePages: 5,
-                onPageClick: function (event, page)
+                onPageClick: function (event, pageNumber)
                 {
                     if (!first_load)
                     {
-                        getPage(page);
+                        getPage(pageNumber);
                     }
                     first_load = false;
                 }
@@ -55,7 +54,7 @@ function getPage(page)
             addSpanTagToParagraf();            
             sentenceEvents();
             current_page = page;
-            page_HTML = document.getElementById("page").innerHTML;
+            window.page_HTML = document.getElementById("page").innerHTML;
             wordsArray = [];
             sentencesArray = [];
             arrayOfSeletion = [];
@@ -63,9 +62,9 @@ function getPage(page)
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+            alert(`Ошибка ajax:\nstatus - ${status}   error - ${error}`);
         },
-        dataType: 'JSON'
+        dataType: "JSON"
     });
 }
 //===========================================================================================================
@@ -95,26 +94,19 @@ $("#btn-stop").click(function ()
     $("#audio")[0].pause();
 });
 //===========================================================================================================
-//$("#btn-next").on("click", function ()
-//{
-//    var v = $("#volume").slider("option", "value");
-//    alert("volume = " + v);
-//});
-
-//===========================================================================================================
 $('.btn-translate-by-words').click(function (e)
 {
     e.preventDefault();
     $("#trans-select-panel").modal("hide");
-    var text = getSelectionText();
-    if (text === '')
+    const text = getSelectionText();
+    if (text === "")
     {
         return;
     }
 
     $.ajax({
         type: 'POST',
-        url: '/Book/GetTextFromClient?text=' + text + '&issentence=' + false,
+        url: `/Book/GetTextFromClient?text=${text}&issentence=${false}`,
         success: function (data)
         {
             $("#translate-panel").modal("hide");
@@ -124,9 +116,9 @@ $('.btn-translate-by-words').click(function (e)
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+            alert(`Ошибка ajax:\nstatus - ${status}   error - ${error}`);
         },
-        dataType: 'JSON'
+        dataType: "JSON"
     });
 });
 //===========================================================================================================
@@ -142,7 +134,7 @@ function updateWordsTable(data, clean)
         $("#words-table > tbody").empty();
     }
 
-    for (var i = 0; i < data.length; i++)
+    for (let i = 0; i < data.length; i++)
     {
         $("#words-table > tbody").append('<tr class="word-tr">' +
             '<td>' + (i + 1) + '</td>' +
@@ -365,6 +357,8 @@ document.getElementById("fa_play").onclick = function (event)
 //===========================================================================================================
 $("#fa_back").click(function (event)
 {    
+    clearInterval(timerId);
+    $("#icon-sound").stop();
     if (arrayOfSeletion.length > 0)
     {
         $(".popover").remove();
@@ -384,7 +378,10 @@ $("#fa_back").click(function (event)
 //===========================================================================================================
 function nextClick()
 {    
-    if (arrayOfSeletion.length > 0) {
+    clearInterval(timerId);
+    $("#icon-sound").stop();
+    if (arrayOfSeletion.length > 0)
+    {
         $(".ru-word").popover("destroy");
         isPlay = false;
         is_back = false;
