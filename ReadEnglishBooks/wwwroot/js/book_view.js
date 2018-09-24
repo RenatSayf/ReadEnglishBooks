@@ -531,7 +531,8 @@ $("#page").mouseup(function (e) {
         $(".ru-word").popover('destroy');
         selectedWord = text;
         is_end = false;
-        speech(selectedWord, true, false);
+        //speech(selectedWord, true, false);
+        let wordPopover = new WordPopover(selectedWord, pageWordsObj);
     }
 });
 //===========================================================================================================

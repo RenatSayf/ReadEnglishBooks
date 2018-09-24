@@ -27,7 +27,10 @@ function showWordPopover(enWord)
     if (ruWord === undefined)
     {
         ruWord = "";
-    }  
+    }
+
+    //let wordPopover = new WordPopover("", ruWord);
+    
 
     $("#trans_div").text(ruWord);
 
