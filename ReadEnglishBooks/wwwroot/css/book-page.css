@@ -108,6 +108,15 @@ h3,
   background-color: #398cb5;
   color: white;
 }
+.clicked .popover-title #btn-is-study > i {
+  position: relative;
+  left: 0.25em;
+}
+.clicked .popover-title #btn-is-study > span {
+  position: relative;
+  left: -3.1em;
+  top: 0.6em;
+}
 .clicked .popover-title button {
   /*width: 100%;*/
 }

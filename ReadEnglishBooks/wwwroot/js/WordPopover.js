@@ -26,13 +26,11 @@ class WordPopover {
             placement: "bottom"
         });
 
-        $("#btn_sound, #popover-title, .popover-content, .exp").mousedown(function (e)
-        {
+        $("#btn_sound, #popover-title, .popover-content, .exp").mousedown(function (e) {
             e.stopPropagation();
-        }).click(function (e)
-        {
+        }, false).click(function (e) {
             e.stopPropagation();
-        });
+        }, false);
         this.show();
     }
 
@@ -81,5 +79,36 @@ class WordPopover {
 
     show() {
         $(".ru-word").popover("show");
+        $(".ru-word").on("shown.bs.popover",
+            function() {
+                document.getElementById("btn_sound").addEventListener("mousedown",
+                    function (event)
+                    {
+                        event.stopPropagation();
+                    }, false);
+                $("#btn_sound").click(function() {
+
+                });
+
+                $("#btn-is-study").mousedown(function(event) {
+                    event.stopPropagation();
+                }).click(function() {
+                    if ($("#btn-is-study > i").hasClass("fa-square-o")) {
+                        $("#btn-is-study > i").removeClass("fa-square-o").addClass("fa-check-square-o");
+                        return;
+                    }
+                    if ($("#btn-is-study > i").hasClass("fa-check-square-o"))
+                    {
+                        $("#btn-is-study > i").removeClass("fa-check-square-o").addClass("fa-square-o");
+                        return;
+                    }
+                });
+
+
+            });
+    }
+
+    destroy() {
+        this.cleanSelection();
     }
 }

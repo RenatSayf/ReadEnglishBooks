@@ -382,7 +382,7 @@ function nextClick()
     $("#icon-sound").stop();
     if (arrayOfSeletion.length > 0)
     {
-        $(".ru-word").popover("destroy");
+        wordPopover.destroy();
         isPlay = false;
         is_back = false;
         $("#fa_play").show();
@@ -521,6 +521,7 @@ $("#page").on("taphold", function ()
         selectedWord = text;
     }
 });
+var wordPopover = null;
 //===========================================================================================================
 $("#page").mouseup(function (e) {
     selectedWord = "";
@@ -532,7 +533,7 @@ $("#page").mouseup(function (e) {
         selectedWord = text;
         is_end = false;
         //speech(selectedWord, true, false);
-        let wordPopover = new WordPopover(selectedWord, pageWordsObj);
+        wordPopover = new WordPopover(selectedWord, pageWordsObj);
     }
 });
 //===========================================================================================================
