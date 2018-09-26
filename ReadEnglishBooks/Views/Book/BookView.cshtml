@@ -12,7 +12,7 @@
 }
 
 @section Scripts
-{
+    {
     <script src="~/js/WordPopover.js"></script>
 }
 
@@ -307,19 +307,14 @@
     <div class="navbar-brand">@ViewBag.BookName. @ViewBag.BookAuthor</div>
 </div>
 
+
+
+
+
+@*WordPopower class layout*@
 <div id="popover-title" class="container" hidden>
     <div class="container">
         <div class="row">
-            @*<div class="exp col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <div class="checkbox">
-                <div>
-                    <input type="checkbox" id="check" name="check" value="" />
-                    <label for="check">
-                        <span> This span is needed to create the "checkbox" element </span>Изучено
-                    </label>
-                </div>
-            </div>
-        </div>*@
             <button id="btn-is-study" type="button" class="fa-sound btn btn-warning col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <i class="icon-sound fa fa-square-o fa-play-panel" aria-hidden="true"></i>
                 <span>Изучено</span>
@@ -337,15 +332,23 @@
 <div class="container" id="popover-content" hidden>
     <div id="trans_div"></div>
     <div class="container">
-
         <div class="row">
-            <button id="btn-test-knowledge" type="button" class="btn btn-info col-lg-12 col-md-12 col-xs-12 col-sm-12" onclick="showKnowledgeTest()">
+            <button id="btn-test-knowledge" type="button" class="btn btn-info col-lg-8 col-md-8 col-xs-8 col-sm-8" onclick="showKnowledgeTest()">
                 <i class="fa fa-graduation-cap fa-lg" aria-hidden="true"></i>
                 Проверить знания
+            </button>
+            <button id="btn-ya-translate" type="button" class="btn btn-info col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                
             </button>
         </div>
     </div>
 </div>
+
+
+
+
+
+
 
 <div id="selected-words-popover">
     <div class="container title">
