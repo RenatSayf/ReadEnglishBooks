@@ -136,14 +136,10 @@ function updateWordsTable(data, clean)
 
     for (let i = 0; i < data.length; i++)
     {
-        $("#words-table > tbody").append('<tr class="word-tr">' +
-            '<td>' + (i + 1) + '</td>' +
-            '<td>' + decodeURIComponent(data[i].english) + '</td>' +
-            '<td>' + '<input type="text" value="' + decodeURIComponent(data[i].translate) + '" />' + '</td>' +
-            '<td>' + '<input class="btn-remove" type="button" value="Удалить" />' + '</td>' +
-            '</tr>');
+        $("#words-table > tbody").append(`<tr class="word-tr"><td>${i + 1}</td><td>${decodeURIComponent(data[i].english)}</td><td><input type="text" value="${decodeURIComponent(data[i].translate)
+            }" /></td><td><input class="btn-remove" type="button" value="Удалить" /></td></tr>`);
     }   
-    $('.btn-remove').click(DeleteRow);
+    $(".btn-remove").click(DeleteRow);
 }
 //===========================================================================================================
 function DeleteRow()
@@ -153,7 +149,7 @@ function DeleteRow()
 //===========================================================================================================
 $('#btn-save').click(function ()
 {
-    var data = $('table .word-tr').map(function ()
+    var data = $("table .word-tr").map(function ()
     {
         return{
             eng: $(this.cells[1]).text(),
@@ -165,7 +161,7 @@ $('#btn-save').click(function ()
     $.ajax({
         type: "POST",
         url: "/Book/GetWordsFromClient",
-        data: "data=" + JSON.stringify(data),
+        data: `data=${JSON.stringify(data)}`,
         success: function (response)
         {
             var message = response.message;
@@ -181,7 +177,7 @@ $('#btn-save').click(function ()
         },
         error: function (xhr, status, error)
         {
-            alert("Ошибка ajax:\n" + "status - " + status + "   error - " + error);
+            alert(`Ошибка ajax:\nstatus - ${status}   error - ${error}`);
         },
         dataType: "json"        
     });
@@ -251,7 +247,6 @@ function sentenceEvents()
         positionChangeAnim("#book-play-panel", 0, 200);
         if (!isPlay)
         {
-            resetWordSelection();
             if (learn_mode === learn_by_sentence)
             {
                 words_count = -1;
@@ -259,11 +254,10 @@ function sentenceEvents()
 
                 $(this).css("background-color", background_of_selected).addClass("clicked", function ()
                 {
-                    
+                    resetWordSelection(this);
                 });
                 arrayOfSeletion = getSelectingWords(this.innerText);
-                local_HTML = undefined;
-                //debugger;
+                window.local_HTML = undefined;
                 $("#target-text").text(this.innerText);
                 $("#translated-text").text("");
             }
@@ -283,7 +277,7 @@ function sentenceEvents()
                 $(".paragraf").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
-                local_HTML = undefined;
+                window.local_HTML = undefined;
                 $("#target-text").text(this.innerText);
                 $("#translated-text").text("");
             }
@@ -302,7 +296,7 @@ function sentenceEvents()
                 $(".book-page").removeAttr("style");
                 $(this).css("background-color", background_of_selected).addClass("clicked");
                 arrayOfSeletion = getSelectingWords(this.innerText);
-                local_HTML = undefined;
+                window.local_HTML = undefined;
                 $("#target-text").text("");
                 $("#translated-text").text("");
             }
@@ -310,16 +304,12 @@ function sentenceEvents()
     });     
 }
 //===========================================================================================================
-function resetWordSelection()
+function resetWordSelection(jqObj)
 {
-    $("span, .ru-word, .clicked, .sentence").popover('destroy');
-    $("span").removeClass("ru-word");
-    $(".sentence").removeClass("clicked");
-    $(".sentence span").removeAttr("style");
-    //$(".sentence span").css({
-    //    fontSize: "100%",
-    //    background: ''
-    //});
+    $("span, .ru-word, .clicked, .sentence").not(jqObj).popover("destroy");
+    $("span").not(jqObj).removeClass("ru-word");
+    $(".sentence").not(jqObj).removeClass("clicked");
+    $(".sentence span").not(jqObj).removeAttr("style");
 }
 //===========================================================================================================
 var isPlay = false;
@@ -327,6 +317,12 @@ var is_back = false;
 //===========================================================================================================
 document.getElementById("fa_play").onclick = function (event)
 {
+    if (wordPopover !== null)
+    {
+        wordPopover.destroy();
+    }
+    clearInterval(window.timerId);
+    $("#icon-sound").stop();
     var str = event.currentTarget.firstElementChild.className;
     var regPlay = new RegExp('fa-play', 'gi');
     var regPause = new RegExp('fa-pause', 'gi');
@@ -357,12 +353,14 @@ document.getElementById("fa_play").onclick = function (event)
 //===========================================================================================================
 $("#fa_back").click(function (event)
 {    
-    clearInterval(timerId);
+    clearInterval(window.timerId);
     $("#icon-sound").stop();
     if (arrayOfSeletion.length > 0)
     {
-        $(".popover").remove();
-        $(".ru-word").popover('destroy');
+        if (wordPopover !== null)
+        {
+            wordPopover.destroy();
+        }
         isPlay = false;
         is_back = true;
         $("#fa_play").show();
@@ -378,11 +376,14 @@ $("#fa_back").click(function (event)
 //===========================================================================================================
 function nextClick()
 {    
-    clearInterval(timerId);
+    clearInterval(window.timerId);
     $("#icon-sound").stop();
     if (arrayOfSeletion.length > 0)
     {
-        wordPopover.destroy();
+        if (wordPopover !== null)
+        {
+            wordPopover.destroy();
+        }
         isPlay = false;
         is_back = false;
         $("#fa_play").show();
@@ -528,8 +529,8 @@ $("#page").mouseup(function (e) {
     var text = getSelectionText();
     text = text.replace(/\W/g, '');
     if (text !== "") {
-        cleanLocalSelection();
-        $(".ru-word").popover('destroy');
+        //cleanLocalSelection();
+        //$(".ru-word").popover('destroy');
         selectedWord = text;
         is_end = false;
         //speech(selectedWord, true, false);

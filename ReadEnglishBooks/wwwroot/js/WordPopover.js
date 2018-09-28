@@ -42,7 +42,7 @@ class WordPopover
         }, false);
         this.show();
     }
-
+    //---------------------------------------------------------------------------------------------
     SetClassIntoSentence(input) 
     {
         this.cleanSelection();
@@ -53,7 +53,7 @@ class WordPopover
 
         try
         {
-            const nakedText = spanTag[0].innerHTML;
+            const nakedText = spanTag[0].innerText;
             const replacement = nakedText.match(eval(target));
             if (replacement !== null) 
             {
@@ -68,7 +68,7 @@ class WordPopover
             return;
         }
     }
-
+    //---------------------------------------------------------------------------------------------
     cleanSelection()
     {
         if (this.local_HTML !== undefined)
@@ -85,7 +85,7 @@ class WordPopover
             }
         }
     }
-
+    //---------------------------------------------------------------------------------------------
     show()
     {
         $(".ru-word").popover("show");
@@ -98,7 +98,7 @@ class WordPopover
                         event.stopPropagation();
                     }, false);
 
-                $("#popover-title, #popover-content").mousedown(function (event)
+                $("#popover-spinner").mousedown(function (event)
                 {
                     event.stopPropagation();
                 }, false);
@@ -133,7 +133,7 @@ class WordPopover
                 
             });
     }
-
+    //---------------------------------------------------------------------------------------------
     destroy()
     {
         this.cleanSelection();
