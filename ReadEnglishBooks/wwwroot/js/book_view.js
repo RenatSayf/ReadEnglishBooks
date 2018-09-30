@@ -404,7 +404,6 @@ $("#fa-next").click(function (event)
 //===========================================================================================================
 function speakOnly()
 {
-    
     if (arrayOfSeletion.length > 0 && words_count >= 0 && words_count < arrayOfSeletion.length)
     {
         speech(arrayOfSeletion[words_count], true, true);

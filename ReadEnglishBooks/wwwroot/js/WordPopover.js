@@ -2,9 +2,11 @@
 
 class WordPopover
 {
+    
     constructor(enWord, pageWordsObj)
     {
         this.SetClassIntoSentence(enWord);
+        this.enWord = enWord;
 
         for (let i = 0; i < pageWordsObj.length; i++)
         {
@@ -19,21 +21,21 @@ class WordPopover
         {
             this.ruWord = "";
         }
-        $("#trans_div").text(this.ruWord);
+        $("#trans_div-1").text(this.ruWord);
         
         if (this.isRepeat)
         {
-            $("#btn-is-study > i").removeClass("fa-check-square-o").addClass("fa-square-o");
+            $("#btn-is-study-1 > i").removeClass("fa-check-square-o").addClass("fa-square-o");
         }
 
-        $(".ru-word").popover({
+        this.popover = $(".ru-word").popover({
             html: true,
-            title: $("#popover-title").html(),
-            content: $("#popover-content").html(),
+            title: $("#popover-title-1").html(),
+            content: $("#popover-content-1").html(),
             placement: "bottom"
         });
 
-        $("#btn_sound, #popover-title, .popover-content, .exp").mousedown(function (e)
+        $("#btn_sound-1, #popover-title-1, .popover-content, .exp").mousedown(function (e)
         {
             e.stopPropagation();
         }, false).click(function (e)
@@ -88,44 +90,47 @@ class WordPopover
     //---------------------------------------------------------------------------------------------
     show()
     {
-        $(".ru-word").popover("show");
-        $(".ru-word").on("shown.bs.popover",
+        //$(".ru-word").popover("show");
+        this.popover.popover("show");
+        this.popover.on("shown.bs.popover",
             function ()
             {
-                document.getElementById("btn_sound").addEventListener("mousedown",
+                document.getElementById("btn_sound-1").addEventListener("mousedown",
                     function (event)
                     {
                         event.stopPropagation();
                     }, false);
 
-                $("#popover-spinner").mousedown(function (event)
+                $("#popover-spinner-1").mousedown(function (event)
                 {
                     event.stopPropagation();
                 }, false);
-                document.getElementById("trans_div").addEventListener("mousedown",
+                document.getElementById("trans_div-1").addEventListener("mousedown",
                     function (event)
                     {
                         event.stopPropagation();
                     }, false);
 
-                $("#btn_sound").click(function ()
-                {
+                document.getElementById("btn_sound-1").addEventListener("click",
+                    function (event)
+                    {
+                        event.stopPropagation();
+                        WordPopover.btnSound_OnClick();
+                    }, false);
 
-                });
-
-                $("#btn-is-study").mousedown(function (event)
+                $("#btn-is-study-1").mousedown(function (event)
                 {
                     event.stopPropagation();
                 }).click(function ()
                 {
-                    if ($("#btn-is-study > i").hasClass("fa-square-o"))
+                    if ($("#btn-is-study-1 > i").hasClass("fa-square-o"))
                     {
-                        $("#btn-is-study > i").removeClass("fa-square-o").addClass("fa-check-square-o");
+                        $("#btn-is-study-1 > i").removeClass("fa-square-o").addClass("fa-check-square-o");
                         return;
                     }
-                    if ($("#btn-is-study > i").hasClass("fa-check-square-o"))
+                    if ($("#btn-is-study-1 > i").hasClass("fa-check-square-o"))
                     {
-                        $("#btn-is-study > i").removeClass("fa-check-square-o").addClass("fa-square-o");
+                        $("#btn-is-study-1 > i").removeClass("fa-check-square-o").addClass("fa-square-o");
                         return;
                     }
                     });
@@ -138,4 +143,29 @@ class WordPopover
     {
         this.cleanSelection();
     }
+    //---------------------------------------------------------------------------------------------
+    static btnSound_OnClick()
+    {
+        this.enVoice = $("#en-voices-list").selectpicker("val");
+        this.ruVoice = $("#ru-voices-list").selectpicker("val");
+        this.enRate = $("#en-rate").selectpicker("val");
+        this.ruRate = $("#ru-rate").selectpicker("val");
+        this.audio = document.getElementById("audio");
+        this.enWord = $(".ru-word").text();
+        this.ruWord = $("#trans_div-1").text();
+        $("#popover-spinner-1").css("visibility", "unset");
+        try
+        {
+            this.audio.setAttribute("src", `/Speech/Speech?enWord=${this.enWord}&ruWord=${this.ruWord}&enVoice=${this.enVoice}&ruVoice=${this.ruVoice}&enRate=${this.enRate}&ruRate=${this.ruRate}`);
+            this.playPromise = audio.play();
+        } catch (e)
+        {
+            return;
+        }
+    }
+
+
+
+
+
 }

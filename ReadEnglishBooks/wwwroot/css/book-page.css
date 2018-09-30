@@ -72,7 +72,8 @@ h3,
   z-index: 2010 !important;
   /* A value higher than 1010 that solves the problem */
 }
-.clicked .popover #trans_div {
+.clicked .popover #trans_div,
+.clicked .popover #trans_div-1 {
   font-size: 180%;
   color: yellow;
   font-weight: bold;
@@ -102,17 +103,22 @@ h3,
   color: #398cb5;
   outline: none;
 }
+.clicked .popover button i:active {
+  color: #398cb5;
+}
 .clicked .popover-title {
   text-indent: 0;
   padding: 0;
   background-color: #398cb5;
   color: white;
 }
-.clicked .popover-title #btn-is-study > i {
+.clicked .popover-title #btn-is-study > i,
+.clicked .popover-title #btn-is-study-1 > i {
   position: relative;
   left: 0.25em;
 }
-.clicked .popover-title #btn-is-study > span {
+.clicked .popover-title #btn-is-study > span,
+.clicked .popover-title #btn-is-study-1 > span {
   position: relative;
   left: -3.1em;
   top: 0.6em;
@@ -124,7 +130,8 @@ h3,
   font-size: 274%;
   padding: 0;
 }
-.clicked .popover-title #popover-spinner {
+.clicked .popover-title #popover-spinner,
+.clicked .popover-title #popover-spinner-1 {
   visibility: hidden;
 }
 .clicked .popover-content {
@@ -150,10 +157,12 @@ h3,
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-.clicked .popover-content > div.container div.row #btn-ya-translate {
+.clicked .popover-content > div.container div.row #btn-ya-translate,
+.clicked .popover-content > div.container div.row #btn-ya-translate-1 {
   padding: 7px;
 }
-.clicked .popover-content > div.container div.row #btn-ya-translate i {
+.clicked .popover-content > div.container div.row #btn-ya-translate i,
+.clicked .popover-content > div.container div.row #btn-ya-translate-1 i {
   font-size: 200%;
   position: relative;
   top: 0.15em;

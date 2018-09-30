@@ -84,6 +84,7 @@ $("#audio")[0].onerror = function ()
     $("#div-start").removeAttr("hidden");
     $("#popover-spinner").css("visibility", "hidden");
     clearInterval(timerId);
+    clearAllIntervals();
     $(".ru-word").popover("destroy");
     window.isPlay = false;
 };
@@ -114,6 +115,7 @@ $("#audio")[0].onended = function ()
         playIconChange(window.isPlay);
         $("#icon-sound").stop();
         clearInterval(timerId);
+        clearAllIntervals();
     }
 };
 //============================================================================================================
@@ -123,6 +125,7 @@ $("#audio")[0].onpause = function ()
     playIconChange(isPlay);
     $("#icon-sound").stop();
     clearInterval(timerId);
+    clearAllIntervals();
 };
 //============================================================================================================
 function speechStop()
@@ -131,6 +134,7 @@ function speechStop()
     window.isPlay = false;
     playIconChange(window.isPlay);
     clearInterval(timerId);
+    clearAllIntervals();
     cleanLocalSelection();
 }
 //============================================================================================================

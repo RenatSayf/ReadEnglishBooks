@@ -30,7 +30,7 @@ function showWordPopover(enWord)
     }
 
     //let wordPopover = new WordPopover("", ruWord);
-    
+
 
     $("#trans_div").text(ruWord);
 
@@ -45,16 +45,26 @@ function showWordPopover(enWord)
     $("#btn_sound, #popover-title, .popover-content, .exp").mousedown(function (e)
     {
         e.stopPropagation();
-    }).click(function(e) {
+    }).click(function (e)
+    {
         e.stopPropagation();
-        });
+    });
     return ruWord;
 }
 //===========================================================================================================
-function removeTagsFromText(input) {
+function removeTagsFromText(input)
+{
     const r = /<(\w+)[^>]*>.*<\/\1>/gi;
     const replaceText = input.replace(r, "");
     return replaceText;
 }
-
+//===========================================================================================================
+function clearAllIntervals()
+{
+    for (var i = 1; i <= 10000; i++)
+    {
+        clearInterval(i);
+    }
+    $("#icon-sound").removeClass("fa-volume-down").addClass("fa-volume-up");
+}
 

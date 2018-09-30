@@ -31,12 +31,12 @@ function positionChangeAnim(jQSelector, toPosition, duration)
 //================================================================================================
 function iconSoundAnim(jQSelector)
 {
-    const fontSize = $(jQSelector).css("font-size");
+    const color = $(jQSelector).css("color");
     $(jQSelector).removeClass("fa-volume-up").addClass("fa-volume-down");
-    $(jQSelector).animate({ fontSize: fontSize }, 200, function ()
+    $(jQSelector).animate({ color: color }, 200, function ()
     {
         $(jQSelector).removeClass("fa-volume-down").addClass("fa-volume-up");
-        $(jQSelector).animate({ fontSize: fontSize }, 200, function ()
+        $(jQSelector).animate({ color: color }, 200, function ()
         {
             
         });
