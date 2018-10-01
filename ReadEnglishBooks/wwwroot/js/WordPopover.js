@@ -111,13 +111,6 @@ class WordPopover
                         event.stopPropagation();
                     }, false);
 
-                document.getElementById("btn_sound-1").addEventListener("click",
-                    function (event)
-                    {
-                        event.stopPropagation();
-                        WordPopover.btnSound_OnClick();
-                    }, false);
-
                 $("#btn-is-study-1").mousedown(function (event)
                 {
                     event.stopPropagation();
@@ -134,9 +127,9 @@ class WordPopover
                         return;
                     }
                     });
-
-                
             });
+        this.btnSound_OnClick();
+        this.audio_OnPlay();
     }
     //---------------------------------------------------------------------------------------------
     destroy()
@@ -144,24 +137,35 @@ class WordPopover
         this.cleanSelection();
     }
     //---------------------------------------------------------------------------------------------
-    static btnSound_OnClick()
+    btnSound_OnClick()
     {
-        this.enVoice = $("#en-voices-list").selectpicker("val");
-        this.ruVoice = $("#ru-voices-list").selectpicker("val");
-        this.enRate = $("#en-rate").selectpicker("val");
-        this.ruRate = $("#ru-rate").selectpicker("val");
-        this.audio = document.getElementById("audio");
-        this.enWord = $(".ru-word").text();
-        this.ruWord = $("#trans_div-1").text();
-        $("#popover-spinner-1").css("visibility", "unset");
-        try
+        $("#btn_sound-1").click(function()
         {
-            this.audio.setAttribute("src", `/Speech/Speech?enWord=${this.enWord}&ruWord=${this.ruWord}&enVoice=${this.enVoice}&ruVoice=${this.ruVoice}&enRate=${this.enRate}&ruRate=${this.ruRate}`);
-            this.playPromise = audio.play();
-        } catch (e)
+            const enVoice = $("#en-voices-list").selectpicker("val");
+            const ruVoice = $("#ru-voices-list").selectpicker("val");
+            const enRate = $("#en-rate").selectpicker("val");
+            const ruRate = $("#ru-rate").selectpicker("val");
+            const enWord = $('.clicked span[aria-describedby *= "popover"]').text();
+            const ruWord = $("#trans_div-1").text();
+            $("#popover-spinner-1").css("visibility", "unset");
+            try
+            {
+                const audio = document.getElementById("audio");
+                audio.setAttribute("src", `/Speech/Speech?enWord=${enWord}&ruWord=${ruWord}&enVoice=${enVoice}&ruVoice=${ruVoice}&enRate=${enRate}&ruRate=${ruRate}`);
+                const playPromise = audio.play();
+            } catch (e)
+            {
+                return;
+            }
+        });
+    }
+    //---------------------------------------------------------------------------------------------
+    audio_OnPlay()
+    {
+        document.getElementById("audio").onplaying = function()
         {
-            return;
-        }
+             $("#popover-spinner-1").css("visibility", "hidden");
+        };
     }
 
 
