@@ -90,7 +90,6 @@ class WordPopover
     //---------------------------------------------------------------------------------------------
     show()
     {
-        //$(".ru-word").popover("show");
         this.popover.popover("show");
         this.popover.on("shown.bs.popover",
             function ()
@@ -129,7 +128,8 @@ class WordPopover
                     });
             });
         this.btnSound_OnClick();
-        this.audio_OnPlay();
+        this.audioEvents();
+        this.btnTestKnowledge_OnClick();
     }
     //---------------------------------------------------------------------------------------------
     destroy()
@@ -160,13 +160,37 @@ class WordPopover
         });
     }
     //---------------------------------------------------------------------------------------------
-    audio_OnPlay()
+    audioEvents()
     {
-        document.getElementById("audio").onplaying = function()
+        const audioElement = document.getElementById("audio");
+        audioElement.onplaying = function ()
         {
              $("#popover-spinner-1").css("visibility", "hidden");
         };
+
+        audioElement.onended = function()
+            {};
     }
+    //---------------------------------------------------------------------------------------------
+    btnTestKnowledge_OnClick()
+    {
+        document.getElementById("btn-test-knowledge-1").onclick = function()
+        {
+            const clickedElement = document.getElementsByClassName("clicked")[0];
+            const arrayOfSeletion = getSelectingWords(clickedElement.innerText);
+            showKnowledgeTest(arrayOfSeletion);
+        };
+    }
+    //---------------------------------------------------------------------------------------------
+    btnYaTranslate_OnClick()
+    {
+        document.getElementById("btn-ya-translate-1").onclick = function()
+        {
+
+        };
+    }
+    //---------------------------------------------------------------------------------------------
+    
 
 
 

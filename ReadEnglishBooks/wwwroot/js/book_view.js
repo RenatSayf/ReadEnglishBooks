@@ -452,11 +452,11 @@ window.onload = function ()
     return;
 };
 //===========================================================================================================
-function showKnowledgeTest()
+function showKnowledgeTest(array)
 {
     isPlay = false;
-    $('*').popover('destroy');
-    window.studyWordsArray = getStudyWords(arrayOfSeletion, learn_mode);
+    $("*").popover("destroy");
+    window.studyWordsArray = getStudyWords(array, learn_mode);
     if (window.studyWordsArray.length > 0)
     {
         fillTestTable(window.studyWordsArray, words_index);
@@ -464,6 +464,11 @@ function showKnowledgeTest()
     $("#word-test-box").modal("show");
     $(".modal-title").text("Найди подходящий перевод");
 }
+//===========================================================================================================
+$("#btn-test-knowledge").click(function()
+{
+    showKnowledgeTest(arrayOfSeletion);
+});
 //===========================================================================================================
 function showDialogComplete(title, message)
 {
