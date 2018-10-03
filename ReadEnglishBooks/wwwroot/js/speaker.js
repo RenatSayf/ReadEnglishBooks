@@ -11,10 +11,13 @@ var timerId;
 //============================================================================================================
 function speech(enWord, isPopoverShow, isSpeak)
 {
-    let ruWord = "";
+    SetRuWordClassIntoSentence(enWord);
+    const wordPopover = new WordPopover(enWord, pageWordsObj);
+    const ruWord = wordPopover.getRuWord;
     if (isPopoverShow)
     {
-        ruWord = showWordPopover(enWord);
+        //ruWord = showWordPopover(enWord);
+        wordPopover.show();
     }
     if (isSpeak === true)
     {

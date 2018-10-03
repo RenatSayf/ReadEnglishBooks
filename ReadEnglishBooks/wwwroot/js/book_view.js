@@ -528,17 +528,20 @@ $("#page").on("taphold", function ()
 });
 var wordPopover = null;
 //===========================================================================================================
-$("#page").mouseup(function (e) {
+$("#page").mouseup(function (e)
+{
     selectedWord = "";
     var text = getSelectionText();
-    text = text.replace(/\W/g, '');
-    if (text !== "") {
+    text = text.replace(/\W/g, "");
+    if (text !== "")
+    {
         //cleanLocalSelection();
         //$(".ru-word").popover('destroy');
         selectedWord = text;
         is_end = false;
         //speech(selectedWord, true, false);
         wordPopover = new WordPopover(selectedWord, pageWordsObj);
+        wordPopover.show();
     }
 });
 //===========================================================================================================

@@ -2,7 +2,6 @@
 
 class WordPopover
 {
-    
     constructor(enWord, pageWordsObj)
     {
         this.SetClassIntoSentence(enWord);
@@ -42,7 +41,12 @@ class WordPopover
         {
             e.stopPropagation();
         }, false);
-        this.show();
+        //this.show();
+    }
+    //---------------------------------------------------------------------------------------------
+    get getRuWord()
+    {
+        return this.ruWord;
     }
     //---------------------------------------------------------------------------------------------
     SetClassIntoSentence(input) 
@@ -78,8 +82,8 @@ class WordPopover
             const clickedElement = document.getElementsByClassName("clicked")[0];
             try
             {
+                this.popover.popover("destroy");
                 clickedElement.innerHTML = this.local_HTML;
-
             } catch (e)
             {
                 console.log(`Error into speaker.js -> cleanLocalSelection() - ${e.message}`);
