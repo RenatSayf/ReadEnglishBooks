@@ -92,11 +92,12 @@ $("#audio")[0].onerror = function ()
     window.isPlay = false;
 };
 //============================================================================================================
-$("#audio")[0].onended = function ()
+$("#audio").onended = function ()
 {
     is_end = true;
     $("#icon-sound").stop();
     clearInterval(timerId);
+    debugger;
     if (window.isPlay && arrayOfSeletion.length > 0)
     {
         if (words_count <= arrayOfSeletion.length - 1)

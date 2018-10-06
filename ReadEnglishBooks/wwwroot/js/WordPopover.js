@@ -1,15 +1,15 @@
-﻿'use strict';
+﻿"use strict";
 
 class WordPopover
 {
     constructor(enWord, pageWordsObj)
     {
         this.SetClassIntoSentence(enWord);
-        this.enWord = enWord;
+        this.enWord = enWord.toLowerCase();
 
         for (let i = 0; i < pageWordsObj.length; i++)
         {
-            if (pageWordsObj[i].Eng === enWord)
+            if (pageWordsObj[i].Eng === this.enWord)
             {
                 this.ruWord = pageWordsObj[i].Rus;
                 this.isRepeat = pageWordsObj[i].IsRepeat;
@@ -77,6 +77,7 @@ class WordPopover
     //---------------------------------------------------------------------------------------------
     cleanSelection()
     {
+        //debugger;
         if (this.local_HTML !== undefined)
         {
             const clickedElement = document.getElementsByClassName("clicked")[0];
@@ -131,6 +132,7 @@ class WordPopover
                     }
                     });
             });
+
         this.btnSound_OnClick();
         this.audioEvents();
         this.btnTestKnowledge_OnClick();
@@ -156,7 +158,7 @@ class WordPopover
             {
                 const audio = document.getElementById("audio");
                 audio.setAttribute("src", `/Speech/Speech?enWord=${enWord}&ruWord=${ruWord}&enVoice=${enVoice}&ruVoice=${ruVoice}&enRate=${enRate}&ruRate=${ruRate}`);
-                const playPromise = audio.play();
+                window.playProm = audio.play();
             } catch (e)
             {
                 return;
@@ -164,16 +166,95 @@ class WordPopover
         });
     }
     //---------------------------------------------------------------------------------------------
+    get PlayPromise()
+    {
+        return window.playProm;
+    }
+    //---------------------------------------------------------------------------------------------
     audioEvents()
     {
         const audioElement = document.getElementById("audio");
         audioElement.onplaying = function ()
         {
-             $("#popover-spinner-1").css("visibility", "hidden");
+            $("#popover-spinner-1").css("visibility", "hidden");
+            $("#popover-spinner").css("visibility", "hidden");
+            iconSoundAnim("#icon-sound");
+            window.timerId = setInterval(function ()
+            {
+                iconSoundAnim("#icon-sound");
+            }, 500);
+            if (isPlay)
+            {
+                playIconChange(isPlay);
+                if (!is_back)
+                {
+                    window.words_count++;
+                }
+                else
+                {
+                    window.words_count--;
+                }
+            }
+        };
+
+        audioElement.onpause = function()
+        {
+            $("#popover-spinner-1").css("visibility", "hidden");
+            playIconChange(isPlay);
+            $("#icon-sound").stop();
+            clearInterval(timerId);
+            clearAllIntervals();
         };
 
         audioElement.onended = function()
-            {};
+        {
+            window.is_end = true;
+            $("#icon-sound").stop();
+            clearInterval(timerId);
+            //debugger;
+            if (window.isPlay && arrayOfSeletion.length > 0)
+            {
+                if (words_count <= arrayOfSeletion.length - 1)
+                {
+                    speech(arrayOfSeletion[words_count], true, true);
+                }
+                else
+                {
+                    backgroundColorAnim("#btn-test-knowledge1");
+                    $("#btn-test-knowledge-1").css({
+                        "animation-name": "btn_test_knowledge_anim",
+                        "animation-duration": "400ms",
+                        "animation-iteration-count": "8",
+                        "animation-timing-function":"ease"
+                    });
+                    window.isPlay = false;
+                    playIconChange(window.isPlay);
+                    clearInterval(timerId);
+                }
+                return;
+            }
+            if (!window.isPlay && words_count >= arrayOfSeletion.length - 1)
+            {
+                backgroundColorAnim("#btn-test-knowledge");
+                playIconChange(window.isPlay);
+                $("#icon-sound").stop();
+                clearInterval(timerId);
+                clearAllIntervals();
+            }
+        };
+
+        audioElement.onerror = function()
+        {
+            console.log("Event message(onerror) - Error occurs when the file is being loaded");
+            $("#icon-sound").stop();
+            $("#div-stop").attr("hidden", "hidden");
+            $("#div-start").removeAttr("hidden");
+            $("#popover-spinner").css("visibility", "hidden");
+            clearInterval(timerId);
+            clearAllIntervals();
+            $(".ru-word").popover("destroy");
+            window.isPlay = false;
+        };
     }
     //---------------------------------------------------------------------------------------------
     btnTestKnowledge_OnClick()

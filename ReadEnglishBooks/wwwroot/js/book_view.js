@@ -245,6 +245,7 @@ function sentenceEvents()
     $(".sentence").mousedown(function (e)
     {
         positionChangeAnim("#book-play-panel", 0, 200);
+        wordPopover = null;
         if (!isPlay)
         {
             if (learn_mode === learn_by_sentence)
@@ -375,7 +376,7 @@ $("#fa_back").click(function (event)
 });
 //===========================================================================================================
 function nextClick()
-{    
+{
     clearInterval(window.timerId);
     $("#icon-sound").stop();
     if (arrayOfSeletion.length > 0)
@@ -412,8 +413,8 @@ function speakOnly()
 //===========================================================================================================
 $(document).ready(function ()
 {
-    var book_number = $("#book-number").text();
-    getPage(parseInt(book_number)); 
+    const bookNumber = $("#book-number").text();
+    getPage(parseInt(bookNumber)); 
 
     $("#volume").slider(
         {
@@ -433,7 +434,7 @@ $(document).ready(function ()
             placement: "top"
 
         });
-    $("#book-play-panel").popover("show").on('shown.bs.popover', function ()
+    $("#book-play-panel").popover("show").on("shown.bs.popover", function ()
     {
         setTimeout(function ()
         {
@@ -532,14 +533,12 @@ $("#page").mouseup(function (e)
 {
     selectedWord = "";
     var text = getSelectionText();
+    //debugger;
     text = text.replace(/\W/g, "");
     if (text !== "")
     {
-        //cleanLocalSelection();
-        //$(".ru-word").popover('destroy');
         selectedWord = text;
-        is_end = false;
-        //speech(selectedWord, true, false);
+        window.is_end = false;
         wordPopover = new WordPopover(selectedWord, pageWordsObj);
         wordPopover.show();
     }

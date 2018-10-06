@@ -170,6 +170,16 @@ h3,
 .clicked .popover.bottom > .arrow:after {
   border-bottom-color: #398cb5;
 }
+@keyframes btn_test_knowledge_anim {
+  0% {
+    background-color: #398cb5;
+    color: white;
+  }
+  100% {
+    background-color: #00ff21;
+    color: red;
+  }
+}
 .fragm-is-studied-dialog,
 .ui-dialog-titlebar {
   background-color: floralwhite;
